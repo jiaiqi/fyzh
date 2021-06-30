@@ -1,0 +1,200 @@
+@charset "UTF-8";
+/**
+ * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
+ * 使用的时候，请将下面的一行复制到您的uniapp项目根目录的uni.scss中即可
+ * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
+ */
+.list-wrap.data-v-b4fbdc16 {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 20rpx;
+}
+.list-wrap.tab-list.data-v-b4fbdc16 {
+  padding: 20rpx;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+.list-wrap .news.data-v-b4fbdc16 {
+  padding: 20rpx;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+.list-wrap .title.data-v-b4fbdc16 {
+  font-size: 28rpx;
+  font-weight: 700;
+  padding: 10rpx 0;
+  color: #303133;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.list-wrap .title .to-more.data-v-b4fbdc16 {
+  width: 100rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.list-wrap .title .cuIcon-right.data-v-b4fbdc16 {
+  font-weight: 200;
+}
+.list-wrap .news-list.data-v-b4fbdc16 {
+  padding: 20rpx 0 0;
+}
+.list-wrap .news-list .news-item.data-v-b4fbdc16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f1f1f1;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.list-wrap .news-list .news-item .title-text.data-v-b4fbdc16 {
+  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 32rpx;
+  padding-bottom: 20rpx;
+}
+.list-wrap .news-list .news-item .title-text .text-red.data-v-b4fbdc16 {
+  display: inline-block;
+  margin-left: 10rpx;
+  font-size: 24rpx;
+  position: relative;
+  top: -10rpx;
+  font-weight: bold;
+}
+.list-wrap .news-list .news-item .title-text .line-red.data-v-b4fbdc16 {
+  border-radius: 5px;
+  margin-left: 10rpx;
+  padding: 2px 4px;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1rpx solid #e54d42;
+}
+.list-wrap .news-list .news-item .content-box.data-v-b4fbdc16 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+}
+.list-wrap .news-list .news-item .date.data-v-b4fbdc16 {
+  color: #ccc;
+}
+.list-wrap .news-list .news-item.none-image.data-v-b4fbdc16 {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+          align-items: flex-start;
+}
+.list-wrap .news-list .news-item.none-image .content-box.data-v-b4fbdc16 {
+  height: auto;
+  min-height: 50rpx;
+}
+.list-wrap .news-list .news-item.none-image .title-text.data-v-b4fbdc16 {
+  font-size: 16px;
+  width: 100%;
+  white-space: normal;
+}
+.list-wrap .news-list .news-item.none-image .date.data-v-b4fbdc16 {
+  font-size: 12px;
+}
+.list-wrap .news-list .news-item.layout-center-single-image.data-v-b4fbdc16, .list-wrap .news-list .news-item.layout-center-single-image-top.data-v-b4fbdc16 {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: column-reverse;
+          flex-direction: column-reverse;
+  border-radius: 10rpx;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+  margin-bottom: 20rpx;
+}
+.list-wrap .news-list .news-item.layout-center-single-image .image-icon.data-v-b4fbdc16, .list-wrap .news-list .news-item.layout-center-single-image-top .image-icon.data-v-b4fbdc16 {
+  width: 100%;
+  height: 200rpx;
+}
+.list-wrap .news-list .news-item.layout-center-single-image .content-box.data-v-b4fbdc16, .list-wrap .news-list .news-item.layout-center-single-image-top .content-box.data-v-b4fbdc16 {
+  padding: 10rpx 20rpx;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+}
+.list-wrap .news-list .news-item.layout-center-single-image .content-box .title-text.data-v-b4fbdc16, .list-wrap .news-list .news-item.layout-center-single-image-top .content-box .title-text.data-v-b4fbdc16 {
+  font-weight: bold;
+  margin-left: 0;
+  width: calc(100% - 250rpx);
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
+.list-wrap .news-list .news-item.layout-center-single-image-top.data-v-b4fbdc16 {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+}
+.list-wrap .news-list .news-item.layout-right-image.data-v-b4fbdc16, .list-wrap .news-list .news-item.layout-left-image.data-v-b4fbdc16 {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.list-wrap .news-list .news-item.layout-right-image .content-box.data-v-b4fbdc16, .list-wrap .news-list .news-item.layout-left-image .content-box.data-v-b4fbdc16 {
+  min-height: 150rpx;
+  width: calc(100% - 250rpx);
+}
+.list-wrap .news-list .news-item.layout-right-image .image-icon.data-v-b4fbdc16, .list-wrap .news-list .news-item.layout-left-image .image-icon.data-v-b4fbdc16 {
+  width: 200rpx;
+  height: 150rpx;
+  border-radius: 5px;
+}
+.list-wrap .news-list .news-item.layout-right-image .title-text.data-v-b4fbdc16, .list-wrap .news-list .news-item.layout-left-image .title-text.data-v-b4fbdc16 {
+  margin-left: 20rpx;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  width: 100%;
+}
+.list-wrap .news-list .news-item.layout-right-image .date.data-v-b4fbdc16, .list-wrap .news-list .news-item.layout-left-image .date.data-v-b4fbdc16 {
+  margin-left: 20rpx;
+}
+.list-wrap .news-list .news-item.layout-right-image.data-v-b4fbdc16 {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+}
+.list-wrap .news-list .news-item.layout-right-image .title-text.data-v-b4fbdc16 {
+  margin-left: 0;
+}
+.list-wrap .news-list .news-item.layout-right-image .date.data-v-b4fbdc16 {
+  margin-left: 0;
+}
+
