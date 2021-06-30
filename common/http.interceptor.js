@@ -15,7 +15,16 @@ const install = (Vue, vm) => {
 	});
 	// 请求拦截，配置Token等参数
 	Vue.prototype.$u.http.interceptor.request = (config) => {
-		config.header.bx_auth_ticket = uni.getStorageSync('bx_auth_ticket') || api.ticket
+		if (config.url.indexOf('?openCode=') !== -1) {
+			config.header["bx_open_code"] = config.url.split('?openCode=')[1]
+			if(config.header.bx_auth_ticket){
+				delete config.header.bx_auth_ticket
+			}
+		}else{
+			if(uni.getStorageSync('bx_auth_ticket')||vm.vuex_token){
+				config.header.bx_auth_ticket = uni.getStorageSync('bx_auth_ticket')||vm.vuex_token
+			}
+		}
 		// 方式一，存放在vuex的token，假设使用了uView封装的vuex方式，见：https://uviewui.com/components/globalVariable.html
 		// config.header.token = vm.token;
 

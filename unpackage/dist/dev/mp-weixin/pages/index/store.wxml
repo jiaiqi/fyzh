@@ -1,1 +1,1 @@
-<view class="data-v-69672f7b"></view>
+<view class="data-v-69672f7b"><goods-list vue-id="79017e2a-1" image="photos" name="gd_name" desc="gd_desc" data-ref="goodsList" class="data-v-69672f7b vue-ref" bind:__l="__l"></goods-list></view>

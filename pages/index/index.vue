@@ -8,18 +8,22 @@
 
 <script>
 	import PageItem from './components/page-item.vue'
+	import {
+		wxLogin
+	} from '@/common/api.js'
 	export default {
 		components: {
 			PageItem
 		},
 		data() {
 			return {
-				pageItemList:[]
+				pageItemList: []
 			};
 		},
-		created() {
-			this.$u.api.getPageItem().then(res=>{
-				if(res.state==='SUCCESS'){
+		async created() {
+			await wxLogin()
+			this.$u.api.getPageItem().then(res => {
+				if (res.state === 'SUCCESS') {
 					this.pageItemList = res.data
 				}
 			})

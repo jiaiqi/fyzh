@@ -9,15 +9,15 @@
 		</u-navbar>
 		<view class="u-flex user-box u-p-l-30 u-p-r-20 u-p-b-30">
 			<view class="u-m-r-20">
-				<u-avatar bg-color="#DB0011" src="" size="140" v-if="is_login"></u-avatar>
-				<u-avatar  size="140" v-else></u-avatar>
+				<u-avatar size="140" v-if="needAuthProfile"></u-avatar>
+				<u-avatar bg-color="#DB0011" :src="vuex_loginUser.headimgurl" size="140" v-else="isLogin&&vuex_loginUser&&vuex_loginUser.headimgurl"></u-avatar>
 			</view>
 			<view class="u-flex-1">
-				<view class="u-font-18 u-p-b-20"  v-if="is_login">{{vuex_user.name}}</view>
-				<view class="u-font-18 u-p-b-20" v-else @tap="wxLogin">登录</view>
+				<button class="cu-btn bg-red light " v-else @click="wxLogin" v-if="needAuthProfile">登录</button>
+				<view class="u-font-18 u-p-b-20" v-else-if="vuex_loginUser&&vuex_loginUser.real_name">{{vuex_loginUser.real_name}}</view>
 				<!-- <view class="u-font-14 u-tips-color">微信号:helang_uView</view> -->
 			</view>
-		<!-- 	<view class="u-m-l-10 u-p-10">
+			<!-- 	<view class="u-m-l-10 u-p-10">
 				<u-icon name="scan" color="#fff" size="28"></u-icon>
 			</view>
 			<view class="u-m-l-10 u-p-10">
@@ -49,6 +49,9 @@
 </template>
 
 <script>
+	import {
+		wxOpenLogin
+	} from '@/common/api.js'
 	export default {
 		data() {
 			return {
@@ -68,8 +71,20 @@
 
 		},
 		methods: {
-			wxLogin(){
-				this.$u.api.wxLogin()
+			async getUserProfile(e) {
+				// 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+				// 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+				return await  wx.getUserProfile({
+					desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+				})
+			
+			},
+			wxLogin() {
+				this.getUserProfile().then(res=>{
+					if(res&&res.userInfo){
+						wxOpenLogin(res)
+					}
+				})
 			},
 		}
 	}
@@ -79,6 +94,7 @@
 	page {
 		background-color: #ededed;
 	}
+
 	.camera {
 		width: 54px;
 		height: 44px;
@@ -91,7 +107,8 @@
 	.user-box {
 		background-color: #FF5C4E;
 		color: #fff;
-		.empty-profile{
+
+		.empty-profile {
 			width: 140rpx;
 			height: 140rpx;
 			line-height: 140rpx;

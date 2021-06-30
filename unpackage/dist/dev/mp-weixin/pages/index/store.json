@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "甄选",
   "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "goods-list": "/components/goods-list/goods-list"
+  }
 }

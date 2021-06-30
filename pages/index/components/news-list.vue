@@ -229,7 +229,6 @@
 					}
 					// const url2 = `/daq/select/multi`
 					// const res2 = await this.$u.post(url2, req2)
-					// debugger
 					const url2 = '/daq/select/srvdaq_cms_content_select'
 					if (req2.length == 1) {
 						req2 = req2[0]
@@ -246,7 +245,6 @@
 						// 		.other_status && item.top_status !== '是')
 						// 	let normalList = item.data.filter(item => !item
 						// 		.other_status && item.top_status !== '是')
-						// 		debugger
 						// 	types[index].list = [...topList, ...statusList, ...
 						// 		normalList
 						// 	]

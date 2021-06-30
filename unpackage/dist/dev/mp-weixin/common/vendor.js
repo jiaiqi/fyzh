@@ -872,7 +872,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7446,7 +7446,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7467,14 +7467,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7560,7 +7560,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -10628,33 +10628,15 @@ var store = new _vuex.default.Store({
   state: {
     // 如果上面从本地获取的lifeData对象下有对应的属性，就赋值给state中对应的变量
     // 加上vuex_前缀，是防止变量名冲突，也让人一目了然
-    is_login: false,
-    vuex_user: lifeData.vuex_user ? lifeData.vuex_user : { name: '明月' },
-    vuex_token: lifeData.vuex_token ? lifeData.vuex_token : '',
+    isLogin: false,
+    needAuthProfile: false, //未授权用户信息
+    openCode: "",
+    vuex_loginUser: lifeData.vuex_loginUser || {},
+    vuex_wxUser: lifeData.vuex_wxUser || {},
+    vuex_user: lifeData.vuex_user || {},
+    vuex_token: lifeData.vuex_token || '',
     // 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
-    vuex_version: '1.0.1',
-    vuex_demo: '绛紫',
-    // 自定义tabbar数据
-    vuex_tabbar: [{
-      iconPath: "/static/uview/example/component.png",
-      selectedIconPath: "/static/uview/example/component_select.png",
-      text: '组件',
-      pagePath: '/pages/example/components' },
-
-    {
-      iconPath: "/static/uview/example/js.png",
-      selectedIconPath: "/static/uview/example/js_select.png",
-      text: '工具',
-      midButton: true,
-      pagePath: '/pages/example/js' },
-
-    {
-      iconPath: "/static/uview/example/template.png",
-      selectedIconPath: "/static/uview/example/template_select.png",
-      text: '模板',
-      pagePath: '/pages/example/template' }] },
-
-
+    vuex_cartInfo: [] },
 
   mutations: {
     $uStore: function $uStore(state, payload) {
@@ -11877,7 +11859,7 @@ var t, e;t = this, e = function e() {"use strict";var t = ["style", "currency", 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _config = _interopRequireDefault(__webpack_require__(/*! @/common/config.js */ 117));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _config = _interopRequireDefault(__webpack_require__(/*! @/common/config.js */ 46));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 // 这里的vm，就是我们在vue文件里面的this，所以我们能在这里获取vuex的变量，比如存放在里面的token
 // 同时，我们也可以在此使用getApp().globalData，如果你把token放在getApp().globalData的话，也是可以使用的
@@ -11894,7 +11876,16 @@ var install = function install(Vue, vm) {
   });
   // 请求拦截，配置Token等参数
   Vue.prototype.$u.http.interceptor.request = function (config) {
-    config.header.bx_auth_ticket = uni.getStorageSync('bx_auth_ticket') || _config.default.ticket;
+    if (config.url.indexOf('?openCode=') !== -1) {
+      config.header["bx_open_code"] = config.url.split('?openCode=')[1];
+      if (config.header.bx_auth_ticket) {
+        delete config.header.bx_auth_ticket;
+      }
+    } else {
+      if (uni.getStorageSync('bx_auth_ticket') || vm.vuex_token) {
+        config.header.bx_auth_ticket = uni.getStorageSync('bx_auth_ticket') || vm.vuex_token;
+      }
+    }
     // 方式一，存放在vuex的token，假设使用了uView封装的vuex方式，见：https://uviewui.com/components/globalVariable.html
     // config.header.token = vm.token;
 
@@ -11927,6 +11918,137 @@ var install = function install(Vue, vm) {
 
 /***/ }),
 /* 46 */
+/*!*********************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/common/config.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 把所有api的url统一在一起并挂在到vue对象上
+// 所有接口都在一个文件里会比较大
+var remoteAddress = {
+  ssourl: 'http://www.100xsys.cn', // 微信登陆sso 端口
+  ssoAddress: 'http://sso.100xsys.cn',
+  serviceAddress: 'https://srvms.100xsys.cn', // http://login.100xsys.cn 接口地址srvms.100xsys.cn
+  frontEndAddress: 'https://wx2.100xsys.cn',
+  appName: "health", //singleApp 为 true 时 必须配置
+  bx_auth_ticket: "xabxdzkj-16606a63-e4d2-429c-97a1-8951c1beac94",
+  onTicket: false // 是否使用配置的静态 bx_auth_ticket
+  // homePath:"/pages/public/homePage/homePage?website_no=WS2020031216030001",
+  // homePath: "/pages/home/home", // 首页路径， 配置完整路径
+};
+var ENV = {
+  page_no: 'BX202106291053190001',
+  frontEndAddress: remoteAddress.frontEndAddress, //前端线上地址
+  appNo: {
+    // wxmp: 'APPNO20210420103005', // 百想首页
+    // wxmp: 'APPNO20201124160702', // 百想健康
+    wxmp: 'APPNO20210630161035', // 枫叶正红
+    // wxmp: 'APPNO20200214122021', // 百想软件ai平台
+    // wxmp: 'APPNO20200731153421' //生活能力评估
+    wxh5: 'APPNO20200107181133' //微信公众号
+  },
+  appID: {
+    // wxmp: 'wx8e6f993081f6e979', // 百想软件ai平台
+    // wxmp: 'wxa3c50c8177ef6739', // 百想健康
+    wxmp: 'wxcb7c1b0e130cb4bc', // 枫叶正红
+    // wxmp: 'wxa8574a1e93d8e8d0', // 百想首页通
+    wxh5: 'wx78d1d4139f97ffca' //百想助理公众号
+    // wxmp: "wx08876efb5760ca75" //生活能力评估
+  },
+  homePath: remoteAddress.homePath, // 应用业务的入口页面 首页。
+  appName: remoteAddress.appName, // 服务 app
+  getAuthorization: { //获取公众号授权
+    url: remoteAddress.serviceAddress + '/wx/operate/srvwx_public_page_authorization',
+    serviceName: 'srvwx_public_page_authorization' },
+
+  verifyLogin: { //公众号/小程序验证登录
+    url: remoteAddress.serviceAddress + '/wx/operate/srvwx_app_login_verify',
+    serviceName: 'srvwx_app_login_verify' },
+
+  accountLogin: { //公众号/小程序账号登录
+    url: remoteAddress.serviceAddress + '/wx/operate/srvwx_app_login',
+    serviceName: 'srvwx_app_login' },
+
+  getSignature: remoteAddress.serviceAddress + '/wx/select/srvwx_app_signature_select', //获取js-sdk签名
+  getUserInfo: remoteAddress.serviceAddress + '/wx/select/srvwx_basic_user_info_select', //获取用户信息
+  saveShareRecord: remoteAddress.serviceAddress + '/daq/add/srvdaq_record_share_add', //保存微信分享记录
+  downloadFile: remoteAddress.serviceAddress + '/file/download?fileNo=', // 根据fileNo直接下载图片，不用查找filePath
+
+  /**
+   * 新旧api 分割线—————————————————————————————————————————————————————————— old 
+   * */
+  backUrl: remoteAddress.ssourl, // 授权域名
+  serverURL: remoteAddress.serviceAddress, // 后台地址
+  refuseCode: '0111', // 后台拒绝识别码
+  byCode: '1111', // 后台通过码
+  byState: 'SUCCESS', // 状态码
+  srvHost: remoteAddress.serviceAddress,
+  bindLogin: 'bind_login', // 授权成功,请登录绑定账号
+  authorizedLoginSuccess: 'authorized_login_success', // 授权成功,可以直接请求业务数据
+  // 测试地址
+  getImg: remoteAddress.assetsUrl + '/main/', // 图片地址
+  downloadImg: remoteAddress.serviceAddress + '/download?filePath=', // 图片地址
+  getFilePath: remoteAddress.serviceAddress + '/file/download?filePath=', // 文件路径地址
+  select: remoteAddress.serviceAddress + '/bxsys/select', // 查询接口
+  toLogin: remoteAddress.ssoAddress + '/bxsyslogin', // 用户相关接口
+  selectByUser: remoteAddress.serviceAddress + '/bxsys/srvms.100xsys.cn', // 用户菜单
+  add: remoteAddress.serviceAddress + '/bxsys/operate', // 新增
+  update: remoteAddress.serviceAddress + '/bxsys/operate', // 修改
+  saveDraft: remoteAddress.serviceAddress + '/bxsys/saveDraft', // 保存草稿
+  upload: remoteAddress.serviceAddress + '/file/upload',
+  file: remoteAddress.serviceAddress + '/file/',
+  deleteFile: remoteAddress.serviceAddress + '/file/delete', // 删除文件
+  onTicket: remoteAddress.onTicket,
+  ticket: remoteAddress.bx_auth_ticket,
+  bindWxUser: remoteAddress.serviceAddress + "/wx/operate/srvwx_user_bind" // 绑定已有帐号
+};var _default =
+ENV;exports.default = _default;
+
+/***/ }),
+/* 47 */
+/*!***********************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/common/http.api.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+var _config = _interopRequireDefault(__webpack_require__(/*! @/common/config.js */ 46));
+var _api = __webpack_require__(/*! @/common/api.js */ 48);
+
+
+
+
+
+
+var _util = __webpack_require__(/*! @/common/util.js */ 177);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} // 如果没有通过拦截器配置域名的话，可以在这里写上完整的URL(加上域名部分)
+
+
+
+// 此处第二个参数vm，就是我们在页面使用的this，你可以通过vm获取vuex等操作，更多内容详见uView对拦截器的介绍部分：
+// https://uviewui.com/js/http.html#%E4%BD%95%E8%B0%93%E8%AF%B7%E6%B1%82%E6%8B%A6%E6%88%AA%EF%BC%9F
+var install = function install(Vue, vm) {
+  // 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
+  vm.$u.api = {
+    getPageItem: _api.getPageItem,
+    getFilePath: _api.getFilePath,
+    getItemDetail: _api.getItemDetail,
+    getImagePath: _api.getImagePath,
+    wxLogin: _api.wxLogin,
+    getImageInfo: _util.getImageInfo };
+
+  vm.$u.getImageInfo = _util.getImageInfo;
+  vm.$u.getImagePath = _api.getImagePath;
+};var _default =
+
+{
+  install: install };exports.default = _default;
+
+/***/ }),
+/* 48 */
 /*!******************************************************!*\
   !*** D:/front/bxfront_devproject/fyzh/common/api.js ***!
   \******************************************************/
@@ -11934,60 +12056,130 @@ var install = function install(Vue, vm) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getImagePath = exports.getItemDetail = exports.getFilePath = exports.getPageItem = exports.wxLogin = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 19));var _config = _interopRequireDefault(__webpack_require__(/*! @/common/config.js */ 117));
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getImagePath = exports.getItemDetail = exports.getFilePath = exports.getPageItem = exports.wxOpenLogin = exports.wxLogin = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 19));var _config = _interopRequireDefault(__webpack_require__(/*! @/common/config.js */ 46));
+var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _index = _interopRequireDefault(__webpack_require__(/*! @/store/index.js */ 40));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * 微信静默登录
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   */
-var wxLogin = function wxLogin() {
-  return new Promise(function (resolve) {
-    wx.login({
-      success: function success(result) {
-        if (result.code) {
-          var url = '/wx/operate/srvwx_app_login_verify';
-          var req = [{
-            data: [{
-              code: result.code,
-              app_no: _config.default.appNo.wxmp }],
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  * 微信静默登录
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  */
+var wxLogin = /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result, url, req, res, resData;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+              wx.login());case 2:result = _context.sent;if (!
 
-            serviceName: 'srvwx_app_login_verify' }];
 
-          uni.$u.post(url, req).then(function (res) {
-            if (res.data.resultCode === 'SUCCESS') {
+
+
+            result.code) {_context.next = 10;break;}
+            url = '/wx/operate/srvwx_app_login_verify';
+            req = [{
+              data: [{
+                code: result.code,
+                app_no: _config.default.appNo.wxmp }],
+
+              serviceName: 'srvwx_app_login_verify' }];_context.next = 8;return (
+
+              uni.$u.post(url, req));case 8:res = _context.sent;
+            if (res.resultCode === 'SUCCESS') {
               // 登录成功
-              var resData = res.data.response[0].response;
-              if (store.state.app.isLogin) {
-                resolve(true);
-              }
+              resData = res.response[0].response;
               if (resData && resData.bx_open_code) {
+                uni.$u.vuex('needAuthProfile', true);
+                uni.$u.vuex('openCode', resData.bx_open_code);
                 // 后端未获取到unionid 需要通过开放登录接口给后端发送wx.getUserInfo获取到的数据
-                resolve(wxOpenLogin(resData.bx_open_code));
+
+                // try {
+
+                // 	if (userProfile&&userProfile.userInfo) {
+                // 		wxOpenLogin(resData.bx_open_code,
+                // 			userInfo).then(
+                // 			result => {
+                // 				debugger
+                // 			})
+                // 	}
+                // } catch (e) {
+                // 	//TODO handle the exception
+                // 	console.log(e)
+                // 	debugger
+                // }
+              } else {
+                if (resData && resData.login_user_info.user_no) {
+                  uni.setStorageSync('login_user_info', resData.
+                  login_user_info);
+                  uni.$u.vuex('vuex_loginUser', resData.login_user_info);
+                }
+                if (resData && resData.login_user_info.data) {
+                  uni.setStorageSync('visiter_user_info', resData.
+                  login_user_info.data[0]);
+                }
               }
-              uni.setStorageSync('isLogin', true);
-              store.commit('SET_LOGIN_STATE', true);
-              store.commit('SET_TICKET', resData.bx_auth_ticket);
+              uni.$u.vuex('vuex_token', resData.bx_auth_ticket);
               uni.setStorageSync('bx_auth_ticket', resData.
               bx_auth_ticket);
+              uni.setStorageSync('isLogin', true);
+              uni.$u.vuex('isLogin', true);
+            }case 10:case "end":return _context.stop();}}}, _callee);}));return function wxLogin() {return _ref.apply(this, arguments);};}();
 
-              if (resData && resData.login_user_info.user_no) {
-                uni.setStorageSync('login_user_info', resData.
-                login_user_info);
-                store.commit('SET_LOGIN_USER', resData.login_user_info);
+
+
+// 小程序开户登录
+exports.wxLogin = wxLogin;var wxOpenLogin = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(wxAuthUserInfo) {var openCode, userInfo, url, data, req, response, resData;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+            openCode = _index.default === null || _index.default === void 0 ? void 0 : _index.default.state.openCode;
+
+            userInfo =
+            wxAuthUserInfo.userInfo;if (!(
+            userInfo && openCode)) {_context2.next = 27;break;}
+            url = "/wx/operate/srvwx_mini_open_account_login?openCode=".concat(openCode);
+            data = {
+              "app_no": _config.default.appNo.wxmp,
+              "avatarUrl": userInfo.avatarUrl,
+              "nickname": userInfo.nickName,
+              "headimgurl": userInfo.avatarUrl,
+              "sex": userInfo.gender,
+              "country": userInfo.country,
+              "province": userInfo.province,
+              "city": userInfo.city,
+              "encryptedData": wxAuthUserInfo.encryptedData,
+              "cloudID": wxAuthUserInfo.cloudID,
+              "rawData": wxAuthUserInfo.rawData,
+              "iv": wxAuthUserInfo.iv,
+              "signature": wxAuthUserInfo.signature };
+
+            debugger;
+            Object.keys(data).forEach(function (key) {
+              if (!data[key]) {
+                delete data[key];
               }
-              if (resData && resData.login_user_info.data) {
-                uni.setStorageSync('visiter_user_info', resData.
-                login_user_info.data[0]);
-              }
-              resolve(true);
+            });
+            req = [{
+              "serviceName": "srvwx_mini_open_account_login",
+              "data": [data] }];_context2.next = 10;return (
+
+              uni.$u.post(url, req));case 10:response = _context2.sent;if (!(
+            response.resultCode === 'SUCCESS')) {_context2.next = 24;break;}
+            // 登录成功
+            uni.setStorageSync('isLogin', true);
+            uni.$u.vuex('isLogin', true);
+            uni.$u.vuex('needAuthProfile', false);
+            uni.$u.vuex('openCode', null);
+            resData = response.response[0].response;
+            uni.$u.vuex('vuex_token', resData.bx_auth_ticket);
+            if (resData.login_user_info.id) {
+              uni.setStorageSync('login_user_info', resData.login_user_info);
+              uni.$u.vuex('vuex_loginUser', resData.login_user_info);
             }
-          });
-        }
-      } });
+            uni.setStorageSync('bx_auth_ticket', resData.bx_auth_ticket);
+            if (resData.login_user_info.data) {
+              uni.setStorageSync('visiter_user_info', resData.login_user_info.data[0]);
+            }return _context2.abrupt("return",
+            true);case 24:return _context2.abrupt("return",
 
-  });
-};exports.wxLogin = wxLogin;
+            false);case 25:_context2.next = 28;break;case 27:return _context2.abrupt("return");case 28:case "end":return _context2.stop();}}}, _callee2);}));return function wxOpenLogin(_x) {return _ref2.apply(this, arguments);};}();exports.wxOpenLogin = wxOpenLogin;
 
-var getPageItem = /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var url, req;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+
+
+
+
+
+var getPageItem = /*#__PURE__*/function () {var _ref3 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var url, req;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
             url = '/daq/select/srvdaq_website_page_item_select';
             req = {
               "serviceName": "srvdaq_website_page_item_select",
@@ -11995,18 +12187,18 @@ var getPageItem = /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__P
               "condition": [{
                 "colName": "page_no",
                 "ruleType": "eq",
-                "value": (_config.default === null || _config.default === void 0 ? void 0 : _config.default.page_no) || "BX202106291053190001" }] };_context.next = 4;return (
+                "value": (_config.default === null || _config.default === void 0 ? void 0 : _config.default.page_no) || "BX202106291053190001" }] };_context3.next = 4;return (
 
 
-              uni.$u.post(url, req));case 4:return _context.abrupt("return", _context.sent);case 5:case "end":return _context.stop();}}}, _callee);}));return function getPageItem() {return _ref.apply(this, arguments);};}();
+              uni.$u.post(url, req));case 4:return _context3.abrupt("return", _context3.sent);case 5:case "end":return _context3.stop();}}}, _callee3);}));return function getPageItem() {return _ref3.apply(this, arguments);};}();
 
 
 /**
-                                                                                                                                                                                                                                 * @description 根据file_no查找文件列表
-                                                                                                                                                                                                                                 * @param {String} file_no - 文件编号
-                                                                                                                                                                                                                                 */exports.getPageItem = getPageItem;
-var getFilePath = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(file_no) {var url, req, response;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
-            url = _vue.default.prototype.getServiceUrl('file', 'srvfile_attachment_select', 'select');
+                                                                                                                                                                                                                                      * @description 根据file_no查找文件列表
+                                                                                                                                                                                                                                      * @param {String} file_no - 文件编号
+                                                                                                                                                                                                                                      */exports.getPageItem = getPageItem;
+var getFilePath = /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(file_no) {var url, req, response;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
+            url = '/file/select/srvfile_attachment_select';
             req = {
               "serviceName": "srvfile_attachment_select",
               "colNames": ["*"],
@@ -12016,35 +12208,39 @@ var getFilePath = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__
                 "ruleType": "eq" }] };if (!
 
 
-            file_no) {_context2.next = 8;break;}_context2.next = 5;return (
-              uni.$u.post(url, req));case 5:response = _context2.sent;if (!(
-            response.data.state === 'SUCCESS' && response.data.data.length > 0)) {_context2.next = 8;break;}return _context2.abrupt("return",
-            response.data.data);case 8:case "end":return _context2.stop();}}}, _callee2);}));return function getFilePath(_x) {return _ref2.apply(this, arguments);};}();exports.getFilePath = getFilePath;
+            file_no) {_context4.next = 8;break;}_context4.next = 5;return (
+              uni.$u.post(url, req));case 5:response = _context4.sent;if (!(
+            response.data.state === 'SUCCESS' && response.data.data.length > 0)) {_context4.next = 8;break;}return _context4.abrupt("return",
+            response.data.data.map(function (item) {
+              item.url = _config.default.getFilePath + item.fileurl + '&bx_auth_ticket=' + uni.
+              getStorageSync('bx_auth_ticket');
+              return item;
+            }));case 8:case "end":return _context4.stop();}}}, _callee4);}));return function getFilePath(_x2) {return _ref4.apply(this, arguments);};}();exports.getFilePath = getFilePath;
 
 
 
 
-var getItemDetail = /*#__PURE__*/function () {var _ref3 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(item) {var serviceName, app, url, req, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+var getItemDetail = /*#__PURE__*/function () {var _ref5 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5(item) {var serviceName, app, url, req, res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:
             // 获取页面项详情
             serviceName = '';
-            app = 'daq';_context3.t0 =
-            item.div_type;_context3.next = _context3.t0 ===
-            'buttons' ? 5 : _context3.t0 ===
+            app = 'daq';_context5.t0 =
+            item.div_type;_context5.next = _context5.t0 ===
+            'buttons' ? 5 : _context5.t0 ===
 
 
-            'carousel' ? 7 : _context3.t0 ===
+            'carousel' ? 7 : _context5.t0 ===
 
 
-            'tablist' ? 9 : _context3.t0 ===
+            'tablist' ? 9 : _context5.t0 ===
 
 
-            "store_icon" ? 11 : 14;break;case 5:serviceName = 'srvdaq_page_item_buttons_select';return _context3.abrupt("break", 14);case 7:serviceName = 'srvdaq_page_item_carousel_select';return _context3.abrupt("break", 14);case 9:serviceName = 'srvdaq_page_item_tablist_select';return _context3.abrupt("break", 14);case 11:
+            "store_icon" ? 11 : 14;break;case 5:serviceName = 'srvdaq_page_item_buttons_select';return _context5.abrupt("break", 14);case 7:serviceName = 'srvdaq_page_item_carousel_select';return _context5.abrupt("break", 14);case 9:serviceName = 'srvdaq_page_item_tablist_select';return _context5.abrupt("break", 14);case 11:
             //机构主页快捷入口
             serviceName = 'srvhealth_store_mgmt_select';
-            app = 'health';return _context3.abrupt("break", 14);case 14:if (!(
+            app = 'health';return _context5.abrupt("break", 14);case 14:if (!(
 
 
-            serviceName && item.item_no)) {_context3.next = 24;break;}
+            serviceName && item.item_no)) {_context5.next = 24;break;}
             url = "/".concat(app, "/select/").concat(serviceName);
             req = {
               serviceName: serviceName,
@@ -12059,11 +12255,11 @@ var getItemDetail = /*#__PURE__*/function () {var _ref3 = _asyncToGenerator( /*#
                 orderType: 'asc' }] };if (!(
 
 
-            item.disp_flag === '否')) {_context3.next = 19;break;}return _context3.abrupt("return",
-            []);case 19:_context3.next = 21;return (
+            item.disp_flag === '否')) {_context5.next = 19;break;}return _context5.abrupt("return",
+            []);case 19:_context5.next = 21;return (
 
-              uni.$u.post(url, req));case 21:res = _context3.sent;if (!
-            Array.isArray(res.data)) {_context3.next = 24;break;}return _context3.abrupt("return",
+              uni.$u.post(url, req));case 21:res = _context5.sent;if (!
+            Array.isArray(res.data)) {_context5.next = 24;break;}return _context5.abrupt("return",
             res.data.map(function (item) {
               if (item.carousel_image) {
                 item.image = getImagePath(item.carousel_image, true);
@@ -12074,7 +12270,7 @@ var getItemDetail = /*#__PURE__*/function () {var _ref3 = _asyncToGenerator( /*#
                 item.icon = getImagePath(item.icon_file_no, true);
               }
               return item;
-            }));case 24:case "end":return _context3.stop();}}}, _callee3);}));return function getItemDetail(_x2) {return _ref3.apply(this, arguments);};}();
+            }));case 24:case "end":return _context5.stop();}}}, _callee5);}));return function getItemDetail(_x3) {return _ref5.apply(this, arguments);};}();
 
 
 
@@ -12104,29 +12300,7 @@ var getImagePath = function getImagePath(no, notThumb) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 47 */
-/*!***********************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/common/http.api.js ***!
-  \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-var _config = _interopRequireDefault(__webpack_require__(/*! @/common/config.js */ 117));
-var _api = __webpack_require__(/*! @/common/api.js */ 46);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} // 如果没有通过拦截器配置域名的话，可以在这里写上完整的URL(加上域名部分)
-// 此处第二个参数vm，就是我们在页面使用的this，你可以通过vm获取vuex等操作，更多内容详见uView对拦截器的介绍部分：
-// https://uviewui.com/js/http.html#%E4%BD%95%E8%B0%93%E8%AF%B7%E6%B1%82%E6%8B%A6%E6%88%AA%EF%BC%9F
-var install = function install(Vue, vm) {
-  // 将各个定义的接口名称，统一放进对象挂载到vm.$u.api(因为vm就是this，也即this.$u.api)下
-  vm.$u.api = { getPageItem: _api.getPageItem, getFilePath: _api.getFilePath, getItemDetail: _api.getItemDetail, getImagePath: _api.getImagePath };
-};var _default =
-
-{
-  install: install };exports.default = _default;
-
-/***/ }),
-/* 48 */
+/* 49 */
 /*!**********************************************************!*\
   !*** D:/front/bxfront_devproject/fyzh/store/$u.mixin.js ***!
   \**********************************************************/
@@ -12161,7 +12335,7 @@ module.exports = {
   (0, _vuex.mapState)($uStoreKey)) };
 
 /***/ }),
-/* 49 */
+/* 50 */
 /*!***********************************************************************!*\
   !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/mixin/mpShare.js ***!
   \***********************************************************************/
@@ -12186,7 +12360,6 @@ module.exports = {
   } };
 
 /***/ }),
-/* 50 */,
 /* 51 */,
 /* 52 */,
 /* 53 */,
@@ -12253,94 +12426,135 @@ module.exports = {
 /* 114 */,
 /* 115 */,
 /* 116 */,
-/* 117 */
-/*!*********************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/common/config.js ***!
-  \*********************************************************/
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */
+/*!*******************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/common/util.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 把所有api的url统一在一起并挂在到vue对象上
-// 所有接口都在一个文件里会比较大
-var remoteAddress = {
-  ssourl: 'http://www.100xsys.cn', // 微信登陆sso 端口
-  ssoAddress: 'http://sso.100xsys.cn',
-  serviceAddress: 'https://srvms.100xsys.cn', // http://login.100xsys.cn 接口地址srvms.100xsys.cn
-  frontEndAddress: 'https://wx2.100xsys.cn',
-  appName: "health", //singleApp 为 true 时 必须配置
-  bx_auth_ticket: "xabxdzkj-16606a63-e4d2-429c-97a1-8951c1beac94",
-  onTicket: false // 是否使用配置的静态 bx_auth_ticket
-  // homePath:"/pages/public/homePage/homePage?website_no=WS2020031216030001",
-  // homePath: "/pages/home/home", // 首页路径， 配置完整路径
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.toPreviewImage = exports.getImageInfo = exports.getVideoInfo = void 0;var toPreviewImage = function toPreviewImage(urls) {
+  if (!urls) {
+    return;
+  }
+  if (typeof urls === 'string') {
+    urls = [urls];
+  }
+  urls = urls.map(function (url) {
+    //若图片地址携带压缩图参数则预览时去掉此参数
+    return url.replace(/&thumbnailType=fwsu_100/gi, '');
+  });
+  uni.previewImage({
+    urls: urls,
+    longPressActions: {
+      itemList: ['发送给朋友', '保存图片', '收藏'],
+      success: function success(data) {
+        console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+      } } });
+
+
+};exports.toPreviewImage = toPreviewImage;
+
+var getVideoInfo = function getVideoInfo(url) {
+  return new Promise(function (resolve, reject) {
+
+    uni.getVideoInfo({
+      src: url,
+      success: function success(res) {
+        resolve(res);
+      },
+      fail: function fail(error) {
+        reject(error);
+      } });
+
+
+  });
 };
-var ENV = {
-  page_no: 'BX202106291053190001',
-  frontEndAddress: remoteAddress.frontEndAddress, //前端线上地址
-  appNo: {
-    // wxmp: 'APPNO20210420103005', // 百想首页
-    // wxmp: 'APPNO20201124160702', // 百想健康
-    wxmp: 'APPNO20201124160702', // 枫叶正红
-    // wxmp: 'APPNO20200214122021', // 百想软件ai平台
-    // wxmp: 'APPNO20200731153421' //生活能力评估
-    wxh5: 'APPNO20200107181133' //微信公众号
-  },
-  appID: {
-    // wxmp: 'wx8e6f993081f6e979', // 百想软件ai平台
-    // wxmp: 'wxa3c50c8177ef6739', // 百想健康
-    wxmp: 'wxcb7c1b0e130cb4bc', // 枫叶正红
-    // wxmp: 'wxa8574a1e93d8e8d0', // 百想首页通
-    wxh5: 'wx78d1d4139f97ffca' //百想助理公众号
-    // wxmp: "wx08876efb5760ca75" //生活能力评估
-  },
-  homePath: remoteAddress.homePath, // 应用业务的入口页面 首页。
-  appName: remoteAddress.appName, // 服务 app
-  getAuthorization: { //获取公众号授权
-    url: remoteAddress.serviceAddress + '/wx/operate/srvwx_public_page_authorization',
-    serviceName: 'srvwx_public_page_authorization' },
+/**
+    * @description 获取图片信息
+    */exports.getVideoInfo = getVideoInfo;
+var getImageInfo = function getImageInfo(item) {
+  return new Promise(function (resolve, reject) {
+    wx.getImageInfo({
+      src: item.url,
+      success: function success(res) {
+        resolve({
+          name: item.name,
+          src: res.path,
+          height: res.height,
+          h: res.height,
+          w: res.width,
+          width: res.width });
 
-  verifyLogin: { //公众号/小程序验证登录
-    url: remoteAddress.serviceAddress + '/wx/operate/srvwx_app_login_verify',
-    serviceName: 'srvwx_app_login_verify' },
+      },
+      fail: function fail(err) {
+        reject(err);
+      } });
 
-  accountLogin: { //公众号/小程序账号登录
-    url: remoteAddress.serviceAddress + '/wx/operate/srvwx_app_login',
-    serviceName: 'srvwx_app_login' },
-
-  getSignature: remoteAddress.serviceAddress + '/wx/select/srvwx_app_signature_select', //获取js-sdk签名
-  getUserInfo: remoteAddress.serviceAddress + '/wx/select/srvwx_basic_user_info_select', //获取用户信息
-  saveShareRecord: remoteAddress.serviceAddress + '/daq/add/srvdaq_record_share_add', //保存微信分享记录
-  downloadFile: remoteAddress.serviceAddress + '/file/download?fileNo=', // 根据fileNo直接下载图片，不用查找filePath
-
-  /**
-   * 新旧api 分割线—————————————————————————————————————————————————————————— old 
-   * */
-  backUrl: remoteAddress.ssourl, // 授权域名
-  serverURL: remoteAddress.serviceAddress, // 后台地址
-  refuseCode: '0111', // 后台拒绝识别码
-  byCode: '1111', // 后台通过码
-  byState: 'SUCCESS', // 状态码
-  srvHost: remoteAddress.serviceAddress,
-  bindLogin: 'bind_login', // 授权成功,请登录绑定账号
-  authorizedLoginSuccess: 'authorized_login_success', // 授权成功,可以直接请求业务数据
-  // 测试地址
-  getImg: remoteAddress.assetsUrl + '/main/', // 图片地址
-  downloadImg: remoteAddress.serviceAddress + '/download?filePath=', // 图片地址
-  getFilePath: remoteAddress.serviceAddress + '/file/download?filePath=', // 文件路径地址
-  select: remoteAddress.serviceAddress + '/bxsys/select', // 查询接口
-  toLogin: remoteAddress.ssoAddress + '/bxsyslogin', // 用户相关接口
-  selectByUser: remoteAddress.serviceAddress + '/bxsys/srvms.100xsys.cn', // 用户菜单
-  add: remoteAddress.serviceAddress + '/bxsys/operate', // 新增
-  update: remoteAddress.serviceAddress + '/bxsys/operate', // 修改
-  saveDraft: remoteAddress.serviceAddress + '/bxsys/saveDraft', // 保存草稿
-  upload: remoteAddress.serviceAddress + '/file/upload',
-  file: remoteAddress.serviceAddress + '/file/',
-  deleteFile: remoteAddress.serviceAddress + '/file/delete', // 删除文件
-  onTicket: remoteAddress.onTicket,
-  ticket: remoteAddress.bx_auth_ticket,
-  bindWxUser: remoteAddress.serviceAddress + "/wx/operate/srvwx_user_bind" // 绑定已有帐号
-};var _default =
-ENV;exports.default = _default;
+  });
+};exports.getImageInfo = getImageInfo;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 ]]);

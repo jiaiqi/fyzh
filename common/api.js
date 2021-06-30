@@ -1,54 +1,124 @@
 import config from '@/common/config.js'
 import Vue from 'vue'
+import store from '@/store/index.js'
 /**
  * 微信静默登录
  */
-const wxLogin = () => {
-	return new Promise(resolve => {
-		wx.login({
-			success(result) {
-				if (result.code) {
-					let url = '/wx/operate/srvwx_app_login_verify'
-					let req = [{
-						data: [{
-							code: result.code,
-							app_no: config.appNo.wxmp
-						}],
-						serviceName: 'srvwx_app_login_verify'
-					}]
-					uni.$u.post(url, req).then(res => {
-						if (res.data.resultCode === 'SUCCESS') {
-							// 登录成功
-							let resData = res.data.response[0].response;
-							if (store.state.app.isLogin) {
-								resolve(true)
-							}
-							if (resData && resData.bx_open_code) {
-								// 后端未获取到unionid 需要通过开放登录接口给后端发送wx.getUserInfo获取到的数据
-								resolve(wxOpenLogin(resData.bx_open_code))
-							}
-							uni.setStorageSync('isLogin', true);
-							store.commit('SET_LOGIN_STATE', true)
-							store.commit('SET_TICKET', resData.bx_auth_ticket)
-							uni.setStorageSync('bx_auth_ticket', resData
-								.bx_auth_ticket);
+const wxLogin = async () => {
+	const result = await wx.login()
+	// const userProfile = await wx.getUserProfile({
+	// 	desc: '用于完善会员资料'
+	// })
+	// debugger
+	if (result.code) {
+		let url = '/wx/operate/srvwx_app_login_verify'
+		let req = [{
+			data: [{
+				code: result.code,
+				app_no: config.appNo.wxmp
+			}],
+			serviceName: 'srvwx_app_login_verify'
+		}]
+		const res = await uni.$u.post(url, req)
+		if (res.resultCode === 'SUCCESS') {
+			// 登录成功
+			let resData = res.response[0].response;
+			if (resData && resData.bx_open_code) {
+				uni.$u.vuex('needAuthProfile', true)
+				uni.$u.vuex('openCode', resData.bx_open_code)
+				// 后端未获取到unionid 需要通过开放登录接口给后端发送wx.getUserInfo获取到的数据
 
-							if (resData && resData.login_user_info.user_no) {
-								uni.setStorageSync('login_user_info', resData
-									.login_user_info);
-								store.commit('SET_LOGIN_USER', resData.login_user_info)
-							}
-							if (resData && resData.login_user_info.data) {
-								uni.setStorageSync('visiter_user_info', resData
-									.login_user_info.data[0]);
-							}
-							resolve(true)
-						}
-					})
+				// try {
+
+				// 	if (userProfile&&userProfile.userInfo) {
+				// 		wxOpenLogin(resData.bx_open_code,
+				// 			userInfo).then(
+				// 			result => {
+				// 				debugger
+				// 			})
+				// 	}
+				// } catch (e) {
+				// 	//TODO handle the exception
+				// 	console.log(e)
+				// 	debugger
+				// }
+			} else {
+				if (resData && resData.login_user_info.user_no) {
+					uni.setStorageSync('login_user_info', resData
+						.login_user_info);
+					uni.$u.vuex('vuex_loginUser', resData.login_user_info)
+				}
+				if (resData && resData.login_user_info.data) {
+					uni.setStorageSync('visiter_user_info', resData
+						.login_user_info.data[0]);
 				}
 			}
+			uni.$u.vuex('vuex_token', resData.bx_auth_ticket)
+			uni.setStorageSync('bx_auth_ticket', resData
+				.bx_auth_ticket);
+			uni.setStorageSync('isLogin', true);
+			uni.$u.vuex('isLogin', true)
+		}
+	}
+}
+
+// 小程序开户登录
+const wxOpenLogin = async (wxAuthUserInfo) => {
+	let openCode = store?.state.openCode
+	const {
+		userInfo
+	} = wxAuthUserInfo
+	if (userInfo && openCode) {
+		let url = `/wx/operate/srvwx_mini_open_account_login?openCode=${openCode}`
+		let data = {
+			"app_no": config.appNo.wxmp,
+			"avatarUrl": userInfo.avatarUrl,
+			"nickname": userInfo.nickName,
+			"headimgurl": userInfo.avatarUrl,
+			"sex": userInfo.gender,
+			"country": userInfo.country,
+			"province": userInfo.province,
+			"city": userInfo.city,
+			"encryptedData": wxAuthUserInfo.encryptedData,
+			"cloudID": wxAuthUserInfo.cloudID,
+			"rawData": wxAuthUserInfo.rawData,
+			"iv": wxAuthUserInfo.iv,
+			"signature": wxAuthUserInfo.signature
+		}
+		debugger
+		Object.keys(data).forEach(key => {
+			if (!data[key]) {
+				delete data[key]
+			}
 		})
-	})
+		let req = [{
+			"serviceName": "srvwx_mini_open_account_login",
+			"data": [data]
+		}]
+		let response = await uni.$u.post(url, req)
+		if (response.resultCode === 'SUCCESS') {
+			// 登录成功
+			uni.setStorageSync('isLogin', true);
+			uni.$u.vuex('isLogin', true)
+			uni.$u.vuex('needAuthProfile', false)
+			uni.$u.vuex('openCode', null)
+			let resData = response.response[0].response;
+			uni.$u.vuex('vuex_token', resData.bx_auth_ticket)
+			if (resData.login_user_info.id) {
+				uni.setStorageSync('login_user_info', resData.login_user_info);
+				uni.$u.vuex('vuex_loginUser', resData.login_user_info)
+			}
+			uni.setStorageSync('bx_auth_ticket', resData.bx_auth_ticket);
+			if (resData.login_user_info.data) {
+				uni.setStorageSync('visiter_user_info', resData.login_user_info.data[0]);
+			}
+			return true
+		} else {
+			return false
+		}
+	} else {
+		return
+	}
 }
 
 const getPageItem = async () => {
@@ -70,7 +140,7 @@ const getPageItem = async () => {
  * @param {String} file_no - 文件编号
  */
 const getFilePath = async function(file_no) {
-	let url = Vue.prototype.getServiceUrl('file', 'srvfile_attachment_select', 'select')
+	let url = '/file/select/srvfile_attachment_select'
 	let req = {
 		"serviceName": "srvfile_attachment_select",
 		"colNames": ["*"],
@@ -83,7 +153,11 @@ const getFilePath = async function(file_no) {
 	if (file_no) {
 		let response = await uni.$u.post(url, req);
 		if (response.data.state === 'SUCCESS' && response.data.data.length > 0) {
-			return response.data.data
+			return response.data.data.map(item => {
+				item.url = config.getFilePath + item.fileurl + '&bx_auth_ticket=' + uni
+					.getStorageSync('bx_auth_ticket');
+				return item
+			})
 		}
 	}
 }
@@ -168,6 +242,7 @@ const getImagePath = (no, notThumb) => {
 
 export {
 	wxLogin,
+	wxOpenLogin,
 	getPageItem,
 	getFilePath,
 	getItemDetail,

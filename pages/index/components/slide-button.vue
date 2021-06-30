@@ -9,7 +9,7 @@
 				<view class="swiper-item">
 					<view class="menu-item" :class="{ 'grid-style': pageItem.button_style === 'grid' }"
 						@click="toPages(item)" v-for="(item, index) in swiperItem" :key="index">
-						<image class="icon image" :src="item.icon" mode="aspectFit" v-if="item.iconType === 'image'">
+						<image class="icon image" :src="item.icon" mode="aspectFit">
 							<text :class="item.icon" style="font-size: 30px; color: #00aaff"
 								v-if="item.iconType === 'font'"></text>
 							<text class="title">{{ item.label }}</text>
@@ -23,13 +23,13 @@
           'grid-style': pageItem.button_style === 'grid',
           'last-row': isLastRow(menuList[0], index),
         }" @click="toPages(item)" v-for="(item, index) in menuList[0]" :key="index">
-				<u-icon :name="item.icon" size="60" color="#00aaff"
+		<!-- 		<u-icon :name="item.icon" size="60" color="#00aaff"
 					v-if="item.iconType === 'uicon' && !item.custonIcon">
 				</u-icon>
 				<u-icon custom-prefix="custom-icon" :name="item.icon" size="60" color="#00aaff"
 					v-else-if="item.iconType === 'uicon' && item.custonIcon">
-				</u-icon>
-				<image class="icon image" :src="item.icon" mode="aspectFit" v-if="item.iconType === 'image'">
+				</u-icon> -->
+				<image class="icon image" :src="item.icon" mode="aspectFit">
 					<text :class="item.icon" style="font-size: 30px; color: #00aaff"
 						v-if="item.iconType === 'font'"></text>
 					<text class="title">{{ item.label }}</text>
@@ -98,18 +98,9 @@
 			menuList() {
 				let list = [];
 				if (Array.isArray(this.buttons) && this.buttons.length > 0) {
-					this.buttons.forEach((btn) => {
-						list.push({
-							icon:btn.icon,
-							navType: btn.navigate_type,
-							iconType: "image",
-							label: btn.label,
-							eventType: "toPage",
-							type: "navPage",
-							url: btn.dest_page,
-						});
-					});
+					list = this.buttons
 				}
+				debugger
 				let rownumber = this.pageItem.row_number || 1;
 				if (Array.isArray(list)) {
 					return list.reduce((pre, item) => {
@@ -168,6 +159,7 @@
 				});
 			},
 			toPages(e) {
+				debugger
 				if (e.$orig) {
 					e = e.$orig;
 				}
