@@ -23,7 +23,7 @@
           'grid-style': pageItem.button_style === 'grid',
           'last-row': isLastRow(menuList[0], index),
         }" @click="toPages(item)" v-for="(item, index) in menuList[0]" :key="index">
-		<!-- 		<u-icon :name="item.icon" size="60" color="#00aaff"
+				<!-- 		<u-icon :name="item.icon" size="60" color="#00aaff"
 					v-if="item.iconType === 'uicon' && !item.custonIcon">
 				</u-icon>
 				<u-icon custom-prefix="custom-icon" :name="item.icon" size="60" color="#00aaff"
@@ -50,15 +50,15 @@
 			},
 		},
 		watch: {
-			pageItem:{
-				immediate:true,
+			pageItem: {
+				immediate: true,
 				handler(newValue, oldValue) {
-				if(newValue&&newValue.id){
-					this.$u.api.getItemDetail(newValue).then(data=>{
-						this.buttons = data
-					})
+					if (newValue && newValue.id) {
+						this.$u.api.getItemDetail(newValue).then(data => {
+							this.buttons = data
+						})
+					}
 				}
-			}
 			}
 		},
 		data() {
@@ -100,7 +100,6 @@
 				if (Array.isArray(this.buttons) && this.buttons.length > 0) {
 					list = this.buttons
 				}
-				debugger
 				let rownumber = this.pageItem.row_number || 1;
 				if (Array.isArray(list)) {
 					return list.reduce((pre, item) => {
@@ -137,11 +136,10 @@
 					serviceName: "srvdaq_page_item_buttons_select",
 					colNames: ["*"],
 					condition: [{
-							colName: "item_no",
-							ruleType: "eq",
-							value: this.pageItem.component_no,
-						},
-					],
+						colName: "item_no",
+						ruleType: "eq",
+						value: this.pageItem.component_no,
+					}, ],
 					page: {
 						pageNo: 1,
 						rownumber: 99,
@@ -159,57 +157,38 @@
 				});
 			},
 			toPages(e) {
-				debugger
 				if (e.$orig) {
 					e = e.$orig;
 				}
 				let url = "";
-
-				// function renderStr(str, obj) {
-				// 	return str.replace(/\$\{(.*?)\}/g, (match, key) => obj[key.trim()]);
-				// };
-
-				// function renderStr(str, obj) {
-				// 	return str.replace(/\$\{(.*?)\}/g, (match, key) => {
-				// 		key = key.trim()
-				// 		let result = obj[key]
-				// 		let arr = key.split('.')
-				// 		if (arr.length > 1) {
-				// 			result = obj
-				// 			arr.forEach(item => {
-				// 				result = result[item]
-				// 			})
-				// 		}
-				// 		return result
-				// 	})
+				if (e.dest_page) {
+					url = e.dest_page
+				}
+			
+				// if (e.url) {
+				// 	try {
+				// 		// const data = this;
+				// 		// e.url = this.renderStr(e.url, data);
+				// 		e.url = e.url.trim();
+				// 	} catch (e) {
+				// 		//TODO handle the exception
+				// 	}
 				// }
-
-				if (e.url) {
-					try {
-						const data = this;
-						// e.url = this.renderStr(e.url, data);
-						e.url = e.url.trim();
-					} catch (e) {
-						//TODO handle the exception
-					}
-				}
-				let navType = "navigateTo";
-				if (e.navType) {
-					navType = e.navType;
-				}
-				if (
-					["navigateTo", "redirectoTo", "switchTab", "reLaunch"].includes(
-						navType
-					)
-				) {
-					uni[navType]({
-						url: url || e.url,
+				// let navType = "navigateTo";
+				// if (e.navType) {
+				// 	navType = e.navType;
+				// }
+				if (url) {
+					uni.navigateTo({
+						url: url,
 						fail(err) {
 							uni.switchTab({
 								url: url,
 							});
 						},
 					});
+				}else{
+					this.$u.toast('开发中,暂不可访问')
 				}
 			},
 		},

@@ -7,14 +7,17 @@
 				</view> -->
 			</view>
 		</u-navbar>
+
 		<view class="u-flex user-box u-p-l-30 u-p-r-20 u-p-b-30">
 			<view class="u-m-r-20">
 				<u-avatar size="140" v-if="needAuthProfile"></u-avatar>
-				<u-avatar bg-color="#DB0011" :src="vuex_loginUser.headimgurl" size="140" v-else="isLogin&&vuex_loginUser&&vuex_loginUser.headimgurl"></u-avatar>
+				<u-avatar bg-color="#DB0011" :src="vuex_loginUser.headimgurl" size="140"
+					v-else="isLogin&&vuex_loginUser&&vuex_loginUser.headimgurl"></u-avatar>
 			</view>
 			<view class="u-flex-1">
 				<button class="cu-btn bg-red light " v-else @click="wxLogin" v-if="needAuthProfile">登录</button>
-				<view class="u-font-18 u-p-b-20" v-else-if="vuex_loginUser&&vuex_loginUser.real_name">{{vuex_loginUser.real_name}}</view>
+				<view class="u-font-18 u-p-b-20" v-else-if="vuex_loginUser&&vuex_loginUser.real_name">
+					{{vuex_loginUser.real_name}}</view>
 				<!-- <view class="u-font-14 u-tips-color">微信号:helang_uView</view> -->
 			</view>
 			<!-- 	<view class="u-m-l-10 u-p-10">
@@ -24,7 +27,24 @@
 				<u-icon name="arrow-right" color="#fff" size="28"></u-icon>
 			</view> -->
 		</view>
-
+		<view class="order-menu">
+			<view class="menu-item">
+				<text class="cuIcon-pay"></text>
+				<text>待付款</text>
+			</view>
+			<view class="menu-item">
+				<text class="cuIcon-send"></text>
+				<text>待收货</text>
+			</view>
+			<view class="menu-item">
+				<text class="cuIcon-vipcard"></text>
+				<text>已完成</text>
+			</view>
+			<view class="menu-item">
+				<text class="cuIcon-form"></text>
+				<text>全部订单</text>
+			</view>
+		</view>
 		<view class="u-m-t-20">
 			<u-cell-group>
 				<u-cell-item icon="rmb-circle" title="支付"></u-cell-item>
@@ -74,14 +94,14 @@
 			async getUserProfile(e) {
 				// 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
 				// 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-				return await  wx.getUserProfile({
+				return await wx.getUserProfile({
 					desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
 				})
-			
+
 			},
 			wxLogin() {
-				this.getUserProfile().then(res=>{
-					if(res&&res.userInfo){
+				this.getUserProfile().then(res => {
+					if (res && res.userInfo) {
 						wxOpenLogin(res)
 					}
 				})
@@ -117,6 +137,24 @@
 			border: 1px solid #fff;
 			border-radius: 50%;
 			margin-right: 20rpx;
+		}
+	}
+
+	.order-menu {
+		display: flex;
+		background-color: #Fff;
+		padding: 20rpx 30rpx;
+		margin-top: 20rpx;
+		.menu-item {
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+			text-align: center;
+			
+			text[class*='cuIcon-']{
+				font-size:40rpx;
+				mrgin-bottom:20rpx;
+			}
 		}
 	}
 </style>

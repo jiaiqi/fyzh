@@ -1,13 +1,16 @@
 <template>
-	<view class="goods-list" :style="[calcStyle]">
-
-		<view class="left-list">
+	<view class="goods-list" :style="[calcStyle]" :class="[layout]">
+		<view class="utils-bar">
+			<view class="util-item" @click="changeLayout">
+				<text class="cuIcon-list" v-if="layout==='double'"></text>
+				<text class="cuIcon-cascades" v-else></text>
+			</view>
+		</view>
+		<view class="single" v-if="layout==='single'">
 			<view class="goods-item" v-for="(item,index) in leftList" @click="toGoodsDetail(item)">
-				<u-lazy-load threshold="-450"  :image="item.url" :index="index" v-if="item[image]">
+				<u-lazy-load  class="image" threshold="-450" height="200" :image="item.url" :index="index" v-if="item[image]">
 				</u-lazy-load>
-				<!-- 			<image class="goods-image" v-if="item[image]" :src="item.url" mode="aspectFill"
-					:style="{height: item.imgHeight + 'px' }"></image> -->
-				<view class="goods-image" v-else>{{ item[name].slice(0, 4) }}</view>
+				<view class="image" v-else>{{ item[name].slice(0, 4) }}</view>
 				<view class="goods-info">
 					<view class="goods-name">{{ item[name]||'' }}</view>
 					<view class="desc" v-html="item[desc]" v-if="item[desc]"></view>
@@ -18,19 +21,34 @@
 				</view>
 			</view>
 		</view>
-		<view class="right-list">
-			<view class="goods-item" v-for="item in rightList" @click="toGoodsDetail(item)">
-				<u-lazy-load threshold="-450"  :image="item.url" :index="index" v-if="item[image]">
-				</u-lazy-load>
-				<!-- 			<image class="goods-image" v-if="item[image]" :src="item.url" mode="aspectFill"
-							:style="{height: item.imgHeight + 'px' }"></image> -->
-				<view class="goods-image" v-else>{{ item[name].slice(0, 4) }}</view>
-				<view class="goods-info">
-					<view class="goods-name">{{ item[name]||'' }}</view>
-					<view class="desc" v-html="item[desc]" v-if="item[desc]"></view>
-					<view class="price text-cyan">
-						<text class="symbol">￥</text>
-						<text class="number">{{ item[price] }}</text>
+		<view class="double-column" v-if="layout==='double'">
+			<view class="left-list">
+				<view class="goods-item" v-for="(item,index) in leftList" @click="toGoodsDetail(item)">
+					<u-lazy-load threshold="-450" height="200" :image="item.url" :index="index" v-if="item[image]">
+					</u-lazy-load>
+					<view class="goods-image" v-else>{{ item[name].slice(0, 4) }}</view>
+					<view class="goods-info">
+						<view class="goods-name">{{ item[name]||'' }}</view>
+						<view class="desc" v-html="item[desc]" v-if="item[desc]"></view>
+						<view class="price text-cyan">
+							<text class="symbol">￥</text>
+							<text class="number">{{ item[price] }}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="right-list">
+				<view class="goods-item" v-for="item in rightList" @click="toGoodsDetail(item)">
+					<u-lazy-load threshold="-450" :image="item.url" :index="index" v-if="item[image]">
+					</u-lazy-load>
+					<view class="goods-image" v-else>{{ item[name].slice(0, 4) }}</view>
+					<view class="goods-info">
+						<view class="goods-name">{{ item[name]||'' }}</view>
+						<view class="desc" v-html="item[desc]" v-if="item[desc]"></view>
+						<view class="price text-cyan">
+							<text class="symbol">￥</text>
+							<text class="number">{{ item[price] }}</text>
+						</view>
 					</view>
 				</view>
 			</view>
@@ -65,6 +83,7 @@
 		},
 		data() {
 			return {
+				layout:"double",
 				leftList: [],
 				rightList: [],
 				goodsList: [],
@@ -77,8 +96,14 @@
 		},
 		created() {
 			this.getGoodsListData()
+			if(this.defaultLayout){
+				this.layout = this.defaultLayout
+			}
 		},
 		methods: {
+			changeLayout(){
+				this.layout==='double'?this.layout='single':this.layout='double'
+			},
 			getGoodsListData(type) {
 				let req = {
 					"serviceName": "srvstore_goods_mgmt_select",
@@ -142,7 +167,6 @@
 				return content;
 			},
 			toGoodsDetail(e) {
-				debugger
 				if (e.gd_no) {
 					uni.navigateTo({
 						url: '/pages/store/GoodsDetail/GoodsDetail?gd_no=' + e.gd_no
@@ -151,6 +175,10 @@
 			}
 		},
 		props: {
+			defaultLayout: {
+				type: String,
+				default: "double"
+			},
 			storeNo: {
 				type: String
 			},
@@ -184,8 +212,44 @@
 		// column-count: 2;
 		// column-gap: 10px;
 		// padding: 0 5px 20px;
-		padding-left: 20rpx;
-		.left-list,.right-list{
+		flex-wrap: wrap;
+		&.single{
+			flex-direction: column;
+		}
+		.utils-bar{
+			width: 100%;
+			background-color: #fff;
+			padding: 20rpx;
+			display: flex;
+			justify-content: flex-end;
+			text[class*=cuIcon-]{
+				font-size: 40rpx;
+			}
+		}
+		.double-column{
+			display: flex;
+			padding-left: 20rpx;
+		}
+		.single{
+			padding: 20rpx;
+			.goods-item{
+				width: 100%;
+				display: flex;
+				align-items: center;
+				min-height: 200rpx;
+				.image{
+					flex: 0.8;
+					text-align: center;
+				}
+				.goods-info{
+					flex: 1;
+					margin-left: 20rpx;
+				}
+			}
+		}
+		.left-list,
+		.right-list {
+			padding-left: 20rpx;
 			padding: 20rpx 0;
 			flex: 1;
 			margin-right: 20rpx;
@@ -207,7 +271,7 @@
 
 	.goods-image {
 		width: 100%;
-		height: 300rpx;
+		height: 100rpx;
 		display: flex;
 		justify-content: center;
 		align-items: center;

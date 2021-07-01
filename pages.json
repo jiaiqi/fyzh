@@ -44,7 +44,16 @@
 					"enablePullDownRefresh": true
 				}
 
-			}]
+			}    ,{
+                    "path" : "articleDetail/articleDetail",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
 		},
 		{
 			"root": "pages/store",
@@ -54,7 +63,25 @@
 					"navigationBarTitleText": "商品详情",
 					"enablePullDownRefresh": false
 				}
-			}]
+			}    ,{
+                    "path" : "payOrder/payOrder",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "successPay/successPay",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
 		}
 	],
 	"preloadRule": {

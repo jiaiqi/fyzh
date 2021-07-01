@@ -8,13 +8,16 @@
     {
       "root": "pages/public",
       "pages": [
-        "articleList/articleList"
+        "articleList/articleList",
+        "articleDetail/articleDetail"
       ]
     },
     {
       "root": "pages/store",
       "pages": [
-        "GoodsDetail/GoodsDetail"
+        "GoodsDetail/GoodsDetail",
+        "payOrder/payOrder",
+        "successPay/successPay"
       ]
     }
   ],

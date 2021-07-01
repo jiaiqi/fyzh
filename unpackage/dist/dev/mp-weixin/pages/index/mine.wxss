@@ -28,4 +28,29 @@ page.data-v-3f47feae {
   border-radius: 50%;
   margin-right: 20rpx;
 }
+.order-menu.data-v-3f47feae {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  background-color: #Fff;
+  padding: 20rpx 30rpx;
+  margin-top: 20rpx;
+}
+.order-menu .menu-item.data-v-3f47feae {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+.order-menu .menu-item text[class*='cuIcon-'].data-v-3f47feae {
+  font-size: 40rpx;
+  mrgin-bottom: 20rpx;
+}
 

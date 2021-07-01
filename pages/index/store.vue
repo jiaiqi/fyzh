@@ -1,7 +1,6 @@
 <template>
 	<view>
-		<goods-list image="photos" name="gd_name" desc="gd_desc" ref="goodsList"></goods-list>
-		
+		<goods-list image="gd_img" name="gd_name" desc="gd_desc" ref="goodsList"></goods-list>
 	</view>
 </template>
 
@@ -9,9 +8,14 @@
 	export default {
 		data() {
 			return {
-
+				goodsList:[]
 			};
-		}
+		},
+		methods: {
+			getList() {
+				
+			}
+		},
 	}
 </script>
 

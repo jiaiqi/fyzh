@@ -167,7 +167,7 @@
 			toArticle(e) {
 				if (e.content_no) {
 					let url =
-						`/publicPages/article/article?serviceName=srvdaq_cms_content_select&content_no=${e.content_no}`
+						`/pages/public/articleDetail/articleDetail?serviceName=srvdaq_cms_content_select&content_no=${e.content_no}`
 					uni.navigateTo({
 						url: url
 					});
@@ -259,7 +259,7 @@
 						// }
 						// })
 						types[0].list = res2.data
-						types[0].total = res2?.page?.total||0
+						types[0].total = res2?.page?.total || 0
 						this.noticeList = types
 						// this.noticeList = types
 						this.changeTab(0)
@@ -450,6 +450,7 @@
 		// 简介
 		box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 		margin-bottom: 20rpx;
+
 		&.tab-list {
 			padding: 20rpx;
 			margin-bottom: 10px;

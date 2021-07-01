@@ -120,7 +120,98 @@ const wxOpenLogin = async (wxAuthUserInfo) => {
 		return
 	}
 }
+/**
+ * @description 获取微信支付需要的参数（签名等）
+ * @param {String} prepay_id - 预支付id  
+ * @param {String} wx_mch_id - 商户号  
+ */
+const getPayParams = async (prepay_id, wx_mch_id = '1485038452') => {
+	let url = '/wx/select/srvwx_app_pay_sign_select'
+	let req = {
+		"serviceName": "srvwx_app_pay_sign_select",
+		"colNames": [
+			"*"
+		],
+		"condition": [{
+				"colName": "app_no",
+				"ruleType": "eq",
+				"value": config.appNo.wxmp
+			},
+			{
+				// 商户号
+				"colName": "wx_mch_id",
+				"ruleType": "eq",
+				"value": wx_mch_id
+			},
+			{
+				"colName": "prepay_id",
+				"ruleType": "eq",
+				"value": prepay_id
+			}
+		]
+	}
+	if (prepay_id && wx_mch_id) {
+		let res = await uni.$u.post(url, req)
+		if (res.state === 'SUCCESS') {
+			if (Array.isArray(res.data) && res.data.length > 0) {
+				store.commit('SET_PAY_PARAMS', res.data[0])
+				return res.data[0]
+			} else {
+				uni.showModal({
+					title: '提示',
+					content: JSON.stringify(res),
+					showCancel: false
+				})
+			}
+		}
+	} else {
+		uni.showModal({
+			title: '提示',
+			content: '请检查wx_mch_id及prepay_id是否正确传入',
+			showCancel: false
+		})
+	}
+}
+/**
+ * @description 统一下单接口
+ * @param {Number}  total_fee -金额 单位为分
+ * @param {String} login_user_type -用户类型
+ * @param {Object} orderData -订单信息
+ * @param {String} wx_mch_id -商户号
+ */
+const toPlaceOrder = async (total_fee, login_user_type, orderData, wx_mch_id = '1485038452') => {
+	// 统一下单
+	let url = '/wx/operate/srvwx_order'
+	let req = [{
+		"serviceName": "srvwx_order",
+		"data": [{
+			"app_no": config.appNo.wxmp,
+			"wx_mch_id": wx_mch_id,
+			"out_trade_no": orderData ? orderData.order_no : new Date().getTime(),
+			"total_fee": total_fee, // 单位是分
+			"spbill_create_ip": "192.168.0.21",
+			"notify_url": "http://wx2.100xsys.cn/wx/notify/payment",
+			"body": "test producet",
+			"user_no": store?.state?.vuex_loginUser?.user_no,
+			"login_user_type": login_user_type ? login_user_type : "user"
+		}]
+	}]
+	let res = await uni.$u.post(url, req)
+	if (res.state === 'SUCCESS') {
+		if (Array.isArray(res.response) && res.response.length > 0) {
+			let info = res.response[0]
+			debugger
+			if (info.response) {
+				info = info.response
+				uni.$u.vuex('vuex_prepayInfo',info)
+				return info
+			}
+		}
+	}
+}
 
+
+// index
 const getPageItem = async () => {
 	const url = '/daq/select/srvdaq_website_page_item_select'
 	const req = {
@@ -152,8 +243,8 @@ const getFilePath = async function(file_no) {
 	}
 	if (file_no) {
 		let response = await uni.$u.post(url, req);
-		if (response.data.state === 'SUCCESS' && response.data.data.length > 0) {
-			return response.data.data.map(item => {
+		if (response.state === 'SUCCESS' && response.data.length > 0) {
+			return response.data.map(item => {
 				item.url = config.getFilePath + item.fileurl + '&bx_auth_ticket=' + uni
 					.getStorageSync('bx_auth_ticket');
 				return item
@@ -246,5 +337,7 @@ export {
 	getPageItem,
 	getFilePath,
 	getItemDetail,
-	getImagePath
+	getImagePath,
+	toPlaceOrder,
+	getPayParams
 }

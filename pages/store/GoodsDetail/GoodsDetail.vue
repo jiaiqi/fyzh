@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="goods-detail">
 		<swiper class="screen-swiper main-image square-dot" easing-function="linear" :height="300"
 			:indicator-dots="true" :circular="true" :autoplay="true" interval="5000" duration="500">
 			<swiper-item v-for="(item, index) in swiperList" :key="item.url">
@@ -12,11 +12,11 @@
 			<view class="title">简介</view>
 			<view class="" v-html="goodsInfo.gd_desc" v-if="goodsInfo.gd_desc"> </view>
 		</view>
-		<view class="store-info">
+		<!-- 	<view class="store-info">
 			<image :src="$u.getImagePath(goodsInfo.store_image)" class="store-icon"></image>
 			<view class="store-name">{{ goodsInfo.store_name }}</view>
 			<view class="phoneCall"><text class="cuIcon-phone text-cyan"></text></view>
-		</view>
+		</view> -->
 		<view class="detail">
 			<view class="title">图文详情</view>
 			<view class="image-box">
@@ -56,28 +56,21 @@
 				return toPreviewImage(e)
 			},
 			payOrder() {
-				let goodsInfo = this.deepClone(this.goodsInfo)
-				if (!goodsInfo.goods_image && goodsInfo.goods_img) {
-					goodsInfo.goods_image = goodsInfo.goods_img;
-				}
-				goodsInfo.name = goodsInfo.goods_name
-				goodsInfo.image = goodsInfo.store_image
-				goodsInfo.car_num = 1
+				let goodsInfo = this.$u.deepClone(this.goodsInfo)
+				goodsInfo.name = goodsInfo.gd_name
+				goodsInfo.image = goodsInfo.gd_img
+				goodsInfo.amount = goodsInfo.amount||1
 				goodsInfo.unit_price = goodsInfo.price
-				this.$store.commit('SET_STORE_CART', {
-					storeInfo: goodsInfo,
-					store_no: goodsInfo.store_no,
-					list: [goodsInfo]
-				});
+				this.$u.vuex('vuex_cart', [goodsInfo])
 				uni.navigateTo({
-					url: '/storePages/payOrder/payOrder?store_no=' + goodsInfo.store_no + '&goods_info=' +
+					url: '/pages/store/payOrder/payOrder?goodsList=' +
 						encodeURIComponent(
-							JSON.stringify(goodsInfo))
+							JSON.stringify([goodsInfo]))
 				});
 			},
 			async getSwiperList(e) {
-				if (e.photos) {
-					let res = await this.$u.api.getFilePath(e.photos);
+				if (e.gd_img) {
+					let res = await this.$u.api.getFilePath(e.gd_img);
 					if (Array.isArray(res)) {
 						this.swiperList = res
 					}
@@ -154,6 +147,11 @@
 </script>
 
 <style scoped lang="scss">
+	.goods-detail {
+		min-height: calc(100vh - var(--window-top) - var(--window-bottom));
+		background-color: #FFF;
+	}
+
 	.goods-info {
 		font-size: 18px;
 		letter-spacing: 2px;
