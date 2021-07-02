@@ -21,7 +21,9 @@
 			};
 		},
 		async created() {
+			// #ifdef MP-WEIXIN
 			await wxLogin()
+			// #endif
 			this.$u.api.getPageItem().then(res => {
 				if (res.state === 'SUCCESS') {
 					this.pageItemList = res.data

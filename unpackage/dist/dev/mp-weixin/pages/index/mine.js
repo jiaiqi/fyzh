@@ -96,16 +96,16 @@ var components
 try {
   components = {
     uNavbar: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-navbar/u-navbar */ "uview-ui/components/u-navbar/u-navbar").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-navbar/u-navbar.vue */ 105))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-navbar/u-navbar */ "uview-ui/components/u-navbar/u-navbar").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-navbar/u-navbar.vue */ 159))
     },
     uAvatar: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-avatar/u-avatar */ "uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-avatar/u-avatar.vue */ 112))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-avatar/u-avatar */ "uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-avatar/u-avatar.vue */ 166))
     },
     uCellGroup: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 119))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 173))
     },
     uCellItem: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 126))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 180))
     }
   }
 } catch (e) {
@@ -162,7 +162,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 19));
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 19));
+
 
 
 
@@ -239,6 +240,21 @@ var _api = __webpack_require__(/*! @/common/api.js */ 48);function _interopRequi
 {
   data: function data() {
     return {
+      menuList: [{
+        label: '待支付',
+        icon: 'cuIcon-pay' },
+
+      {
+        label: '待发货',
+        icon: 'cuIcon-send' },
+      {
+        label: '已完成',
+        icon: 'cuIcon-vipcard' },
+      {
+        label: '全部',
+        icon: 'cuIcon-form' }],
+
+
       profile: '',
       background: {
         backgroundColor: '#FF5C4E'
@@ -251,17 +267,18 @@ var _api = __webpack_require__(/*! @/common/api.js */ 48);function _interopRequi
       } };
 
   },
-  onLoad: function onLoad() {
-
-  },
   methods: {
+    toOrderList: function toOrderList(e) {
+      uni.navigateTo({
+        url: '/pages/store/orderList/orderList?type=' + e });
+
+    },
     getUserProfile: function getUserProfile(e) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
 
 
                   wx.getUserProfile({
                     desc: '用于完善会员资料' // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
                   }));case 2:return _context.abrupt("return", _context.sent);case 3:case "end":return _context.stop();}}}, _callee);}))();
-
     },
     wxLogin: function wxLogin() {
       this.getUserProfile().then(function (res) {
@@ -270,6 +287,7 @@ var _api = __webpack_require__(/*! @/common/api.js */ 48);function _interopRequi
         }
       });
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

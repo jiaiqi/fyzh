@@ -10,7 +10,9 @@ import {
 	getPayParams
 } from '@/common/api.js'
 import {
-	getImageInfo,toPreviewImage
+	getImageInfo,
+	toPreviewImage,
+	treeReform
 } from '@/common/util.js'
 
 // 此处第二个参数vm，就是我们在页面使用的this，你可以通过vm获取vuex等操作，更多内容详见uView对拦截器的介绍部分：
@@ -27,9 +29,12 @@ const install = (Vue, vm) => {
 		toPlaceOrder,
 		getPayParams
 	};
+	vm.$u.$api = config
+	vm.$u.getUserInfo = config.getUserInfo
 	vm.$u.getImageInfo = getImageInfo
 	vm.$u.getImagePath = getImagePath
 	vm.$u.toPreviewImage = toPreviewImage
+	vm.$u.treeReform = treeReform
 }
 
 export default {

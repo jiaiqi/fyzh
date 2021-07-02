@@ -6,10 +6,18 @@
   ],
   "subPackages": [
     {
+      "root": "pages/survey",
+      "pages": [
+        "index/index"
+      ]
+    },
+    {
       "root": "pages/public",
       "pages": [
         "articleList/articleList",
-        "articleDetail/articleDetail"
+        "articleDetail/articleDetail",
+        "bmi/bmi",
+        "survey/survey"
       ]
     },
     {
@@ -17,7 +25,8 @@
       "pages": [
         "GoodsDetail/GoodsDetail",
         "payOrder/payOrder",
-        "successPay/successPay"
+        "successPay/successPay",
+        "orderList/orderList"
       ]
     }
   ],
@@ -57,5 +66,6 @@
   "permission": {},
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

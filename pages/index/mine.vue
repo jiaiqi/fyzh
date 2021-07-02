@@ -17,7 +17,8 @@
 			<view class="u-flex-1">
 				<button class="cu-btn bg-red light " v-else @click="wxLogin" v-if="needAuthProfile">登录</button>
 				<view class="u-font-18 u-p-b-20" v-else-if="vuex_loginUser&&vuex_loginUser.real_name">
-					{{vuex_loginUser.real_name}}</view>
+					{{vuex_loginUser.real_name}}
+				</view>
 				<!-- <view class="u-font-14 u-tips-color">微信号:helang_uView</view> -->
 			</view>
 			<!-- 	<view class="u-m-l-10 u-p-10">
@@ -28,24 +29,24 @@
 			</view> -->
 		</view>
 		<view class="order-menu">
-			<view class="menu-item">
-				<text class="cuIcon-pay"></text>
-				<text>待付款</text>
+			<view class="menu-item" @click="toOrderList(item.label)" v-for="item in menuList" :key="item.label">
+				<text :class="[item.icon]"></text>
+				<text>{{item.label}}</text>
 			</view>
-			<view class="menu-item">
+			<!-- 	<view class="menu-item" @click="toOrderList()">
 				<text class="cuIcon-send"></text>
 				<text>待收货</text>
 			</view>
-			<view class="menu-item">
+			<view class="menu-item" @click="toOrderList()">
 				<text class="cuIcon-vipcard"></text>
 				<text>已完成</text>
 			</view>
-			<view class="menu-item">
+			<view class="menu-item" @click="toOrderList()">
 				<text class="cuIcon-form"></text>
 				<text>全部订单</text>
-			</view>
+			</view> -->
 		</view>
-<!-- 		<view class="u-m-t-20">
+		<!-- 		<view class="u-m-t-20">
 			<u-cell-group>
 				<u-cell-item icon="rmb-circle" title="支付"></u-cell-item>
 			</u-cell-group>
@@ -75,6 +76,21 @@
 	export default {
 		data() {
 			return {
+				menuList: [{
+						label: '待支付',
+						icon: 'cuIcon-pay'
+					},
+					{
+						label: '待发货',
+						icon: 'cuIcon-send'
+					}, {
+						label: '已完成',
+						icon: 'cuIcon-vipcard'
+					}, {
+						label: '全部',
+						icon: 'cuIcon-form'
+					}
+				],
 				profile: '',
 				background: {
 					backgroundColor: '#FF5C4E',
@@ -87,17 +103,18 @@
 				}
 			}
 		},
-		onLoad() {
-
-		},
 		methods: {
+			toOrderList(e) {
+				uni.navigateTo({
+					url: '/pages/store/orderList/orderList?type=' + e
+				})
+			},
 			async getUserProfile(e) {
 				// 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
 				// 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
 				return await wx.getUserProfile({
 					desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
 				})
-
 			},
 			wxLogin() {
 				this.getUserProfile().then(res => {
@@ -145,15 +162,16 @@
 		background-color: #Fff;
 		padding: 20rpx 30rpx;
 		margin-top: 20rpx;
+
 		.menu-item {
 			display: flex;
 			flex: 1;
 			flex-direction: column;
 			text-align: center;
-			
-			text[class*='cuIcon-']{
-				font-size:40rpx;
-				mrgin-bottom:20rpx;
+
+			text[class*='cuIcon-'] {
+				font-size: 40rpx;
+				mrgin-bottom: 20rpx;
 			}
 		}
 	}

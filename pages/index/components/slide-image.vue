@@ -1,5 +1,5 @@
 <template>
-	<u-swiper :list="swiperList" :height="300" border-radius="0"></u-swiper>
+	<u-swiper :list="swiperList" :height="300" border-radius="0" @click="clickImage"></u-swiper>
 </template>
 
 <script>
@@ -24,21 +24,28 @@
 			}
 		},
 		watch: {
-			pageItem:{
-				immediate:true,
+			pageItem: {
+				immediate: true,
 				handler(newValue, oldValue) {
-				if(newValue&&newValue.id){
-					this.$u.api.getItemDetail(newValue).then(data=>{
-						this.swiperList = data
-					})
+					if (newValue && newValue.id) {
+						this.$u.api.getItemDetail(newValue).then(data => {
+							this.swiperList = data
+						})
+					}
 				}
 			}
-			}
-		},
-		created() {
-			// this.getSwiperList()
 		},
 		methods: {
+			clickImage(index) {
+				let target = this.swiperList[index]
+				if (target && target.content_no) {
+					let url =
+						`/pages/public/articleDetail/articleDetail?serviceName=srvdaq_cms_content_select&content_no=${target.content_no}`
+					uni.navigateTo({
+						url: url
+					});
+				}
+			},
 			async getSwiperList() {
 				let image = this?.pageItem?.swiper_image
 				if (image) {

@@ -2988,6 +2988,163 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ 20);
 
 /***/ }),
 
+/***/ 192:
+/*!************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/common/evaluator.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * @param {Object} rowData 当前行数据
+                                                                                                      * @param {String} formula 需要根据当前js转化为表达式的json字符串
+                                                                                                      */
+// 导入方式: import evaluatorTo from 'path/evaluator.js'
+//  调用方式: evaluatorTo(rowData,formula)
+function evaluatorTo(rowData, formula) {
+  var result = null;
+  var evaluator = function evaluator(formula, result) {
+    if (typeof formula === 'object') {
+      Object.keys(formula).forEach(function (operator, index) {
+        switch (operator) {
+          case 'if': //if(xx){}else{}
+            result = evaluator(formula[operator][0], result) ? formula[operator][1] : formula[
+            operator][2];
+            break;
+          case 'and': // &&
+            var a = true;
+            formula[operator].forEach(function (_formula) {
+              Object.keys(_formula).forEach(function (_operator) {
+                if (!evaluator(_formula, result)) {
+                  a = false; //有假则假
+                }
+              });
+            });
+            result = a;
+            break;
+          case 'or': // 或 ||
+            var o = false;
+            formula[operator].forEach(function (_formula) {
+              Object.keys(_formula).forEach(function (_operator) {
+                if (evaluator(_formula, result)) {
+                  o = true; //有真则真
+                }
+              });
+            });
+            result = o;
+            break;
+          case 'not': //取反 !
+            break;
+          case 'eq': //等于 === equal
+            if (!formula[operator].val) {
+              result = !rowData[evaluator(formula[operator]['col'], result)];
+            } else if (typeof formula[operator].val !== 'string') {
+              // val为对象
+              var valueObj = formula[operator].val;
+              var value = '';
+              if (valueObj.value_key && valueObj.value_type) {
+                switch (valueObj.value_type) {
+                  case 'rowData':
+                    result = rowData[evaluator(formula[operator]['col'], result)] ==
+                    rowData[valueObj.value_key];
+                    break;
+                  case 'login_user_info':
+                    var login_user_info = uni.getStorageSync('login_user_info');
+                    if (login_user_info && typeof login_user_info === 'object') {
+                      result = rowData[evaluator(formula[operator]['col'], result)] ==
+                      login_user_info[valueObj.value_key];
+                    } else {
+                      result = false;
+                    }
+                    break;
+                  default:
+                    result = rowData[evaluator(formula[operator]['col'], result)] ==
+                    rowData[valueObj.value_key];
+                    break;}
+
+              }
+            } else {
+              result = rowData[evaluator(formula[operator]['col'], result)] == formula[
+              operator].val;
+            }
+            break;
+          case 'neq': //不等于 !== not equal
+            if (!formula[operator].val) {
+              result = !!rowData[evaluator(formula[operator]['col'], result)];
+            } else if (typeof formula[operator].val !== 'string') {
+              // val为对象
+              var _valueObj = formula[operator].val;
+              var _value = '';
+              if (_valueObj.value_key && _valueObj.value_type) {
+                switch (_valueObj.value_type) {
+                  case 'rowData':
+                    result = rowData[evaluator(formula[operator]['col'], result)] !=
+                    rowData[_valueObj.value_key];
+                    break;
+                  case 'login_user_info':
+                  case 'top.user':
+                    var _login_user_info = uni.getStorageSync('login_user_info');
+                    if (_login_user_info && typeof _login_user_info === 'object') {
+                      result = rowData[evaluator(formula[operator]['col'], result)] !=
+                      _login_user_info[_valueObj.value_key];
+                    } else {
+                      result = false;
+                    }
+                    break;
+                  default:
+                    result = rowData[evaluator(formula[operator]['col'], result)] !=
+                    rowData[_valueObj.value_key];
+                    break;}
+
+              }
+            } else {
+              result = rowData[evaluator(formula[operator]['col'], result)] != formula[
+              operator].val;
+            }
+            break;
+          case 'gt': // greater than or equal >
+            result = rowData[evaluator(formula[operator]['col'], result)] > formula[operator].
+            val;
+            break;
+          case 'gte': // greater than >
+            result = rowData[evaluator(formula[operator]['col'], result)] >= formula[operator].
+            val;
+            break;
+          case 'lt': // less than
+            result = rowData[evaluator(formula[operator]['col'], result)] < formula[operator].
+            val;
+            break;
+          case 'le': // less than or equal
+            result = rowData[evaluator(formula[operator]['col'], result)] <= formula[operator].
+            val;
+            break;
+          case 'add': // + 加
+            break;
+          case 'sub': // - 减
+            break;
+          case 'mul': //multiply 乘 *
+            break;
+          case 'div': // divide 除 /
+            break;
+          default:
+            result = result;
+            break;}
+
+      });
+    } else {
+      result = formula;
+    }
+    return result;
+  };
+  return evaluator(formula, result);
+}var _default =
+
+evaluatorTo;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
 /***/ 2:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
@@ -9084,7 +9241,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 208:
+/***/ 205:
 /*!*****************************************************************************************!*\
   !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/MpHtmlParser.js ***!
   \*****************************************************************************************/
@@ -9098,9 +9255,9 @@ if (hadRuntime) {
  * @author JinYufeng
  * @listens MIT
  */
-var cfg = __webpack_require__(/*! ./config.js */ 209),
+var cfg = __webpack_require__(/*! ./config.js */ 206),
 blankChar = cfg.blankChar,
-CssHandler = __webpack_require__(/*! ./CssHandler.js */ 210),
+CssHandler = __webpack_require__(/*! ./CssHandler.js */ 207),
 windowWidth = uni.getSystemInfoSync().windowWidth;
 var emoji;
 
@@ -9675,7 +9832,7 @@ module.exports = MpHtmlParser;
 
 /***/ }),
 
-/***/ 209:
+/***/ 206:
 /*!***********************************************************************************!*\
   !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/config.js ***!
   \***********************************************************************************/
@@ -9762,6 +9919,116 @@ if (wx.canIUse('editor')) {
 
 
 module.exports = cfg;
+
+/***/ }),
+
+/***/ 207:
+/*!***************************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/CssHandler.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var cfg = __webpack_require__(/*! ./config.js */ 206),
+isLetter = function isLetter(c) {return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';};
+
+function CssHandler(tagStyle) {
+  var styles = Object.assign(Object.create(null), cfg.userAgentStyles);
+  for (var item in tagStyle) {
+    styles[item] = (styles[item] ? styles[item] + ';' : '') + tagStyle[item];}
+  this.styles = styles;
+}
+CssHandler.prototype.getStyle = function (data) {
+  this.styles = new parser(data, this.styles).parse();
+};
+CssHandler.prototype.match = function (name, attrs) {
+  var tmp,matched = (tmp = this.styles[name]) ? tmp + ';' : '';
+  if (attrs.class) {
+    var items = attrs.class.split(' ');
+    for (var i = 0, item; item = items[i]; i++) {
+      if (tmp = this.styles['.' + item])
+      matched += tmp + ';';}
+  }
+  if (tmp = this.styles['#' + attrs.id])
+  matched += tmp + ';';
+  return matched;
+};
+module.exports = CssHandler;
+
+function parser(data, init) {
+  this.data = data;
+  this.floor = 0;
+  this.i = 0;
+  this.list = [];
+  this.res = init;
+  this.state = this.Space;
+}
+parser.prototype.parse = function () {
+  for (var c; c = this.data[this.i]; this.i++) {
+    this.state(c);}
+  return this.res;
+};
+parser.prototype.section = function () {
+  return this.data.substring(this.start, this.i);
+};
+// 状态机
+parser.prototype.Space = function (c) {
+  if (c == '.' || c == '#' || isLetter(c)) {
+    this.start = this.i;
+    this.state = this.Name;
+  } else if (c == '/' && this.data[this.i + 1] == '*')
+  this.Comment();else
+  if (!cfg.blankChar[c] && c != ';')
+  this.state = this.Ignore;
+};
+parser.prototype.Comment = function () {
+  this.i = this.data.indexOf('*/', this.i) + 1;
+  if (!this.i) this.i = this.data.length;
+  this.state = this.Space;
+};
+parser.prototype.Ignore = function (c) {
+  if (c == '{') this.floor++;else
+  if (c == '}' && ! --this.floor) {
+    this.list = [];
+    this.state = this.Space;
+  }
+};
+parser.prototype.Name = function (c) {
+  if (cfg.blankChar[c]) {
+    this.list.push(this.section());
+    this.state = this.NameSpace;
+  } else if (c == '{') {
+    this.list.push(this.section());
+    this.Content();
+  } else if (c == ',') {
+    this.list.push(this.section());
+    this.Comma();
+  } else if (!isLetter(c) && (c < '0' || c > '9') && c != '-' && c != '_')
+  this.state = this.Ignore;
+};
+parser.prototype.NameSpace = function (c) {
+  if (c == '{') this.Content();else
+  if (c == ',') this.Comma();else
+  if (!cfg.blankChar[c]) this.state = this.Ignore;
+};
+parser.prototype.Comma = function () {
+  while (cfg.blankChar[this.data[++this.i]]) {;}
+  if (this.data[this.i] == '{') this.Content();else
+  {
+    this.start = this.i--;
+    this.state = this.Name;
+  }
+};
+parser.prototype.Content = function () {
+  this.start = ++this.i;
+  if ((this.i = this.data.indexOf('}', this.i)) == -1) this.i = this.data.length;
+  var content = this.section();
+  for (var i = 0, item; item = this.list[i++];) {
+    if (this.res[item]) this.res[item] += ';' + content;else
+    this.res[item] = content;}
+  this.list = [];
+  this.state = this.Space;
+};
 
 /***/ }),
 
@@ -10497,116 +10764,6 @@ module.exports = cfg;
 
 /***/ }),
 
-/***/ 210:
-/*!***************************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/CssHandler.js ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var cfg = __webpack_require__(/*! ./config.js */ 209),
-isLetter = function isLetter(c) {return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';};
-
-function CssHandler(tagStyle) {
-  var styles = Object.assign(Object.create(null), cfg.userAgentStyles);
-  for (var item in tagStyle) {
-    styles[item] = (styles[item] ? styles[item] + ';' : '') + tagStyle[item];}
-  this.styles = styles;
-}
-CssHandler.prototype.getStyle = function (data) {
-  this.styles = new parser(data, this.styles).parse();
-};
-CssHandler.prototype.match = function (name, attrs) {
-  var tmp,matched = (tmp = this.styles[name]) ? tmp + ';' : '';
-  if (attrs.class) {
-    var items = attrs.class.split(' ');
-    for (var i = 0, item; item = items[i]; i++) {
-      if (tmp = this.styles['.' + item])
-      matched += tmp + ';';}
-  }
-  if (tmp = this.styles['#' + attrs.id])
-  matched += tmp + ';';
-  return matched;
-};
-module.exports = CssHandler;
-
-function parser(data, init) {
-  this.data = data;
-  this.floor = 0;
-  this.i = 0;
-  this.list = [];
-  this.res = init;
-  this.state = this.Space;
-}
-parser.prototype.parse = function () {
-  for (var c; c = this.data[this.i]; this.i++) {
-    this.state(c);}
-  return this.res;
-};
-parser.prototype.section = function () {
-  return this.data.substring(this.start, this.i);
-};
-// 状态机
-parser.prototype.Space = function (c) {
-  if (c == '.' || c == '#' || isLetter(c)) {
-    this.start = this.i;
-    this.state = this.Name;
-  } else if (c == '/' && this.data[this.i + 1] == '*')
-  this.Comment();else
-  if (!cfg.blankChar[c] && c != ';')
-  this.state = this.Ignore;
-};
-parser.prototype.Comment = function () {
-  this.i = this.data.indexOf('*/', this.i) + 1;
-  if (!this.i) this.i = this.data.length;
-  this.state = this.Space;
-};
-parser.prototype.Ignore = function (c) {
-  if (c == '{') this.floor++;else
-  if (c == '}' && ! --this.floor) {
-    this.list = [];
-    this.state = this.Space;
-  }
-};
-parser.prototype.Name = function (c) {
-  if (cfg.blankChar[c]) {
-    this.list.push(this.section());
-    this.state = this.NameSpace;
-  } else if (c == '{') {
-    this.list.push(this.section());
-    this.Content();
-  } else if (c == ',') {
-    this.list.push(this.section());
-    this.Comma();
-  } else if (!isLetter(c) && (c < '0' || c > '9') && c != '-' && c != '_')
-  this.state = this.Ignore;
-};
-parser.prototype.NameSpace = function (c) {
-  if (c == '{') this.Content();else
-  if (c == ',') this.Comma();else
-  if (!cfg.blankChar[c]) this.state = this.Ignore;
-};
-parser.prototype.Comma = function () {
-  while (cfg.blankChar[this.data[++this.i]]) {;}
-  if (this.data[this.i] == '{') this.Content();else
-  {
-    this.start = this.i--;
-    this.state = this.Name;
-  }
-};
-parser.prototype.Content = function () {
-  this.start = ++this.i;
-  if ((this.i = this.data.indexOf('}', this.i)) == -1) this.i = this.data.length;
-  var content = this.section();
-  for (var i = 0, item; item = this.list[i++];) {
-    if (this.res[item]) this.res[item] += ';' + content;else
-    this.res[item] = content;}
-  this.list = [];
-  this.state = this.Space;
-};
-
-/***/ }),
-
 /***/ 22:
 /*!*****************************************************************************!*\
   !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/timeFormat.js ***!
@@ -10666,6 +10823,68 @@ function timeFormat() {var dateTime = arguments.length > 0 && arguments[0] !== u
 }var _default =
 
 timeFormat;exports.default = _default;
+
+/***/ }),
+
+/***/ 229:
+/*!*****************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/common/mixins/emitter.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 递归使用 call 方式this指向
+                                                                                                      * @param componentName // 需要找的组件的名称
+                                                                                                      * @param eventName // 事件名称
+                                                                                                      * @param params // 需要传递的参数
+                                                                                                      */
+
+function _broadcast(componentName, eventName, params) {
+  this.$children.forEach(function (child) {
+    var name = child.$options.name;
+    if (name === componentName) {
+      child.$emit.apply(child, [eventName].concat(params));
+    } else {
+      // todo 如果 params 是空数组，接收到的会是 undefined
+      _broadcast.apply(child, [componentName, eventName].concat([params]));
+    }
+  });
+}var _default =
+{
+  methods: {
+    /**
+              * 派发 (向上查找) (一个)
+              * @param componentName // 需要找的组件的名称
+              * @param eventName // 事件名称
+              * @param params // 需要传递的参数
+              */
+    dispatch: function dispatch(componentName, eventName, params) {
+      var parent = this.$parent || this.$root; //$parent 找到最近的父节点 $root 根节点
+      var name = parent.$options.name; // 获取当前组件实例的name
+      // 如果当前有节点 && 当前没名称 且 当前名称等于需要传进来的名称的时候就去查找当前的节点
+      // 循环出当前名称的一样的组件实例
+      while (parent && (!name || name !== componentName)) {
+        parent = parent.$parent;
+        if (parent) {
+          name = parent.$options.name;
+        }
+      }
+      // 有节点表示当前找到了name一样的实例
+      if (parent) {
+        parent.$emit.apply(parent, [eventName].concat(params));
+      }
+    },
+    /**
+        * 广播 (向下查找) (广播多个)
+        * @param componentName // 需要找的组件的名称
+        * @param eventName // 事件名称
+        * @param params // 需要传递的参数
+        */
+    broadcast: function broadcast(componentName, eventName, params) {
+      _broadcast.call(this, componentName, eventName, params);
+    } } };exports.default = _default;
 
 /***/ }),
 
@@ -12859,6 +13078,8 @@ var _util = __webpack_require__(/*! @/common/util.js */ 49);function _interopReq
 
 
 
+
+
 // 此处第二个参数vm，就是我们在页面使用的this，你可以通过vm获取vuex等操作，更多内容详见uView对拦截器的介绍部分：
 // https://uviewui.com/js/http.html#%E4%BD%95%E8%B0%93%E8%AF%B7%E6%B1%82%E6%8B%A6%E6%88%AA%EF%BC%9F
 var install = function install(Vue, vm) {
@@ -12873,9 +13094,12 @@ var install = function install(Vue, vm) {
     toPlaceOrder: _api.toPlaceOrder,
     getPayParams: _api.getPayParams };
 
+  vm.$u.$api = _config.default;
+  vm.$u.getUserInfo = _config.default.getUserInfo;
   vm.$u.getImageInfo = _util.getImageInfo;
   vm.$u.getImagePath = _api.getImagePath;
   vm.$u.toPreviewImage = _util.toPreviewImage;
+  vm.$u.treeReform = _util.treeReform;
 };var _default =
 
 {
@@ -13235,7 +13459,7 @@ var getImagePath = function getImagePath(no, notThumb) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.toPreviewImage = exports.getImageInfo = exports.getVideoInfo = void 0;var toPreviewImage = function toPreviewImage(urls) {
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.treeReform = exports.toPreviewImage = exports.getImageInfo = exports.getVideoInfo = void 0;var toPreviewImage = function toPreviewImage(urls) {
   if (!urls) {
     return;
   }
@@ -13295,6 +13519,41 @@ var getImageInfo = function getImageInfo(item) {
 
   });
 };exports.getImageInfo = getImageInfo;
+
+var treeReform = function treeReform(e, pidcol, idcol) {
+  // 
+  var data = uni.$u.deepClone(e);
+  var to1Data = e.filter(function (item, index) {
+    return item[pidcol] === null || item[pidcol] === "";
+  });
+  var to2Data = e.filter(function (item, index) {
+    return item[pidcol] !== null || item[pidcol] === "";
+  });
+  var reform = function reform(allData, pd, id, data) {
+    // 根据顶级节点组装数有子节点
+    var datas = uni.$u.deepClone(data); // 当前级别
+    var aDatas = uni.$u.deepClone(allData); // 剩余data
+    for (var i = 0; i < datas.length; i++) {
+      var child = [];
+      for (var j = 0; j < aDatas.length; j++) {
+        // console.log("slice==="+j,datas[i][id],aDatas[j][pd])
+        if (datas[i][id] === aDatas[j][pd]) {
+          child.push(aDatas[j]);
+          aDatas.slice(j, 1);
+          // console.log("slice==="+j,aDatas,aDatas[j],j)
+        }
+      }
+      if (child.length > 0) {
+        datas[i]["_childNode"] = reform(aDatas, pd, id, child);
+      } else {
+        datas[i]["_childNode"] = child;
+      }
+    }
+    return datas;
+  };
+  to1Data = reform(to2Data, pidcol, idcol, to1Data);
+  return to1Data;
+};exports.treeReform = treeReform;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

@@ -1,6 +1,6 @@
 <template>
 	<view class="page-wrap">
-		<image src="../../static/img/successPay.png" mode="aspectFit"></image>
+		<image src="../static/img/successPay.png" mode="aspectFit"></image>
 		<view class="text">
 			<text class="cuIcon-roundcheckfill text-green margin-right-xs"></text>
 			支付成功

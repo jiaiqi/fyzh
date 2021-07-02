@@ -36,6 +36,18 @@
 		}
 	],
 	"subPackages": [{
+			"root": "pages/survey",
+			"pages": [
+				{
+					"path": "index/index",
+					"style": {
+						"navigationBarTitleText": "问卷",
+						"enablePullDownRefresh": false
+					}
+				}
+			]
+		},
+		{
 			"root": "pages/public",
 			"pages": [{
 				"path": "articleList/articleList",
@@ -44,16 +56,28 @@
 					"enablePullDownRefresh": true
 				}
 
-			}    ,{
-                    "path" : "articleDetail/articleDetail",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-                
-                }
-            ]
+			}, {
+				"path": "articleDetail/articleDetail",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "bmi/bmi",
+				"style": {
+					"navigationBarTitleText": "BMI计算器",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "survey/survey",
+				"style": {
+					"navigationBarTitleText": "问卷",
+					"enablePullDownRefresh": false
+				}
+
+			}]
 		},
 		{
 			"root": "pages/store",
@@ -63,25 +87,28 @@
 					"navigationBarTitleText": "商品详情",
 					"enablePullDownRefresh": false
 				}
-			}    ,{
-                    "path" : "payOrder/payOrder",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-                
-                }
-                ,{
-                    "path" : "successPay/successPay",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-                
-                }
-            ]
+			}, {
+				"path": "payOrder/payOrder",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "successPay/successPay",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "orderList/orderList",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}]
 		}
 	],
 	"preloadRule": {

@@ -94,7 +94,7 @@ var components
 try {
   components = {
     goodsList: function() {
-      return __webpack_require__.e(/*! import() | components/goods-list/goods-list */ "components/goods-list/goods-list").then(__webpack_require__.bind(null, /*! @/components/goods-list/goods-list.vue */ 98))
+      return __webpack_require__.e(/*! import() | components/goods-list/goods-list */ "components/goods-list/goods-list").then(__webpack_require__.bind(null, /*! @/components/goods-list/goods-list.vue */ 152))
     }
   }
 } catch (e) {
