@@ -29,7 +29,8 @@
 			"path": "pages/index/mine",
 			"style": {
 				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white",
+				// "navigationBarTextStyle": "white",
+				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "我的",
 				"enablePullDownRefresh": false
 			}
@@ -108,7 +109,16 @@
 					"enablePullDownRefresh": false
 				}
 
-			}]
+			}    ,{
+                    "path" : "cart/cart",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "购物车",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
 		}
 	],
 	"preloadRule": {

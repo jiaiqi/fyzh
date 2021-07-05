@@ -12,7 +12,7 @@ try {
 }
 
 // 需要永久存储，且下次APP启动需要取出的，在state中的变量名
-let saveStateKeys = ['vuex_user', 'vuex_token'];
+let saveStateKeys = ['vuex_token','vuex_loginUser'];
 
 // 保存变量到本地存储中
 const saveLifeData = function(key, value) {
@@ -32,11 +32,11 @@ const store = new Vuex.Store({
 		// 如果上面从本地获取的lifeData对象下有对应的属性，就赋值给state中对应的变量
 		// 加上vuex_前缀，是防止变量名冲突，也让人一目了然
 		isLogin: false,
+		vuex_memberInfo: {},
 		needAuthProfile: false, //未授权用户信息
 		openCode: "",
 		vuex_loginUser: lifeData.vuex_loginUser || {},
 		vuex_wxUser: lifeData.vuex_wxUser || {},
-		vuex_user: lifeData.vuex_user || {},
 		vuex_token: lifeData.vuex_token || '',
 		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
 		vuex_cart: [], //购物车信息（商品列表）

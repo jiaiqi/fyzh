@@ -8,7 +8,8 @@
 		</view>
 		<view class="single" v-if="layout==='single'">
 			<view class="goods-item" v-for="(item,index) in leftList" @click="toGoodsDetail(item)">
-				<u-lazy-load  class="image" threshold="-450" height="200" :image="item.url" :index="index" v-if="item[image]">
+				<u-lazy-load class="image" threshold="-450" height="200" :image="item.url" :index="index"
+					v-if="item[image]">
 				</u-lazy-load>
 				<view class="image" v-else>{{ item[name].slice(0, 4) }}</view>
 				<view class="goods-info">
@@ -83,7 +84,7 @@
 		},
 		data() {
 			return {
-				layout:"double",
+				layout: "double",
 				leftList: [],
 				rightList: [],
 				goodsList: [],
@@ -96,13 +97,13 @@
 		},
 		created() {
 			this.getGoodsListData()
-			if(this.defaultLayout){
+			if (this.defaultLayout) {
 				this.layout = this.defaultLayout
 			}
 		},
 		methods: {
-			changeLayout(){
-				this.layout==='double'?this.layout='single':this.layout='double'
+			changeLayout() {
+				this.layout === 'double' ? this.layout = 'single' : this.layout = 'double'
 			},
 			getGoodsListData(type) {
 				let req = {
@@ -213,40 +214,51 @@
 		// column-gap: 10px;
 		// padding: 0 5px 20px;
 		flex-wrap: wrap;
-		&.single{
+
+		&.single {
 			flex-direction: column;
 		}
-		.utils-bar{
-			width: 100%;
+
+		.utils-bar {
+			margin: 20rpx 20rpx 0;
+			flex: 1;
 			background-color: #fff;
 			padding: 20rpx;
 			display: flex;
 			justify-content: flex-end;
-			text[class*=cuIcon-]{
+			border-radius: 20rpx;
+
+			text[class*=cuIcon-] {
 				font-size: 40rpx;
 			}
 		}
-		.double-column{
+
+		.double-column {
 			display: flex;
 			padding-left: 20rpx;
 		}
-		.single{
+
+		.single {
 			padding: 20rpx;
-			.goods-item{
+
+			.goods-item {
 				width: 100%;
 				display: flex;
 				align-items: center;
 				min-height: 200rpx;
-				.image{
+
+				.image {
 					flex: 0.8;
 					text-align: center;
 				}
-				.goods-info{
+
+				.goods-info {
 					flex: 1;
 					margin-left: 20rpx;
 				}
 			}
 		}
+
 		.left-list,
 		.right-list {
 			padding-left: 20rpx;

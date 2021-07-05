@@ -26,7 +26,8 @@
         "GoodsDetail/GoodsDetail",
         "payOrder/payOrder",
         "successPay/successPay",
-        "orderList/orderList"
+        "orderList/orderList",
+        "cart/cart"
       ]
     }
   ],
@@ -66,6 +67,5 @@
   "permission": {},
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }

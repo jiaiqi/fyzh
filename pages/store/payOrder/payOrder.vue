@@ -17,8 +17,6 @@
 		<view class="order-detail">
 			<view class="order-info">
 				<view class="title-bar">
-					<!-- 			<image class="store-logo" :src="$u.getImagePath(orderInfo.image)" mode="aspectFill"
-						v-if="orderInfo.image"></image> -->
 					<text class="store-logo cuIcon-shop"></text>
 					<!-- <text class="store-name">{{ orderInfo.store_name ? orderInfo.store_name : orderInfo.name || '' }}</text> -->
 				</view>
@@ -26,7 +24,7 @@
 					<view class="goods-item" v-for="goods in goodsList">
 						<image class="goods-image" :src="$u.getImagePath(goods.gd_img)" mode=""></image>
 						<view class="content">
-							<view class="goods-name">{{ goods.name}}
+							<view class="goods-name">{{ goods.name||goods.goods_name}}
 							</view>
 						</view>
 						<view class="num">
@@ -64,7 +62,7 @@
 			return {
 				orderNo: '', //订单编号
 				orderInfo: {},
-				goodsList:[],
+				goodsList: [],
 				addressInfo: {
 					fullAddress: ''
 				}
@@ -96,6 +94,8 @@
 							pre += cur.goods_amount * cur.unit_price;
 						} else if (cur.price && cur.amount) {
 							pre += cur.amount * cur.price;
+						} else if (cur.unit_price && cur.amount) {
+							pre += cur.amount * cur.unit_price;
 						}
 						return pre;
 					}, 0);
@@ -321,7 +321,7 @@
 				// 2. 从购物车进入或商品页直接支付 初始化订单信息
 				if (option.goodsList) {
 					try {
-						option.goodsList = JSON.parse(decodeURIComponent(option.goodsList))
+						option.goodsList = JSON.parse(option.goodsList)
 					} catch (e) {
 						//TODO handle the exception
 					}

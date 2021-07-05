@@ -6,10 +6,6 @@ import store from '@/store/index.js'
  */
 const wxLogin = async () => {
 	const result = await wx.login()
-	// const userProfile = await wx.getUserProfile({
-	// 	desc: '用于完善会员资料'
-	// })
-	// debugger
 	if (result.code) {
 		let url = '/wx/operate/srvwx_app_login_verify'
 		let req = [{
@@ -26,31 +22,16 @@ const wxLogin = async () => {
 			if (resData && resData.bx_open_code) {
 				uni.$u.vuex('needAuthProfile', true)
 				uni.$u.vuex('openCode', resData.bx_open_code)
-				// 后端未获取到unionid 需要通过开放登录接口给后端发送wx.getUserInfo获取到的数据
-
-				// try {
-
-				// 	if (userProfile&&userProfile.userInfo) {
-				// 		wxOpenLogin(resData.bx_open_code,
-				// 			userInfo).then(
-				// 			result => {
-				// 				debugger
-				// 			})
-				// 	}
-				// } catch (e) {
-				// 	//TODO handle the exception
-				// 	console.log(e)
-				// 	debugger
-				// }
+				// 后端未获取到unionid 需要通过开放登录接口给后端发送wx.getProfile获取到的数据
 			} else {
-				if (resData && resData.login_user_info.user_no) {
-					uni.setStorageSync('login_user_info', resData
-						.login_user_info);
+				if (resData && resData?.login_user_info?.user_no) {
+					uni.setStorageSync('login_user_info', resData.login_user_info);
 					uni.$u.vuex('vuex_loginUser', resData.login_user_info)
+					getMemberInfo(resData.login_user_info.user_no)
+					getCart(resData.login_user_info.user_no)
 				}
 				if (resData && resData.login_user_info.data) {
-					uni.setStorageSync('visiter_user_info', resData
-						.login_user_info.data[0]);
+					uni.setStorageSync('visiter_user_info', resData.login_user_info.data[0]);
 				}
 			}
 			uni.$u.vuex('vuex_token', resData.bx_auth_ticket)
@@ -60,6 +41,61 @@ const wxLogin = async () => {
 			uni.$u.vuex('isLogin', true)
 		}
 	}
+}
+
+
+const getCart = async (user_no) => {
+	// 查找购物车数据
+	let url = '/fyzhmd/select/srvstore_shop_cart_goods_select'
+	let req = {
+		"serviceName": "srvstore_shop_cart_goods_select",
+		"colNames": ["*"],
+		"condition": [{
+			"colName": "user_no",
+			"ruleType": "eq",
+			"value": user_no
+		}],
+		"page": {
+			"pageNo": 1,
+			"rownumber": 50
+		},
+		"order": []
+	}
+	if (user_no) {
+		let res = await uni.$u.post(url, req)
+		// then(res => {
+		if (res.state == 'SUCCESS') {
+			uni.$u.vuex('vuex_cart', res.data)
+		}
+		return res
+		// })
+	}
+}
+// 获取当前登录用户会员信息
+const getMemberInfo = async (hy_user_no) => {
+	const url = '/fyzhmd/select/srvstore_member_mgmt_select'
+	const req = {
+		"serviceName": "srvstore_member_mgmt_select",
+		"colNames": ["*"],
+		"condition": [{
+			"colName": "hy_user_no",
+			"ruleType": "eq",
+			"value": hy_user_no
+		}],
+		"page": {
+			"pageNo": 1,
+			"rownumber": 5
+		}
+	}
+	if (!hy_user_no) {
+		return
+	}
+	const res = await uni.$u.post(url, req)
+	if (res.state === 'SUCCESS') {
+		let memberInfo = res.data
+		uni.$u.vuex('vuex_memberInfo', res.data)
+	}
+	// hy_user_no
 }
 
 // 小程序开户登录
@@ -203,7 +239,7 @@ const toPlaceOrder = async (total_fee, login_user_type, orderData, wx_mch_id = '
 			debugger
 			if (info.response) {
 				info = info.response
-				uni.$u.vuex('vuex_prepayInfo',info)
+				uni.$u.vuex('vuex_prepayInfo', info)
 				return info
 			}
 		}
@@ -339,5 +375,6 @@ export {
 	getItemDetail,
 	getImagePath,
 	toPlaceOrder,
-	getPayParams
+	getPayParams,
+	getCart
 }

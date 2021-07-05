@@ -7,7 +7,8 @@ import {
 	getImagePath,
 	wxLogin,
 	toPlaceOrder,
-	getPayParams
+	getPayParams,
+	getCart
 } from '@/common/api.js'
 import {
 	getImageInfo,
@@ -27,7 +28,8 @@ const install = (Vue, vm) => {
 		wxLogin,
 		getImageInfo,
 		toPlaceOrder,
-		getPayParams
+		getPayParams,
+		getCart
 	};
 	vm.$u.$api = config
 	vm.$u.getUserInfo = config.getUserInfo

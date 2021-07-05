@@ -11648,7 +11648,7 @@ try {
 }
 
 // 需要永久存储，且下次APP启动需要取出的，在state中的变量名
-var saveStateKeys = ['vuex_user', 'vuex_token'];
+var saveStateKeys = ['vuex_token', 'vuex_loginUser'];
 
 // 保存变量到本地存储中
 var saveLifeData = function saveLifeData(key, value) {
@@ -11668,11 +11668,11 @@ var store = new _vuex.default.Store({
     // 如果上面从本地获取的lifeData对象下有对应的属性，就赋值给state中对应的变量
     // 加上vuex_前缀，是防止变量名冲突，也让人一目了然
     isLogin: false,
+    vuex_memberInfo: {},
     needAuthProfile: false, //未授权用户信息
     openCode: "",
     vuex_loginUser: lifeData.vuex_loginUser || {},
     vuex_wxUser: lifeData.vuex_wxUser || {},
-    vuex_user: lifeData.vuex_user || {},
     vuex_token: lifeData.vuex_token || '',
     // 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
     vuex_cart: [], //购物车信息（商品列表）
@@ -13074,6 +13074,7 @@ var _api = __webpack_require__(/*! @/common/api.js */ 48);
 
 
 
+
 var _util = __webpack_require__(/*! @/common/util.js */ 49);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} // 如果没有通过拦截器配置域名的话，可以在这里写上完整的URL(加上域名部分)
 
 
@@ -13092,7 +13093,8 @@ var install = function install(Vue, vm) {
     wxLogin: _api.wxLogin,
     getImageInfo: _util.getImageInfo,
     toPlaceOrder: _api.toPlaceOrder,
-    getPayParams: _api.getPayParams };
+    getPayParams: _api.getPayParams,
+    getCart: _api.getCart };
 
   vm.$u.$api = _config.default;
   vm.$u.getUserInfo = _config.default.getUserInfo;
@@ -13115,18 +13117,14 @@ var install = function install(Vue, vm) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getPayParams = exports.toPlaceOrder = exports.getImagePath = exports.getItemDetail = exports.getFilePath = exports.getPageItem = exports.wxOpenLogin = exports.wxLogin = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 19));var _config = _interopRequireDefault(__webpack_require__(/*! @/common/config.js */ 46));
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getCart = exports.getPayParams = exports.toPlaceOrder = exports.getImagePath = exports.getItemDetail = exports.getFilePath = exports.getPageItem = exports.wxOpenLogin = exports.wxLogin = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 19));var _config = _interopRequireDefault(__webpack_require__(/*! @/common/config.js */ 46));
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _index = _interopRequireDefault(__webpack_require__(/*! @/store/index.js */ 40));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 /**
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   * 微信静默登录
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   */
-var wxLogin = /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result, url, req, res, resData;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+var wxLogin = /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result, url, req, res, resData, _resData$login_user_i;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
               wx.login());case 2:result = _context.sent;if (!
-
-
-
-
             result.code) {_context.next = 10;break;}
             url = '/wx/operate/srvwx_app_login_verify';
             req = [{
@@ -13143,31 +13141,16 @@ var wxLogin = /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__PURE_
               if (resData && resData.bx_open_code) {
                 uni.$u.vuex('needAuthProfile', true);
                 uni.$u.vuex('openCode', resData.bx_open_code);
-                // 后端未获取到unionid 需要通过开放登录接口给后端发送wx.getUserInfo获取到的数据
-
-                // try {
-
-                // 	if (userProfile&&userProfile.userInfo) {
-                // 		wxOpenLogin(resData.bx_open_code,
-                // 			userInfo).then(
-                // 			result => {
-                // 				debugger
-                // 			})
-                // 	}
-                // } catch (e) {
-                // 	//TODO handle the exception
-                // 	console.log(e)
-                // 	debugger
-                // }
+                // 后端未获取到unionid 需要通过开放登录接口给后端发送wx.getProfile获取到的数据
               } else {
-                if (resData && resData.login_user_info.user_no) {
-                  uni.setStorageSync('login_user_info', resData.
-                  login_user_info);
+                if (resData && (resData === null || resData === void 0 ? void 0 : (_resData$login_user_i = resData.login_user_info) === null || _resData$login_user_i === void 0 ? void 0 : _resData$login_user_i.user_no)) {
+                  uni.setStorageSync('login_user_info', resData.login_user_info);
                   uni.$u.vuex('vuex_loginUser', resData.login_user_info);
+                  getMemberInfo(resData.login_user_info.user_no);
+                  getCart(resData.login_user_info.user_no);
                 }
                 if (resData && resData.login_user_info.data) {
-                  uni.setStorageSync('visiter_user_info', resData.
-                  login_user_info.data[0]);
+                  uni.setStorageSync('visiter_user_info', resData.login_user_info.data[0]);
                 }
               }
               uni.$u.vuex('vuex_token', resData.bx_auth_ticket);
@@ -13175,17 +13158,72 @@ var wxLogin = /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__PURE_
               bx_auth_ticket);
               uni.setStorageSync('isLogin', true);
               uni.$u.vuex('isLogin', true);
-            }case 10:case "end":return _context.stop();}}}, _callee);}));return function wxLogin() {return _ref.apply(this, arguments);};}();
+            }case 10:case "end":return _context.stop();}}}, _callee);}));return function wxLogin() {return _ref.apply(this, arguments);};}();exports.wxLogin = wxLogin;
 
 
+
+
+var getCart = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(user_no) {var url, req, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+            // 查找购物车数据
+            url = '/fyzhmd/select/srvstore_shop_cart_goods_select';
+            req = {
+              "serviceName": "srvstore_shop_cart_goods_select",
+              "colNames": ["*"],
+              "condition": [{
+                "colName": "user_no",
+                "ruleType": "eq",
+                "value": user_no }],
+
+              "page": {
+                "pageNo": 1,
+                "rownumber": 50 },
+
+              "order": [] };if (!
+
+            user_no) {_context2.next = 8;break;}_context2.next = 5;return (
+              uni.$u.post(url, req));case 5:res = _context2.sent;
+            // then(res => {
+            if (res.state == 'SUCCESS') {
+              uni.$u.vuex('vuex_cart', res.data);
+            }return _context2.abrupt("return",
+            res);case 8:case "end":return _context2.stop();}}}, _callee2);}));return function getCart(_x) {return _ref2.apply(this, arguments);};}();
+
+
+
+// 获取当前登录用户会员信息
+exports.getCart = getCart;var getMemberInfo = /*#__PURE__*/function () {var _ref3 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(hy_user_no) {var url, req, res, memberInfo;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+            url = '/fyzhmd/select/srvstore_member_mgmt_select';
+            req = {
+              "serviceName": "srvstore_member_mgmt_select",
+              "colNames": ["*"],
+              "condition": [{
+                "colName": "hy_user_no",
+                "ruleType": "eq",
+                "value": hy_user_no }],
+
+              "page": {
+                "pageNo": 1,
+                "rownumber": 5 } };if (
+
+
+            hy_user_no) {_context3.next = 4;break;}return _context3.abrupt("return");case 4:_context3.next = 6;return (
+
+
+              uni.$u.post(url, req));case 6:res = _context3.sent;
+            if (res.state === 'SUCCESS') {
+              memberInfo = res.data;
+              uni.$u.vuex('vuex_memberInfo', res.data);
+            }
+            // hy_user_no
+          case 8:case "end":return _context3.stop();}}}, _callee3);}));return function getMemberInfo(_x2) {return _ref3.apply(this, arguments);};}();
 
 // 小程序开户登录
-exports.wxLogin = wxLogin;var wxOpenLogin = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(wxAuthUserInfo) {var openCode, userInfo, url, data, req, response, resData;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+var wxOpenLogin = /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(wxAuthUserInfo) {var openCode, userInfo, url, data, req, response, resData;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
             openCode = _index.default === null || _index.default === void 0 ? void 0 : _index.default.state.openCode;
 
             userInfo =
             wxAuthUserInfo.userInfo;if (!(
-            userInfo && openCode)) {_context2.next = 27;break;}
+            userInfo && openCode)) {_context4.next = 27;break;}
             url = "/wx/operate/srvwx_mini_open_account_login?openCode=".concat(openCode);
             data = {
               "app_no": _config.default.appNo.wxmp,
@@ -13210,10 +13248,10 @@ exports.wxLogin = wxLogin;var wxOpenLogin = /*#__PURE__*/function () {var _ref2 
             });
             req = [{
               "serviceName": "srvwx_mini_open_account_login",
-              "data": [data] }];_context2.next = 10;return (
+              "data": [data] }];_context4.next = 10;return (
 
-              uni.$u.post(url, req));case 10:response = _context2.sent;if (!(
-            response.resultCode === 'SUCCESS')) {_context2.next = 24;break;}
+              uni.$u.post(url, req));case 10:response = _context4.sent;if (!(
+            response.resultCode === 'SUCCESS')) {_context4.next = 24;break;}
             // 登录成功
             uni.setStorageSync('isLogin', true);
             uni.$u.vuex('isLogin', true);
@@ -13228,21 +13266,21 @@ exports.wxLogin = wxLogin;var wxOpenLogin = /*#__PURE__*/function () {var _ref2 
             uni.setStorageSync('bx_auth_ticket', resData.bx_auth_ticket);
             if (resData.login_user_info.data) {
               uni.setStorageSync('visiter_user_info', resData.login_user_info.data[0]);
-            }return _context2.abrupt("return",
-            true);case 24:return _context2.abrupt("return",
+            }return _context4.abrupt("return",
+            true);case 24:return _context4.abrupt("return",
 
-            false);case 25:_context2.next = 28;break;case 27:return _context2.abrupt("return");case 28:case "end":return _context2.stop();}}}, _callee2);}));return function wxOpenLogin(_x) {return _ref2.apply(this, arguments);};}();
+            false);case 25:_context4.next = 28;break;case 27:return _context4.abrupt("return");case 28:case "end":return _context4.stop();}}}, _callee4);}));return function wxOpenLogin(_x3) {return _ref4.apply(this, arguments);};}();
 
 
 
 
 
 /**
-                                                                                                                                                                                                                                          * @description 获取微信支付需要的参数（签名等）
-                                                                                                                                                                                                                                          * @param {String} prepay_id - 预支付id  
-                                                                                                                                                                                                                                          * @param {String} wx_mch_id - 商户号  
-                                                                                                                                                                                                                                          */exports.wxOpenLogin = wxOpenLogin;
-var getPayParams = /*#__PURE__*/function () {var _ref3 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3(prepay_id) {var wx_mch_id,url,req,res,_args3 = arguments;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:wx_mch_id = _args3.length > 1 && _args3[1] !== undefined ? _args3[1] : '1485038452';
+                                                                                                                                                                                                                                           * @description 获取微信支付需要的参数（签名等）
+                                                                                                                                                                                                                                           * @param {String} prepay_id - 预支付id  
+                                                                                                                                                                                                                                           * @param {String} wx_mch_id - 商户号  
+                                                                                                                                                                                                                                           */exports.wxOpenLogin = wxOpenLogin;
+var getPayParams = /*#__PURE__*/function () {var _ref5 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5(prepay_id) {var wx_mch_id,url,req,res,_args5 = arguments;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:wx_mch_id = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : '1485038452';
             url = '/wx/select/srvwx_app_pay_sign_select';
             req = {
               "serviceName": "srvwx_app_pay_sign_select",
@@ -13267,17 +13305,17 @@ var getPayParams = /*#__PURE__*/function () {var _ref3 = _asyncToGenerator( /*#_
 
 
 
-            prepay_id && wx_mch_id)) {_context3.next = 16;break;}_context3.next = 6;return (
-              uni.$u.post(url, req));case 6:res = _context3.sent;if (!(
-            res.state === 'SUCCESS')) {_context3.next = 14;break;}if (!(
-            Array.isArray(res.data) && res.data.length > 0)) {_context3.next = 13;break;}
-            _index.default.commit('SET_PAY_PARAMS', res.data[0]);return _context3.abrupt("return",
+            prepay_id && wx_mch_id)) {_context5.next = 16;break;}_context5.next = 6;return (
+              uni.$u.post(url, req));case 6:res = _context5.sent;if (!(
+            res.state === 'SUCCESS')) {_context5.next = 14;break;}if (!(
+            Array.isArray(res.data) && res.data.length > 0)) {_context5.next = 13;break;}
+            _index.default.commit('SET_PAY_PARAMS', res.data[0]);return _context5.abrupt("return",
             res.data[0]);case 13:
 
             uni.showModal({
               title: '提示',
               content: JSON.stringify(res),
-              showCancel: false });case 14:_context3.next = 17;break;case 16:
+              showCancel: false });case 14:_context5.next = 17;break;case 16:
 
 
 
@@ -13285,7 +13323,7 @@ var getPayParams = /*#__PURE__*/function () {var _ref3 = _asyncToGenerator( /*#_
             uni.showModal({
               title: '提示',
               content: '请检查wx_mch_id及prepay_id是否正确传入',
-              showCancel: false });case 17:case "end":return _context3.stop();}}}, _callee3);}));return function getPayParams(_x2) {return _ref3.apply(this, arguments);};}();
+              showCancel: false });case 17:case "end":return _context5.stop();}}}, _callee5);}));return function getPayParams(_x4) {return _ref5.apply(this, arguments);};}();
 
 
 
@@ -13296,7 +13334,7 @@ var getPayParams = /*#__PURE__*/function () {var _ref3 = _asyncToGenerator( /*#_
                                                                                                                                                                                 * @param {Object} orderData -订单信息
                                                                                                                                                                                 * @param {String} wx_mch_id -商户号
                                                                                                                                                                                 */exports.getPayParams = getPayParams;
-var toPlaceOrder = /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(total_fee, login_user_type, orderData) {var _store$state, _store$state$vuex_log;var wx_mch_id,url,req,res,info,_args4 = arguments;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:wx_mch_id = _args4.length > 3 && _args4[3] !== undefined ? _args4[3] : '1485038452';
+var toPlaceOrder = /*#__PURE__*/function () {var _ref6 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6(total_fee, login_user_type, orderData) {var _store$state, _store$state$vuex_log;var wx_mch_id,url,req,res,info,_args6 = arguments;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:wx_mch_id = _args6.length > 3 && _args6[3] !== undefined ? _args6[3] : '1485038452';
             // 统一下单
             url = '/wx/operate/srvwx_order';
             req = [{
@@ -13310,18 +13348,18 @@ var toPlaceOrder = /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#_
                 "notify_url": "http://wx2.100xsys.cn/wx/notify/payment",
                 "body": "test producet",
                 "user_no": _index.default === null || _index.default === void 0 ? void 0 : (_store$state = _index.default.state) === null || _store$state === void 0 ? void 0 : (_store$state$vuex_log = _store$state.vuex_loginUser) === null || _store$state$vuex_log === void 0 ? void 0 : _store$state$vuex_log.user_no,
-                "login_user_type": login_user_type ? login_user_type : "user" }] }];_context4.next = 5;return (
+                "login_user_type": login_user_type ? login_user_type : "user" }] }];_context6.next = 5;return (
 
 
-              uni.$u.post(url, req));case 5:res = _context4.sent;if (!(
-            res.state === 'SUCCESS')) {_context4.next = 14;break;}if (!(
-            Array.isArray(res.response) && res.response.length > 0)) {_context4.next = 14;break;}
+              uni.$u.post(url, req));case 5:res = _context6.sent;if (!(
+            res.state === 'SUCCESS')) {_context6.next = 14;break;}if (!(
+            Array.isArray(res.response) && res.response.length > 0)) {_context6.next = 14;break;}
             info = res.response[0];
             debugger;if (!
-            info.response) {_context4.next = 14;break;}
+            info.response) {_context6.next = 14;break;}
             info = info.response;
-            uni.$u.vuex('vuex_prepayInfo', info);return _context4.abrupt("return",
-            info);case 14:case "end":return _context4.stop();}}}, _callee4);}));return function toPlaceOrder(_x3, _x4, _x5) {return _ref4.apply(this, arguments);};}();
+            uni.$u.vuex('vuex_prepayInfo', info);return _context6.abrupt("return",
+            info);case 14:case "end":return _context6.stop();}}}, _callee6);}));return function toPlaceOrder(_x5, _x6, _x7) {return _ref6.apply(this, arguments);};}();
 
 
 
@@ -13329,7 +13367,7 @@ var toPlaceOrder = /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#_
 
 
 // index
-exports.toPlaceOrder = toPlaceOrder;var getPageItem = /*#__PURE__*/function () {var _ref5 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var url, req;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:
+exports.toPlaceOrder = toPlaceOrder;var getPageItem = /*#__PURE__*/function () {var _ref7 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7() {var url, req;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:
             url = '/daq/select/srvdaq_website_page_item_select';
             req = {
               "serviceName": "srvdaq_website_page_item_select",
@@ -13337,17 +13375,17 @@ exports.toPlaceOrder = toPlaceOrder;var getPageItem = /*#__PURE__*/function () {
               "condition": [{
                 "colName": "page_no",
                 "ruleType": "eq",
-                "value": (_config.default === null || _config.default === void 0 ? void 0 : _config.default.page_no) || "BX202106291053190001" }] };_context5.next = 4;return (
+                "value": (_config.default === null || _config.default === void 0 ? void 0 : _config.default.page_no) || "BX202106291053190001" }] };_context7.next = 4;return (
 
 
-              uni.$u.post(url, req));case 4:return _context5.abrupt("return", _context5.sent);case 5:case "end":return _context5.stop();}}}, _callee5);}));return function getPageItem() {return _ref5.apply(this, arguments);};}();
+              uni.$u.post(url, req));case 4:return _context7.abrupt("return", _context7.sent);case 5:case "end":return _context7.stop();}}}, _callee7);}));return function getPageItem() {return _ref7.apply(this, arguments);};}();
 
 
 /**
                                                                                                                                                                                                                                       * @description 根据file_no查找文件列表
                                                                                                                                                                                                                                       * @param {String} file_no - 文件编号
                                                                                                                                                                                                                                       */exports.getPageItem = getPageItem;
-var getFilePath = /*#__PURE__*/function () {var _ref6 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6(file_no) {var url, req, response;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:
+var getFilePath = /*#__PURE__*/function () {var _ref8 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee8(file_no) {var url, req, response;return _regenerator.default.wrap(function _callee8$(_context8) {while (1) {switch (_context8.prev = _context8.next) {case 0:
             url = '/file/select/srvfile_attachment_select';
             req = {
               "serviceName": "srvfile_attachment_select",
@@ -13358,39 +13396,39 @@ var getFilePath = /*#__PURE__*/function () {var _ref6 = _asyncToGenerator( /*#__
                 "ruleType": "eq" }] };if (!
 
 
-            file_no) {_context6.next = 8;break;}_context6.next = 5;return (
-              uni.$u.post(url, req));case 5:response = _context6.sent;if (!(
-            response.state === 'SUCCESS' && response.data.length > 0)) {_context6.next = 8;break;}return _context6.abrupt("return",
+            file_no) {_context8.next = 8;break;}_context8.next = 5;return (
+              uni.$u.post(url, req));case 5:response = _context8.sent;if (!(
+            response.state === 'SUCCESS' && response.data.length > 0)) {_context8.next = 8;break;}return _context8.abrupt("return",
             response.data.map(function (item) {
               item.url = _config.default.getFilePath + item.fileurl + '&bx_auth_ticket=' + uni.
               getStorageSync('bx_auth_ticket');
               return item;
-            }));case 8:case "end":return _context6.stop();}}}, _callee6);}));return function getFilePath(_x6) {return _ref6.apply(this, arguments);};}();exports.getFilePath = getFilePath;
+            }));case 8:case "end":return _context8.stop();}}}, _callee8);}));return function getFilePath(_x8) {return _ref8.apply(this, arguments);};}();exports.getFilePath = getFilePath;
 
 
 
 
-var getItemDetail = /*#__PURE__*/function () {var _ref7 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee7(item) {var serviceName, app, url, req, res;return _regenerator.default.wrap(function _callee7$(_context7) {while (1) {switch (_context7.prev = _context7.next) {case 0:
+var getItemDetail = /*#__PURE__*/function () {var _ref9 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee9(item) {var serviceName, app, url, req, res;return _regenerator.default.wrap(function _callee9$(_context9) {while (1) {switch (_context9.prev = _context9.next) {case 0:
             // 获取页面项详情
             serviceName = '';
-            app = 'daq';_context7.t0 =
-            item.div_type;_context7.next = _context7.t0 ===
-            'buttons' ? 5 : _context7.t0 ===
+            app = 'daq';_context9.t0 =
+            item.div_type;_context9.next = _context9.t0 ===
+            'buttons' ? 5 : _context9.t0 ===
 
 
-            'carousel' ? 7 : _context7.t0 ===
+            'carousel' ? 7 : _context9.t0 ===
 
 
-            'tablist' ? 9 : _context7.t0 ===
+            'tablist' ? 9 : _context9.t0 ===
 
 
-            "store_icon" ? 11 : 14;break;case 5:serviceName = 'srvdaq_page_item_buttons_select';return _context7.abrupt("break", 14);case 7:serviceName = 'srvdaq_page_item_carousel_select';return _context7.abrupt("break", 14);case 9:serviceName = 'srvdaq_page_item_tablist_select';return _context7.abrupt("break", 14);case 11:
+            "store_icon" ? 11 : 14;break;case 5:serviceName = 'srvdaq_page_item_buttons_select';return _context9.abrupt("break", 14);case 7:serviceName = 'srvdaq_page_item_carousel_select';return _context9.abrupt("break", 14);case 9:serviceName = 'srvdaq_page_item_tablist_select';return _context9.abrupt("break", 14);case 11:
             //机构主页快捷入口
             serviceName = 'srvhealth_store_mgmt_select';
-            app = 'health';return _context7.abrupt("break", 14);case 14:if (!(
+            app = 'health';return _context9.abrupt("break", 14);case 14:if (!(
 
 
-            serviceName && item.item_no)) {_context7.next = 24;break;}
+            serviceName && item.item_no)) {_context9.next = 24;break;}
             url = "/".concat(app, "/select/").concat(serviceName);
             req = {
               serviceName: serviceName,
@@ -13405,11 +13443,11 @@ var getItemDetail = /*#__PURE__*/function () {var _ref7 = _asyncToGenerator( /*#
                 orderType: 'asc' }] };if (!(
 
 
-            item.disp_flag === '否')) {_context7.next = 19;break;}return _context7.abrupt("return",
-            []);case 19:_context7.next = 21;return (
+            item.disp_flag === '否')) {_context9.next = 19;break;}return _context9.abrupt("return",
+            []);case 19:_context9.next = 21;return (
 
-              uni.$u.post(url, req));case 21:res = _context7.sent;if (!
-            Array.isArray(res.data)) {_context7.next = 24;break;}return _context7.abrupt("return",
+              uni.$u.post(url, req));case 21:res = _context9.sent;if (!
+            Array.isArray(res.data)) {_context9.next = 24;break;}return _context9.abrupt("return",
             res.data.map(function (item) {
               if (item.carousel_image) {
                 item.image = getImagePath(item.carousel_image, true);
@@ -13420,7 +13458,7 @@ var getItemDetail = /*#__PURE__*/function () {var _ref7 = _asyncToGenerator( /*#
                 item.icon = getImagePath(item.icon_file_no, true);
               }
               return item;
-            }));case 24:case "end":return _context7.stop();}}}, _callee7);}));return function getItemDetail(_x7) {return _ref7.apply(this, arguments);};}();
+            }));case 24:case "end":return _context9.stop();}}}, _callee9);}));return function getItemDetail(_x9) {return _ref9.apply(this, arguments);};}();
 
 
 

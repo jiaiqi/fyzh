@@ -1,71 +1,63 @@
 <template>
 	<view>
-		<u-navbar :is-back="false" title="　" :border-bottom="false" :background="background">
-			<view class="u-flex u-row-right" style="width: 100%;">
-				<!-- <view class="camera u-flex u-row-center">
-					<u-icon name="camera-fill" color="#000000" size="48"></u-icon>
-				</view> -->
-			</view>
+		<u-navbar :is-back="false" title="我的" title-color="#000" :border-bottom="false" :background="background">
 		</u-navbar>
 
 		<view class="u-flex user-box u-p-l-30 u-p-r-20 u-p-b-30">
 			<view class="u-m-r-20">
 				<u-avatar size="140" v-if="needAuthProfile"></u-avatar>
-				<u-avatar bg-color="#DB0011" :src="vuex_loginUser.headimgurl" size="140"
-					v-else="isLogin&&vuex_loginUser&&vuex_loginUser.headimgurl"></u-avatar>
+				<view class="empty-profile" v-else-if="isLogin&&vuex_loginUser&&vuex_loginUser.id">
+					<open-data type="userAvatarUrl"></open-data>
+				</view>
+				<!-- 	<u-avatar bg-color="#DB0011" :src="vuex_loginUser.headimgurl" size="140"
+					v-else-if="isLogin&&vuex_loginUser&&vuex_loginUser.headimgurl"></u-avatar> -->
 			</view>
 			<view class="u-flex-1">
-				<button class="cu-btn bg-red light " v-else @click="wxLogin" v-if="needAuthProfile">登录</button>
-				<view class="u-font-18 u-p-b-20" v-else-if="vuex_loginUser&&vuex_loginUser.real_name">
-					{{vuex_loginUser.real_name}}
+				<view class="u-font-18 u-p-b-20" v-if="isLogin&&vuex_loginUser&&vuex_loginUser.id">
+					<open-data type="userNickName"></open-data>
 				</view>
-				<!-- <view class="u-font-14 u-tips-color">微信号:helang_uView</view> -->
+				<button class="cu-btn bg-red light " v-else @click="wxLogin" v-else-if="needAuthProfile">登录</button>
 			</view>
-			<!-- 	<view class="u-m-l-10 u-p-10">
-				<u-icon name="scan" color="#fff" size="28"></u-icon>
+		</view>
+		<view class="vip-card" v-if="!vuex_memberInfo||vuex_memberInfo.length===0">
+			<view class="not-vip" v-if="!vuex_memberInfo||vuex_memberInfo.length===0">
+				<view class="slogan text-brown ">
+					<text class="cuIcon-choiceness margin-right-xs"></text>
+					成为会员即可享受超多优惠
+				</view>
+				<button class="cu-btn round bg-black" @click="applyMember">会员申请</button>
 			</view>
-			<view class="u-m-l-10 u-p-10">
-				<u-icon name="arrow-right" color="#fff" size="28"></u-icon>
-			</view> -->
+			<view class="is-vip" v-else>
+
+			</view>
 		</view>
 		<view class="order-menu">
+			<view class="title">
+				<text>我的订单</text>
+				<text class="to-all" @click="toOrderList('全部')">查看全部订单<text class="cuIcon-right"></text></text>
+			</view>
 			<view class="menu-item" @click="toOrderList(item.label)" v-for="item in menuList" :key="item.label">
 				<text :class="[item.icon]"></text>
-				<text>{{item.label}}</text>
+				<text class="label">{{item.label}}</text>
 			</view>
-			<!-- 	<view class="menu-item" @click="toOrderList()">
-				<text class="cuIcon-send"></text>
-				<text>待收货</text>
-			</view>
-			<view class="menu-item" @click="toOrderList()">
-				<text class="cuIcon-vipcard"></text>
-				<text>已完成</text>
-			</view>
-			<view class="menu-item" @click="toOrderList()">
-				<text class="cuIcon-form"></text>
-				<text>全部订单</text>
-			</view> -->
 		</view>
-		<!-- 		<view class="u-m-t-20">
-			<u-cell-group>
-				<u-cell-item icon="rmb-circle" title="支付"></u-cell-item>
-			</u-cell-group>
-		</view> -->
 
-		<view class="u-m-t-20">
+		<view class="u-m-t-20 menu-list">
 			<u-cell-group>
-				<u-cell-item icon="star" title="收藏"></u-cell-item>
-				<!-- <u-cell-item icon="photo" title="相册"></u-cell-item> -->
+				<u-cell-item icon="shopping-cart" title="购物车" @click="toCart"></u-cell-item>
 				<u-cell-item icon="coupon" title="卡券"></u-cell-item>
 				<u-cell-item icon="heart" title="关注"></u-cell-item>
 			</u-cell-group>
 		</view>
 
-		<view class="u-m-t-20">
+		<view class="u-m-t-20  menu-list">
 			<u-cell-group>
 				<u-cell-item icon="setting" title="设置"></u-cell-item>
 			</u-cell-group>
 		</view>
+
+
+
 	</view>
 </template>
 
@@ -83,17 +75,23 @@
 					{
 						label: '待发货',
 						icon: 'cuIcon-send'
+					},
+					{
+						label: '待收货',
+						icon: 'cuIcon-deliver'
 					}, {
 						label: '已完成',
 						icon: 'cuIcon-vipcard'
-					}, {
-						label: '全部',
-						icon: 'cuIcon-form'
 					}
+					// , {
+					// 	label: '全部',
+					// 	icon: 'cuIcon-form'
+					// }
 				],
 				profile: '',
 				background: {
-					backgroundColor: '#FF5C4E',
+					backgroundColor: '#f1f1f1',
+					// backgroundColor: '#FF5C4E',
 					// 导航栏背景图
 					// background: 'url(https://cdn.uviewui.com/uview/swiper/1.jpg) no-repeat',
 					// 还可以设置背景图size属性
@@ -104,6 +102,15 @@
 			}
 		},
 		methods: {
+			toCart() {
+				// 跳转到购物车页面
+				uni.navigateTo({
+					url: '/pages/store/cart/cart'
+				})
+			},
+			applyMember() {
+				// 申请加入会员
+			},
 			toOrderList(e) {
 				uni.navigateTo({
 					url: '/pages/store/orderList/orderList?type=' + e
@@ -144,8 +151,12 @@
 	.user-box {
 		background-color: #FF5C4E;
 		color: #fff;
+		margin: 20rpx 20rpx 0;
+		border-radius: 10rpx;
+		padding-top: 20rpx;
 
 		.empty-profile {
+			overflow: hidden;
 			width: 140rpx;
 			height: 140rpx;
 			line-height: 140rpx;
@@ -157,11 +168,43 @@
 		}
 	}
 
+	.vip-card {
+		margin: 20rpx;
+		padding: 30rpx;
+		border-radius: 20rpx;
+		min-height: 100rpx;
+		background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
+
+		.not-vip {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
+
 	.order-menu {
+		margin: 0 20rpx;
+		border-radius: 10rpx;
 		display: flex;
 		background-color: #Fff;
-		padding: 20rpx 30rpx;
+		padding: 20rpx 0;
 		margin-top: 20rpx;
+		flex-wrap: wrap;
+
+		.title {
+			padding: 10rpx 20rpx;
+			padding-top: 0;
+			width: 100%;
+			margin-bottom: 10rpx;
+			border-bottom: 1px solid #f1f1f1;
+			display: flex;
+			justify-content: space-between;
+
+			.to-all {
+				color: #999;
+				font-size: 24rpx;
+			}
+		}
 
 		.menu-item {
 			display: flex;
@@ -169,10 +212,20 @@
 			flex-direction: column;
 			text-align: center;
 
+			.label {
+				font-size: 24rpx;
+			}
+
 			text[class*='cuIcon-'] {
-				font-size: 40rpx;
+				font-size: 60rpx;
 				mrgin-bottom: 20rpx;
 			}
 		}
+	}
+
+	.menu-list {
+		margin: 0 20rpx;
+		border-radius: 10rpx;
+		overflow: hidden;
 	}
 </style>

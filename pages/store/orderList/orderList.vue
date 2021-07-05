@@ -1,5 +1,5 @@
 <template>
-	<view v-if="swiperCurrent || swiperCurrent === 0">
+	<view>
 		<view class="wrap">
 			<view class="u-tabs-box">
 				<u-tabs-swiper activeColor="#FF5C4E" ref="tabs" :list="list" :current="current" @change="change"
@@ -18,7 +18,7 @@
 										您还没有相关的订单
 										<view class="tips">可以去看看有那些想买的</view>
 									</view>
-									<view class="btn">随便逛逛</view>
+									<!-- <view class="btn">随便逛逛</view> -->
 								</view>
 							</view>
 						</view>
@@ -80,7 +80,7 @@
 										您还没有相关的订单
 										<view class="tips">可以去看看有那些想买的</view>
 									</view>
-									<view class="btn">随便逛逛</view>
+									<!-- <view class="btn">随便逛逛</view> -->
 								</view>
 							</view>
 						</view>
@@ -145,7 +145,7 @@
 										您还没有相关的订单
 										<view class="tips">可以去看看有那些想买的</view>
 									</view>
-									<view class="btn">随便逛逛</view>
+									<!-- <view class="btn">随便逛逛</view> -->
 								</view>
 							</view>
 						</view>
@@ -206,7 +206,7 @@
 										您还没有相关的订单
 										<view class="tips">可以去看看有那些想买的</view>
 									</view>
-									<view class="btn">随便逛逛</view>
+									<!-- <view class="btn">随便逛逛</view> -->
 								</view>
 							</view>
 						</view>
@@ -269,7 +269,7 @@
 										您还没有相关的订单
 										<view class="tips">可以去看看有那些想买的</view>
 									</view>
-									<view class="btn">随便逛逛</view>
+									<!-- <view class="btn">随便逛逛</view> -->
 								</view>
 							</view>
 						</view>
@@ -328,7 +328,13 @@
 	export default {
 		data() {
 			return {
-				orderList: [ [], [], [], [], [] ],
+				orderList: [
+					[],
+					[],
+					[],
+					[],
+					[]
+				],
 				listPage: [{
 					pageNo: 1,
 					rownumber: 10
@@ -359,9 +365,14 @@
 						count: 0
 					},
 					{
+						name: '待收货',
+						count: 0
+					},
+					{
 						name: '已完成',
 						count: 0
 					}
+
 				],
 				current: 0,
 				swiperCurrent: null,
@@ -371,24 +382,29 @@
 			};
 		},
 		onLoad(option) {
-			for (let i = 0; i < 4; i++) {
-				this.getOrderList(i);
-			}
 			switch (option.type) {
 				case '待支付':
-					this.swiperCurrent = 0
-					break;
-				case '待发货':
 					this.swiperCurrent = 1
 					break;
-				case '已完成':
+				case '待发货':
 					this.swiperCurrent = 2
 					break;
-				case '全部':
+				case '待收货':
 					this.swiperCurrent = 3
 					break;
+				case '已完成':
+					this.swiperCurrent = 4
+					break;
+				case '全部':
+					this.swiperCurrent = 0
+					break;
 			}
+			this.getOrderList(this.swiperCurrent);
 			this.current = this.swiperCurrent;
+			// for (let i = 0; i < 5; i++) {
+			// 	this.getOrderList(i);
+			// }
+
 		},
 		computed: {
 			// 价格小数
@@ -456,7 +472,7 @@
 									value: e.id
 								}]
 							}];
-							let url  =''
+							let url = ''
 							self.$fetch('operate', 'srvhealth_store_order_delete', req, 'health').then(result => {
 								console.log(result);;
 								uni.startPullDownRefresh();
@@ -512,20 +528,28 @@
 			},
 			// 页面数据
 			async getOrderGoodsList(orderNos) {
-				let req = {"serviceName":"srvstore_shop_order_goods_select","colNames":["*"],
-				"condition":[{"colName":"order_no","ruleType":"in","value":orderNos}],"relation_condition":{},}
+				let req = {
+					"serviceName": "srvstore_shop_order_goods_select",
+					"colNames": ["*"],
+					"condition": [{
+						"colName": "order_no",
+						"ruleType": "in",
+						"value": orderNos
+					}],
+					"relation_condition": {},
+				}
 				let url = '/fyzhmd/select/srvstore_shop_order_goods_select'
-				let goodsList = await this.$u.post(url,req)
+				let goodsList = await this.$u.post(url, req)
 				// let goodsList = await this.$fetch('select', 'srvhealth_store_order_goods_detail_select', req,
 				// 	'health');
-				if (goodsList.state==='SUCCESS') {
+				if (goodsList.state === 'SUCCESS') {
 					return goodsList.data;
 				} else {
 					return [];
 				}
 			},
 			async getOrderList(idx) {
-				let status =  this.list[idx]?.name
+				let status = this.list[idx]?.name
 				let req = {
 					serviceName: 'srvstore_shop_order_select',
 					colNames: ['*'],
@@ -540,7 +564,7 @@
 						rownumber: this.listPage[idx].rownumber
 					},
 				};
-				if(this.list[idx].name==='全部'){
+				if (this.list[idx].name === '全部') {
 					req.condition = []
 				}
 				if (this.loadStatus[idx] === 'loadmore') {
@@ -553,13 +577,13 @@
 					req.condition = [];
 				}
 				let url = '/fyzhmd/select/srvstore_shop_order_select'
-				let orderList = await this.$u.post(url,req);
+				let orderList = await this.$u.post(url, req);
 				this.listPage.splice(this.current, 1, {
 					pageNo: orderList.page.pageNo,
 					rownumber: orderList.page.rownumber,
 					total: orderList.page.total
 				});
-				if (orderList.state=='SUCCESS') {
+				if (orderList.state == 'SUCCESS') {
 					this.listPage[idx].pageNo = orderList.page.pageNo;
 					this.list = this.list.map((item, index) => {
 						if (index === idx) {
@@ -577,7 +601,7 @@
 					let resultData = orderList.data.map((item, index) => {
 						let data = {
 							...item,
-							store: item.store_name||'枫叶正红',
+							store: item.store_name || '枫叶正红',
 							// deal: '交易失败',
 							goodsList: goodsList.reduce((pre, goods) => {
 								if (goods.order_no === item.order_no) {
@@ -616,7 +640,7 @@
 			totalPrice(item) {
 				let price = 0;
 				item.map(val => {
-					price += parseFloat(val.price * val.number||1);
+					price += parseFloat(val.price * val.number || 1);
 				});
 				return price.toFixed(2);
 			},

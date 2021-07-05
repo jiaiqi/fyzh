@@ -1,6 +1,6 @@
 {
   "navigationStyle": "custom",
-  "navigationBarTextStyle": "white",
+  "navigationBarTextStyle": "black",
   "navigationBarTitleText": "我的",
   "enablePullDownRefresh": false,
   "usingComponents": {
