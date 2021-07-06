@@ -2,7 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/index/store",
-    "pages/index/mine"
+    "pages/index/mine",
+    "pages/mine/score/score",
+    "pages/mine/coupon/coupon",
+    "pages/mine/memberReg/memberReg"
   ],
   "subPackages": [
     {

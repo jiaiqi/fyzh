@@ -448,7 +448,7 @@
 <style scoped lang="scss">
 	.list-wrap {
 		// 简介
-		box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+		// box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 		margin-bottom: 20rpx;
 
 		&.tab-list {
@@ -489,9 +489,11 @@
 			.news-item {
 				display: flex;
 				padding: 20rpx 0;
-				border-bottom: 1rpx solid #f1f1f1;
+				border-top: 1rpx solid #f1f1f1;
 				align-items: center;
-
+				&:first-child{
+					border-top: none;
+				}
 				.title-text {
 					width: 70%;
 					overflow: hidden;

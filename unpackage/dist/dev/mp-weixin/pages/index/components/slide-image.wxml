@@ -1,1 +1,1 @@
-<u-swiper vue-id="66180c6a-1" list="{{swiperList}}" height="{{300}}" border-radius="0" data-event-opts="{{[['^click',[['clickImage']]]]}}" bind:click="__e" bind:__l="__l"></u-swiper>
+<view class="slide-image"><u-swiper vue-id="66180c6a-1" list="{{swiperList}}" border-radiu="10" bg-color="#ffffff" effect3d="{{true}}" height="{{300}}" data-event-opts="{{[['^click',[['clickImage']]]]}}" bind:click="__e" bind:__l="__l"></u-swiper></view>

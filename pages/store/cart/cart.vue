@@ -5,7 +5,7 @@
 				<view @click="choseItem(item)" class="item-left-wrap">
 					<view class="item-left">
 						<label class="radio">
-							<radio :checked="item.iSchoose" value="1" />
+							<radio :checked="item.checked=='true'" value="1" />
 						</label>
 					</view>
 					<view class="item-right">
@@ -71,7 +71,7 @@
 		data() {
 			return {
 				restaurant_no: '',
-				iSchoose: false,
+				checked: false,
 				checkAll: false,
 				total: 0,
 				value: 1,
@@ -83,7 +83,11 @@
 		},
 		watch: {
 			cartData: {
-				handler(newValue, oldValue) {},
+				handler(newValue, oldValue) {
+					if(Array.isArray(newValue)){
+						this.chooseCarData = newValue.filter(item=>item.checked=='true')
+					}
+				},
 				deep: true
 			},
 			chooseCarData: {
@@ -108,6 +112,7 @@
 						value: goods.id
 					}],
 					"data": [{
+						'checked':goods.checked,
 						"amount": goods.amount
 					}]
 				}]
@@ -121,8 +126,9 @@
 			},
 			valueChange(e, item) {
 				this.$set(item, 'amount', e);
-				// uni.setStorageSync('shop_car', this.shopCarData);
-				this.updateCount(item)
+				if(Number(item.amount)!==e){
+					this.updateCount(item)
+				}
 				this.$u.vuex('vuex_cart', this.cartData)
 			},
 			payOrder() {
@@ -174,14 +180,11 @@
 				if (res.success === true && res.data.length > 0) {
 					let orderData = res.data[0];
 					if (orderData.order_no) {
-						;
-						// if (orderData.order_no.length > 24 && orderData.order_no.indexOf('RT') !== -1) {
 						uni.navigateTo({
 							url: '/personalPages/payOrder/payOrder?order_no=' + orderData.order_no
 						});
 						// }
 					}
-					// this.toPay(orderData, goods);
 				}
 			},
 			async toPay(orderData, goodsData) {
@@ -205,7 +208,6 @@
 					signType: 'MD5',
 					paySign: res.paySign,
 					success(res) {
-						;
 						// 支付成功
 					},
 					fail(res) {
@@ -214,23 +216,28 @@
 				});
 			},
 			subtract(item) {
-				if (item.iSchoose) {
+				if (item.checked==='true') {
 					this.total = this.total - Number(item.price);
 				}
 				uni.setStorageSync('shop_car', this.shopCarData);
 			},
 			adds(item) {
-				if (item.iSchoose) {
+				if (item.checked==='true') {
 					this.total = this.total + Number(item.price);
 				}
 				uni.setStorageSync('shop_car', this.shopCarData);
 			},
 			choseItem(item) {
-				item.iSchoose = !item.iSchoose;
+				if (item.checked==='true') {
+					item.checked = 'false';
+				}else{
+					item.checked = 'true';
+				}
+				// item.checked = !item.checked;
 				let carData = this.cartData;
 				let isChoose = false;
 				carData.forEach(item => {
-					if (!item.iSchoose) {
+					if (item.checked=='false') {
 						isChoose = true;
 					}
 				});
@@ -239,20 +246,20 @@
 				} else {
 					this.checkAll = false;
 				}
-				if (item.iSchoose) {
+				if (item.checked==='true') {
 					this.total = this.total + Number(item.price) * item.car_num;
-					this.chooseCarData.push(item);
+					// this.chooseCarData.push(item);
 				} else {
 					this.total = this.total - Number(item.price) * item.car_num;
-					this.chooseCarData.forEach((car, i) => {
-						if (car.id === item.id) {
-							this.chooseCarData.splice(i, 1);
-						}
-					});
+					// this.chooseCarData.forEach((car, i) => {
+					// 	if (car.id === item.id) {
+					// 		this.chooseCarData.splice(i, 1);
+					// 	}
+					// });
 				}
 			},
 			checkAllCar() {
-				let shopData = this.shopCarData;
+				let shopData = this.cartData;
 				this.checkAll = !this.checkAll;
 				if (shopData.length > 0) {
 					let data = [];
@@ -261,15 +268,15 @@
 					}
 					shopData.forEach(item => {
 						if (this.checkAll) {
-							item.iSchoose = true;
+							item.checked = 'true';
 							this.total = this.total + Number(item.price) * item.car_num;
 							data.push(item);
 						} else {
-							item.iSchoose = false;
+							item.checked = 'false';
 							this.total = 0;
 						}
 					});
-					this.chooseCarData = data;
+					// this.chooseCarData = data;
 				}
 			},
 			del() {
@@ -305,16 +312,16 @@
 					this.shopCarData = [];
 					this.checkAll = false;
 				} else {
-					if (chooseCarData.length > 0) {
-						shopCarData.forEach((item, i) => {
-							chooseCarData.forEach((dels, n) => {
-								if (item.id === dels.id) {
-									shopCarData.splice(i, 1);
-									chooseCarData.splice(n, 1);
-								}
-							});
-						});
-					}
+					// if (chooseCarData.length > 0) {
+					// 	shopCarData.forEach((item, i) => {
+					// 		chooseCarData.forEach((dels, n) => {
+					// 			if (item.id === dels.id) {
+					// 				shopCarData.splice(i, 1);
+					// 				// chooseCarData.splice(n, 1);
+					// 			}
+					// 		});
+					// 	});
+					// }
 				}
 			}
 		},

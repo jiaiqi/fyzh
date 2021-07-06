@@ -2988,163 +2988,6 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ 20);
 
 /***/ }),
 
-/***/ 192:
-/*!************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/common/evaluator.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
-                                                                                                      * @param {Object} rowData 当前行数据
-                                                                                                      * @param {String} formula 需要根据当前js转化为表达式的json字符串
-                                                                                                      */
-// 导入方式: import evaluatorTo from 'path/evaluator.js'
-//  调用方式: evaluatorTo(rowData,formula)
-function evaluatorTo(rowData, formula) {
-  var result = null;
-  var evaluator = function evaluator(formula, result) {
-    if (typeof formula === 'object') {
-      Object.keys(formula).forEach(function (operator, index) {
-        switch (operator) {
-          case 'if': //if(xx){}else{}
-            result = evaluator(formula[operator][0], result) ? formula[operator][1] : formula[
-            operator][2];
-            break;
-          case 'and': // &&
-            var a = true;
-            formula[operator].forEach(function (_formula) {
-              Object.keys(_formula).forEach(function (_operator) {
-                if (!evaluator(_formula, result)) {
-                  a = false; //有假则假
-                }
-              });
-            });
-            result = a;
-            break;
-          case 'or': // 或 ||
-            var o = false;
-            formula[operator].forEach(function (_formula) {
-              Object.keys(_formula).forEach(function (_operator) {
-                if (evaluator(_formula, result)) {
-                  o = true; //有真则真
-                }
-              });
-            });
-            result = o;
-            break;
-          case 'not': //取反 !
-            break;
-          case 'eq': //等于 === equal
-            if (!formula[operator].val) {
-              result = !rowData[evaluator(formula[operator]['col'], result)];
-            } else if (typeof formula[operator].val !== 'string') {
-              // val为对象
-              var valueObj = formula[operator].val;
-              var value = '';
-              if (valueObj.value_key && valueObj.value_type) {
-                switch (valueObj.value_type) {
-                  case 'rowData':
-                    result = rowData[evaluator(formula[operator]['col'], result)] ==
-                    rowData[valueObj.value_key];
-                    break;
-                  case 'login_user_info':
-                    var login_user_info = uni.getStorageSync('login_user_info');
-                    if (login_user_info && typeof login_user_info === 'object') {
-                      result = rowData[evaluator(formula[operator]['col'], result)] ==
-                      login_user_info[valueObj.value_key];
-                    } else {
-                      result = false;
-                    }
-                    break;
-                  default:
-                    result = rowData[evaluator(formula[operator]['col'], result)] ==
-                    rowData[valueObj.value_key];
-                    break;}
-
-              }
-            } else {
-              result = rowData[evaluator(formula[operator]['col'], result)] == formula[
-              operator].val;
-            }
-            break;
-          case 'neq': //不等于 !== not equal
-            if (!formula[operator].val) {
-              result = !!rowData[evaluator(formula[operator]['col'], result)];
-            } else if (typeof formula[operator].val !== 'string') {
-              // val为对象
-              var _valueObj = formula[operator].val;
-              var _value = '';
-              if (_valueObj.value_key && _valueObj.value_type) {
-                switch (_valueObj.value_type) {
-                  case 'rowData':
-                    result = rowData[evaluator(formula[operator]['col'], result)] !=
-                    rowData[_valueObj.value_key];
-                    break;
-                  case 'login_user_info':
-                  case 'top.user':
-                    var _login_user_info = uni.getStorageSync('login_user_info');
-                    if (_login_user_info && typeof _login_user_info === 'object') {
-                      result = rowData[evaluator(formula[operator]['col'], result)] !=
-                      _login_user_info[_valueObj.value_key];
-                    } else {
-                      result = false;
-                    }
-                    break;
-                  default:
-                    result = rowData[evaluator(formula[operator]['col'], result)] !=
-                    rowData[_valueObj.value_key];
-                    break;}
-
-              }
-            } else {
-              result = rowData[evaluator(formula[operator]['col'], result)] != formula[
-              operator].val;
-            }
-            break;
-          case 'gt': // greater than or equal >
-            result = rowData[evaluator(formula[operator]['col'], result)] > formula[operator].
-            val;
-            break;
-          case 'gte': // greater than >
-            result = rowData[evaluator(formula[operator]['col'], result)] >= formula[operator].
-            val;
-            break;
-          case 'lt': // less than
-            result = rowData[evaluator(formula[operator]['col'], result)] < formula[operator].
-            val;
-            break;
-          case 'le': // less than or equal
-            result = rowData[evaluator(formula[operator]['col'], result)] <= formula[operator].
-            val;
-            break;
-          case 'add': // + 加
-            break;
-          case 'sub': // - 减
-            break;
-          case 'mul': //multiply 乘 *
-            break;
-          case 'div': // divide 除 /
-            break;
-          default:
-            result = result;
-            break;}
-
-      });
-    } else {
-      result = formula;
-    }
-    return result;
-  };
-  return evaluator(formula, result);
-}var _default =
-
-evaluatorTo;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
 /***/ 2:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
@@ -9241,794 +9084,160 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 205:
-/*!*****************************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/MpHtmlParser.js ***!
-  \*****************************************************************************************/
+/***/ 200:
+/*!************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/common/evaluator.js ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(uni) {/**
- * html 解析器
- * @tutorial https://github.com/jin-yufeng/Parser
- * @version 20201029
- * @author JinYufeng
- * @listens MIT
- */
-var cfg = __webpack_require__(/*! ./config.js */ 206),
-blankChar = cfg.blankChar,
-CssHandler = __webpack_require__(/*! ./CssHandler.js */ 207),
-windowWidth = uni.getSystemInfoSync().windowWidth;
-var emoji;
-
-function MpHtmlParser(data) {var _this = this;var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  this.attrs = {};
-  this.CssHandler = new CssHandler(options.tagStyle, windowWidth);
-  this.data = data;
-  this.domain = options.domain;
-  this.DOM = [];
-  this.i = this.start = this.audioNum = this.imgNum = this.videoNum = 0;
-  options.prot = (this.domain || '').includes('://') ? this.domain.split('://')[0] : 'http';
-  this.options = options;
-  this.state = this.Text;
-  this.STACK = [];
-  // 工具函数
-  this.bubble = function () {
-    for (var i = _this.STACK.length, item; item = _this.STACK[--i];) {
-      if (cfg.richOnlyTags[item.name]) return false;
-      item.c = 1;
-    }
-    return true;
-  };
-  this.decode = function (val, amp) {
-    var i = -1,
-    j,en;
-    while (1) {
-      if ((i = val.indexOf('&', i + 1)) == -1) break;
-      if ((j = val.indexOf(';', i + 2)) == -1) break;
-      if (val[i + 1] == '#') {
-        en = parseInt((val[i + 2] == 'x' ? '0' : '') + val.substring(i + 2, j));
-        if (!isNaN(en)) val = val.substr(0, i) + String.fromCharCode(en) + val.substr(j + 1);
-      } else {
-        en = val.substring(i + 1, j);
-        if (cfg.entities[en] || en == amp)
-        val = val.substr(0, i) + (cfg.entities[en] || '&') + val.substr(j + 1);
-      }
-    }
-    return val;
-  };
-  this.getUrl = function (url) {
-    if (url[0] == '/') {
-      if (url[1] == '/') url = _this.options.prot + ':' + url;else
-      if (_this.domain) url = _this.domain + url;
-    } else if (_this.domain && url.indexOf('data:') != 0 && !url.includes('://'))
-    url = _this.domain + '/' + url;
-    return url;
-  };
-  this.isClose = function () {return _this.data[_this.i] == '>' || _this.data[_this.i] == '/' && _this.data[_this.i + 1] == '>';};
-  this.section = function () {return _this.data.substring(_this.start, _this.i);};
-  this.parent = function () {return _this.STACK[_this.STACK.length - 1];};
-  this.siblings = function () {return _this.STACK.length ? _this.parent().children : _this.DOM;};
-}
-MpHtmlParser.prototype.parse = function () {
-  if (emoji) this.data = emoji.parseEmoji(this.data);
-  for (var c; c = this.data[this.i]; this.i++) {
-    this.state(c);}
-  if (this.state == this.Text) this.setText();
-  while (this.STACK.length) {this.popNode(this.STACK.pop());}
-  return this.DOM;
-};
-// 设置属性
-MpHtmlParser.prototype.setAttr = function () {
-  var name = this.attrName.toLowerCase(),
-  val = this.attrVal;
-  if (cfg.boolAttrs[name]) this.attrs[name] = 'T';else
-  if (val) {
-    if (name == 'src' || name == 'data-src' && !this.attrs.src) this.attrs.src = this.getUrl(this.decode(val, 'amp'));else
-    if (name == 'href' || name == 'style') this.attrs[name] = this.decode(val, 'amp');else
-    if (name.substr(0, 5) != 'data-') this.attrs[name] = val;
-  }
-  this.attrVal = '';
-  while (blankChar[this.data[this.i]]) {this.i++;}
-  if (this.isClose()) this.setNode();else
-  {
-    this.start = this.i;
-    this.state = this.AttrName;
-  }
-};
-// 设置文本节点
-MpHtmlParser.prototype.setText = function () {
-  var back,text = this.section();
-  if (!text) return;
-  text = cfg.onText && cfg.onText(text, function () {return back = true;}) || text;
-  if (back) {
-    this.data = this.data.substr(0, this.start) + text + this.data.substr(this.i);
-    var j = this.start + text.length;
-    for (this.i = this.start; this.i < j; this.i++) {this.state(this.data[this.i]);}
-    return;
-  }
-  if (!this.pre) {
-    // 合并空白符
-    var flag,tmp = [];
-    for (var i = text.length, c; c = text[--i];) {
-      if (!blankChar[c]) {
-        tmp.unshift(c);
-        if (!flag) flag = 1;
-      } else {
-        if (tmp[0] != ' ') tmp.unshift(' ');
-        if (c == '\n' && flag == void 0) flag = 0;
-      }}
-    if (flag == 0) return;
-    text = tmp.join('');
-  }
-  this.siblings().push({
-    type: 'text',
-    text: this.decode(text) });
-
-};
-// 设置元素节点
-MpHtmlParser.prototype.setNode = function () {
-  var node = {
-    name: this.tagName.toLowerCase(),
-    attrs: this.attrs },
-
-  close = cfg.selfClosingTags[node.name];
-  if (this.options.nodes.length) node.type = 'node';
-  this.attrs = {};
-  if (!cfg.ignoreTags[node.name]) {
-    // 处理属性
-    var attrs = node.attrs,
-    style = this.CssHandler.match(node.name, attrs, node) + (attrs.style || ''),
-    styleObj = {};
-    if (attrs.id) {
-      if (this.options.compress & 1) attrs.id = void 0;else
-      if (this.options.useAnchor) this.bubble();
-    }
-    if (this.options.compress & 2 && attrs.class) attrs.class = void 0;
-    switch (node.name) {
-      case 'a':
-      case 'ad':
-
-
-        this.bubble();
-        break;
-      case 'font':
-        if (attrs.color) {
-          styleObj['color'] = attrs.color;
-          attrs.color = void 0;
-        }
-        if (attrs.face) {
-          styleObj['font-family'] = attrs.face;
-          attrs.face = void 0;
-        }
-        if (attrs.size) {
-          var size = parseInt(attrs.size);
-          if (size < 1) size = 1;else
-          if (size > 7) size = 7;
-          var map = ['xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'];
-          styleObj['font-size'] = map[size - 1];
-          attrs.size = void 0;
-        }
-        break;
-      case 'embed':
-
-        var src = node.attrs.src || '',
-        type = node.attrs.type || '';
-        if (type.includes('video') || src.includes('.mp4') || src.includes('.3gp') || src.includes('.m3u8'))
-        node.name = 'video';else
-        if (type.includes('audio') || src.includes('.m4a') || src.includes('.wav') || src.includes('.mp3') || src.includes(
-        '.aac'))
-        node.name = 'audio';else
-        break;
-        if (node.attrs.autostart)
-        node.attrs.autoplay = 'T';
-        node.attrs.controls = 'T';
-
-
-
-
-
-      case 'video':
-      case 'audio':
-        if (!attrs.id) attrs.id = node.name + ++this["".concat(node.name, "Num")];else
-        this["".concat(node.name, "Num")]++;
-        if (node.name == 'video') {
-          if (this.videoNum > 3)
-          node.lazyLoad = 1;
-          if (attrs.width) {
-            styleObj.width = parseFloat(attrs.width) + (attrs.width.includes('%') ? '%' : 'px');
-            attrs.width = void 0;
-          }
-          if (attrs.height) {
-            styleObj.height = parseFloat(attrs.height) + (attrs.height.includes('%') ? '%' : 'px');
-            attrs.height = void 0;
-          }
-        }
-        if (!attrs.controls && !attrs.autoplay) attrs.controls = 'T';
-        attrs.source = [];
-        if (attrs.src) {
-          attrs.source.push(attrs.src);
-          attrs.src = void 0;
-        }
-        this.bubble();
-        break;
-      case 'td':
-      case 'th':
-        if (attrs.colspan || attrs.rowspan)
-        for (var k = this.STACK.length, item; item = this.STACK[--k];) {
-          if (item.name == 'table') {
-            item.flag = 1;
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * @param {Object} rowData 当前行数据
+                                                                                                      * @param {String} formula 需要根据当前js转化为表达式的json字符串
+                                                                                                      */
+// 导入方式: import evaluatorTo from 'path/evaluator.js'
+//  调用方式: evaluatorTo(rowData,formula)
+function evaluatorTo(rowData, formula) {
+  var result = null;
+  var evaluator = function evaluator(formula, result) {
+    if (typeof formula === 'object') {
+      Object.keys(formula).forEach(function (operator, index) {
+        switch (operator) {
+          case 'if': //if(xx){}else{}
+            result = evaluator(formula[operator][0], result) ? formula[operator][1] : formula[
+            operator][2];
             break;
-          }}}
+          case 'and': // &&
+            var a = true;
+            formula[operator].forEach(function (_formula) {
+              Object.keys(_formula).forEach(function (_operator) {
+                if (!evaluator(_formula, result)) {
+                  a = false; //有假则假
+                }
+              });
+            });
+            result = a;
+            break;
+          case 'or': // 或 ||
+            var o = false;
+            formula[operator].forEach(function (_formula) {
+              Object.keys(_formula).forEach(function (_operator) {
+                if (evaluator(_formula, result)) {
+                  o = true; //有真则真
+                }
+              });
+            });
+            result = o;
+            break;
+          case 'not': //取反 !
+            break;
+          case 'eq': //等于 === equal
+            if (!formula[operator].val) {
+              result = !rowData[evaluator(formula[operator]['col'], result)];
+            } else if (typeof formula[operator].val !== 'string') {
+              // val为对象
+              var valueObj = formula[operator].val;
+              var value = '';
+              if (valueObj.value_key && valueObj.value_type) {
+                switch (valueObj.value_type) {
+                  case 'rowData':
+                    result = rowData[evaluator(formula[operator]['col'], result)] ==
+                    rowData[valueObj.value_key];
+                    break;
+                  case 'login_user_info':
+                    var login_user_info = uni.getStorageSync('login_user_info');
+                    if (login_user_info && typeof login_user_info === 'object') {
+                      result = rowData[evaluator(formula[operator]['col'], result)] ==
+                      login_user_info[valueObj.value_key];
+                    } else {
+                      result = false;
+                    }
+                    break;
+                  default:
+                    result = rowData[evaluator(formula[operator]['col'], result)] ==
+                    rowData[valueObj.value_key];
+                    break;}
 
-    if (attrs.align) {
-      if (node.name == 'table') {
-        if (attrs.align == 'center') styleObj['margin-inline-start'] = styleObj['margin-inline-end'] = 'auto';else
-        styleObj['float'] = attrs.align;
-      } else styleObj['text-align'] = attrs.align;
-      attrs.align = void 0;
-    }
-    // 压缩 style
-    var styles = style.split(';');
-    style = '';
-    for (var i = 0, len = styles.length; i < len; i++) {
-      var info = styles[i].split(':');
-      if (info.length < 2) continue;
-      var _key = info[0].trim().toLowerCase(),
-      _value = info.slice(1).join(':').trim();
-      if (_value[0] == '-' || _value.includes('safe'))
-      style += ";".concat(_key, ":").concat(_value);else
-      if (!styleObj[_key] || _value.includes('import') || !styleObj[_key].includes('import'))
-      styleObj[_key] = _value;
-    }
-    if (node.name == 'img') {
-      if (attrs.src && !attrs.ignore) {
-        if (this.bubble())
-        attrs.i = (this.imgNum++).toString();else
-        attrs.ignore = 'T';
-      }
-      if (attrs.ignore) {
-        style += ';-webkit-touch-callout:none';
-        styleObj['max-width'] = '100%';
-      }
-      var width;
-      if (styleObj.width) width = styleObj.width;else
-      if (attrs.width) width = attrs.width.includes('%') ? attrs.width : parseFloat(attrs.width) + 'px';
-      if (width) {
-        styleObj.width = width;
-        attrs.width = '100%';
-        if (parseInt(width) > windowWidth) {
-          styleObj.height = '';
-          if (attrs.height) attrs.height = void 0;
-        }
-      }
-      if (styleObj.height) {
-        attrs.height = styleObj.height;
-        styleObj.height = '';
-      } else if (attrs.height && !attrs.height.includes('%'))
-      attrs.height = parseFloat(attrs.height) + 'px';
-    }
-    for (var key in styleObj) {
-      var value = styleObj[key];
-      if (!value) continue;
-      if (key.includes('flex') || key == 'order' || key == 'self-align') node.c = 1;
-      // 填充链接
-      if (value.includes('url')) {
-        var j = value.indexOf('(');
-        if (j++ != -1) {
-          while (value[j] == '"' || value[j] == "'" || blankChar[value[j]]) {j++;}
-          value = value.substr(0, j) + this.getUrl(value.substr(j));
-        }
-      }
-      // 转换 rpx
-      else if (value.includes('rpx'))
-        value = value.replace(/[0-9.]+\s*rpx/g, function ($) {return parseFloat($) * windowWidth / 750 + 'px';});else
-        if (key == 'white-space' && value.includes('pre') && !close)
-        this.pre = node.pre = true;
-      style += ";".concat(key, ":").concat(value);
-    }
-    style = style.substr(1);
-    if (style) attrs.style = style;
-    if (!close) {
-      node.children = [];
-      if (node.name == 'pre' && cfg.highlight) {
-        this.remove(node);
-        this.pre = node.pre = true;
-      }
-      this.siblings().push(node);
-      this.STACK.push(node);
-    } else if (!cfg.filter || cfg.filter(node, this) != false)
-    this.siblings().push(node);
-  } else {
-    if (!close) this.remove(node);else
-    if (node.name == 'source') {
-      var parent = this.parent();
-      if (parent && (parent.name == 'video' || parent.name == 'audio') && node.attrs.src)
-      parent.attrs.source.push(node.attrs.src);
-    } else if (node.name == 'base' && !this.domain) this.domain = node.attrs.href;
-  }
-  if (this.data[this.i] == '/') this.i++;
-  this.start = this.i + 1;
-  this.state = this.Text;
-};
-// 移除标签
-MpHtmlParser.prototype.remove = function (node) {var _this2 = this;
-  var name = node.name,
-  j = this.i;
-  // 处理 svg
-  var handleSvg = function handleSvg() {
-    var src = _this2.data.substring(j, _this2.i + 1);
-    node.attrs.xmlns = 'http://www.w3.org/2000/svg';
-    for (var key in node.attrs) {
-      if (key == 'viewbox') src = " viewBox=\"".concat(node.attrs.viewbox, "\"") + src;else
-      if (key != 'style') src = " ".concat(key, "=\"").concat(node.attrs[key], "\"") + src;
-    }
-    src = '<svg' + src;
-    var parent = _this2.parent();
-    if (node.attrs.width == '100%' && parent && (parent.attrs.style || '').includes('inline'))
-    parent.attrs.style = 'width:300px;max-width:100%;' + parent.attrs.style;
-    _this2.siblings().push({
-      name: 'img',
-      attrs: {
-        src: 'data:image/svg+xml;utf8,' + src.replace(/#/g, '%23'),
-        style: node.attrs.style,
-        ignore: 'T' } });
+              }
+            } else {
+              result = rowData[evaluator(formula[operator]['col'], result)] == formula[
+              operator].val;
+            }
+            break;
+          case 'neq': //不等于 !== not equal
+            if (!formula[operator].val) {
+              result = !!rowData[evaluator(formula[operator]['col'], result)];
+            } else if (typeof formula[operator].val !== 'string') {
+              // val为对象
+              var _valueObj = formula[operator].val;
+              var _value = '';
+              if (_valueObj.value_key && _valueObj.value_type) {
+                switch (_valueObj.value_type) {
+                  case 'rowData':
+                    result = rowData[evaluator(formula[operator]['col'], result)] !=
+                    rowData[_valueObj.value_key];
+                    break;
+                  case 'login_user_info':
+                  case 'top.user':
+                    var _login_user_info = uni.getStorageSync('login_user_info');
+                    if (_login_user_info && typeof _login_user_info === 'object') {
+                      result = rowData[evaluator(formula[operator]['col'], result)] !=
+                      _login_user_info[_valueObj.value_key];
+                    } else {
+                      result = false;
+                    }
+                    break;
+                  default:
+                    result = rowData[evaluator(formula[operator]['col'], result)] !=
+                    rowData[_valueObj.value_key];
+                    break;}
 
+              }
+            } else {
+              result = rowData[evaluator(formula[operator]['col'], result)] != formula[
+              operator].val;
+            }
+            break;
+          case 'gt': // greater than or equal >
+            result = rowData[evaluator(formula[operator]['col'], result)] > formula[operator].
+            val;
+            break;
+          case 'gte': // greater than >
+            result = rowData[evaluator(formula[operator]['col'], result)] >= formula[operator].
+            val;
+            break;
+          case 'lt': // less than
+            result = rowData[evaluator(formula[operator]['col'], result)] < formula[operator].
+            val;
+            break;
+          case 'le': // less than or equal
+            result = rowData[evaluator(formula[operator]['col'], result)] <= formula[operator].
+            val;
+            break;
+          case 'add': // + 加
+            break;
+          case 'sub': // - 减
+            break;
+          case 'mul': //multiply 乘 *
+            break;
+          case 'div': // divide 除 /
+            break;
+          default:
+            result = result;
+            break;}
 
+      });
+    } else {
+      result = formula;
+    }
+    return result;
   };
-  if (node.name == 'svg' && this.data[j] == '/') return handleSvg(this.i++);
-  while (1) {
-    if ((this.i = this.data.indexOf('</', this.i + 1)) == -1) {
-      if (name == 'pre' || name == 'svg') this.i = j;else
-      this.i = this.data.length;
-      return;
-    }
-    this.start = this.i += 2;
-    while (!blankChar[this.data[this.i]] && !this.isClose()) {this.i++;}
-    if (this.section().toLowerCase() == name) {
-      // 代码块高亮
-      if (name == 'pre') {
-        this.data = this.data.substr(0, j + 1) + cfg.highlight(this.data.substring(j + 1, this.i - 5), node.attrs) + this.data.
-        substr(this.i - 5);
-        return this.i = j;
-      } else if (name == 'style')
-      this.CssHandler.getStyle(this.data.substring(j + 1, this.i - 7));else
-      if (name == 'title')
-      this.DOM.title = this.data.substring(j + 1, this.i - 7);
-      if ((this.i = this.data.indexOf('>', this.i)) == -1) this.i = this.data.length;
-      if (name == 'svg') handleSvg();
-      return;
-    }
-  }
-};
-// 节点出栈处理
-MpHtmlParser.prototype.popNode = function (node) {
-  // 空白符处理
-  if (node.pre) {
-    node.pre = this.pre = void 0;
-    for (var i = this.STACK.length; i--;) {
-      if (this.STACK[i].pre)
-      this.pre = true;}
-  }
-  var siblings = this.siblings(),
-  len = siblings.length,
-  childs = node.children;
-  if (node.name == 'head' || cfg.filter && cfg.filter(node, this) == false)
-  return siblings.pop();
-  var attrs = node.attrs;
-  // 替换一些标签名
-  if (cfg.blockTags[node.name]) node.name = 'div';else
-  if (!cfg.trustTags[node.name]) node.name = 'span';
-  // 处理列表
-  if (node.c && (node.name == 'ul' || node.name == 'ol')) {
-    if ((node.attrs.style || '').includes('list-style:none')) {
-      for (var _i = 0, child; child = childs[_i++];) {
-        if (child.name == 'li')
-        child.name = 'div';}
-    } else if (node.name == 'ul') {
-      var floor = 1;
-      for (var _i2 = this.STACK.length; _i2--;) {
-        if (this.STACK[_i2].name == 'ul') floor++;}
-      if (floor != 1)
-      for (var _i3 = childs.length; _i3--;) {
-        childs[_i3].floor = floor;}
-    } else {
-      for (var _i4 = 0, num = 1, _child; _child = childs[_i4++];) {
-        if (_child.name == 'li') {
-          _child.type = 'ol';
-          _child.num = function (num, type) {
-            if (type == 'a') return String.fromCharCode(97 + (num - 1) % 26);
-            if (type == 'A') return String.fromCharCode(65 + (num - 1) % 26);
-            if (type == 'i' || type == 'I') {
-              num = (num - 1) % 99 + 1;
-              var one = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
-              ten = ['X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
-              res = (ten[Math.floor(num / 10) - 1] || '') + (one[num % 10 - 1] || '');
-              if (type == 'i') return res.toLowerCase();
-              return res;
-            }
-            return num;
-          }(num++, attrs.type) + '.';
-        }}
-    }
-  }
-  // 处理表格
-  if (node.name == 'table') {
-    var padding = parseFloat(attrs.cellpadding),
-    spacing = parseFloat(attrs.cellspacing),
-    border = parseFloat(attrs.border);
-    if (node.c) {
-      if (isNaN(padding)) padding = 2;
-      if (isNaN(spacing)) spacing = 2;
-    }
-    if (border) attrs.style = "border:".concat(border, "px solid gray;").concat(attrs.style || '');
-    if (node.flag && node.c) {
-      // 有 colspan 或 rowspan 且含有链接的表格转为 grid 布局实现
-      attrs.style = "".concat(attrs.style || '', ";").concat(spacing ? ";grid-gap:".concat(spacing, "px") : ';border-left:0;border-top:0');
-      var row = 1,
-      col = 1,
-      colNum,
-      trs = [],
-      children = [],
-      map = {};
-      (function f(ns) {
-        for (var i = 0; i < ns.length; i++) {
-          if (ns[i].name == 'tr') trs.push(ns[i]);else
-          f(ns[i].children || []);
-        }
-      })(node.children);
-      for (var _i5 = 0; _i5 < trs.length; _i5++) {
-        for (var j = 0, td; td = trs[_i5].children[j]; j++) {
-          if (td.name == 'td' || td.name == 'th') {
-            while (map[row + '.' + col]) {col++;}
-            var cell = {
-              name: 'div',
-              c: 1,
-              attrs: {
-                style: (td.attrs.style || '') + (border ? ";border:".concat(border, "px solid gray") + (spacing ? '' :
-                ';border-right:0;border-bottom:0') : '') + (padding ? ";padding:".concat(padding, "px") : '') },
+  return evaluator(formula, result);
+}var _default =
 
-              children: td.children };
-
-            if (td.attrs.colspan) {
-              cell.attrs.style += ';grid-column-start:' + col + ';grid-column-end:' + (col + parseInt(td.attrs.colspan));
-              if (!td.attrs.rowspan) cell.attrs.style += ';grid-row-start:' + row + ';grid-row-end:' + (row + 1);
-              col += parseInt(td.attrs.colspan) - 1;
-            }
-            if (td.attrs.rowspan) {
-              cell.attrs.style += ';grid-row-start:' + row + ';grid-row-end:' + (row + parseInt(td.attrs.rowspan));
-              if (!td.attrs.colspan) cell.attrs.style += ';grid-column-start:' + col + ';grid-column-end:' + (col + 1);
-              for (var k = 1; k < td.attrs.rowspan; k++) {map[row + k + '.' + col] = 1;}
-            }
-            children.push(cell);
-            col++;
-          }
-        }
-        if (!colNum) {
-          colNum = col - 1;
-          attrs.style += ";grid-template-columns:repeat(".concat(colNum, ",auto)");
-        }
-        col = 1;
-        row++;
-      }
-      node.children = children;
-    } else {
-      attrs.style = "border-spacing:".concat(spacing, "px;").concat(attrs.style || '');
-      if (border || padding)
-      (function f(ns) {
-        for (var i = 0, n; n = ns[i]; i++) {
-          if (n.name == 'th' || n.name == 'td') {
-            if (border) n.attrs.style = "border:".concat(border, "px solid gray;").concat(n.attrs.style || '');
-            if (padding) n.attrs.style = "padding:".concat(padding, "px;").concat(n.attrs.style || '');
-          } else f(n.children || []);
-        }
-      })(childs);
-    }
-    if (this.options.autoscroll) {
-      var table = Object.assign({}, node);
-      node.name = 'div';
-      node.attrs = {
-        style: 'overflow:scroll' };
-
-      node.children = [table];
-    }
-  }
-  this.CssHandler.pop && this.CssHandler.pop(node);
-  // 自动压缩
-  if (node.name == 'div' && !Object.keys(attrs).length && childs.length == 1 && childs[0].name == 'div')
-  siblings[len - 1] = childs[0];
-};
-// 状态机
-MpHtmlParser.prototype.Text = function (c) {
-  if (c == '<') {
-    var next = this.data[this.i + 1],
-    isLetter = function isLetter(c) {return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';};
-    if (isLetter(next)) {
-      this.setText();
-      this.start = this.i + 1;
-      this.state = this.TagName;
-    } else if (next == '/') {
-      this.setText();
-      if (isLetter(this.data[++this.i + 1])) {
-        this.start = this.i + 1;
-        this.state = this.EndTag;
-      } else this.Comment();
-    } else if (next == '!' || next == '?') {
-      this.setText();
-      this.Comment();
-    }
-  }
-};
-MpHtmlParser.prototype.Comment = function () {
-  var key;
-  if (this.data.substring(this.i + 2, this.i + 4) == '--') key = '-->';else
-  if (this.data.substring(this.i + 2, this.i + 9) == '[CDATA[') key = ']]>';else
-  key = '>';
-  if ((this.i = this.data.indexOf(key, this.i + 2)) == -1) this.i = this.data.length;else
-  this.i += key.length - 1;
-  this.start = this.i + 1;
-  this.state = this.Text;
-};
-MpHtmlParser.prototype.TagName = function (c) {
-  if (blankChar[c]) {
-    this.tagName = this.section();
-    while (blankChar[this.data[this.i]]) {this.i++;}
-    if (this.isClose()) this.setNode();else
-    {
-      this.start = this.i;
-      this.state = this.AttrName;
-    }
-  } else if (this.isClose()) {
-    this.tagName = this.section();
-    this.setNode();
-  }
-};
-MpHtmlParser.prototype.AttrName = function (c) {
-  if (c == '=' || blankChar[c] || this.isClose()) {
-    this.attrName = this.section();
-    if (blankChar[c])
-    while (blankChar[this.data[++this.i]]) {;}
-    if (this.data[this.i] == '=') {
-      while (blankChar[this.data[++this.i]]) {;}
-      this.start = this.i--;
-      this.state = this.AttrValue;
-    } else this.setAttr();
-  }
-};
-MpHtmlParser.prototype.AttrValue = function (c) {
-  if (c == '"' || c == "'") {
-    this.start++;
-    if ((this.i = this.data.indexOf(c, this.i + 1)) == -1) return this.i = this.data.length;
-    this.attrVal = this.section();
-    this.i++;
-  } else {
-    for (; !blankChar[this.data[this.i]] && !this.isClose(); this.i++) {;}
-    this.attrVal = this.section();
-  }
-  this.setAttr();
-};
-MpHtmlParser.prototype.EndTag = function (c) {
-  if (blankChar[c] || c == '>' || c == '/') {
-    var name = this.section().toLowerCase();
-    for (var i = this.STACK.length; i--;) {
-      if (this.STACK[i].name == name) break;}
-    if (i != -1) {
-      var node;
-      while ((node = this.STACK.pop()).name != name) {this.popNode(node);}
-      this.popNode(node);
-    } else if (name == 'p' || name == 'br')
-    this.siblings().push({
-      name: name,
-      attrs: {} });
-
-    this.i = this.data.indexOf('>', this.i);
-    this.start = this.i + 1;
-    if (this.i == -1) this.i = this.data.length;else
-    this.state = this.Text;
-  }
-};
-module.exports = MpHtmlParser;
+evaluatorTo;exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 206:
-/*!***********************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/config.js ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* 配置文件 */
-var cfg = {
-  // 出错占位图
-  errorImg: null,
-  // 过滤器函数
-  filter: null,
-  // 代码高亮函数
-  highlight: null,
-  // 文本处理函数
-  onText: null,
-  // 实体编码列表
-  entities: {
-    quot: '"',
-    apos: "'",
-    semi: ';',
-    nbsp: '\xA0',
-    ensp: "\u2002",
-    emsp: "\u2003",
-    ndash: '–',
-    mdash: '—',
-    middot: '·',
-    lsquo: '‘',
-    rsquo: '’',
-    ldquo: '“',
-    rdquo: '”',
-    bull: '•',
-    hellip: '…' },
-
-  blankChar: makeMap(' ,\xA0,\t,\r,\n,\f'),
-  boolAttrs: makeMap('allowfullscreen,autoplay,autostart,controls,ignore,loop,muted'),
-  // 块级标签，将被转为 div
-  blockTags: makeMap('address,article,aside,body,caption,center,cite,footer,header,html,nav,pre,section'),
-  // 将被移除的标签
-  ignoreTags: makeMap('area,base,canvas,frame,iframe,input,link,map,meta,param,script,source,style,svg,textarea,title,track,wbr'),
-  // 只能被 rich-text 显示的标签
-  richOnlyTags: makeMap('a,colgroup,fieldset,legend'),
-  // 自闭合的标签
-  selfClosingTags: makeMap('area,base,br,col,circle,ellipse,embed,frame,hr,img,input,line,link,meta,param,path,polygon,rect,source,track,use,wbr'),
-  // 信任的标签
-  trustTags: makeMap('a,abbr,ad,audio,b,blockquote,br,code,col,colgroup,dd,del,dl,dt,div,em,fieldset,h1,h2,h3,h4,h5,h6,hr,i,img,ins,label,legend,li,ol,p,q,source,span,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,title,ul,video'),
-  // 默认的标签样式
-  userAgentStyles: {
-    address: 'font-style:italic',
-    big: 'display:inline;font-size:1.2em',
-    blockquote: 'background-color:#f6f6f6;border-left:3px solid #dbdbdb;color:#6c6c6c;padding:5px 0 5px 10px',
-    caption: 'display:table-caption;text-align:center',
-    center: 'text-align:center',
-    cite: 'font-style:italic',
-    dd: 'margin-left:40px',
-    mark: 'background-color:yellow',
-    pre: 'font-family:monospace;white-space:pre;overflow:scroll',
-    s: 'text-decoration:line-through',
-    small: 'display:inline;font-size:0.8em',
-    u: 'text-decoration:underline' } };
-
-
-
-function makeMap(str) {
-  var map = Object.create(null),
-  list = str.split(',');
-  for (var i = list.length; i--;) {
-    map[list[i]] = true;}
-  return map;
-}
-
-
-if (wx.canIUse('editor')) {
-  cfg.blockTags.pre = void 0;
-  cfg.ignoreTags.rp = true;
-  Object.assign(cfg.richOnlyTags, makeMap('bdi,bdo,caption,rt,ruby'));
-  Object.assign(cfg.trustTags, makeMap('bdi,bdo,caption,pre,rt,ruby'));
-}
-
-
-
-
-
-
-
-module.exports = cfg;
-
-/***/ }),
-
-/***/ 207:
-/*!***************************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/CssHandler.js ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var cfg = __webpack_require__(/*! ./config.js */ 206),
-isLetter = function isLetter(c) {return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';};
-
-function CssHandler(tagStyle) {
-  var styles = Object.assign(Object.create(null), cfg.userAgentStyles);
-  for (var item in tagStyle) {
-    styles[item] = (styles[item] ? styles[item] + ';' : '') + tagStyle[item];}
-  this.styles = styles;
-}
-CssHandler.prototype.getStyle = function (data) {
-  this.styles = new parser(data, this.styles).parse();
-};
-CssHandler.prototype.match = function (name, attrs) {
-  var tmp,matched = (tmp = this.styles[name]) ? tmp + ';' : '';
-  if (attrs.class) {
-    var items = attrs.class.split(' ');
-    for (var i = 0, item; item = items[i]; i++) {
-      if (tmp = this.styles['.' + item])
-      matched += tmp + ';';}
-  }
-  if (tmp = this.styles['#' + attrs.id])
-  matched += tmp + ';';
-  return matched;
-};
-module.exports = CssHandler;
-
-function parser(data, init) {
-  this.data = data;
-  this.floor = 0;
-  this.i = 0;
-  this.list = [];
-  this.res = init;
-  this.state = this.Space;
-}
-parser.prototype.parse = function () {
-  for (var c; c = this.data[this.i]; this.i++) {
-    this.state(c);}
-  return this.res;
-};
-parser.prototype.section = function () {
-  return this.data.substring(this.start, this.i);
-};
-// 状态机
-parser.prototype.Space = function (c) {
-  if (c == '.' || c == '#' || isLetter(c)) {
-    this.start = this.i;
-    this.state = this.Name;
-  } else if (c == '/' && this.data[this.i + 1] == '*')
-  this.Comment();else
-  if (!cfg.blankChar[c] && c != ';')
-  this.state = this.Ignore;
-};
-parser.prototype.Comment = function () {
-  this.i = this.data.indexOf('*/', this.i) + 1;
-  if (!this.i) this.i = this.data.length;
-  this.state = this.Space;
-};
-parser.prototype.Ignore = function (c) {
-  if (c == '{') this.floor++;else
-  if (c == '}' && ! --this.floor) {
-    this.list = [];
-    this.state = this.Space;
-  }
-};
-parser.prototype.Name = function (c) {
-  if (cfg.blankChar[c]) {
-    this.list.push(this.section());
-    this.state = this.NameSpace;
-  } else if (c == '{') {
-    this.list.push(this.section());
-    this.Content();
-  } else if (c == ',') {
-    this.list.push(this.section());
-    this.Comma();
-  } else if (!isLetter(c) && (c < '0' || c > '9') && c != '-' && c != '_')
-  this.state = this.Ignore;
-};
-parser.prototype.NameSpace = function (c) {
-  if (c == '{') this.Content();else
-  if (c == ',') this.Comma();else
-  if (!cfg.blankChar[c]) this.state = this.Ignore;
-};
-parser.prototype.Comma = function () {
-  while (cfg.blankChar[this.data[++this.i]]) {;}
-  if (this.data[this.i] == '{') this.Content();else
-  {
-    this.start = this.i--;
-    this.state = this.Name;
-  }
-};
-parser.prototype.Content = function () {
-  this.start = ++this.i;
-  if ((this.i = this.data.indexOf('}', this.i)) == -1) this.i = this.data.length;
-  var content = this.section();
-  for (var i = 0, item; item = this.list[i++];) {
-    if (this.res[item]) this.res[item] += ';' + content;else
-    this.res[item] = content;}
-  this.list = [];
-  this.state = this.Space;
-};
 
 /***/ }),
 
@@ -10764,6 +9973,797 @@ parser.prototype.Content = function () {
 
 /***/ }),
 
+/***/ 213:
+/*!*****************************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/MpHtmlParser.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(uni) {/**
+ * html 解析器
+ * @tutorial https://github.com/jin-yufeng/Parser
+ * @version 20201029
+ * @author JinYufeng
+ * @listens MIT
+ */
+var cfg = __webpack_require__(/*! ./config.js */ 214),
+blankChar = cfg.blankChar,
+CssHandler = __webpack_require__(/*! ./CssHandler.js */ 215),
+windowWidth = uni.getSystemInfoSync().windowWidth;
+var emoji;
+
+function MpHtmlParser(data) {var _this = this;var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  this.attrs = {};
+  this.CssHandler = new CssHandler(options.tagStyle, windowWidth);
+  this.data = data;
+  this.domain = options.domain;
+  this.DOM = [];
+  this.i = this.start = this.audioNum = this.imgNum = this.videoNum = 0;
+  options.prot = (this.domain || '').includes('://') ? this.domain.split('://')[0] : 'http';
+  this.options = options;
+  this.state = this.Text;
+  this.STACK = [];
+  // 工具函数
+  this.bubble = function () {
+    for (var i = _this.STACK.length, item; item = _this.STACK[--i];) {
+      if (cfg.richOnlyTags[item.name]) return false;
+      item.c = 1;
+    }
+    return true;
+  };
+  this.decode = function (val, amp) {
+    var i = -1,
+    j,en;
+    while (1) {
+      if ((i = val.indexOf('&', i + 1)) == -1) break;
+      if ((j = val.indexOf(';', i + 2)) == -1) break;
+      if (val[i + 1] == '#') {
+        en = parseInt((val[i + 2] == 'x' ? '0' : '') + val.substring(i + 2, j));
+        if (!isNaN(en)) val = val.substr(0, i) + String.fromCharCode(en) + val.substr(j + 1);
+      } else {
+        en = val.substring(i + 1, j);
+        if (cfg.entities[en] || en == amp)
+        val = val.substr(0, i) + (cfg.entities[en] || '&') + val.substr(j + 1);
+      }
+    }
+    return val;
+  };
+  this.getUrl = function (url) {
+    if (url[0] == '/') {
+      if (url[1] == '/') url = _this.options.prot + ':' + url;else
+      if (_this.domain) url = _this.domain + url;
+    } else if (_this.domain && url.indexOf('data:') != 0 && !url.includes('://'))
+    url = _this.domain + '/' + url;
+    return url;
+  };
+  this.isClose = function () {return _this.data[_this.i] == '>' || _this.data[_this.i] == '/' && _this.data[_this.i + 1] == '>';};
+  this.section = function () {return _this.data.substring(_this.start, _this.i);};
+  this.parent = function () {return _this.STACK[_this.STACK.length - 1];};
+  this.siblings = function () {return _this.STACK.length ? _this.parent().children : _this.DOM;};
+}
+MpHtmlParser.prototype.parse = function () {
+  if (emoji) this.data = emoji.parseEmoji(this.data);
+  for (var c; c = this.data[this.i]; this.i++) {
+    this.state(c);}
+  if (this.state == this.Text) this.setText();
+  while (this.STACK.length) {this.popNode(this.STACK.pop());}
+  return this.DOM;
+};
+// 设置属性
+MpHtmlParser.prototype.setAttr = function () {
+  var name = this.attrName.toLowerCase(),
+  val = this.attrVal;
+  if (cfg.boolAttrs[name]) this.attrs[name] = 'T';else
+  if (val) {
+    if (name == 'src' || name == 'data-src' && !this.attrs.src) this.attrs.src = this.getUrl(this.decode(val, 'amp'));else
+    if (name == 'href' || name == 'style') this.attrs[name] = this.decode(val, 'amp');else
+    if (name.substr(0, 5) != 'data-') this.attrs[name] = val;
+  }
+  this.attrVal = '';
+  while (blankChar[this.data[this.i]]) {this.i++;}
+  if (this.isClose()) this.setNode();else
+  {
+    this.start = this.i;
+    this.state = this.AttrName;
+  }
+};
+// 设置文本节点
+MpHtmlParser.prototype.setText = function () {
+  var back,text = this.section();
+  if (!text) return;
+  text = cfg.onText && cfg.onText(text, function () {return back = true;}) || text;
+  if (back) {
+    this.data = this.data.substr(0, this.start) + text + this.data.substr(this.i);
+    var j = this.start + text.length;
+    for (this.i = this.start; this.i < j; this.i++) {this.state(this.data[this.i]);}
+    return;
+  }
+  if (!this.pre) {
+    // 合并空白符
+    var flag,tmp = [];
+    for (var i = text.length, c; c = text[--i];) {
+      if (!blankChar[c]) {
+        tmp.unshift(c);
+        if (!flag) flag = 1;
+      } else {
+        if (tmp[0] != ' ') tmp.unshift(' ');
+        if (c == '\n' && flag == void 0) flag = 0;
+      }}
+    if (flag == 0) return;
+    text = tmp.join('');
+  }
+  this.siblings().push({
+    type: 'text',
+    text: this.decode(text) });
+
+};
+// 设置元素节点
+MpHtmlParser.prototype.setNode = function () {
+  var node = {
+    name: this.tagName.toLowerCase(),
+    attrs: this.attrs },
+
+  close = cfg.selfClosingTags[node.name];
+  if (this.options.nodes.length) node.type = 'node';
+  this.attrs = {};
+  if (!cfg.ignoreTags[node.name]) {
+    // 处理属性
+    var attrs = node.attrs,
+    style = this.CssHandler.match(node.name, attrs, node) + (attrs.style || ''),
+    styleObj = {};
+    if (attrs.id) {
+      if (this.options.compress & 1) attrs.id = void 0;else
+      if (this.options.useAnchor) this.bubble();
+    }
+    if (this.options.compress & 2 && attrs.class) attrs.class = void 0;
+    switch (node.name) {
+      case 'a':
+      case 'ad':
+
+
+        this.bubble();
+        break;
+      case 'font':
+        if (attrs.color) {
+          styleObj['color'] = attrs.color;
+          attrs.color = void 0;
+        }
+        if (attrs.face) {
+          styleObj['font-family'] = attrs.face;
+          attrs.face = void 0;
+        }
+        if (attrs.size) {
+          var size = parseInt(attrs.size);
+          if (size < 1) size = 1;else
+          if (size > 7) size = 7;
+          var map = ['xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'];
+          styleObj['font-size'] = map[size - 1];
+          attrs.size = void 0;
+        }
+        break;
+      case 'embed':
+
+        var src = node.attrs.src || '',
+        type = node.attrs.type || '';
+        if (type.includes('video') || src.includes('.mp4') || src.includes('.3gp') || src.includes('.m3u8'))
+        node.name = 'video';else
+        if (type.includes('audio') || src.includes('.m4a') || src.includes('.wav') || src.includes('.mp3') || src.includes(
+        '.aac'))
+        node.name = 'audio';else
+        break;
+        if (node.attrs.autostart)
+        node.attrs.autoplay = 'T';
+        node.attrs.controls = 'T';
+
+
+
+
+
+      case 'video':
+      case 'audio':
+        if (!attrs.id) attrs.id = node.name + ++this["".concat(node.name, "Num")];else
+        this["".concat(node.name, "Num")]++;
+        if (node.name == 'video') {
+          if (this.videoNum > 3)
+          node.lazyLoad = 1;
+          if (attrs.width) {
+            styleObj.width = parseFloat(attrs.width) + (attrs.width.includes('%') ? '%' : 'px');
+            attrs.width = void 0;
+          }
+          if (attrs.height) {
+            styleObj.height = parseFloat(attrs.height) + (attrs.height.includes('%') ? '%' : 'px');
+            attrs.height = void 0;
+          }
+        }
+        if (!attrs.controls && !attrs.autoplay) attrs.controls = 'T';
+        attrs.source = [];
+        if (attrs.src) {
+          attrs.source.push(attrs.src);
+          attrs.src = void 0;
+        }
+        this.bubble();
+        break;
+      case 'td':
+      case 'th':
+        if (attrs.colspan || attrs.rowspan)
+        for (var k = this.STACK.length, item; item = this.STACK[--k];) {
+          if (item.name == 'table') {
+            item.flag = 1;
+            break;
+          }}}
+
+    if (attrs.align) {
+      if (node.name == 'table') {
+        if (attrs.align == 'center') styleObj['margin-inline-start'] = styleObj['margin-inline-end'] = 'auto';else
+        styleObj['float'] = attrs.align;
+      } else styleObj['text-align'] = attrs.align;
+      attrs.align = void 0;
+    }
+    // 压缩 style
+    var styles = style.split(';');
+    style = '';
+    for (var i = 0, len = styles.length; i < len; i++) {
+      var info = styles[i].split(':');
+      if (info.length < 2) continue;
+      var _key = info[0].trim().toLowerCase(),
+      _value = info.slice(1).join(':').trim();
+      if (_value[0] == '-' || _value.includes('safe'))
+      style += ";".concat(_key, ":").concat(_value);else
+      if (!styleObj[_key] || _value.includes('import') || !styleObj[_key].includes('import'))
+      styleObj[_key] = _value;
+    }
+    if (node.name == 'img') {
+      if (attrs.src && !attrs.ignore) {
+        if (this.bubble())
+        attrs.i = (this.imgNum++).toString();else
+        attrs.ignore = 'T';
+      }
+      if (attrs.ignore) {
+        style += ';-webkit-touch-callout:none';
+        styleObj['max-width'] = '100%';
+      }
+      var width;
+      if (styleObj.width) width = styleObj.width;else
+      if (attrs.width) width = attrs.width.includes('%') ? attrs.width : parseFloat(attrs.width) + 'px';
+      if (width) {
+        styleObj.width = width;
+        attrs.width = '100%';
+        if (parseInt(width) > windowWidth) {
+          styleObj.height = '';
+          if (attrs.height) attrs.height = void 0;
+        }
+      }
+      if (styleObj.height) {
+        attrs.height = styleObj.height;
+        styleObj.height = '';
+      } else if (attrs.height && !attrs.height.includes('%'))
+      attrs.height = parseFloat(attrs.height) + 'px';
+    }
+    for (var key in styleObj) {
+      var value = styleObj[key];
+      if (!value) continue;
+      if (key.includes('flex') || key == 'order' || key == 'self-align') node.c = 1;
+      // 填充链接
+      if (value.includes('url')) {
+        var j = value.indexOf('(');
+        if (j++ != -1) {
+          while (value[j] == '"' || value[j] == "'" || blankChar[value[j]]) {j++;}
+          value = value.substr(0, j) + this.getUrl(value.substr(j));
+        }
+      }
+      // 转换 rpx
+      else if (value.includes('rpx'))
+        value = value.replace(/[0-9.]+\s*rpx/g, function ($) {return parseFloat($) * windowWidth / 750 + 'px';});else
+        if (key == 'white-space' && value.includes('pre') && !close)
+        this.pre = node.pre = true;
+      style += ";".concat(key, ":").concat(value);
+    }
+    style = style.substr(1);
+    if (style) attrs.style = style;
+    if (!close) {
+      node.children = [];
+      if (node.name == 'pre' && cfg.highlight) {
+        this.remove(node);
+        this.pre = node.pre = true;
+      }
+      this.siblings().push(node);
+      this.STACK.push(node);
+    } else if (!cfg.filter || cfg.filter(node, this) != false)
+    this.siblings().push(node);
+  } else {
+    if (!close) this.remove(node);else
+    if (node.name == 'source') {
+      var parent = this.parent();
+      if (parent && (parent.name == 'video' || parent.name == 'audio') && node.attrs.src)
+      parent.attrs.source.push(node.attrs.src);
+    } else if (node.name == 'base' && !this.domain) this.domain = node.attrs.href;
+  }
+  if (this.data[this.i] == '/') this.i++;
+  this.start = this.i + 1;
+  this.state = this.Text;
+};
+// 移除标签
+MpHtmlParser.prototype.remove = function (node) {var _this2 = this;
+  var name = node.name,
+  j = this.i;
+  // 处理 svg
+  var handleSvg = function handleSvg() {
+    var src = _this2.data.substring(j, _this2.i + 1);
+    node.attrs.xmlns = 'http://www.w3.org/2000/svg';
+    for (var key in node.attrs) {
+      if (key == 'viewbox') src = " viewBox=\"".concat(node.attrs.viewbox, "\"") + src;else
+      if (key != 'style') src = " ".concat(key, "=\"").concat(node.attrs[key], "\"") + src;
+    }
+    src = '<svg' + src;
+    var parent = _this2.parent();
+    if (node.attrs.width == '100%' && parent && (parent.attrs.style || '').includes('inline'))
+    parent.attrs.style = 'width:300px;max-width:100%;' + parent.attrs.style;
+    _this2.siblings().push({
+      name: 'img',
+      attrs: {
+        src: 'data:image/svg+xml;utf8,' + src.replace(/#/g, '%23'),
+        style: node.attrs.style,
+        ignore: 'T' } });
+
+
+  };
+  if (node.name == 'svg' && this.data[j] == '/') return handleSvg(this.i++);
+  while (1) {
+    if ((this.i = this.data.indexOf('</', this.i + 1)) == -1) {
+      if (name == 'pre' || name == 'svg') this.i = j;else
+      this.i = this.data.length;
+      return;
+    }
+    this.start = this.i += 2;
+    while (!blankChar[this.data[this.i]] && !this.isClose()) {this.i++;}
+    if (this.section().toLowerCase() == name) {
+      // 代码块高亮
+      if (name == 'pre') {
+        this.data = this.data.substr(0, j + 1) + cfg.highlight(this.data.substring(j + 1, this.i - 5), node.attrs) + this.data.
+        substr(this.i - 5);
+        return this.i = j;
+      } else if (name == 'style')
+      this.CssHandler.getStyle(this.data.substring(j + 1, this.i - 7));else
+      if (name == 'title')
+      this.DOM.title = this.data.substring(j + 1, this.i - 7);
+      if ((this.i = this.data.indexOf('>', this.i)) == -1) this.i = this.data.length;
+      if (name == 'svg') handleSvg();
+      return;
+    }
+  }
+};
+// 节点出栈处理
+MpHtmlParser.prototype.popNode = function (node) {
+  // 空白符处理
+  if (node.pre) {
+    node.pre = this.pre = void 0;
+    for (var i = this.STACK.length; i--;) {
+      if (this.STACK[i].pre)
+      this.pre = true;}
+  }
+  var siblings = this.siblings(),
+  len = siblings.length,
+  childs = node.children;
+  if (node.name == 'head' || cfg.filter && cfg.filter(node, this) == false)
+  return siblings.pop();
+  var attrs = node.attrs;
+  // 替换一些标签名
+  if (cfg.blockTags[node.name]) node.name = 'div';else
+  if (!cfg.trustTags[node.name]) node.name = 'span';
+  // 处理列表
+  if (node.c && (node.name == 'ul' || node.name == 'ol')) {
+    if ((node.attrs.style || '').includes('list-style:none')) {
+      for (var _i = 0, child; child = childs[_i++];) {
+        if (child.name == 'li')
+        child.name = 'div';}
+    } else if (node.name == 'ul') {
+      var floor = 1;
+      for (var _i2 = this.STACK.length; _i2--;) {
+        if (this.STACK[_i2].name == 'ul') floor++;}
+      if (floor != 1)
+      for (var _i3 = childs.length; _i3--;) {
+        childs[_i3].floor = floor;}
+    } else {
+      for (var _i4 = 0, num = 1, _child; _child = childs[_i4++];) {
+        if (_child.name == 'li') {
+          _child.type = 'ol';
+          _child.num = function (num, type) {
+            if (type == 'a') return String.fromCharCode(97 + (num - 1) % 26);
+            if (type == 'A') return String.fromCharCode(65 + (num - 1) % 26);
+            if (type == 'i' || type == 'I') {
+              num = (num - 1) % 99 + 1;
+              var one = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
+              ten = ['X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
+              res = (ten[Math.floor(num / 10) - 1] || '') + (one[num % 10 - 1] || '');
+              if (type == 'i') return res.toLowerCase();
+              return res;
+            }
+            return num;
+          }(num++, attrs.type) + '.';
+        }}
+    }
+  }
+  // 处理表格
+  if (node.name == 'table') {
+    var padding = parseFloat(attrs.cellpadding),
+    spacing = parseFloat(attrs.cellspacing),
+    border = parseFloat(attrs.border);
+    if (node.c) {
+      if (isNaN(padding)) padding = 2;
+      if (isNaN(spacing)) spacing = 2;
+    }
+    if (border) attrs.style = "border:".concat(border, "px solid gray;").concat(attrs.style || '');
+    if (node.flag && node.c) {
+      // 有 colspan 或 rowspan 且含有链接的表格转为 grid 布局实现
+      attrs.style = "".concat(attrs.style || '', ";").concat(spacing ? ";grid-gap:".concat(spacing, "px") : ';border-left:0;border-top:0');
+      var row = 1,
+      col = 1,
+      colNum,
+      trs = [],
+      children = [],
+      map = {};
+      (function f(ns) {
+        for (var i = 0; i < ns.length; i++) {
+          if (ns[i].name == 'tr') trs.push(ns[i]);else
+          f(ns[i].children || []);
+        }
+      })(node.children);
+      for (var _i5 = 0; _i5 < trs.length; _i5++) {
+        for (var j = 0, td; td = trs[_i5].children[j]; j++) {
+          if (td.name == 'td' || td.name == 'th') {
+            while (map[row + '.' + col]) {col++;}
+            var cell = {
+              name: 'div',
+              c: 1,
+              attrs: {
+                style: (td.attrs.style || '') + (border ? ";border:".concat(border, "px solid gray") + (spacing ? '' :
+                ';border-right:0;border-bottom:0') : '') + (padding ? ";padding:".concat(padding, "px") : '') },
+
+              children: td.children };
+
+            if (td.attrs.colspan) {
+              cell.attrs.style += ';grid-column-start:' + col + ';grid-column-end:' + (col + parseInt(td.attrs.colspan));
+              if (!td.attrs.rowspan) cell.attrs.style += ';grid-row-start:' + row + ';grid-row-end:' + (row + 1);
+              col += parseInt(td.attrs.colspan) - 1;
+            }
+            if (td.attrs.rowspan) {
+              cell.attrs.style += ';grid-row-start:' + row + ';grid-row-end:' + (row + parseInt(td.attrs.rowspan));
+              if (!td.attrs.colspan) cell.attrs.style += ';grid-column-start:' + col + ';grid-column-end:' + (col + 1);
+              for (var k = 1; k < td.attrs.rowspan; k++) {map[row + k + '.' + col] = 1;}
+            }
+            children.push(cell);
+            col++;
+          }
+        }
+        if (!colNum) {
+          colNum = col - 1;
+          attrs.style += ";grid-template-columns:repeat(".concat(colNum, ",auto)");
+        }
+        col = 1;
+        row++;
+      }
+      node.children = children;
+    } else {
+      attrs.style = "border-spacing:".concat(spacing, "px;").concat(attrs.style || '');
+      if (border || padding)
+      (function f(ns) {
+        for (var i = 0, n; n = ns[i]; i++) {
+          if (n.name == 'th' || n.name == 'td') {
+            if (border) n.attrs.style = "border:".concat(border, "px solid gray;").concat(n.attrs.style || '');
+            if (padding) n.attrs.style = "padding:".concat(padding, "px;").concat(n.attrs.style || '');
+          } else f(n.children || []);
+        }
+      })(childs);
+    }
+    if (this.options.autoscroll) {
+      var table = Object.assign({}, node);
+      node.name = 'div';
+      node.attrs = {
+        style: 'overflow:scroll' };
+
+      node.children = [table];
+    }
+  }
+  this.CssHandler.pop && this.CssHandler.pop(node);
+  // 自动压缩
+  if (node.name == 'div' && !Object.keys(attrs).length && childs.length == 1 && childs[0].name == 'div')
+  siblings[len - 1] = childs[0];
+};
+// 状态机
+MpHtmlParser.prototype.Text = function (c) {
+  if (c == '<') {
+    var next = this.data[this.i + 1],
+    isLetter = function isLetter(c) {return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';};
+    if (isLetter(next)) {
+      this.setText();
+      this.start = this.i + 1;
+      this.state = this.TagName;
+    } else if (next == '/') {
+      this.setText();
+      if (isLetter(this.data[++this.i + 1])) {
+        this.start = this.i + 1;
+        this.state = this.EndTag;
+      } else this.Comment();
+    } else if (next == '!' || next == '?') {
+      this.setText();
+      this.Comment();
+    }
+  }
+};
+MpHtmlParser.prototype.Comment = function () {
+  var key;
+  if (this.data.substring(this.i + 2, this.i + 4) == '--') key = '-->';else
+  if (this.data.substring(this.i + 2, this.i + 9) == '[CDATA[') key = ']]>';else
+  key = '>';
+  if ((this.i = this.data.indexOf(key, this.i + 2)) == -1) this.i = this.data.length;else
+  this.i += key.length - 1;
+  this.start = this.i + 1;
+  this.state = this.Text;
+};
+MpHtmlParser.prototype.TagName = function (c) {
+  if (blankChar[c]) {
+    this.tagName = this.section();
+    while (blankChar[this.data[this.i]]) {this.i++;}
+    if (this.isClose()) this.setNode();else
+    {
+      this.start = this.i;
+      this.state = this.AttrName;
+    }
+  } else if (this.isClose()) {
+    this.tagName = this.section();
+    this.setNode();
+  }
+};
+MpHtmlParser.prototype.AttrName = function (c) {
+  if (c == '=' || blankChar[c] || this.isClose()) {
+    this.attrName = this.section();
+    if (blankChar[c])
+    while (blankChar[this.data[++this.i]]) {;}
+    if (this.data[this.i] == '=') {
+      while (blankChar[this.data[++this.i]]) {;}
+      this.start = this.i--;
+      this.state = this.AttrValue;
+    } else this.setAttr();
+  }
+};
+MpHtmlParser.prototype.AttrValue = function (c) {
+  if (c == '"' || c == "'") {
+    this.start++;
+    if ((this.i = this.data.indexOf(c, this.i + 1)) == -1) return this.i = this.data.length;
+    this.attrVal = this.section();
+    this.i++;
+  } else {
+    for (; !blankChar[this.data[this.i]] && !this.isClose(); this.i++) {;}
+    this.attrVal = this.section();
+  }
+  this.setAttr();
+};
+MpHtmlParser.prototype.EndTag = function (c) {
+  if (blankChar[c] || c == '>' || c == '/') {
+    var name = this.section().toLowerCase();
+    for (var i = this.STACK.length; i--;) {
+      if (this.STACK[i].name == name) break;}
+    if (i != -1) {
+      var node;
+      while ((node = this.STACK.pop()).name != name) {this.popNode(node);}
+      this.popNode(node);
+    } else if (name == 'p' || name == 'br')
+    this.siblings().push({
+      name: name,
+      attrs: {} });
+
+    this.i = this.data.indexOf('>', this.i);
+    this.start = this.i + 1;
+    if (this.i == -1) this.i = this.data.length;else
+    this.state = this.Text;
+  }
+};
+module.exports = MpHtmlParser;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 214:
+/*!***********************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/config.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* 配置文件 */
+var cfg = {
+  // 出错占位图
+  errorImg: null,
+  // 过滤器函数
+  filter: null,
+  // 代码高亮函数
+  highlight: null,
+  // 文本处理函数
+  onText: null,
+  // 实体编码列表
+  entities: {
+    quot: '"',
+    apos: "'",
+    semi: ';',
+    nbsp: '\xA0',
+    ensp: "\u2002",
+    emsp: "\u2003",
+    ndash: '–',
+    mdash: '—',
+    middot: '·',
+    lsquo: '‘',
+    rsquo: '’',
+    ldquo: '“',
+    rdquo: '”',
+    bull: '•',
+    hellip: '…' },
+
+  blankChar: makeMap(' ,\xA0,\t,\r,\n,\f'),
+  boolAttrs: makeMap('allowfullscreen,autoplay,autostart,controls,ignore,loop,muted'),
+  // 块级标签，将被转为 div
+  blockTags: makeMap('address,article,aside,body,caption,center,cite,footer,header,html,nav,pre,section'),
+  // 将被移除的标签
+  ignoreTags: makeMap('area,base,canvas,frame,iframe,input,link,map,meta,param,script,source,style,svg,textarea,title,track,wbr'),
+  // 只能被 rich-text 显示的标签
+  richOnlyTags: makeMap('a,colgroup,fieldset,legend'),
+  // 自闭合的标签
+  selfClosingTags: makeMap('area,base,br,col,circle,ellipse,embed,frame,hr,img,input,line,link,meta,param,path,polygon,rect,source,track,use,wbr'),
+  // 信任的标签
+  trustTags: makeMap('a,abbr,ad,audio,b,blockquote,br,code,col,colgroup,dd,del,dl,dt,div,em,fieldset,h1,h2,h3,h4,h5,h6,hr,i,img,ins,label,legend,li,ol,p,q,source,span,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,title,ul,video'),
+  // 默认的标签样式
+  userAgentStyles: {
+    address: 'font-style:italic',
+    big: 'display:inline;font-size:1.2em',
+    blockquote: 'background-color:#f6f6f6;border-left:3px solid #dbdbdb;color:#6c6c6c;padding:5px 0 5px 10px',
+    caption: 'display:table-caption;text-align:center',
+    center: 'text-align:center',
+    cite: 'font-style:italic',
+    dd: 'margin-left:40px',
+    mark: 'background-color:yellow',
+    pre: 'font-family:monospace;white-space:pre;overflow:scroll',
+    s: 'text-decoration:line-through',
+    small: 'display:inline;font-size:0.8em',
+    u: 'text-decoration:underline' } };
+
+
+
+function makeMap(str) {
+  var map = Object.create(null),
+  list = str.split(',');
+  for (var i = list.length; i--;) {
+    map[list[i]] = true;}
+  return map;
+}
+
+
+if (wx.canIUse('editor')) {
+  cfg.blockTags.pre = void 0;
+  cfg.ignoreTags.rp = true;
+  Object.assign(cfg.richOnlyTags, makeMap('bdi,bdo,caption,rt,ruby'));
+  Object.assign(cfg.trustTags, makeMap('bdi,bdo,caption,pre,rt,ruby'));
+}
+
+
+
+
+
+
+
+module.exports = cfg;
+
+/***/ }),
+
+/***/ 215:
+/*!***************************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/CssHandler.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var cfg = __webpack_require__(/*! ./config.js */ 214),
+isLetter = function isLetter(c) {return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';};
+
+function CssHandler(tagStyle) {
+  var styles = Object.assign(Object.create(null), cfg.userAgentStyles);
+  for (var item in tagStyle) {
+    styles[item] = (styles[item] ? styles[item] + ';' : '') + tagStyle[item];}
+  this.styles = styles;
+}
+CssHandler.prototype.getStyle = function (data) {
+  this.styles = new parser(data, this.styles).parse();
+};
+CssHandler.prototype.match = function (name, attrs) {
+  var tmp,matched = (tmp = this.styles[name]) ? tmp + ';' : '';
+  if (attrs.class) {
+    var items = attrs.class.split(' ');
+    for (var i = 0, item; item = items[i]; i++) {
+      if (tmp = this.styles['.' + item])
+      matched += tmp + ';';}
+  }
+  if (tmp = this.styles['#' + attrs.id])
+  matched += tmp + ';';
+  return matched;
+};
+module.exports = CssHandler;
+
+function parser(data, init) {
+  this.data = data;
+  this.floor = 0;
+  this.i = 0;
+  this.list = [];
+  this.res = init;
+  this.state = this.Space;
+}
+parser.prototype.parse = function () {
+  for (var c; c = this.data[this.i]; this.i++) {
+    this.state(c);}
+  return this.res;
+};
+parser.prototype.section = function () {
+  return this.data.substring(this.start, this.i);
+};
+// 状态机
+parser.prototype.Space = function (c) {
+  if (c == '.' || c == '#' || isLetter(c)) {
+    this.start = this.i;
+    this.state = this.Name;
+  } else if (c == '/' && this.data[this.i + 1] == '*')
+  this.Comment();else
+  if (!cfg.blankChar[c] && c != ';')
+  this.state = this.Ignore;
+};
+parser.prototype.Comment = function () {
+  this.i = this.data.indexOf('*/', this.i) + 1;
+  if (!this.i) this.i = this.data.length;
+  this.state = this.Space;
+};
+parser.prototype.Ignore = function (c) {
+  if (c == '{') this.floor++;else
+  if (c == '}' && ! --this.floor) {
+    this.list = [];
+    this.state = this.Space;
+  }
+};
+parser.prototype.Name = function (c) {
+  if (cfg.blankChar[c]) {
+    this.list.push(this.section());
+    this.state = this.NameSpace;
+  } else if (c == '{') {
+    this.list.push(this.section());
+    this.Content();
+  } else if (c == ',') {
+    this.list.push(this.section());
+    this.Comma();
+  } else if (!isLetter(c) && (c < '0' || c > '9') && c != '-' && c != '_')
+  this.state = this.Ignore;
+};
+parser.prototype.NameSpace = function (c) {
+  if (c == '{') this.Content();else
+  if (c == ',') this.Comma();else
+  if (!cfg.blankChar[c]) this.state = this.Ignore;
+};
+parser.prototype.Comma = function () {
+  while (cfg.blankChar[this.data[++this.i]]) {;}
+  if (this.data[this.i] == '{') this.Content();else
+  {
+    this.start = this.i--;
+    this.state = this.Name;
+  }
+};
+parser.prototype.Content = function () {
+  this.start = ++this.i;
+  if ((this.i = this.data.indexOf('}', this.i)) == -1) this.i = this.data.length;
+  var content = this.section();
+  for (var i = 0, item; item = this.list[i++];) {
+    if (this.res[item]) this.res[item] += ';' + content;else
+    this.res[item] = content;}
+  this.list = [];
+  this.state = this.Space;
+};
+
+/***/ }),
+
 /***/ 22:
 /*!*****************************************************************************!*\
   !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/timeFormat.js ***!
@@ -10826,7 +10826,65 @@ timeFormat;exports.default = _default;
 
 /***/ }),
 
-/***/ 229:
+/***/ 23:
+/*!***************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/timeFrom.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _timeFormat = _interopRequireDefault(__webpack_require__(/*! ../../libs/function/timeFormat.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+/**
+                                                                                                                                                                                                                                                                                          * 时间戳转为多久之前
+                                                                                                                                                                                                                                                                                          * @param String timestamp 时间戳
+                                                                                                                                                                                                                                                                                          * @param String | Boolean format 如果为时间格式字符串，超出一定时间范围，返回固定的时间格式；
+                                                                                                                                                                                                                                                                                          * 如果为布尔值false，无论什么时间，都返回多久以前的格式
+                                                                                                                                                                                                                                                                                          */
+function timeFrom() {var dateTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy-mm-dd';
+  // 如果为null,则格式化当前时间
+  if (!dateTime) dateTime = Number(new Date());
+  // 如果dateTime长度为10或者13，则为秒和毫秒的时间戳，如果超过13位，则为其他的时间格式
+  if (dateTime.toString().length == 10) dateTime *= 1000;
+  var timestamp = +new Date(Number(dateTime));
+
+  var timer = (Number(new Date()) - timestamp) / 1000;
+  // 如果小于5分钟,则返回"刚刚",其他以此类推
+  var tips = '';
+  switch (true) {
+    case timer < 300:
+      tips = '刚刚';
+      break;
+    case timer >= 300 && timer < 3600:
+      tips = parseInt(timer / 60) + '分钟前';
+      break;
+    case timer >= 3600 && timer < 86400:
+      tips = parseInt(timer / 3600) + '小时前';
+      break;
+    case timer >= 86400 && timer < 2592000:
+      tips = parseInt(timer / 86400) + '天前';
+      break;
+    default:
+      // 如果format为false，则无论什么时间戳，都显示xx之前
+      if (format === false) {
+        if (timer >= 2592000 && timer < 365 * 86400) {
+          tips = parseInt(timer / (86400 * 30)) + '个月前';
+        } else {
+          tips = parseInt(timer / (86400 * 365)) + '年前';
+        }
+      } else {
+        tips = (0, _timeFormat.default)(timestamp, format);
+      }}
+
+  return tips;
+}var _default =
+
+timeFrom;exports.default = _default;
+
+/***/ }),
+
+/***/ 237:
 /*!*****************************************************************!*\
   !*** D:/front/bxfront_devproject/fyzh/common/mixins/emitter.js ***!
   \*****************************************************************/
@@ -10885,64 +10943,6 @@ function _broadcast(componentName, eventName, params) {
     broadcast: function broadcast(componentName, eventName, params) {
       _broadcast.call(this, componentName, eventName, params);
     } } };exports.default = _default;
-
-/***/ }),
-
-/***/ 23:
-/*!***************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/timeFrom.js ***!
-  \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _timeFormat = _interopRequireDefault(__webpack_require__(/*! ../../libs/function/timeFormat.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-/**
-                                                                                                                                                                                                                                                                                          * 时间戳转为多久之前
-                                                                                                                                                                                                                                                                                          * @param String timestamp 时间戳
-                                                                                                                                                                                                                                                                                          * @param String | Boolean format 如果为时间格式字符串，超出一定时间范围，返回固定的时间格式；
-                                                                                                                                                                                                                                                                                          * 如果为布尔值false，无论什么时间，都返回多久以前的格式
-                                                                                                                                                                                                                                                                                          */
-function timeFrom() {var dateTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy-mm-dd';
-  // 如果为null,则格式化当前时间
-  if (!dateTime) dateTime = Number(new Date());
-  // 如果dateTime长度为10或者13，则为秒和毫秒的时间戳，如果超过13位，则为其他的时间格式
-  if (dateTime.toString().length == 10) dateTime *= 1000;
-  var timestamp = +new Date(Number(dateTime));
-
-  var timer = (Number(new Date()) - timestamp) / 1000;
-  // 如果小于5分钟,则返回"刚刚",其他以此类推
-  var tips = '';
-  switch (true) {
-    case timer < 300:
-      tips = '刚刚';
-      break;
-    case timer >= 300 && timer < 3600:
-      tips = parseInt(timer / 60) + '分钟前';
-      break;
-    case timer >= 3600 && timer < 86400:
-      tips = parseInt(timer / 3600) + '小时前';
-      break;
-    case timer >= 86400 && timer < 2592000:
-      tips = parseInt(timer / 86400) + '天前';
-      break;
-    default:
-      // 如果format为false，则无论什么时间戳，都显示xx之前
-      if (format === false) {
-        if (timer >= 2592000 && timer < 365 * 86400) {
-          tips = parseInt(timer / (86400 * 30)) + '个月前';
-        } else {
-          tips = parseInt(timer / (86400 * 365)) + '年前';
-        }
-      } else {
-        tips = (0, _timeFormat.default)(timestamp, format);
-      }}
-
-  return tips;
-}var _default =
-
-timeFrom;exports.default = _default;
 
 /***/ }),
 
@@ -11561,6 +11561,17 @@ throttle;exports.default = _default;
 
 /***/ }),
 
+/***/ 376:
+/*!**************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/static/icon/goods.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
+
+/***/ }),
+
 /***/ 38:
 /*!***********************************************************************!*\
   !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/config/config.js ***!
@@ -11648,7 +11659,7 @@ try {
 }
 
 // 需要永久存储，且下次APP启动需要取出的，在state中的变量名
-var saveStateKeys = ['vuex_token', 'vuex_loginUser'];
+var saveStateKeys = ['vuex_token', 'vuex_loginUser', 'vuex_memberInfo'];
 
 // 保存变量到本地存储中
 var saveLifeData = function saveLifeData(key, value) {
@@ -11667,8 +11678,8 @@ var store = new _vuex.default.Store({
   state: {
     // 如果上面从本地获取的lifeData对象下有对应的属性，就赋值给state中对应的变量
     // 加上vuex_前缀，是防止变量名冲突，也让人一目了然
-    isLogin: false,
-    vuex_memberInfo: {},
+    isLogin: lifeData.isLogin || false,
+    vuex_memberInfo: lifeData.vuex_memberInfo || {},
     needAuthProfile: false, //未授权用户信息
     openCode: "",
     vuex_loginUser: lifeData.vuex_loginUser || {},
@@ -12851,6 +12862,66 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
+/***/ 429:
+/*!**********************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/util/emitter.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 递归使用 call 方式this指向
+                                                                                                      * @param componentName // 需要找的组件的名称
+                                                                                                      * @param eventName // 事件名称
+                                                                                                      * @param params // 需要传递的参数
+                                                                                                      */
+function _broadcast(componentName, eventName, params) {
+  // 循环子节点找到名称一样的子节点 否则 递归 当前子节点
+  this.$children.map(function (child) {
+    if (componentName === child.$options.name) {
+      child.$emit.apply(child, [eventName].concat(params));
+    } else {
+      _broadcast.apply(child, [componentName, eventName].concat(params));
+    }
+  });
+}var _default =
+{
+  methods: {
+    /**
+              * 派发 (向上查找) (一个)
+              * @param componentName // 需要找的组件的名称
+              * @param eventName // 事件名称
+              * @param params // 需要传递的参数
+              */
+    dispatch: function dispatch(componentName, eventName, params) {
+      var parent = this.$parent || this.$root; //$parent 找到最近的父节点 $root 根节点
+      var name = parent.$options.name; // 获取当前组件实例的name
+      // 如果当前有节点 && 当前没名称 且 当前名称等于需要传进来的名称的时候就去查找当前的节点
+      // 循环出当前名称的一样的组件实例
+      while (parent && (!name || name !== componentName)) {
+        parent = parent.$parent;
+        if (parent) {
+          name = parent.$options.name;
+        }
+      }
+      // 有节点表示当前找到了name一样的实例
+      if (parent) {
+        parent.$emit.apply(parent, [eventName].concat(params));
+      }
+    },
+    /**
+        * 广播 (向下查找) (广播多个)
+        * @param componentName // 需要找的组件的名称
+        * @param eventName // 事件名称
+        * @param params // 需要传递的参数
+        */
+    broadcast: function broadcast(componentName, eventName, params) {
+      _broadcast.call(this, componentName, eventName, params);
+    } } };exports.default = _default;
+
+/***/ }),
+
 /***/ 43:
 /*!*************************************************************!*\
   !*** D:/front/bxfront_devproject/fyzh/common/locales/en.js ***!
@@ -12878,6 +12949,1732 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   common: {
     intro: 'UI framework for rapid development of multiple platforms',
     title: 'uView UI' } };exports.default = _default;
+
+/***/ }),
+
+/***/ 430:
+/*!******************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/util/async-validator.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+/* eslint no-console:0 */
+var formatRegExp = /%[sdj%]/g;
+var warning = function warning() {}; // don't print warning message when in production env or node runtime
+
+if (typeof process !== 'undefined' && Object({"VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}) && "development" !== 'production' && typeof window !==
+'undefined' && typeof document !== 'undefined') {
+  warning = function warning(type, errors) {
+    if (typeof console !== 'undefined' && console.warn) {
+      if (errors.every(function (e) {
+        return typeof e === 'string';
+      })) {
+        console.warn(type, errors);
+      }
+    }
+  };
+}
+
+function convertFieldsError(errors) {
+  if (!errors || !errors.length) return null;
+  var fields = {};
+  errors.forEach(function (error) {
+    var field = error.field;
+    fields[field] = fields[field] || [];
+    fields[field].push(error);
+  });
+  return fields;
+}
+
+function format() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  var i = 1;
+  var f = args[0];
+  var len = args.length;
+
+  if (typeof f === 'function') {
+    return f.apply(null, args.slice(1));
+  }
+
+  if (typeof f === 'string') {
+    var str = String(f).replace(formatRegExp, function (x) {
+      if (x === '%%') {
+        return '%';
+      }
+
+      if (i >= len) {
+        return x;
+      }
+
+      switch (x) {
+        case '%s':
+          return String(args[i++]);
+
+        case '%d':
+          return Number(args[i++]);
+
+        case '%j':
+          try {
+            return JSON.stringify(args[i++]);
+          } catch (_) {
+            return '[Circular]';
+          }
+
+          break;
+
+        default:
+          return x;}
+
+    });
+
+    for (var arg = args[i]; i < len; arg = args[++i]) {
+      str += " " + arg;
+    }
+
+    return str;
+  }
+
+  return f;
+}
+
+function isNativeStringType(type) {
+  return type === 'string' || type === 'url' || type === 'hex' || type === 'email' || type === 'pattern';
+}
+
+function isEmptyValue(value, type) {
+  if (value === undefined || value === null) {
+    return true;
+  }
+
+  if (type === 'array' && Array.isArray(value) && !value.length) {
+    return true;
+  }
+
+  if (isNativeStringType(type) && typeof value === 'string' && !value) {
+    return true;
+  }
+
+  return false;
+}
+
+function asyncParallelArray(arr, func, callback) {
+  var results = [];
+  var total = 0;
+  var arrLength = arr.length;
+
+  function count(errors) {
+    results.push.apply(results, errors);
+    total++;
+
+    if (total === arrLength) {
+      callback(results);
+    }
+  }
+
+  arr.forEach(function (a) {
+    func(a, count);
+  });
+}
+
+function asyncSerialArray(arr, func, callback) {
+  var index = 0;
+  var arrLength = arr.length;
+
+  function next(errors) {
+    if (errors && errors.length) {
+      callback(errors);
+      return;
+    }
+
+    var original = index;
+    index = index + 1;
+
+    if (original < arrLength) {
+      func(arr[original], next);
+    } else {
+      callback([]);
+    }
+  }
+
+  next([]);
+}
+
+function flattenObjArr(objArr) {
+  var ret = [];
+  Object.keys(objArr).forEach(function (k) {
+    ret.push.apply(ret, objArr[k]);
+  });
+  return ret;
+}
+
+function asyncMap(objArr, option, func, callback) {
+  if (option.first) {
+    var _pending = new Promise(function (resolve, reject) {
+      var next = function next(errors) {
+        callback(errors);
+        return errors.length ? reject({
+          errors: errors,
+          fields: convertFieldsError(errors) }) :
+        resolve();
+      };
+
+      var flattenArr = flattenObjArr(objArr);
+      asyncSerialArray(flattenArr, func, next);
+    });
+
+    _pending["catch"](function (e) {
+      return e;
+    });
+
+    return _pending;
+  }
+
+  var firstFields = option.firstFields || [];
+
+  if (firstFields === true) {
+    firstFields = Object.keys(objArr);
+  }
+
+  var objArrKeys = Object.keys(objArr);
+  var objArrLength = objArrKeys.length;
+  var total = 0;
+  var results = [];
+  var pending = new Promise(function (resolve, reject) {
+    var next = function next(errors) {
+      results.push.apply(results, errors);
+      total++;
+
+      if (total === objArrLength) {
+        callback(results);
+        return results.length ? reject({
+          errors: results,
+          fields: convertFieldsError(results) }) :
+        resolve();
+      }
+    };
+
+    if (!objArrKeys.length) {
+      callback(results);
+      resolve();
+    }
+
+    objArrKeys.forEach(function (key) {
+      var arr = objArr[key];
+
+      if (firstFields.indexOf(key) !== -1) {
+        asyncSerialArray(arr, func, next);
+      } else {
+        asyncParallelArray(arr, func, next);
+      }
+    });
+  });
+  pending["catch"](function (e) {
+    return e;
+  });
+  return pending;
+}
+
+function complementError(rule) {
+  return function (oe) {
+    if (oe && oe.message) {
+      oe.field = oe.field || rule.fullField;
+      return oe;
+    }
+
+    return {
+      message: typeof oe === 'function' ? oe() : oe,
+      field: oe.field || rule.fullField };
+
+  };
+}
+
+function deepMerge(target, source) {
+  if (source) {
+    for (var s in source) {
+      if (source.hasOwnProperty(s)) {
+        var value = source[s];
+
+        if (typeof value === 'object' && typeof target[s] === 'object') {
+          target[s] = _extends({}, target[s], {}, value);
+        } else {
+          target[s] = value;
+        }
+      }
+    }
+  }
+
+  return target;
+}
+
+/**
+   *  Rule for validating required fields.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param source The source object being validated.
+   *  @param errors An array of errors that this rule may add
+   *  validation errors to.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function required(rule, value, source, errors, options, type) {
+  if (rule.required && (!source.hasOwnProperty(rule.field) || isEmptyValue(value, type || rule.type))) {
+    errors.push(format(options.messages.required, rule.fullField));
+  }
+}
+
+/**
+   *  Rule for validating whitespace.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param source The source object being validated.
+   *  @param errors An array of errors that this rule may add
+   *  validation errors to.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function whitespace(rule, value, source, errors, options) {
+  if (/^\s+$/.test(value) || value === '') {
+    errors.push(format(options.messages.whitespace, rule.fullField));
+  }
+}
+
+/* eslint max-len:0 */
+
+var pattern = {
+  // http://emailregex.com/
+  email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+  url: new RegExp(
+  "^(?!mailto:)(?:(?:http|https|ftp)://|//)(?:\\S+(?::\\S*)?@)?(?:(?:(?:[1-9]\\d?|1\\d\\d|2[01]\\d|22[0-3])(?:\\.(?:1?\\d{1,2}|2[0-4]\\d|25[0-5])){2}(?:\\.(?:[0-9]\\d?|1\\d\\d|2[0-4]\\d|25[0-4]))|(?:(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)(?:\\.(?:[a-z\\u00a1-\\uffff0-9]+-*)*[a-z\\u00a1-\\uffff0-9]+)*(?:\\.(?:[a-z\\u00a1-\\uffff]{2,})))|localhost)(?::\\d{2,5})?(?:(/|\\?|#)[^\\s]*)?$",
+  'i'),
+  hex: /^#?([a-f0-9]{6}|[a-f0-9]{3})$/i };
+
+var types = {
+  integer: function integer(value) {
+    return types.number(value) && parseInt(value, 10) === value;
+  },
+  "float": function _float(value) {
+    return types.number(value) && !types.integer(value);
+  },
+  array: function array(value) {
+    return Array.isArray(value);
+  },
+  regexp: function regexp(value) {
+    if (value instanceof RegExp) {
+      return true;
+    }
+
+    try {
+      return !!new RegExp(value);
+    } catch (e) {
+      return false;
+    }
+  },
+  date: function date(value) {
+    return typeof value.getTime === 'function' && typeof value.getMonth === 'function' && typeof value.getYear ===
+    'function';
+  },
+  number: function number(value) {
+    if (isNaN(value)) {
+      return false;
+    }
+
+    // 修改源码，将字符串数值先转为数值
+    return typeof +value === 'number';
+  },
+  object: function object(value) {
+    return typeof value === 'object' && !types.array(value);
+  },
+  method: function method(value) {
+    return typeof value === 'function';
+  },
+  email: function email(value) {
+    return typeof value === 'string' && !!value.match(pattern.email) && value.length < 255;
+  },
+  url: function url(value) {
+    return typeof value === 'string' && !!value.match(pattern.url);
+  },
+  hex: function hex(value) {
+    return typeof value === 'string' && !!value.match(pattern.hex);
+  } };
+
+/**
+        *  Rule for validating the type of a value.
+        *
+        *  @param rule The validation rule.
+        *  @param value The value of the field on the source object.
+        *  @param source The source object being validated.
+        *  @param errors An array of errors that this rule may add
+        *  validation errors to.
+        *  @param options The validation options.
+        *  @param options.messages The validation messages.
+        */
+
+function type(rule, value, source, errors, options) {
+  if (rule.required && value === undefined) {
+    required(rule, value, source, errors, options);
+    return;
+  }
+
+  var custom = ['integer', 'float', 'array', 'regexp', 'object', 'method', 'email', 'number', 'date', 'url', 'hex'];
+  var ruleType = rule.type;
+
+  if (custom.indexOf(ruleType) > -1) {
+    if (!types[ruleType](value)) {
+      errors.push(format(options.messages.types[ruleType], rule.fullField, rule.type));
+    } // straight typeof check
+
+  } else if (ruleType && typeof value !== rule.type) {
+    errors.push(format(options.messages.types[ruleType], rule.fullField, rule.type));
+  }
+}
+
+/**
+   *  Rule for validating minimum and maximum allowed values.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param source The source object being validated.
+   *  @param errors An array of errors that this rule may add
+   *  validation errors to.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function range(rule, value, source, errors, options) {
+  var len = typeof rule.len === 'number';
+  var min = typeof rule.min === 'number';
+  var max = typeof rule.max === 'number'; // 正则匹配码点范围从U+010000一直到U+10FFFF的文字（补充平面Supplementary Plane）
+
+  var spRegexp = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
+  var val = value;
+  var key = null;
+  var num = typeof value === 'number';
+  var str = typeof value === 'string';
+  var arr = Array.isArray(value);
+
+  if (num) {
+    key = 'number';
+  } else if (str) {
+    key = 'string';
+  } else if (arr) {
+    key = 'array';
+  } // if the value is not of a supported type for range validation
+  // the validation rule rule should use the
+  // type property to also test for a particular type
+
+
+  if (!key) {
+    return false;
+  }
+
+  if (arr) {
+    val = value.length;
+  }
+
+  if (str) {
+    // 处理码点大于U+010000的文字length属性不准确的bug，如"𠮷𠮷𠮷".lenght !== 3
+    val = value.replace(spRegexp, '_').length;
+  }
+
+  if (len) {
+    if (val !== rule.len) {
+      errors.push(format(options.messages[key].len, rule.fullField, rule.len));
+    }
+  } else if (min && !max && val < rule.min) {
+    errors.push(format(options.messages[key].min, rule.fullField, rule.min));
+  } else if (max && !min && val > rule.max) {
+    errors.push(format(options.messages[key].max, rule.fullField, rule.max));
+  } else if (min && max && (val < rule.min || val > rule.max)) {
+    errors.push(format(options.messages[key].range, rule.fullField, rule.min, rule.max));
+  }
+}
+
+var ENUM = 'enum';
+/**
+                    *  Rule for validating a value exists in an enumerable list.
+                    *
+                    *  @param rule The validation rule.
+                    *  @param value The value of the field on the source object.
+                    *  @param source The source object being validated.
+                    *  @param errors An array of errors that this rule may add
+                    *  validation errors to.
+                    *  @param options The validation options.
+                    *  @param options.messages The validation messages.
+                    */
+
+function enumerable(rule, value, source, errors, options) {
+  rule[ENUM] = Array.isArray(rule[ENUM]) ? rule[ENUM] : [];
+
+  if (rule[ENUM].indexOf(value) === -1) {
+    errors.push(format(options.messages[ENUM], rule.fullField, rule[ENUM].join(', ')));
+  }
+}
+
+/**
+   *  Rule for validating a regular expression pattern.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param source The source object being validated.
+   *  @param errors An array of errors that this rule may add
+   *  validation errors to.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function pattern$1(rule, value, source, errors, options) {
+  if (rule.pattern) {
+    if (rule.pattern instanceof RegExp) {
+      // if a RegExp instance is passed, reset `lastIndex` in case its `global`
+      // flag is accidentally set to `true`, which in a validation scenario
+      // is not necessary and the result might be misleading
+      rule.pattern.lastIndex = 0;
+
+      if (!rule.pattern.test(value)) {
+        errors.push(format(options.messages.pattern.mismatch, rule.fullField, value, rule.pattern));
+      }
+    } else if (typeof rule.pattern === 'string') {
+      var _pattern = new RegExp(rule.pattern);
+
+      if (!_pattern.test(value)) {
+        errors.push(format(options.messages.pattern.mismatch, rule.fullField, value, rule.pattern));
+      }
+    }
+  }
+}
+
+var rules = {
+  required: required,
+  whitespace: whitespace,
+  type: type,
+  range: range,
+  "enum": enumerable,
+  pattern: pattern$1 };
+
+
+/**
+                         *  Performs validation for string types.
+                         *
+                         *  @param rule The validation rule.
+                         *  @param value The value of the field on the source object.
+                         *  @param callback The callback function.
+                         *  @param source The source object being validated.
+                         *  @param options The validation options.
+                         *  @param options.messages The validation messages.
+                         */
+
+function string(rule, value, callback, source, options) {
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (isEmptyValue(value, 'string') && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options, 'string');
+
+    if (!isEmptyValue(value, 'string')) {
+      rules.type(rule, value, source, errors, options);
+      rules.range(rule, value, source, errors, options);
+      rules.pattern(rule, value, source, errors, options);
+
+      if (rule.whitespace === true) {
+        rules.whitespace(rule, value, source, errors, options);
+      }
+    }
+  }
+
+  callback(errors);
+}
+
+/**
+   *  Validates a function.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param callback The callback function.
+   *  @param source The source object being validated.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function method(rule, value, callback, source, options) {
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (isEmptyValue(value) && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options);
+
+    if (value !== undefined) {
+      rules.type(rule, value, source, errors, options);
+    }
+  }
+
+  callback(errors);
+}
+
+/**
+   *  Validates a number.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param callback The callback function.
+   *  @param source The source object being validated.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function number(rule, value, callback, source, options) {
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (value === '') {
+      value = undefined;
+    }
+
+    if (isEmptyValue(value) && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options);
+
+    if (value !== undefined) {
+      rules.type(rule, value, source, errors, options);
+      rules.range(rule, value, source, errors, options);
+    }
+  }
+
+  callback(errors);
+}
+
+/**
+   *  Validates a boolean.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param callback The callback function.
+   *  @param source The source object being validated.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function _boolean(rule, value, callback, source, options) {
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (isEmptyValue(value) && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options);
+
+    if (value !== undefined) {
+      rules.type(rule, value, source, errors, options);
+    }
+  }
+
+  callback(errors);
+}
+
+/**
+   *  Validates the regular expression type.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param callback The callback function.
+   *  @param source The source object being validated.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function regexp(rule, value, callback, source, options) {
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (isEmptyValue(value) && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options);
+
+    if (!isEmptyValue(value)) {
+      rules.type(rule, value, source, errors, options);
+    }
+  }
+
+  callback(errors);
+}
+
+/**
+   *  Validates a number is an integer.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param callback The callback function.
+   *  @param source The source object being validated.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function integer(rule, value, callback, source, options) {
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (isEmptyValue(value) && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options);
+
+    if (value !== undefined) {
+      rules.type(rule, value, source, errors, options);
+      rules.range(rule, value, source, errors, options);
+    }
+  }
+
+  callback(errors);
+}
+
+/**
+   *  Validates a number is a floating point number.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param callback The callback function.
+   *  @param source The source object being validated.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function floatFn(rule, value, callback, source, options) {
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (isEmptyValue(value) && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options);
+
+    if (value !== undefined) {
+      rules.type(rule, value, source, errors, options);
+      rules.range(rule, value, source, errors, options);
+    }
+  }
+
+  callback(errors);
+}
+
+/**
+   *  Validates an array.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param callback The callback function.
+   *  @param source The source object being validated.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function array(rule, value, callback, source, options) {
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (isEmptyValue(value, 'array') && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options, 'array');
+
+    if (!isEmptyValue(value, 'array')) {
+      rules.type(rule, value, source, errors, options);
+      rules.range(rule, value, source, errors, options);
+    }
+  }
+
+  callback(errors);
+}
+
+/**
+   *  Validates an object.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param callback The callback function.
+   *  @param source The source object being validated.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function object(rule, value, callback, source, options) {
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (isEmptyValue(value) && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options);
+
+    if (value !== undefined) {
+      rules.type(rule, value, source, errors, options);
+    }
+  }
+
+  callback(errors);
+}
+
+var ENUM$1 = 'enum';
+/**
+                      *  Validates an enumerable list.
+                      *
+                      *  @param rule The validation rule.
+                      *  @param value The value of the field on the source object.
+                      *  @param callback The callback function.
+                      *  @param source The source object being validated.
+                      *  @param options The validation options.
+                      *  @param options.messages The validation messages.
+                      */
+
+function enumerable$1(rule, value, callback, source, options) {
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (isEmptyValue(value) && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options);
+
+    if (value !== undefined) {
+      rules[ENUM$1](rule, value, source, errors, options);
+    }
+  }
+
+  callback(errors);
+}
+
+/**
+   *  Validates a regular expression pattern.
+   *
+   *  Performs validation when a rule only contains
+   *  a pattern property but is not declared as a string type.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param callback The callback function.
+   *  @param source The source object being validated.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function pattern$2(rule, value, callback, source, options) {
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (isEmptyValue(value, 'string') && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options);
+
+    if (!isEmptyValue(value, 'string')) {
+      rules.pattern(rule, value, source, errors, options);
+    }
+  }
+
+  callback(errors);
+}
+
+function date(rule, value, callback, source, options) {
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (isEmptyValue(value) && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options);
+
+    if (!isEmptyValue(value)) {
+      var dateObject;
+
+      if (typeof value === 'number') {
+        dateObject = new Date(value);
+      } else {
+        dateObject = value;
+      }
+
+      rules.type(rule, dateObject, source, errors, options);
+
+      if (dateObject) {
+        rules.range(rule, dateObject.getTime(), source, errors, options);
+      }
+    }
+  }
+
+  callback(errors);
+}
+
+function required$1(rule, value, callback, source, options) {
+  var errors = [];
+  var type = Array.isArray(value) ? 'array' : typeof value;
+  rules.required(rule, value, source, errors, options, type);
+  callback(errors);
+}
+
+function type$1(rule, value, callback, source, options) {
+  var ruleType = rule.type;
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (isEmptyValue(value, ruleType) && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options, ruleType);
+
+    if (!isEmptyValue(value, ruleType)) {
+      rules.type(rule, value, source, errors, options);
+    }
+  }
+
+  callback(errors);
+}
+
+/**
+   *  Performs validation for any type.
+   *
+   *  @param rule The validation rule.
+   *  @param value The value of the field on the source object.
+   *  @param callback The callback function.
+   *  @param source The source object being validated.
+   *  @param options The validation options.
+   *  @param options.messages The validation messages.
+   */
+
+function any(rule, value, callback, source, options) {
+  var errors = [];
+  var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
+
+  if (validate) {
+    if (isEmptyValue(value) && !rule.required) {
+      return callback();
+    }
+
+    rules.required(rule, value, source, errors, options);
+  }
+
+  callback(errors);
+}
+
+var validators = {
+  string: string,
+  method: method,
+  number: number,
+  "boolean": _boolean,
+  regexp: regexp,
+  integer: integer,
+  "float": floatFn,
+  array: array,
+  object: object,
+  "enum": enumerable$1,
+  pattern: pattern$2,
+  date: date,
+  url: type$1,
+  hex: type$1,
+  email: type$1,
+  required: required$1,
+  any: any };
+
+
+function newMessages() {
+  return {
+    "default": 'Validation error on field %s',
+    required: '%s is required',
+    "enum": '%s must be one of %s',
+    whitespace: '%s cannot be empty',
+    date: {
+      format: '%s date %s is invalid for format %s',
+      parse: '%s date could not be parsed, %s is invalid ',
+      invalid: '%s date %s is invalid' },
+
+    types: {
+      string: '%s is not a %s',
+      method: '%s is not a %s (function)',
+      array: '%s is not an %s',
+      object: '%s is not an %s',
+      number: '%s is not a %s',
+      date: '%s is not a %s',
+      "boolean": '%s is not a %s',
+      integer: '%s is not an %s',
+      "float": '%s is not a %s',
+      regexp: '%s is not a valid %s',
+      email: '%s is not a valid %s',
+      url: '%s is not a valid %s',
+      hex: '%s is not a valid %s' },
+
+    string: {
+      len: '%s must be exactly %s characters',
+      min: '%s must be at least %s characters',
+      max: '%s cannot be longer than %s characters',
+      range: '%s must be between %s and %s characters' },
+
+    number: {
+      len: '%s must equal %s',
+      min: '%s cannot be less than %s',
+      max: '%s cannot be greater than %s',
+      range: '%s must be between %s and %s' },
+
+    array: {
+      len: '%s must be exactly %s in length',
+      min: '%s cannot be less than %s in length',
+      max: '%s cannot be greater than %s in length',
+      range: '%s must be between %s and %s in length' },
+
+    pattern: {
+      mismatch: '%s value %s does not match pattern %s' },
+
+    clone: function clone() {
+      var cloned = JSON.parse(JSON.stringify(this));
+      cloned.clone = this.clone;
+      return cloned;
+    } };
+
+}
+var messages = newMessages();
+
+/**
+                               *  Encapsulates a validation schema.
+                               *
+                               *  @param descriptor An object declaring validation rules
+                               *  for this schema.
+                               */
+
+function Schema(descriptor) {
+  this.rules = null;
+  this._messages = messages;
+  this.define(descriptor);
+}
+
+Schema.prototype = {
+  messages: function messages(_messages) {
+    if (_messages) {
+      this._messages = deepMerge(newMessages(), _messages);
+    }
+
+    return this._messages;
+  },
+  define: function define(rules) {
+    if (!rules) {
+      throw new Error('Cannot configure a schema with no rules');
+    }
+
+    if (typeof rules !== 'object' || Array.isArray(rules)) {
+      throw new Error('Rules must be an object');
+    }
+
+    this.rules = {};
+    var z;
+    var item;
+
+    for (z in rules) {
+      if (rules.hasOwnProperty(z)) {
+        item = rules[z];
+        this.rules[z] = Array.isArray(item) ? item : [item];
+      }
+    }
+  },
+  validate: function validate(source_, o, oc) {
+    var _this = this;
+
+    if (o === void 0) {
+      o = {};
+    }
+
+    if (oc === void 0) {
+      oc = function oc() {};
+    }
+
+    var source = source_;
+    var options = o;
+    var callback = oc;
+
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+
+    if (!this.rules || Object.keys(this.rules).length === 0) {
+      if (callback) {
+        callback();
+      }
+
+      return Promise.resolve();
+    }
+
+    function complete(results) {
+      var i;
+      var errors = [];
+      var fields = {};
+
+      function add(e) {
+        if (Array.isArray(e)) {
+          var _errors;
+
+          errors = (_errors = errors).concat.apply(_errors, e);
+        } else {
+          errors.push(e);
+        }
+      }
+
+      for (i = 0; i < results.length; i++) {
+        add(results[i]);
+      }
+
+      if (!errors.length) {
+        errors = null;
+        fields = null;
+      } else {
+        fields = convertFieldsError(errors);
+      }
+
+      callback(errors, fields);
+    }
+
+    if (options.messages) {
+      var messages$1 = this.messages();
+
+      if (messages$1 === messages) {
+        messages$1 = newMessages();
+      }
+
+      deepMerge(messages$1, options.messages);
+      options.messages = messages$1;
+    } else {
+      options.messages = this.messages();
+    }
+
+    var arr;
+    var value;
+    var series = {};
+    var keys = options.keys || Object.keys(this.rules);
+    keys.forEach(function (z) {
+      arr = _this.rules[z];
+      value = source[z];
+      arr.forEach(function (r) {
+        var rule = r;
+
+        if (typeof rule.transform === 'function') {
+          if (source === source_) {
+            source = _extends({}, source);
+          }
+
+          value = source[z] = rule.transform(value);
+        }
+
+        if (typeof rule === 'function') {
+          rule = {
+            validator: rule };
+
+        } else {
+          rule = _extends({}, rule);
+        }
+
+        rule.validator = _this.getValidationMethod(rule);
+        rule.field = z;
+        rule.fullField = rule.fullField || z;
+        rule.type = _this.getType(rule);
+
+        if (!rule.validator) {
+          return;
+        }
+
+        series[z] = series[z] || [];
+        series[z].push({
+          rule: rule,
+          value: value,
+          source: source,
+          field: z });
+
+      });
+    });
+    var errorFields = {};
+    return asyncMap(series, options, function (data, doIt) {
+      var rule = data.rule;
+      var deep = (rule.type === 'object' || rule.type === 'array') && (typeof rule.fields === 'object' || typeof rule.defaultField ===
+      'object');
+      deep = deep && (rule.required || !rule.required && data.value);
+      rule.field = data.field;
+
+      function addFullfield(key, schema) {
+        return _extends({}, schema, {
+          fullField: rule.fullField + "." + key });
+
+      }
+
+      function cb(e) {
+        if (e === void 0) {
+          e = [];
+        }
+
+        var errors = e;
+
+        if (!Array.isArray(errors)) {
+          errors = [errors];
+        }
+
+        if (!options.suppressWarning && errors.length) {
+          Schema.warning('async-validator:', errors);
+        }
+
+        if (errors.length && rule.message) {
+          errors = [].concat(rule.message);
+        }
+
+        errors = errors.map(complementError(rule));
+
+        if (options.first && errors.length) {
+          errorFields[rule.field] = 1;
+          return doIt(errors);
+        }
+
+        if (!deep) {
+          doIt(errors);
+        } else {
+          // if rule is required but the target object
+          // does not exist fail at the rule level and don't
+          // go deeper
+          if (rule.required && !data.value) {
+            if (rule.message) {
+              errors = [].concat(rule.message).map(complementError(rule));
+            } else if (options.error) {
+              errors = [options.error(rule, format(options.messages.required, rule.field))];
+            } else {
+              errors = [];
+            }
+
+            return doIt(errors);
+          }
+
+          var fieldsSchema = {};
+
+          if (rule.defaultField) {
+            for (var k in data.value) {
+              if (data.value.hasOwnProperty(k)) {
+                fieldsSchema[k] = rule.defaultField;
+              }
+            }
+          }
+
+          fieldsSchema = _extends({}, fieldsSchema, {}, data.rule.fields);
+
+          for (var f in fieldsSchema) {
+            if (fieldsSchema.hasOwnProperty(f)) {
+              var fieldSchema = Array.isArray(fieldsSchema[f]) ? fieldsSchema[f] : [fieldsSchema[f]];
+              fieldsSchema[f] = fieldSchema.map(addFullfield.bind(null, f));
+            }
+          }
+
+          var schema = new Schema(fieldsSchema);
+          schema.messages(options.messages);
+
+          if (data.rule.options) {
+            data.rule.options.messages = options.messages;
+            data.rule.options.error = options.error;
+          }
+
+          schema.validate(data.value, data.rule.options || options, function (errs) {
+            var finalErrors = [];
+
+            if (errors && errors.length) {
+              finalErrors.push.apply(finalErrors, errors);
+            }
+
+            if (errs && errs.length) {
+              finalErrors.push.apply(finalErrors, errs);
+            }
+
+            doIt(finalErrors.length ? finalErrors : null);
+          });
+        }
+      }
+
+      var res;
+
+      if (rule.asyncValidator) {
+        res = rule.asyncValidator(rule, data.value, cb, data.source, options);
+      } else if (rule.validator) {
+        res = rule.validator(rule, data.value, cb, data.source, options);
+
+        if (res === true) {
+          cb();
+        } else if (res === false) {
+          cb(rule.message || rule.field + " fails");
+        } else if (res instanceof Array) {
+          cb(res);
+        } else if (res instanceof Error) {
+          cb(res.message);
+        }
+      }
+
+      if (res && res.then) {
+        res.then(function () {
+          return cb();
+        }, function (e) {
+          return cb(e);
+        });
+      }
+    }, function (results) {
+      complete(results);
+    });
+  },
+  getType: function getType(rule) {
+    if (rule.type === undefined && rule.pattern instanceof RegExp) {
+      rule.type = 'pattern';
+    }
+
+    if (typeof rule.validator !== 'function' && rule.type && !validators.hasOwnProperty(rule.type)) {
+      throw new Error(format('Unknown rule type %s', rule.type));
+    }
+
+    return rule.type || 'string';
+  },
+  getValidationMethod: function getValidationMethod(rule) {
+    if (typeof rule.validator === 'function') {
+      return rule.validator;
+    }
+
+    var keys = Object.keys(rule);
+    var messageIndex = keys.indexOf('message');
+
+    if (messageIndex !== -1) {
+      keys.splice(messageIndex, 1);
+    }
+
+    if (keys.length === 1 && keys[0] === 'required') {
+      return validators.required;
+    }
+
+    return validators[this.getType(rule)] || false;
+  } };
+
+
+Schema.register = function register(type, validator) {
+  if (typeof validator !== 'function') {
+    throw new Error('Cannot register a validator by type, validator is not a function');
+  }
+
+  validators[type] = validator;
+};
+
+Schema.warning = warning;
+Schema.messages = messages;var _default =
+
+Schema;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../application/HBuilderX.2.7.14.20200618.full/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 431)))
+
+/***/ }),
+
+/***/ 431:
+/*!********************************************************!*\
+  !*** ./node_modules/node-libs-browser/mock/process.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports.nextTick = function nextTick(fn) {
+    var args = Array.prototype.slice.call(arguments);
+    args.shift();
+    setTimeout(function () {
+        fn.apply(null, args);
+    }, 0);
+};
+
+exports.platform = exports.arch = 
+exports.execPath = exports.title = 'browser';
+exports.pid = 1;
+exports.browser = true;
+exports.env = {};
+exports.argv = [];
+
+exports.binding = function (name) {
+	throw new Error('No such module. (Possibly not yet loaded)')
+};
+
+(function () {
+    var cwd = '/';
+    var path;
+    exports.cwd = function () { return cwd };
+    exports.chdir = function (dir) {
+        if (!path) path = __webpack_require__(/*! path */ 432);
+        cwd = path.resolve(dir, cwd);
+    };
+})();
+
+exports.exit = exports.kill = 
+exports.umask = exports.dlopen = 
+exports.uptime = exports.memoryUsage = 
+exports.uvCounters = function() {};
+exports.features = {};
+
+
+/***/ }),
+
+/***/ 432:
+/*!***********************************************!*\
+  !*** ./node_modules/path-browserify/index.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {// .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
+// backported and transplited with Babel, with backwards-compat fixes
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+// resolves . and .. elements in a path array with directory names there
+// must be no slashes, empty elements, or device names (c:\) in the array
+// (so also no leading and trailing slashes - it does not distinguish
+// relative and absolute paths)
+function normalizeArray(parts, allowAboveRoot) {
+  // if the path tries to go above the root, `up` ends up > 0
+  var up = 0;
+  for (var i = parts.length - 1; i >= 0; i--) {
+    var last = parts[i];
+    if (last === '.') {
+      parts.splice(i, 1);
+    } else if (last === '..') {
+      parts.splice(i, 1);
+      up++;
+    } else if (up) {
+      parts.splice(i, 1);
+      up--;
+    }
+  }
+
+  // if the path is allowed to go above the root, restore leading ..s
+  if (allowAboveRoot) {
+    for (; up--; up) {
+      parts.unshift('..');
+    }
+  }
+
+  return parts;
+}
+
+// path.resolve([from ...], to)
+// posix version
+exports.resolve = function() {
+  var resolvedPath = '',
+      resolvedAbsolute = false;
+
+  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+    var path = (i >= 0) ? arguments[i] : process.cwd();
+
+    // Skip empty and invalid entries
+    if (typeof path !== 'string') {
+      throw new TypeError('Arguments to path.resolve must be strings');
+    } else if (!path) {
+      continue;
+    }
+
+    resolvedPath = path + '/' + resolvedPath;
+    resolvedAbsolute = path.charAt(0) === '/';
+  }
+
+  // At this point the path should be resolved to a full absolute path, but
+  // handle relative paths to be safe (might happen when process.cwd() fails)
+
+  // Normalize the path
+  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
+    return !!p;
+  }), !resolvedAbsolute).join('/');
+
+  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+};
+
+// path.normalize(path)
+// posix version
+exports.normalize = function(path) {
+  var isAbsolute = exports.isAbsolute(path),
+      trailingSlash = substr(path, -1) === '/';
+
+  // Normalize the path
+  path = normalizeArray(filter(path.split('/'), function(p) {
+    return !!p;
+  }), !isAbsolute).join('/');
+
+  if (!path && !isAbsolute) {
+    path = '.';
+  }
+  if (path && trailingSlash) {
+    path += '/';
+  }
+
+  return (isAbsolute ? '/' : '') + path;
+};
+
+// posix version
+exports.isAbsolute = function(path) {
+  return path.charAt(0) === '/';
+};
+
+// posix version
+exports.join = function() {
+  var paths = Array.prototype.slice.call(arguments, 0);
+  return exports.normalize(filter(paths, function(p, index) {
+    if (typeof p !== 'string') {
+      throw new TypeError('Arguments to path.join must be strings');
+    }
+    return p;
+  }).join('/'));
+};
+
+
+// path.relative(from, to)
+// posix version
+exports.relative = function(from, to) {
+  from = exports.resolve(from).substr(1);
+  to = exports.resolve(to).substr(1);
+
+  function trim(arr) {
+    var start = 0;
+    for (; start < arr.length; start++) {
+      if (arr[start] !== '') break;
+    }
+
+    var end = arr.length - 1;
+    for (; end >= 0; end--) {
+      if (arr[end] !== '') break;
+    }
+
+    if (start > end) return [];
+    return arr.slice(start, end - start + 1);
+  }
+
+  var fromParts = trim(from.split('/'));
+  var toParts = trim(to.split('/'));
+
+  var length = Math.min(fromParts.length, toParts.length);
+  var samePartsLength = length;
+  for (var i = 0; i < length; i++) {
+    if (fromParts[i] !== toParts[i]) {
+      samePartsLength = i;
+      break;
+    }
+  }
+
+  var outputParts = [];
+  for (var i = samePartsLength; i < fromParts.length; i++) {
+    outputParts.push('..');
+  }
+
+  outputParts = outputParts.concat(toParts.slice(samePartsLength));
+
+  return outputParts.join('/');
+};
+
+exports.sep = '/';
+exports.delimiter = ':';
+
+exports.dirname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  if (path.length === 0) return '.';
+  var code = path.charCodeAt(0);
+  var hasRoot = code === 47 /*/*/;
+  var end = -1;
+  var matchedSlash = true;
+  for (var i = path.length - 1; i >= 1; --i) {
+    code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        if (!matchedSlash) {
+          end = i;
+          break;
+        }
+      } else {
+      // We saw the first non-path separator
+      matchedSlash = false;
+    }
+  }
+
+  if (end === -1) return hasRoot ? '/' : '.';
+  if (hasRoot && end === 1) {
+    // return '//';
+    // Backwards-compat fix:
+    return '/';
+  }
+  return path.slice(0, end);
+};
+
+function basename(path) {
+  if (typeof path !== 'string') path = path + '';
+
+  var start = 0;
+  var end = -1;
+  var matchedSlash = true;
+  var i;
+
+  for (i = path.length - 1; i >= 0; --i) {
+    if (path.charCodeAt(i) === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          start = i + 1;
+          break;
+        }
+      } else if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // path component
+      matchedSlash = false;
+      end = i + 1;
+    }
+  }
+
+  if (end === -1) return '';
+  return path.slice(start, end);
+}
+
+// Uses a mixed approach for backwards-compatibility, as ext behavior changed
+// in new Node.js versions, so only basename() above is backported here
+exports.basename = function (path, ext) {
+  var f = basename(path);
+  if (ext && f.substr(-1 * ext.length) === ext) {
+    f = f.substr(0, f.length - ext.length);
+  }
+  return f;
+};
+
+exports.extname = function (path) {
+  if (typeof path !== 'string') path = path + '';
+  var startDot = -1;
+  var startPart = 0;
+  var end = -1;
+  var matchedSlash = true;
+  // Track the state of characters (if any) we see before our first dot and
+  // after any path separator we find
+  var preDotState = 0;
+  for (var i = path.length - 1; i >= 0; --i) {
+    var code = path.charCodeAt(i);
+    if (code === 47 /*/*/) {
+        // If we reached a path separator that was not part of a set of path
+        // separators at the end of the string, stop now
+        if (!matchedSlash) {
+          startPart = i + 1;
+          break;
+        }
+        continue;
+      }
+    if (end === -1) {
+      // We saw the first non-path separator, mark this as the end of our
+      // extension
+      matchedSlash = false;
+      end = i + 1;
+    }
+    if (code === 46 /*.*/) {
+        // If this is our first dot, mark it as the start of our extension
+        if (startDot === -1)
+          startDot = i;
+        else if (preDotState !== 1)
+          preDotState = 1;
+    } else if (startDot !== -1) {
+      // We saw a non-dot and non-path separator before our dot, so we should
+      // have a good chance at having a non-empty extension
+      preDotState = -1;
+    }
+  }
+
+  if (startDot === -1 || end === -1 ||
+      // We saw a non-dot character immediately before the dot
+      preDotState === 0 ||
+      // The (right-most) trimmed path component is exactly '..'
+      preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
+    return '';
+  }
+  return path.slice(startDot, end);
+};
+
+function filter (xs, f) {
+    if (xs.filter) return xs.filter(f);
+    var res = [];
+    for (var i = 0; i < xs.length; i++) {
+        if (f(xs[i], i, xs)) res.push(xs[i]);
+    }
+    return res;
+}
+
+// String.prototype.substr - negative index don't work in IE8
+var substr = 'ab'.substr(-1) === 'b'
+    ? function (str, start, len) { return str.substr(start, len) }
+    : function (str, start, len) {
+        if (start < 0) start = str.length + start;
+        return str.substr(start, len);
+    }
+;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 431)))
 
 /***/ }),
 
@@ -13117,7 +14914,7 @@ var install = function install(Vue, vm) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getCart = exports.getPayParams = exports.toPlaceOrder = exports.getImagePath = exports.getItemDetail = exports.getFilePath = exports.getPageItem = exports.wxOpenLogin = exports.wxLogin = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 19));var _config = _interopRequireDefault(__webpack_require__(/*! @/common/config.js */ 46));
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.getMemberInfo = exports.getCart = exports.getPayParams = exports.toPlaceOrder = exports.getImagePath = exports.getItemDetail = exports.getFilePath = exports.getPageItem = exports.wxOpenLogin = exports.wxLogin = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 19));var _config = _interopRequireDefault(__webpack_require__(/*! @/common/config.js */ 46));
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _index = _interopRequireDefault(__webpack_require__(/*! @/store/index.js */ 40));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 /**
@@ -13178,7 +14975,10 @@ var getCart = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE
                 "pageNo": 1,
                 "rownumber": 50 },
 
-              "order": [] };if (!
+              "order": [{
+                colName: 'create_time',
+                orderType: 'desc' }] };if (!
+
 
             user_no) {_context2.next = 8;break;}_context2.next = 5;return (
               uni.$u.post(url, req));case 5:res = _context2.sent;
@@ -13212,13 +15012,17 @@ exports.getCart = getCart;var getMemberInfo = /*#__PURE__*/function () {var _ref
               uni.$u.post(url, req));case 6:res = _context3.sent;
             if (res.state === 'SUCCESS') {
               memberInfo = res.data;
-              uni.$u.vuex('vuex_memberInfo', res.data);
+              if (memberInfo.length > 0) {
+                uni.$u.vuex('vuex_memberInfo', res.data[0]);
+              } else {
+                uni.$u.vuex('vuex_memberInfo', false);
+              }
             }
             // hy_user_no
           case 8:case "end":return _context3.stop();}}}, _callee3);}));return function getMemberInfo(_x2) {return _ref3.apply(this, arguments);};}();
 
 // 小程序开户登录
-var wxOpenLogin = /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(wxAuthUserInfo) {var openCode, userInfo, url, data, req, response, resData;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
+exports.getMemberInfo = getMemberInfo;var wxOpenLogin = /*#__PURE__*/function () {var _ref4 = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4(wxAuthUserInfo) {var openCode, userInfo, url, data, req, response, resData;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
             openCode = _index.default === null || _index.default === void 0 ? void 0 : _index.default.state.openCode;
 
             userInfo =

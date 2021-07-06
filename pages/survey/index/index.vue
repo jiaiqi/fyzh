@@ -41,16 +41,13 @@
 			</view>
 			<view class="quiz-question">
 				<view class="quiz-question-contetn">
-					<!-- 	<view class="quiz-item" v-for="(field,index) in configCols">
-						<bx-form-item labelPosition="top" optionMode="normal" @on-value-change="onRadioChange"
-							@on-value-blur="onRadioBlur" v-if="currentQuestion===index" :key="field.column"
-							:field="field" pageType="add"></bx-form-item>
-					</view> -->
 					<bx-form labelPosition="top" optionMode="normal" ref="bxform" :fields="[currentCol]"
 						BxformType="form" pageType="add" @value-blur="saveValue"></bx-form>
 				</view>
 			</view>
-			<view class="quiz-respond"></view>
+			<view class="quiz-respond">
+				
+			</view>
 		</view>
 		<view class="quiz-bottom bg-black" v-if="contentType === 'question'">
 			<view class="left" v-if="currentQuestion === 0" @click="changeQuestion('start')">返回</view>
@@ -379,7 +376,6 @@
 									});
 								}
 								if (data.user_data) {
-									console.log('data.answer_times', data.answer_times);
 									configCols.forEach(item => {
 										if (this.formType === 'detail') {
 											item.disabled = true;

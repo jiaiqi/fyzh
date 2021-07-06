@@ -7,11 +7,11 @@
 			</view>
 		</view>
 		<view class="single" v-if="layout==='single'">
-			<view class="goods-item" v-for="(item,index) in leftList" @click="toGoodsDetail(item)">
-				<u-lazy-load class="image" threshold="-450" height="200" :image="item.url" :index="index"
-					v-if="item[image]">
+			<view class="goods-item" v-for="(item,index) in goodsList" @click="toGoodsDetail(item)">
+				<u-lazy-load class="image"  height="200" :image="item.url" :index="index"
+					error-img="@/static/icon/goods.png" v-if="item.url">
 				</u-lazy-load>
-				<view class="image" v-else>{{ item[name].slice(0, 4) }}</view>
+				<u-lazy-load class="image"  height="200" image="/static/icon/goods.png" v-else />
 				<view class="goods-info">
 					<view class="goods-name">{{ item[name]||'' }}</view>
 					<view class="desc" v-html="item[desc]" v-if="item[desc]"></view>
@@ -25,9 +25,10 @@
 		<view class="double-column" v-if="layout==='double'">
 			<view class="left-list">
 				<view class="goods-item" v-for="(item,index) in leftList" @click="toGoodsDetail(item)">
-					<u-lazy-load threshold="-450" height="200" :image="item.url" :index="index" v-if="item[image]">
+					<u-lazy-load  height="200" :image="item.url" v-if="item.url" :index="index"
+						error-img="@/static/icon/goods.png">
 					</u-lazy-load>
-					<view class="goods-image" v-else>{{ item[name].slice(0, 4) }}</view>
+					<u-lazy-load class="image" threshold="-450" height="200" image="/static/icon/goods.png" v-else />
 					<view class="goods-info">
 						<view class="goods-name">{{ item[name]||'' }}</view>
 						<view class="desc" v-html="item[desc]" v-if="item[desc]"></view>
@@ -40,9 +41,10 @@
 			</view>
 			<view class="right-list">
 				<view class="goods-item" v-for="item in rightList" @click="toGoodsDetail(item)">
-					<u-lazy-load threshold="-450" :image="item.url" :index="index" v-if="item[image]">
+					<u-lazy-load threshold="-450" :image="item.url" v-if="item.url" :index="index"
+						error-img="@/static/icon/goods.png">
 					</u-lazy-load>
-					<view class="goods-image" v-else>{{ item[name].slice(0, 4) }}</view>
+					<u-lazy-load class="image" threshold="-450" height="200" image="/static/icon/goods.png" v-else />
 					<view class="goods-info">
 						<view class="goods-name">{{ item[name]||'' }}</view>
 						<view class="desc" v-html="item[desc]" v-if="item[desc]"></view>
@@ -84,7 +86,8 @@
 		},
 		data() {
 			return {
-				layout: "double",
+				errorImg: require('@/static/icon/goods.png'),
+				layout: "single",
 				leftList: [],
 				rightList: [],
 				goodsList: [],
@@ -95,8 +98,29 @@
 				}
 			};
 		},
+		watch: {
+			list: {
+				handler(newValue, oldValue) {
+					if (Array.isArray(newValue)) {
+						this.goodsList = newValue
+						let leftList = []
+						let rightList = []
+						newValue.forEach((item, index) => {
+							if (index % 2 === 0) {
+								leftList.push(item)
+							} else {
+								rightList.push(item)
+							}
+						})
+						this.leftList = leftList
+						this.rightList = rightList
+					}
+				}
+			}
+		},
 		created() {
-			this.getGoodsListData()
+			
+			// this.getGoodsListData()
 			if (this.defaultLayout) {
 				this.layout = this.defaultLayout
 			}
@@ -114,10 +138,7 @@
 					"page": {
 						"pageNo": this.page.pageNo,
 						"rownumber": this.page.rownumber
-					},
-					"order": [],
-					"draft": false,
-					"query_source": "list_page"
+					}
 				}
 				let url = '/fyzhmd/select/srvstore_goods_mgmt_select'
 				this.$u.post(url, req).then(res => {
@@ -178,7 +199,7 @@
 		props: {
 			defaultLayout: {
 				type: String,
-				default: "double"
+				default: "single"
 			},
 			storeNo: {
 				type: String
@@ -213,11 +234,9 @@
 		// column-count: 2;
 		// column-gap: 10px;
 		// padding: 0 5px 20px;
-		flex-wrap: wrap;
+		flex-direction: column;
 
-		&.single {
-			flex-direction: column;
-		}
+		&.single {}
 
 		.utils-bar {
 			margin: 20rpx 20rpx 0;
@@ -243,13 +262,14 @@
 
 			.goods-item {
 				width: 100%;
-				display: flex;
-				align-items: center;
+				// display: flex;
+				// align-items: center;
 				min-height: 200rpx;
 
 				.image {
-					flex: 0.8;
 					text-align: center;
+					min-height: 100rpx;
+					font-size: 40rpx;
 				}
 
 				.goods-info {

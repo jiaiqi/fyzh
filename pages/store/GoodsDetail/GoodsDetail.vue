@@ -61,6 +61,20 @@
 		},
 		methods: {
 			toCart() {
+				if (!this.vuex_memberInfo?.id) {
+					uni.showModal({
+						title: '提示',
+						content: "加入会员后才能进行此操作，是否需要注册为会员？",
+						success(res) {
+							if (res.confirm) {
+								uni.navigateTo({
+									url: '/page/mine/memberReg/memberReg'
+								})
+							}
+						}
+					})
+					return
+				}
 				uni.navigateTo({
 					url: '/pages/store/cart/cart'
 				})
@@ -68,6 +82,20 @@
 			add2cart() {
 				// 加入购物车
 				// 购物车中有相同商品时 商品数量+1
+				if (!this.vuex_memberInfo?.id) {
+					uni.showModal({
+						title: '提示',
+						content: "加入会员后才能进行此操作，是否需要注册为会员？",
+						success(res) {
+							if (res.confirm) {
+								uni.navigateTo({
+									url: '/page/mine/memberReg/memberReg'
+								})
+							}
+						}
+					})
+					return
+				}
 				let url = '/fyzhmd/operate/srvstore_shop_cart_goods_add'
 				let req = [{
 					"serviceName": "srvstore_shop_cart_goods_add",
@@ -75,7 +103,7 @@
 					"data": [{
 						"user_no": this.vuex_loginUser.user_no,
 						"gd_no": this.goodsInfo.gd_no,
-						"gd_img":this.goodsInfo.gd_img,
+						"gd_img": this.goodsInfo.gd_img,
 						"goods_name": this.goodsInfo.gd_name,
 						"sum_price": this.goodsInfo.price,
 						"unit": this.goodsInfo.unit,
@@ -97,7 +125,7 @@
 							"data": [{
 								"user_no": this.vuex_loginUser.user_no,
 								"gd_no": this.goodsInfo.gd_no,
-								"gd_img":this.goodsInfo.gd_img,
+								"gd_img": this.goodsInfo.gd_img,
 								"goods_name": this.goodsInfo.gd_name,
 								"sum_price": this.goodsInfo.price * (goods.amount + 1),
 								"unit": this.goodsInfo.unit,
@@ -126,6 +154,20 @@
 				return toPreviewImage(e)
 			},
 			payOrder() {
+				if (!this.vuex_memberInfo?.id) {
+					uni.showModal({
+						title: '提示',
+						content: "加入会员后才能进行此操作，是否需要注册为会员？",
+						success(res) {
+							if (res.confirm) {
+								uni.navigateTo({
+									url: '/page/mine/memberReg/memberReg'
+								})
+							}
+						}
+					})
+					return
+				}
 				let goodsInfo = this.$u.deepClone(this.goodsInfo)
 				goodsInfo.name = goodsInfo.gd_name
 				goodsInfo.image = goodsInfo.gd_img

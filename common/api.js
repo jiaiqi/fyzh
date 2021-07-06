@@ -59,7 +59,10 @@ const getCart = async (user_no) => {
 			"pageNo": 1,
 			"rownumber": 50
 		},
-		"order": []
+		"order": [{
+			colName:'create_time',
+			orderType:'desc'
+		}]
 	}
 	if (user_no) {
 		let res = await uni.$u.post(url, req)
@@ -93,7 +96,11 @@ const getMemberInfo = async (hy_user_no) => {
 	const res = await uni.$u.post(url, req)
 	if (res.state === 'SUCCESS') {
 		let memberInfo = res.data
-		uni.$u.vuex('vuex_memberInfo', res.data)
+		if(memberInfo.length>0){
+			uni.$u.vuex('vuex_memberInfo', res.data[0])
+		}else{
+			uni.$u.vuex('vuex_memberInfo', false)
+		}
 	}
 	// hy_user_no
 }
@@ -376,5 +383,6 @@ export {
 	getImagePath,
 	toPlaceOrder,
 	getPayParams,
-	getCart
+	getCart,
+	getMemberInfo
 }

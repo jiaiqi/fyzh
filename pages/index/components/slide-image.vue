@@ -1,5 +1,7 @@
 <template>
-	<u-swiper :list="swiperList" :height="300" border-radius="0" @click="clickImage"></u-swiper>
+	<view class="slide-image">
+		<u-swiper :list="swiperList" border-radiu="10" bg-color="#ffffff"  :effect3d="true" :height="300"  @click="clickImage"></u-swiper>
+	</view>
 </template>
 
 <script>
@@ -69,3 +71,9 @@
 		},
 	}
 </script>
+<style>
+	.slide-image{
+		background-color: #fff;
+		padding: 20rpx;
+	}
+</style>

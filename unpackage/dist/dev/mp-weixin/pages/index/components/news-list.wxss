@@ -5,7 +5,6 @@
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
 .list-wrap.data-v-b4fbdc16 {
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 20rpx;
 }
 .list-wrap.tab-list.data-v-b4fbdc16 {
@@ -53,10 +52,13 @@
   display: -webkit-flex;
   display: flex;
   padding: 20rpx 0;
-  border-bottom: 1rpx solid #f1f1f1;
+  border-top: 1rpx solid #f1f1f1;
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
+}
+.list-wrap .news-list .news-item.data-v-b4fbdc16:first-child {
+  border-top: none;
 }
 .list-wrap .news-list .news-item .title-text.data-v-b4fbdc16 {
   width: 70%;

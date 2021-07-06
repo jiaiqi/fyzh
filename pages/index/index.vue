@@ -34,5 +34,8 @@
 </script>
 
 <style lang="scss">
-
+.page-item-list{
+	background-color: #fff;
+	min-height: calc(100vh - var(--window-bottom) - var(--window-top));
+}
 </style>
