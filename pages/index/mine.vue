@@ -22,7 +22,7 @@
 			</view>
 		</view>
 		<view class="main-box">
-			<view class="vip-card"  v-if="!vuex_memberInfo||!vuex_memberInfo.id">
+			<view class="vip-card" v-if="!vuex_memberInfo||!vuex_memberInfo.id">
 				<view class="not-vip">
 					<view class="slogan text-brown ">
 						<text class="cuIcon-choiceness margin-right-xs"></text>
@@ -32,32 +32,33 @@
 				</view>
 			</view>
 			<view class="order-menu">
-				<view class="title">
+				<view class="title" @click="toOrderList('全部')">
 					<text>我的订单</text>
-					<text class="to-all" @click="toOrderList('全部')">查看全部订单<text class="cuIcon-right"></text></text>
+					<text class="to-all">查看全部订单<text class="cuIcon-right"></text></text>
 				</view>
 				<view class="menu-item" @click="toOrderList(item.label)" v-for="item in menuList" :key="item.label">
 					<text :class="[item.icon]"></text>
 					<text class="label">{{item.label}}</text>
 				</view>
 			</view>
-			
+
 			<view class="u-m-t-20 menu-list">
 				<u-cell-group>
 					<u-cell-item icon="shopping-cart" title="购物车" @click="toCart"></u-cell-item>
 					<u-cell-item icon="coupon" title="钱包" @click="toCoupon"></u-cell-item>
-					<!-- <u-cell-item icon="gift" title="积分"></u-cell-item> -->
+					<u-cell-item icon="map" title="我的地址" @click="toAddress"></u-cell-item>
+					<u-cell-item icon="heart" title="我的收藏"></u-cell-item>
 				</u-cell-group>
 			</view>
-			
+
 			<view class="u-m-t-20  menu-list">
 				<u-cell-group>
 					<u-cell-item icon="setting" title="设置"></u-cell-item>
 				</u-cell-group>
 			</view>
 		</view>
-		
-		
+
+
 		<u-popup v-model="showJoinMember" mode="bottom" closeable>
 			<view class="join-member">
 				<u-form :model="form" ref="uForm" label-position="top" :border-bottom="false">
@@ -171,18 +172,55 @@
 			}
 		},
 		methods: {
-
+			toAddress(){
+				uni.chooseAddress({
+				  success(res) {
+				    console.log(res.userName)
+				    console.log(res.postalCode)
+				    console.log(res.provinceName)
+				    console.log(res.cityName)
+				    console.log(res.countyName)
+				    console.log(res.detailInfo)
+				    console.log(res.nationalCode)
+				    console.log(res.telNumber)
+				  }
+				})
+			},
 			changeDate(e) {
 				this.form.birth_day = e.target.value
 			},
-			toCoupon(){
+			toCoupon() {
 				// 跳转到卡券页面
+				if (!this.vuex_memberInfo || !this.vuex_memberInfo.id) {
+					uni.showModal({
+						title: '提示',
+						content: '加入会员后才可进行此操作，是否申请加入会员？',
+						success: (res) => {
+							if (res.confirm) {
+								this.applyMember()
+							}
+						}
+					})
+					return
+				}
 				uni.navigateTo({
-					url:'/pages/mine/coupon/coupon'
+					url: '/pages/mine/coupon/coupon'
 				})
 			},
 			toCart() {
 				// 跳转到购物车页面
+				if (!this.vuex_memberInfo || !this.vuex_memberInfo.id) {
+					uni.showModal({
+						title: '提示',
+						content: '加入会员后才可进行此操作，是否申请加入会员？',
+						success: (res) => {
+							if (res.confirm) {
+								this.applyMember()
+							}
+						}
+					})
+					return
+				}
 				uni.navigateTo({
 					url: '/pages/store/cart/cart'
 				})
@@ -195,6 +233,18 @@
 				// this.showJoinMember = true
 			},
 			toOrderList(e) {
+				if (!this.vuex_memberInfo || !this.vuex_memberInfo.id) {
+					uni.showModal({
+						title: '提示',
+						content: '加入会员后才可进行此操作，是否申请加入会员？',
+						success: (res) => {
+							if (res.confirm) {
+								this.applyMember()
+							}
+						}
+					})
+					return
+				}
 				uni.navigateTo({
 					url: '/pages/store/orderList/orderList?type=' + e
 				})
@@ -233,17 +283,20 @@
 	}
 
 	.user-box {
-		min-height:350rpx;
+		min-height: 350rpx;
 		background-color: #e6b980;
-		background-image: linear-gradient(to bottom, #FEE4C3 0%, #FEE4C3 50%,#FEE4C3 80%,#FFEFDC 90%, #f1f1f1 100%);
+		background-image: linear-gradient(to bottom, #FEE4C3 0%, #FEE4C3 50%, #FEE4C3 80%, #FFEFDC 90%, #f1f1f1 100%);
+
 		color: #fff;
 		margin: 0 0 20rpx;
 		padding-top: 20rpx;
 		align-items: flex-start;
-		.user-box-main{
+
+		.user-box-main {
 			display: flex;
 			align-items: center;
 		}
+
 		.empty-profile {
 			overflow: hidden;
 			width: 120rpx;
@@ -256,17 +309,18 @@
 		}
 	}
 
-	.main-box{
+	.main-box {
 		position: relative;
 		top: -80rpx;
 	}
+
 	.vip-card {
 		margin: 20rpx;
 		padding: 30rpx;
 		border-radius: 20rpx;
 		min-height: 100rpx;
-		background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
-
+		background-image: linear-gradient(to top, #fdcb8d 0%, #eacda3 100%);
+		// background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
 		.not-vip {
 			display: flex;
 			justify-content: space-between;
@@ -317,7 +371,7 @@
 
 	.menu-list {
 		margin: 0 20rpx;
-		border-radius:20rpx;
+		border-radius: 20rpx;
 		overflow: hidden;
 	}
 

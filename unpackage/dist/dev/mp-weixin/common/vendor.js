@@ -872,7 +872,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2974,6 +2974,17 @@ Router = /*#__PURE__*/function () {
 
 new Router().route;exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 189:
+/*!**************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/static/icon/goods.png ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
 
 /***/ }),
 
@@ -8514,7 +8525,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8535,14 +8546,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8628,7 +8639,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9081,163 +9092,6 @@ if (hadRuntime) {
   }
 }
 
-
-/***/ }),
-
-/***/ 200:
-/*!************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/common/evaluator.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
-                                                                                                      * @param {Object} rowData 当前行数据
-                                                                                                      * @param {String} formula 需要根据当前js转化为表达式的json字符串
-                                                                                                      */
-// 导入方式: import evaluatorTo from 'path/evaluator.js'
-//  调用方式: evaluatorTo(rowData,formula)
-function evaluatorTo(rowData, formula) {
-  var result = null;
-  var evaluator = function evaluator(formula, result) {
-    if (typeof formula === 'object') {
-      Object.keys(formula).forEach(function (operator, index) {
-        switch (operator) {
-          case 'if': //if(xx){}else{}
-            result = evaluator(formula[operator][0], result) ? formula[operator][1] : formula[
-            operator][2];
-            break;
-          case 'and': // &&
-            var a = true;
-            formula[operator].forEach(function (_formula) {
-              Object.keys(_formula).forEach(function (_operator) {
-                if (!evaluator(_formula, result)) {
-                  a = false; //有假则假
-                }
-              });
-            });
-            result = a;
-            break;
-          case 'or': // 或 ||
-            var o = false;
-            formula[operator].forEach(function (_formula) {
-              Object.keys(_formula).forEach(function (_operator) {
-                if (evaluator(_formula, result)) {
-                  o = true; //有真则真
-                }
-              });
-            });
-            result = o;
-            break;
-          case 'not': //取反 !
-            break;
-          case 'eq': //等于 === equal
-            if (!formula[operator].val) {
-              result = !rowData[evaluator(formula[operator]['col'], result)];
-            } else if (typeof formula[operator].val !== 'string') {
-              // val为对象
-              var valueObj = formula[operator].val;
-              var value = '';
-              if (valueObj.value_key && valueObj.value_type) {
-                switch (valueObj.value_type) {
-                  case 'rowData':
-                    result = rowData[evaluator(formula[operator]['col'], result)] ==
-                    rowData[valueObj.value_key];
-                    break;
-                  case 'login_user_info':
-                    var login_user_info = uni.getStorageSync('login_user_info');
-                    if (login_user_info && typeof login_user_info === 'object') {
-                      result = rowData[evaluator(formula[operator]['col'], result)] ==
-                      login_user_info[valueObj.value_key];
-                    } else {
-                      result = false;
-                    }
-                    break;
-                  default:
-                    result = rowData[evaluator(formula[operator]['col'], result)] ==
-                    rowData[valueObj.value_key];
-                    break;}
-
-              }
-            } else {
-              result = rowData[evaluator(formula[operator]['col'], result)] == formula[
-              operator].val;
-            }
-            break;
-          case 'neq': //不等于 !== not equal
-            if (!formula[operator].val) {
-              result = !!rowData[evaluator(formula[operator]['col'], result)];
-            } else if (typeof formula[operator].val !== 'string') {
-              // val为对象
-              var _valueObj = formula[operator].val;
-              var _value = '';
-              if (_valueObj.value_key && _valueObj.value_type) {
-                switch (_valueObj.value_type) {
-                  case 'rowData':
-                    result = rowData[evaluator(formula[operator]['col'], result)] !=
-                    rowData[_valueObj.value_key];
-                    break;
-                  case 'login_user_info':
-                  case 'top.user':
-                    var _login_user_info = uni.getStorageSync('login_user_info');
-                    if (_login_user_info && typeof _login_user_info === 'object') {
-                      result = rowData[evaluator(formula[operator]['col'], result)] !=
-                      _login_user_info[_valueObj.value_key];
-                    } else {
-                      result = false;
-                    }
-                    break;
-                  default:
-                    result = rowData[evaluator(formula[operator]['col'], result)] !=
-                    rowData[_valueObj.value_key];
-                    break;}
-
-              }
-            } else {
-              result = rowData[evaluator(formula[operator]['col'], result)] != formula[
-              operator].val;
-            }
-            break;
-          case 'gt': // greater than or equal >
-            result = rowData[evaluator(formula[operator]['col'], result)] > formula[operator].
-            val;
-            break;
-          case 'gte': // greater than >
-            result = rowData[evaluator(formula[operator]['col'], result)] >= formula[operator].
-            val;
-            break;
-          case 'lt': // less than
-            result = rowData[evaluator(formula[operator]['col'], result)] < formula[operator].
-            val;
-            break;
-          case 'le': // less than or equal
-            result = rowData[evaluator(formula[operator]['col'], result)] <= formula[operator].
-            val;
-            break;
-          case 'add': // + 加
-            break;
-          case 'sub': // - 减
-            break;
-          case 'mul': //multiply 乘 *
-            break;
-          case 'div': // divide 除 /
-            break;
-          default:
-            result = result;
-            break;}
-
-      });
-    } else {
-      result = formula;
-    }
-    return result;
-  };
-  return evaluator(formula, result);
-}var _default =
-
-evaluatorTo;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -9973,797 +9827,6 @@ evaluatorTo;exports.default = _default;
 
 /***/ }),
 
-/***/ 213:
-/*!*****************************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/MpHtmlParser.js ***!
-  \*****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(uni) {/**
- * html 解析器
- * @tutorial https://github.com/jin-yufeng/Parser
- * @version 20201029
- * @author JinYufeng
- * @listens MIT
- */
-var cfg = __webpack_require__(/*! ./config.js */ 214),
-blankChar = cfg.blankChar,
-CssHandler = __webpack_require__(/*! ./CssHandler.js */ 215),
-windowWidth = uni.getSystemInfoSync().windowWidth;
-var emoji;
-
-function MpHtmlParser(data) {var _this = this;var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  this.attrs = {};
-  this.CssHandler = new CssHandler(options.tagStyle, windowWidth);
-  this.data = data;
-  this.domain = options.domain;
-  this.DOM = [];
-  this.i = this.start = this.audioNum = this.imgNum = this.videoNum = 0;
-  options.prot = (this.domain || '').includes('://') ? this.domain.split('://')[0] : 'http';
-  this.options = options;
-  this.state = this.Text;
-  this.STACK = [];
-  // 工具函数
-  this.bubble = function () {
-    for (var i = _this.STACK.length, item; item = _this.STACK[--i];) {
-      if (cfg.richOnlyTags[item.name]) return false;
-      item.c = 1;
-    }
-    return true;
-  };
-  this.decode = function (val, amp) {
-    var i = -1,
-    j,en;
-    while (1) {
-      if ((i = val.indexOf('&', i + 1)) == -1) break;
-      if ((j = val.indexOf(';', i + 2)) == -1) break;
-      if (val[i + 1] == '#') {
-        en = parseInt((val[i + 2] == 'x' ? '0' : '') + val.substring(i + 2, j));
-        if (!isNaN(en)) val = val.substr(0, i) + String.fromCharCode(en) + val.substr(j + 1);
-      } else {
-        en = val.substring(i + 1, j);
-        if (cfg.entities[en] || en == amp)
-        val = val.substr(0, i) + (cfg.entities[en] || '&') + val.substr(j + 1);
-      }
-    }
-    return val;
-  };
-  this.getUrl = function (url) {
-    if (url[0] == '/') {
-      if (url[1] == '/') url = _this.options.prot + ':' + url;else
-      if (_this.domain) url = _this.domain + url;
-    } else if (_this.domain && url.indexOf('data:') != 0 && !url.includes('://'))
-    url = _this.domain + '/' + url;
-    return url;
-  };
-  this.isClose = function () {return _this.data[_this.i] == '>' || _this.data[_this.i] == '/' && _this.data[_this.i + 1] == '>';};
-  this.section = function () {return _this.data.substring(_this.start, _this.i);};
-  this.parent = function () {return _this.STACK[_this.STACK.length - 1];};
-  this.siblings = function () {return _this.STACK.length ? _this.parent().children : _this.DOM;};
-}
-MpHtmlParser.prototype.parse = function () {
-  if (emoji) this.data = emoji.parseEmoji(this.data);
-  for (var c; c = this.data[this.i]; this.i++) {
-    this.state(c);}
-  if (this.state == this.Text) this.setText();
-  while (this.STACK.length) {this.popNode(this.STACK.pop());}
-  return this.DOM;
-};
-// 设置属性
-MpHtmlParser.prototype.setAttr = function () {
-  var name = this.attrName.toLowerCase(),
-  val = this.attrVal;
-  if (cfg.boolAttrs[name]) this.attrs[name] = 'T';else
-  if (val) {
-    if (name == 'src' || name == 'data-src' && !this.attrs.src) this.attrs.src = this.getUrl(this.decode(val, 'amp'));else
-    if (name == 'href' || name == 'style') this.attrs[name] = this.decode(val, 'amp');else
-    if (name.substr(0, 5) != 'data-') this.attrs[name] = val;
-  }
-  this.attrVal = '';
-  while (blankChar[this.data[this.i]]) {this.i++;}
-  if (this.isClose()) this.setNode();else
-  {
-    this.start = this.i;
-    this.state = this.AttrName;
-  }
-};
-// 设置文本节点
-MpHtmlParser.prototype.setText = function () {
-  var back,text = this.section();
-  if (!text) return;
-  text = cfg.onText && cfg.onText(text, function () {return back = true;}) || text;
-  if (back) {
-    this.data = this.data.substr(0, this.start) + text + this.data.substr(this.i);
-    var j = this.start + text.length;
-    for (this.i = this.start; this.i < j; this.i++) {this.state(this.data[this.i]);}
-    return;
-  }
-  if (!this.pre) {
-    // 合并空白符
-    var flag,tmp = [];
-    for (var i = text.length, c; c = text[--i];) {
-      if (!blankChar[c]) {
-        tmp.unshift(c);
-        if (!flag) flag = 1;
-      } else {
-        if (tmp[0] != ' ') tmp.unshift(' ');
-        if (c == '\n' && flag == void 0) flag = 0;
-      }}
-    if (flag == 0) return;
-    text = tmp.join('');
-  }
-  this.siblings().push({
-    type: 'text',
-    text: this.decode(text) });
-
-};
-// 设置元素节点
-MpHtmlParser.prototype.setNode = function () {
-  var node = {
-    name: this.tagName.toLowerCase(),
-    attrs: this.attrs },
-
-  close = cfg.selfClosingTags[node.name];
-  if (this.options.nodes.length) node.type = 'node';
-  this.attrs = {};
-  if (!cfg.ignoreTags[node.name]) {
-    // 处理属性
-    var attrs = node.attrs,
-    style = this.CssHandler.match(node.name, attrs, node) + (attrs.style || ''),
-    styleObj = {};
-    if (attrs.id) {
-      if (this.options.compress & 1) attrs.id = void 0;else
-      if (this.options.useAnchor) this.bubble();
-    }
-    if (this.options.compress & 2 && attrs.class) attrs.class = void 0;
-    switch (node.name) {
-      case 'a':
-      case 'ad':
-
-
-        this.bubble();
-        break;
-      case 'font':
-        if (attrs.color) {
-          styleObj['color'] = attrs.color;
-          attrs.color = void 0;
-        }
-        if (attrs.face) {
-          styleObj['font-family'] = attrs.face;
-          attrs.face = void 0;
-        }
-        if (attrs.size) {
-          var size = parseInt(attrs.size);
-          if (size < 1) size = 1;else
-          if (size > 7) size = 7;
-          var map = ['xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'];
-          styleObj['font-size'] = map[size - 1];
-          attrs.size = void 0;
-        }
-        break;
-      case 'embed':
-
-        var src = node.attrs.src || '',
-        type = node.attrs.type || '';
-        if (type.includes('video') || src.includes('.mp4') || src.includes('.3gp') || src.includes('.m3u8'))
-        node.name = 'video';else
-        if (type.includes('audio') || src.includes('.m4a') || src.includes('.wav') || src.includes('.mp3') || src.includes(
-        '.aac'))
-        node.name = 'audio';else
-        break;
-        if (node.attrs.autostart)
-        node.attrs.autoplay = 'T';
-        node.attrs.controls = 'T';
-
-
-
-
-
-      case 'video':
-      case 'audio':
-        if (!attrs.id) attrs.id = node.name + ++this["".concat(node.name, "Num")];else
-        this["".concat(node.name, "Num")]++;
-        if (node.name == 'video') {
-          if (this.videoNum > 3)
-          node.lazyLoad = 1;
-          if (attrs.width) {
-            styleObj.width = parseFloat(attrs.width) + (attrs.width.includes('%') ? '%' : 'px');
-            attrs.width = void 0;
-          }
-          if (attrs.height) {
-            styleObj.height = parseFloat(attrs.height) + (attrs.height.includes('%') ? '%' : 'px');
-            attrs.height = void 0;
-          }
-        }
-        if (!attrs.controls && !attrs.autoplay) attrs.controls = 'T';
-        attrs.source = [];
-        if (attrs.src) {
-          attrs.source.push(attrs.src);
-          attrs.src = void 0;
-        }
-        this.bubble();
-        break;
-      case 'td':
-      case 'th':
-        if (attrs.colspan || attrs.rowspan)
-        for (var k = this.STACK.length, item; item = this.STACK[--k];) {
-          if (item.name == 'table') {
-            item.flag = 1;
-            break;
-          }}}
-
-    if (attrs.align) {
-      if (node.name == 'table') {
-        if (attrs.align == 'center') styleObj['margin-inline-start'] = styleObj['margin-inline-end'] = 'auto';else
-        styleObj['float'] = attrs.align;
-      } else styleObj['text-align'] = attrs.align;
-      attrs.align = void 0;
-    }
-    // 压缩 style
-    var styles = style.split(';');
-    style = '';
-    for (var i = 0, len = styles.length; i < len; i++) {
-      var info = styles[i].split(':');
-      if (info.length < 2) continue;
-      var _key = info[0].trim().toLowerCase(),
-      _value = info.slice(1).join(':').trim();
-      if (_value[0] == '-' || _value.includes('safe'))
-      style += ";".concat(_key, ":").concat(_value);else
-      if (!styleObj[_key] || _value.includes('import') || !styleObj[_key].includes('import'))
-      styleObj[_key] = _value;
-    }
-    if (node.name == 'img') {
-      if (attrs.src && !attrs.ignore) {
-        if (this.bubble())
-        attrs.i = (this.imgNum++).toString();else
-        attrs.ignore = 'T';
-      }
-      if (attrs.ignore) {
-        style += ';-webkit-touch-callout:none';
-        styleObj['max-width'] = '100%';
-      }
-      var width;
-      if (styleObj.width) width = styleObj.width;else
-      if (attrs.width) width = attrs.width.includes('%') ? attrs.width : parseFloat(attrs.width) + 'px';
-      if (width) {
-        styleObj.width = width;
-        attrs.width = '100%';
-        if (parseInt(width) > windowWidth) {
-          styleObj.height = '';
-          if (attrs.height) attrs.height = void 0;
-        }
-      }
-      if (styleObj.height) {
-        attrs.height = styleObj.height;
-        styleObj.height = '';
-      } else if (attrs.height && !attrs.height.includes('%'))
-      attrs.height = parseFloat(attrs.height) + 'px';
-    }
-    for (var key in styleObj) {
-      var value = styleObj[key];
-      if (!value) continue;
-      if (key.includes('flex') || key == 'order' || key == 'self-align') node.c = 1;
-      // 填充链接
-      if (value.includes('url')) {
-        var j = value.indexOf('(');
-        if (j++ != -1) {
-          while (value[j] == '"' || value[j] == "'" || blankChar[value[j]]) {j++;}
-          value = value.substr(0, j) + this.getUrl(value.substr(j));
-        }
-      }
-      // 转换 rpx
-      else if (value.includes('rpx'))
-        value = value.replace(/[0-9.]+\s*rpx/g, function ($) {return parseFloat($) * windowWidth / 750 + 'px';});else
-        if (key == 'white-space' && value.includes('pre') && !close)
-        this.pre = node.pre = true;
-      style += ";".concat(key, ":").concat(value);
-    }
-    style = style.substr(1);
-    if (style) attrs.style = style;
-    if (!close) {
-      node.children = [];
-      if (node.name == 'pre' && cfg.highlight) {
-        this.remove(node);
-        this.pre = node.pre = true;
-      }
-      this.siblings().push(node);
-      this.STACK.push(node);
-    } else if (!cfg.filter || cfg.filter(node, this) != false)
-    this.siblings().push(node);
-  } else {
-    if (!close) this.remove(node);else
-    if (node.name == 'source') {
-      var parent = this.parent();
-      if (parent && (parent.name == 'video' || parent.name == 'audio') && node.attrs.src)
-      parent.attrs.source.push(node.attrs.src);
-    } else if (node.name == 'base' && !this.domain) this.domain = node.attrs.href;
-  }
-  if (this.data[this.i] == '/') this.i++;
-  this.start = this.i + 1;
-  this.state = this.Text;
-};
-// 移除标签
-MpHtmlParser.prototype.remove = function (node) {var _this2 = this;
-  var name = node.name,
-  j = this.i;
-  // 处理 svg
-  var handleSvg = function handleSvg() {
-    var src = _this2.data.substring(j, _this2.i + 1);
-    node.attrs.xmlns = 'http://www.w3.org/2000/svg';
-    for (var key in node.attrs) {
-      if (key == 'viewbox') src = " viewBox=\"".concat(node.attrs.viewbox, "\"") + src;else
-      if (key != 'style') src = " ".concat(key, "=\"").concat(node.attrs[key], "\"") + src;
-    }
-    src = '<svg' + src;
-    var parent = _this2.parent();
-    if (node.attrs.width == '100%' && parent && (parent.attrs.style || '').includes('inline'))
-    parent.attrs.style = 'width:300px;max-width:100%;' + parent.attrs.style;
-    _this2.siblings().push({
-      name: 'img',
-      attrs: {
-        src: 'data:image/svg+xml;utf8,' + src.replace(/#/g, '%23'),
-        style: node.attrs.style,
-        ignore: 'T' } });
-
-
-  };
-  if (node.name == 'svg' && this.data[j] == '/') return handleSvg(this.i++);
-  while (1) {
-    if ((this.i = this.data.indexOf('</', this.i + 1)) == -1) {
-      if (name == 'pre' || name == 'svg') this.i = j;else
-      this.i = this.data.length;
-      return;
-    }
-    this.start = this.i += 2;
-    while (!blankChar[this.data[this.i]] && !this.isClose()) {this.i++;}
-    if (this.section().toLowerCase() == name) {
-      // 代码块高亮
-      if (name == 'pre') {
-        this.data = this.data.substr(0, j + 1) + cfg.highlight(this.data.substring(j + 1, this.i - 5), node.attrs) + this.data.
-        substr(this.i - 5);
-        return this.i = j;
-      } else if (name == 'style')
-      this.CssHandler.getStyle(this.data.substring(j + 1, this.i - 7));else
-      if (name == 'title')
-      this.DOM.title = this.data.substring(j + 1, this.i - 7);
-      if ((this.i = this.data.indexOf('>', this.i)) == -1) this.i = this.data.length;
-      if (name == 'svg') handleSvg();
-      return;
-    }
-  }
-};
-// 节点出栈处理
-MpHtmlParser.prototype.popNode = function (node) {
-  // 空白符处理
-  if (node.pre) {
-    node.pre = this.pre = void 0;
-    for (var i = this.STACK.length; i--;) {
-      if (this.STACK[i].pre)
-      this.pre = true;}
-  }
-  var siblings = this.siblings(),
-  len = siblings.length,
-  childs = node.children;
-  if (node.name == 'head' || cfg.filter && cfg.filter(node, this) == false)
-  return siblings.pop();
-  var attrs = node.attrs;
-  // 替换一些标签名
-  if (cfg.blockTags[node.name]) node.name = 'div';else
-  if (!cfg.trustTags[node.name]) node.name = 'span';
-  // 处理列表
-  if (node.c && (node.name == 'ul' || node.name == 'ol')) {
-    if ((node.attrs.style || '').includes('list-style:none')) {
-      for (var _i = 0, child; child = childs[_i++];) {
-        if (child.name == 'li')
-        child.name = 'div';}
-    } else if (node.name == 'ul') {
-      var floor = 1;
-      for (var _i2 = this.STACK.length; _i2--;) {
-        if (this.STACK[_i2].name == 'ul') floor++;}
-      if (floor != 1)
-      for (var _i3 = childs.length; _i3--;) {
-        childs[_i3].floor = floor;}
-    } else {
-      for (var _i4 = 0, num = 1, _child; _child = childs[_i4++];) {
-        if (_child.name == 'li') {
-          _child.type = 'ol';
-          _child.num = function (num, type) {
-            if (type == 'a') return String.fromCharCode(97 + (num - 1) % 26);
-            if (type == 'A') return String.fromCharCode(65 + (num - 1) % 26);
-            if (type == 'i' || type == 'I') {
-              num = (num - 1) % 99 + 1;
-              var one = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
-              ten = ['X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
-              res = (ten[Math.floor(num / 10) - 1] || '') + (one[num % 10 - 1] || '');
-              if (type == 'i') return res.toLowerCase();
-              return res;
-            }
-            return num;
-          }(num++, attrs.type) + '.';
-        }}
-    }
-  }
-  // 处理表格
-  if (node.name == 'table') {
-    var padding = parseFloat(attrs.cellpadding),
-    spacing = parseFloat(attrs.cellspacing),
-    border = parseFloat(attrs.border);
-    if (node.c) {
-      if (isNaN(padding)) padding = 2;
-      if (isNaN(spacing)) spacing = 2;
-    }
-    if (border) attrs.style = "border:".concat(border, "px solid gray;").concat(attrs.style || '');
-    if (node.flag && node.c) {
-      // 有 colspan 或 rowspan 且含有链接的表格转为 grid 布局实现
-      attrs.style = "".concat(attrs.style || '', ";").concat(spacing ? ";grid-gap:".concat(spacing, "px") : ';border-left:0;border-top:0');
-      var row = 1,
-      col = 1,
-      colNum,
-      trs = [],
-      children = [],
-      map = {};
-      (function f(ns) {
-        for (var i = 0; i < ns.length; i++) {
-          if (ns[i].name == 'tr') trs.push(ns[i]);else
-          f(ns[i].children || []);
-        }
-      })(node.children);
-      for (var _i5 = 0; _i5 < trs.length; _i5++) {
-        for (var j = 0, td; td = trs[_i5].children[j]; j++) {
-          if (td.name == 'td' || td.name == 'th') {
-            while (map[row + '.' + col]) {col++;}
-            var cell = {
-              name: 'div',
-              c: 1,
-              attrs: {
-                style: (td.attrs.style || '') + (border ? ";border:".concat(border, "px solid gray") + (spacing ? '' :
-                ';border-right:0;border-bottom:0') : '') + (padding ? ";padding:".concat(padding, "px") : '') },
-
-              children: td.children };
-
-            if (td.attrs.colspan) {
-              cell.attrs.style += ';grid-column-start:' + col + ';grid-column-end:' + (col + parseInt(td.attrs.colspan));
-              if (!td.attrs.rowspan) cell.attrs.style += ';grid-row-start:' + row + ';grid-row-end:' + (row + 1);
-              col += parseInt(td.attrs.colspan) - 1;
-            }
-            if (td.attrs.rowspan) {
-              cell.attrs.style += ';grid-row-start:' + row + ';grid-row-end:' + (row + parseInt(td.attrs.rowspan));
-              if (!td.attrs.colspan) cell.attrs.style += ';grid-column-start:' + col + ';grid-column-end:' + (col + 1);
-              for (var k = 1; k < td.attrs.rowspan; k++) {map[row + k + '.' + col] = 1;}
-            }
-            children.push(cell);
-            col++;
-          }
-        }
-        if (!colNum) {
-          colNum = col - 1;
-          attrs.style += ";grid-template-columns:repeat(".concat(colNum, ",auto)");
-        }
-        col = 1;
-        row++;
-      }
-      node.children = children;
-    } else {
-      attrs.style = "border-spacing:".concat(spacing, "px;").concat(attrs.style || '');
-      if (border || padding)
-      (function f(ns) {
-        for (var i = 0, n; n = ns[i]; i++) {
-          if (n.name == 'th' || n.name == 'td') {
-            if (border) n.attrs.style = "border:".concat(border, "px solid gray;").concat(n.attrs.style || '');
-            if (padding) n.attrs.style = "padding:".concat(padding, "px;").concat(n.attrs.style || '');
-          } else f(n.children || []);
-        }
-      })(childs);
-    }
-    if (this.options.autoscroll) {
-      var table = Object.assign({}, node);
-      node.name = 'div';
-      node.attrs = {
-        style: 'overflow:scroll' };
-
-      node.children = [table];
-    }
-  }
-  this.CssHandler.pop && this.CssHandler.pop(node);
-  // 自动压缩
-  if (node.name == 'div' && !Object.keys(attrs).length && childs.length == 1 && childs[0].name == 'div')
-  siblings[len - 1] = childs[0];
-};
-// 状态机
-MpHtmlParser.prototype.Text = function (c) {
-  if (c == '<') {
-    var next = this.data[this.i + 1],
-    isLetter = function isLetter(c) {return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';};
-    if (isLetter(next)) {
-      this.setText();
-      this.start = this.i + 1;
-      this.state = this.TagName;
-    } else if (next == '/') {
-      this.setText();
-      if (isLetter(this.data[++this.i + 1])) {
-        this.start = this.i + 1;
-        this.state = this.EndTag;
-      } else this.Comment();
-    } else if (next == '!' || next == '?') {
-      this.setText();
-      this.Comment();
-    }
-  }
-};
-MpHtmlParser.prototype.Comment = function () {
-  var key;
-  if (this.data.substring(this.i + 2, this.i + 4) == '--') key = '-->';else
-  if (this.data.substring(this.i + 2, this.i + 9) == '[CDATA[') key = ']]>';else
-  key = '>';
-  if ((this.i = this.data.indexOf(key, this.i + 2)) == -1) this.i = this.data.length;else
-  this.i += key.length - 1;
-  this.start = this.i + 1;
-  this.state = this.Text;
-};
-MpHtmlParser.prototype.TagName = function (c) {
-  if (blankChar[c]) {
-    this.tagName = this.section();
-    while (blankChar[this.data[this.i]]) {this.i++;}
-    if (this.isClose()) this.setNode();else
-    {
-      this.start = this.i;
-      this.state = this.AttrName;
-    }
-  } else if (this.isClose()) {
-    this.tagName = this.section();
-    this.setNode();
-  }
-};
-MpHtmlParser.prototype.AttrName = function (c) {
-  if (c == '=' || blankChar[c] || this.isClose()) {
-    this.attrName = this.section();
-    if (blankChar[c])
-    while (blankChar[this.data[++this.i]]) {;}
-    if (this.data[this.i] == '=') {
-      while (blankChar[this.data[++this.i]]) {;}
-      this.start = this.i--;
-      this.state = this.AttrValue;
-    } else this.setAttr();
-  }
-};
-MpHtmlParser.prototype.AttrValue = function (c) {
-  if (c == '"' || c == "'") {
-    this.start++;
-    if ((this.i = this.data.indexOf(c, this.i + 1)) == -1) return this.i = this.data.length;
-    this.attrVal = this.section();
-    this.i++;
-  } else {
-    for (; !blankChar[this.data[this.i]] && !this.isClose(); this.i++) {;}
-    this.attrVal = this.section();
-  }
-  this.setAttr();
-};
-MpHtmlParser.prototype.EndTag = function (c) {
-  if (blankChar[c] || c == '>' || c == '/') {
-    var name = this.section().toLowerCase();
-    for (var i = this.STACK.length; i--;) {
-      if (this.STACK[i].name == name) break;}
-    if (i != -1) {
-      var node;
-      while ((node = this.STACK.pop()).name != name) {this.popNode(node);}
-      this.popNode(node);
-    } else if (name == 'p' || name == 'br')
-    this.siblings().push({
-      name: name,
-      attrs: {} });
-
-    this.i = this.data.indexOf('>', this.i);
-    this.start = this.i + 1;
-    if (this.i == -1) this.i = this.data.length;else
-    this.state = this.Text;
-  }
-};
-module.exports = MpHtmlParser;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 214:
-/*!***********************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/config.js ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/* 配置文件 */
-var cfg = {
-  // 出错占位图
-  errorImg: null,
-  // 过滤器函数
-  filter: null,
-  // 代码高亮函数
-  highlight: null,
-  // 文本处理函数
-  onText: null,
-  // 实体编码列表
-  entities: {
-    quot: '"',
-    apos: "'",
-    semi: ';',
-    nbsp: '\xA0',
-    ensp: "\u2002",
-    emsp: "\u2003",
-    ndash: '–',
-    mdash: '—',
-    middot: '·',
-    lsquo: '‘',
-    rsquo: '’',
-    ldquo: '“',
-    rdquo: '”',
-    bull: '•',
-    hellip: '…' },
-
-  blankChar: makeMap(' ,\xA0,\t,\r,\n,\f'),
-  boolAttrs: makeMap('allowfullscreen,autoplay,autostart,controls,ignore,loop,muted'),
-  // 块级标签，将被转为 div
-  blockTags: makeMap('address,article,aside,body,caption,center,cite,footer,header,html,nav,pre,section'),
-  // 将被移除的标签
-  ignoreTags: makeMap('area,base,canvas,frame,iframe,input,link,map,meta,param,script,source,style,svg,textarea,title,track,wbr'),
-  // 只能被 rich-text 显示的标签
-  richOnlyTags: makeMap('a,colgroup,fieldset,legend'),
-  // 自闭合的标签
-  selfClosingTags: makeMap('area,base,br,col,circle,ellipse,embed,frame,hr,img,input,line,link,meta,param,path,polygon,rect,source,track,use,wbr'),
-  // 信任的标签
-  trustTags: makeMap('a,abbr,ad,audio,b,blockquote,br,code,col,colgroup,dd,del,dl,dt,div,em,fieldset,h1,h2,h3,h4,h5,h6,hr,i,img,ins,label,legend,li,ol,p,q,source,span,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,title,ul,video'),
-  // 默认的标签样式
-  userAgentStyles: {
-    address: 'font-style:italic',
-    big: 'display:inline;font-size:1.2em',
-    blockquote: 'background-color:#f6f6f6;border-left:3px solid #dbdbdb;color:#6c6c6c;padding:5px 0 5px 10px',
-    caption: 'display:table-caption;text-align:center',
-    center: 'text-align:center',
-    cite: 'font-style:italic',
-    dd: 'margin-left:40px',
-    mark: 'background-color:yellow',
-    pre: 'font-family:monospace;white-space:pre;overflow:scroll',
-    s: 'text-decoration:line-through',
-    small: 'display:inline;font-size:0.8em',
-    u: 'text-decoration:underline' } };
-
-
-
-function makeMap(str) {
-  var map = Object.create(null),
-  list = str.split(',');
-  for (var i = list.length; i--;) {
-    map[list[i]] = true;}
-  return map;
-}
-
-
-if (wx.canIUse('editor')) {
-  cfg.blockTags.pre = void 0;
-  cfg.ignoreTags.rp = true;
-  Object.assign(cfg.richOnlyTags, makeMap('bdi,bdo,caption,rt,ruby'));
-  Object.assign(cfg.trustTags, makeMap('bdi,bdo,caption,pre,rt,ruby'));
-}
-
-
-
-
-
-
-
-module.exports = cfg;
-
-/***/ }),
-
-/***/ 215:
-/*!***************************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/CssHandler.js ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var cfg = __webpack_require__(/*! ./config.js */ 214),
-isLetter = function isLetter(c) {return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';};
-
-function CssHandler(tagStyle) {
-  var styles = Object.assign(Object.create(null), cfg.userAgentStyles);
-  for (var item in tagStyle) {
-    styles[item] = (styles[item] ? styles[item] + ';' : '') + tagStyle[item];}
-  this.styles = styles;
-}
-CssHandler.prototype.getStyle = function (data) {
-  this.styles = new parser(data, this.styles).parse();
-};
-CssHandler.prototype.match = function (name, attrs) {
-  var tmp,matched = (tmp = this.styles[name]) ? tmp + ';' : '';
-  if (attrs.class) {
-    var items = attrs.class.split(' ');
-    for (var i = 0, item; item = items[i]; i++) {
-      if (tmp = this.styles['.' + item])
-      matched += tmp + ';';}
-  }
-  if (tmp = this.styles['#' + attrs.id])
-  matched += tmp + ';';
-  return matched;
-};
-module.exports = CssHandler;
-
-function parser(data, init) {
-  this.data = data;
-  this.floor = 0;
-  this.i = 0;
-  this.list = [];
-  this.res = init;
-  this.state = this.Space;
-}
-parser.prototype.parse = function () {
-  for (var c; c = this.data[this.i]; this.i++) {
-    this.state(c);}
-  return this.res;
-};
-parser.prototype.section = function () {
-  return this.data.substring(this.start, this.i);
-};
-// 状态机
-parser.prototype.Space = function (c) {
-  if (c == '.' || c == '#' || isLetter(c)) {
-    this.start = this.i;
-    this.state = this.Name;
-  } else if (c == '/' && this.data[this.i + 1] == '*')
-  this.Comment();else
-  if (!cfg.blankChar[c] && c != ';')
-  this.state = this.Ignore;
-};
-parser.prototype.Comment = function () {
-  this.i = this.data.indexOf('*/', this.i) + 1;
-  if (!this.i) this.i = this.data.length;
-  this.state = this.Space;
-};
-parser.prototype.Ignore = function (c) {
-  if (c == '{') this.floor++;else
-  if (c == '}' && ! --this.floor) {
-    this.list = [];
-    this.state = this.Space;
-  }
-};
-parser.prototype.Name = function (c) {
-  if (cfg.blankChar[c]) {
-    this.list.push(this.section());
-    this.state = this.NameSpace;
-  } else if (c == '{') {
-    this.list.push(this.section());
-    this.Content();
-  } else if (c == ',') {
-    this.list.push(this.section());
-    this.Comma();
-  } else if (!isLetter(c) && (c < '0' || c > '9') && c != '-' && c != '_')
-  this.state = this.Ignore;
-};
-parser.prototype.NameSpace = function (c) {
-  if (c == '{') this.Content();else
-  if (c == ',') this.Comma();else
-  if (!cfg.blankChar[c]) this.state = this.Ignore;
-};
-parser.prototype.Comma = function () {
-  while (cfg.blankChar[this.data[++this.i]]) {;}
-  if (this.data[this.i] == '{') this.Content();else
-  {
-    this.start = this.i--;
-    this.state = this.Name;
-  }
-};
-parser.prototype.Content = function () {
-  this.start = ++this.i;
-  if ((this.i = this.data.indexOf('}', this.i)) == -1) this.i = this.data.length;
-  var content = this.section();
-  for (var i = 0, item; item = this.list[i++];) {
-    if (this.res[item]) this.res[item] += ';' + content;else
-    this.res[item] = content;}
-  this.list = [];
-  this.state = this.Space;
-};
-
-/***/ }),
-
 /***/ 22:
 /*!*****************************************************************************!*\
   !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/timeFormat.js ***!
@@ -10884,10 +9947,10 @@ timeFrom;exports.default = _default;
 
 /***/ }),
 
-/***/ 237:
-/*!*****************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/common/mixins/emitter.js ***!
-  \*****************************************************************/
+/***/ 239:
+/*!**********************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/util/emitter.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10898,15 +9961,13 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
                                                                                                       * @param eventName // 事件名称
                                                                                                       * @param params // 需要传递的参数
                                                                                                       */
-
 function _broadcast(componentName, eventName, params) {
-  this.$children.forEach(function (child) {
-    var name = child.$options.name;
-    if (name === componentName) {
+  // 循环子节点找到名称一样的子节点 否则 递归 当前子节点
+  this.$children.map(function (child) {
+    if (componentName === child.$options.name) {
       child.$emit.apply(child, [eventName].concat(params));
     } else {
-      // todo 如果 params 是空数组，接收到的会是 undefined
-      _broadcast.apply(child, [componentName, eventName].concat([params]));
+      _broadcast.apply(child, [componentName, eventName].concat(params));
     }
   });
 }var _default =
@@ -11090,1869 +10151,7 @@ function colorToRgba(color) {var alpha = arguments.length > 1 && arguments[1] !=
 
 /***/ }),
 
-/***/ 25:
-/*!***********************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/guid.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
-                                                                                                      * 本算法来源于简书开源代码，详见：https://www.jianshu.com/p/fdbf293d0a85
-                                                                                                      * 全局唯一标识符（uuid，Globally Unique Identifier）,也称作 uuid(Universally Unique IDentifier) 
-                                                                                                      * 一般用于多个组件之间,给它一个唯一的标识符,或者v-for循环的时候,如果使用数组的index可能会导致更新列表出现问题
-                                                                                                      * 最可能的情况是左滑删除item或者对某条信息流"不喜欢"并去掉它的时候,会导致组件内的数据可能出现错乱
-                                                                                                      * v-for的时候,推荐使用后端返回的id而不是循环的index
-                                                                                                      * @param {Number} len uuid的长度
-                                                                                                      * @param {Boolean} firstU 将返回的首字母置为"u"
-                                                                                                      * @param {Nubmer} radix 生成uuid的基数(意味着返回的字符串都是这个基数),2-二进制,8-八进制,10-十进制,16-十六进制
-                                                                                                      */
-function guid() {var len = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 32;var firstU = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;var radix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-  var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
-  var uuid = [];
-  radix = radix || chars.length;
-
-  if (len) {
-    // 如果指定uuid长度,只是取随机的字符,0|x为位运算,能去掉x的小数位,返回整数位
-    for (var i = 0; i < len; i++) {uuid[i] = chars[0 | Math.random() * radix];}
-  } else {
-    var r;
-    // rfc4122标准要求返回的uuid中,某些位为固定的字符
-    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
-    uuid[14] = '4';
-
-    for (var _i = 0; _i < 36; _i++) {
-      if (!uuid[_i]) {
-        r = 0 | Math.random() * 16;
-        uuid[_i] = chars[_i == 19 ? r & 0x3 | 0x8 : r];
-      }
-    }
-  }
-  // 移除第一个字符,并用u替代,因为第一个字符为数值时,该guuid不能用作id或者class
-  if (firstU) {
-    uuid.shift();
-    return 'u' + uuid.join('');
-  } else {
-    return uuid.join('');
-  }
-}var _default =
-
-guid;exports.default = _default;
-
-/***/ }),
-
-/***/ 26:
-/*!************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/color.js ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 为了让用户能够自定义主题，会逐步弃用此文件，各颜色通过css提供
-// 为了给某些特殊场景使用和向后兼容，无需删除此文件(2020-06-20)
-var color = {
-  primary: "#2979ff",
-  primaryDark: "#2b85e4",
-  primaryDisabled: "#a0cfff",
-  primaryLight: "#ecf5ff",
-  bgColor: "#f3f4f6",
-
-  info: "#909399",
-  infoDark: "#82848a",
-  infoDisabled: "#c8c9cc",
-  infoLight: "#f4f4f5",
-
-  warning: "#ff9900",
-  warningDark: "#f29100",
-  warningDisabled: "#fcbd71",
-  warningLight: "#fdf6ec",
-
-  error: "#fa3534",
-  errorDark: "#dd6161",
-  errorDisabled: "#fab6b6",
-  errorLight: "#fef0f0",
-
-  success: "#19be6b",
-  successDark: "#18b566",
-  successDisabled: "#71d5a1",
-  successLight: "#dbf1e1",
-
-  mainColor: "#303133",
-  contentColor: "#606266",
-  tipsColor: "#909399",
-  lightColor: "#c0c4cc",
-  borderColor: "#e4e7ed" };var _default =
-
-
-color;exports.default = _default;
-
-/***/ }),
-
-/***/ 27:
-/*!****************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/type2icon.js ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
-                                                                                                      * 根据主题type值,获取对应的图标
-                                                                                                      * @param String type 主题名称,primary|info|error|warning|success
-                                                                                                      * @param String fill 是否使用fill填充实体的图标  
-                                                                                                      */
-function type2icon() {var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'success';var fill = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-  // 如果非预置值,默认为success
-  if (['primary', 'info', 'error', 'warning', 'success'].indexOf(type) == -1) type = 'success';
-  var iconName = '';
-  // 目前(2019-12-12),info和primary使用同一个图标
-  switch (type) {
-    case 'primary':
-      iconName = 'info-circle';
-      break;
-    case 'info':
-      iconName = 'info-circle';
-      break;
-    case 'error':
-      iconName = 'close-circle';
-      break;
-    case 'warning':
-      iconName = 'error-circle';
-      break;
-    case 'success':
-      iconName = 'checkmark-circle';
-      break;
-    default:
-      iconName = 'checkmark-circle';}
-
-  // 是否是实体类型,加上-fill,在icon组件库中,实体的类名是后面加-fill的
-  if (fill) iconName += '-fill';
-  return iconName;
-}var _default =
-
-type2icon;exports.default = _default;
-
-/***/ }),
-
-/***/ 28:
-/*!******************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/randomArray.js ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 打乱数组
-function randomArray() {var array = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  // 原理是sort排序,Math.random()产生0<= x < 1之间的数,会导致x-0.05大于或者小于0
-  return array.sort(function () {return Math.random() - 0.5;});
-}var _default =
-
-randomArray;exports.default = _default;
-
-/***/ }),
-
-/***/ 29:
-/*!**************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/addUnit.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = addUnit;var _test = _interopRequireDefault(__webpack_require__(/*! ./test.js */ 16));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-
-// 添加单位，如果有rpx，%，px等单位结尾或者值为auto，直接返回，否则加上rpx单位结尾
-function addUnit() {var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'auto';var unit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'rpx';
-  value = String(value);
-  // 用uView内置验证规则中的number判断是否为数值
-  return _test.default.number(value) ? "".concat(value).concat(unit) : value;
-}
-
-/***/ }),
-
-/***/ 3:
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
-/***/ 30:
-/*!*************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/random.js ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function random(min, max) {
-  if (min >= 0 && max > 0 && max >= min) {
-    var gab = max - min + 1;
-    return Math.floor(Math.random() * gab + min);
-  } else {
-    return 0;
-  }
-}var _default =
-
-random;exports.default = _default;
-
-/***/ }),
-
-/***/ 31:
-/*!***********************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/trim.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function trim(str) {var pos = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'both';
-  if (pos == 'both') {
-    return str.replace(/^\s+|\s+$/g, "");
-  } else if (pos == "left") {
-    return str.replace(/^\s*/, '');
-  } else if (pos == 'right') {
-    return str.replace(/(\s*$)/g, "");
-  } else if (pos == 'all') {
-    return str.replace(/\s+/g, "");
-  } else {
-    return str;
-  }
-}var _default =
-
-trim;exports.default = _default;
-
-/***/ }),
-
-/***/ 32:
-/*!************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/toast.js ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function toast(title) {var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1500;
-  uni.showToast({
-    title: title,
-    icon: 'none',
-    duration: duration });
-
-}var _default =
-
-toast;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 33:
-/*!****************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/getParent.js ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = getParent; // 获取父组件的参数，因为支付宝小程序不支持provide/inject的写法
-// this.$parent在非H5中，可以准确获取到父组件，但是在H5中，需要多次this.$parent.$parent.xxx
-function getParent(name, keys) {
-  var parent = this.$parent;
-  // 通过while历遍，这里主要是为了H5需要多层解析的问题
-  while (parent) {
-    // 父组件
-    if (parent.$options.name !== name) {
-      // 如果组件的name不相等，继续上一级寻找
-      parent = parent.$parent;
-    } else {var _ret = function () {
-        var data = {};
-        // 判断keys是否数组，如果传过来的是一个数组，那么直接使用数组元素值当做键值去父组件寻找
-        if (Array.isArray(keys)) {
-          keys.map(function (val) {
-            data[val] = parent[val] ? parent[val] : '';
-          });
-        } else {
-          // 历遍传过来的对象参数
-          for (var i in keys) {
-            // 如果子组件有此值则用，无此值则用父组件的值
-            // 判断是否空数组，如果是，则用父组件的值，否则用子组件的值
-            if (Array.isArray(keys[i])) {
-              if (keys[i].length) {
-                data[i] = keys[i];
-              } else {
-                data[i] = parent[i];
-              }
-            } else if (keys[i].constructor === Object) {
-              // 判断是否对象，如果是对象，且有属性，那么使用子组件的值，否则使用父组件的值
-              if (Object.keys(keys[i]).length) {
-                data[i] = keys[i];
-              } else {
-                data[i] = parent[i];
-              }
-            } else {
-              // 只要子组件有传值，即使是false值，也是“传值”了，也需要覆盖父组件的同名参数
-              data[i] = keys[i] || keys[i] === false ? keys[i] : parent[i];
-            }
-          }
-        }
-        return { v: data };}();if (typeof _ret === "object") return _ret.v;
-    }
-  }
-
-  return {};
-}
-
-/***/ }),
-
-/***/ 34:
-/*!**************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/$parent.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = $parent; // 获取父组件的参数，因为支付宝小程序不支持provide/inject的写法
-// this.$parent在非H5中，可以准确获取到父组件，但是在H5中，需要多次this.$parent.$parent.xxx
-// 这里默认值等于undefined有它的含义，因为最顶层元素(组件)的$parent就是undefined，意味着不传name
-// 值(默认为undefined)，就是查找最顶层的$parent
-function $parent() {var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
-  var parent = this.$parent;
-  // 通过while历遍，这里主要是为了H5需要多层解析的问题
-  while (parent) {
-    // 父组件
-    if (parent.$options && parent.$options.name !== name) {
-      // 如果组件的name不相等，继续上一级寻找
-      parent = parent.$parent;
-    } else {
-      return parent;
-    }
-  }
-  return false;
-}
-
-/***/ }),
-
-/***/ 35:
-/*!**********************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/sys.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.os = os;exports.sys = sys;function os() {
-  return uni.getSystemInfoSync().platform;
-};
-
-function sys() {
-  return uni.getSystemInfoSync();
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 36:
-/*!***************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/debounce.js ***!
-  \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var timeout = null;
-
-/**
-                                                                                                                         * 防抖原理：一定时间内，只有最后一次操作，再过wait毫秒后才执行函数
-                                                                                                                         * 
-                                                                                                                         * @param {Function} func 要执行的回调函数 
-                                                                                                                         * @param {Number} wait 延时的时间
-                                                                                                                         * @param {Boolean} immediate 是否立即执行 
-                                                                                                                         * @return null
-                                                                                                                         */
-function debounce(func) {var wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-  // 清除定时器
-  if (timeout !== null) clearTimeout(timeout);
-  // 立即执行，此类情况一般用不到
-  if (immediate) {
-    var callNow = !timeout;
-    timeout = setTimeout(function () {
-      timeout = null;
-    }, wait);
-    if (callNow) typeof func === 'function' && func();
-  } else {
-    // 设置定时器，当最后一次操作后，timeout不会再被清除，所以在延时wait毫秒后执行func回调方法
-    timeout = setTimeout(function () {
-      typeof func === 'function' && func();
-    }, wait);
-  }
-}var _default =
-
-debounce;exports.default = _default;
-
-/***/ }),
-
-/***/ 37:
-/*!***************************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/throttle.js ***!
-  \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var timer, flag;
-/**
-                                                                                                                      * 节流原理：在一定时间内，只能触发一次
-                                                                                                                      * 
-                                                                                                                      * @param {Function} func 要执行的回调函数 
-                                                                                                                      * @param {Number} wait 延时的时间
-                                                                                                                      * @param {Boolean} immediate 是否立即执行
-                                                                                                                      * @return null
-                                                                                                                      */
-function throttle(func) {var wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-  if (immediate) {
-    if (!flag) {
-      flag = true;
-      // 如果是立即执行，则在wait毫秒内开始时执行
-      typeof func === 'function' && func();
-      timer = setTimeout(function () {
-        flag = false;
-      }, wait);
-    }
-  } else {
-    if (!flag) {
-      flag = true;
-      // 如果是非立即执行，则在wait毫秒内的结束处执行
-      timer = setTimeout(function () {
-        flag = false;
-        typeof func === 'function' && func();
-      }, wait);
-    }
-
-  }
-};var _default =
-throttle;exports.default = _default;
-
-/***/ }),
-
-/***/ 376:
-/*!**************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/static/icon/goods.png ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,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"
-
-/***/ }),
-
-/***/ 38:
-/*!***********************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/config/config.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 此版本发布于2020-03-17
-var version = '1.8.4';var _default =
-
-{
-  v: version,
-  version: version,
-  // 主题名称
-  type: [
-  'primary',
-  'success',
-  'info',
-  'error',
-  'warning'] };exports.default = _default;
-
-/***/ }),
-
-/***/ 39:
-/*!***********************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/config/zIndex.js ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // uniapp在H5中各API的z-index值如下：
-/**
- * actionsheet: 999
- * modal: 999
- * navigate: 998
- * tabbar: 998
- * toast: 999
- */var _default =
-
-{
-  toast: 10090,
-  noNetwork: 10080,
-  // popup包含popup，actionsheet，keyboard，picker的值
-  popup: 10075,
-  mask: 10070,
-  navbar: 980,
-  topTips: 975,
-  sticky: 970,
-  indexListSticky: 965 };exports.default = _default;
-
-/***/ }),
-
-/***/ 4:
-/*!***************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/pages.json ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ 40:
-/*!*******************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/store/index.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 41));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-_vue.default.use(_vuex.default);
-
-var lifeData = {};
-
-try {
-  // 尝试获取本地是否存在lifeData变量，第一次启动APP时是不存在的
-  lifeData = uni.getStorageSync('lifeData');
-} catch (e) {
-
-}
-
-// 需要永久存储，且下次APP启动需要取出的，在state中的变量名
-var saveStateKeys = ['vuex_token', 'vuex_loginUser', 'vuex_memberInfo'];
-
-// 保存变量到本地存储中
-var saveLifeData = function saveLifeData(key, value) {
-  // 判断变量名是否在需要存储的数组中
-  if (saveStateKeys.indexOf(key) != -1) {
-    // 获取本地存储的lifeData对象，将变量添加到对象中
-    var tmp = uni.getStorageSync('lifeData');
-    // 第一次打开APP，不存在lifeData变量，故放一个{}空对象
-    tmp = tmp ? tmp : {};
-    tmp[key] = value;
-    // 执行这一步后，所有需要存储的变量，都挂载在本地的lifeData对象中
-    uni.setStorageSync('lifeData', tmp);
-  }
-};
-var store = new _vuex.default.Store({
-  state: {
-    // 如果上面从本地获取的lifeData对象下有对应的属性，就赋值给state中对应的变量
-    // 加上vuex_前缀，是防止变量名冲突，也让人一目了然
-    isLogin: lifeData.isLogin || false,
-    vuex_memberInfo: lifeData.vuex_memberInfo || {},
-    needAuthProfile: false, //未授权用户信息
-    openCode: "",
-    vuex_loginUser: lifeData.vuex_loginUser || {},
-    vuex_wxUser: lifeData.vuex_wxUser || {},
-    vuex_token: lifeData.vuex_token || '',
-    // 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
-    vuex_cart: [], //购物车信息（商品列表）
-    vuex_prepayInfo: {} //预支付信息
-  },
-
-  mutations: {
-    $uStore: function $uStore(state, payload) {
-      // 判断是否多层级调用，state中为对象存在的情况，诸如user.info.score = 1
-      var nameArr = payload.name.split('.');
-      var saveKey = '';
-      var len = nameArr.length;
-      if (len >= 2) {
-        var obj = state[nameArr[0]];
-        for (var i = 1; i < len - 1; i++) {
-          obj = obj[nameArr[i]];
-        }
-        obj[nameArr[len - 1]] = payload.value;
-        saveKey = nameArr[0];
-      } else {
-        // 单层级变量，在state就是一个普通变量的情况
-        state[payload.name] = payload.value;
-        saveKey = payload.name;
-      }
-      // 保存变量到本地，见顶部函数定义
-      saveLifeData(saveKey, state[saveKey]);
-    } } });var _default =
-
-
-
-store;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 41:
-/*!********************************************!*\
-  !*** ./node_modules/vuex/dist/vuex.esm.js ***!
-  \********************************************/
-/*! exports provided: default, Store, createNamespacedHelpers, install, mapActions, mapGetters, mapMutations, mapState */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGetters", function() { return mapGetters; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMutations", function() { return mapMutations; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapState", function() { return mapState; });
-/*!
- * vuex v3.4.0
- * (c) 2020 Evan You
- * @license MIT
- */
-function applyMixin (Vue) {
-  var version = Number(Vue.version.split('.')[0]);
-
-  if (version >= 2) {
-    Vue.mixin({ beforeCreate: vuexInit });
-  } else {
-    // override init and inject vuex init procedure
-    // for 1.x backwards compatibility.
-    var _init = Vue.prototype._init;
-    Vue.prototype._init = function (options) {
-      if ( options === void 0 ) options = {};
-
-      options.init = options.init
-        ? [vuexInit].concat(options.init)
-        : vuexInit;
-      _init.call(this, options);
-    };
-  }
-
-  /**
-   * Vuex init hook, injected into each instances init hooks list.
-   */
-
-  function vuexInit () {
-    var options = this.$options;
-    // store injection
-    if (options.store) {
-      this.$store = typeof options.store === 'function'
-        ? options.store()
-        : options.store;
-    } else if (options.parent && options.parent.$store) {
-      this.$store = options.parent.$store;
-    }
-  }
-}
-
-var target = typeof window !== 'undefined'
-  ? window
-  : typeof global !== 'undefined'
-    ? global
-    : {};
-var devtoolHook = target.__VUE_DEVTOOLS_GLOBAL_HOOK__;
-
-function devtoolPlugin (store) {
-  if (!devtoolHook) { return }
-
-  store._devtoolHook = devtoolHook;
-
-  devtoolHook.emit('vuex:init', store);
-
-  devtoolHook.on('vuex:travel-to-state', function (targetState) {
-    store.replaceState(targetState);
-  });
-
-  store.subscribe(function (mutation, state) {
-    devtoolHook.emit('vuex:mutation', mutation, state);
-  }, { prepend: true });
-
-  store.subscribeAction(function (action, state) {
-    devtoolHook.emit('vuex:action', action, state);
-  }, { prepend: true });
-}
-
-/**
- * Get the first item that pass the test
- * by second argument function
- *
- * @param {Array} list
- * @param {Function} f
- * @return {*}
- */
-
-/**
- * forEach for object
- */
-function forEachValue (obj, fn) {
-  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
-}
-
-function isObject (obj) {
-  return obj !== null && typeof obj === 'object'
-}
-
-function isPromise (val) {
-  return val && typeof val.then === 'function'
-}
-
-function assert (condition, msg) {
-  if (!condition) { throw new Error(("[vuex] " + msg)) }
-}
-
-function partial (fn, arg) {
-  return function () {
-    return fn(arg)
-  }
-}
-
-// Base data struct for store's module, package with some attribute and method
-var Module = function Module (rawModule, runtime) {
-  this.runtime = runtime;
-  // Store some children item
-  this._children = Object.create(null);
-  // Store the origin module object which passed by programmer
-  this._rawModule = rawModule;
-  var rawState = rawModule.state;
-
-  // Store the origin module's state
-  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
-};
-
-var prototypeAccessors = { namespaced: { configurable: true } };
-
-prototypeAccessors.namespaced.get = function () {
-  return !!this._rawModule.namespaced
-};
-
-Module.prototype.addChild = function addChild (key, module) {
-  this._children[key] = module;
-};
-
-Module.prototype.removeChild = function removeChild (key) {
-  delete this._children[key];
-};
-
-Module.prototype.getChild = function getChild (key) {
-  return this._children[key]
-};
-
-Module.prototype.hasChild = function hasChild (key) {
-  return key in this._children
-};
-
-Module.prototype.update = function update (rawModule) {
-  this._rawModule.namespaced = rawModule.namespaced;
-  if (rawModule.actions) {
-    this._rawModule.actions = rawModule.actions;
-  }
-  if (rawModule.mutations) {
-    this._rawModule.mutations = rawModule.mutations;
-  }
-  if (rawModule.getters) {
-    this._rawModule.getters = rawModule.getters;
-  }
-};
-
-Module.prototype.forEachChild = function forEachChild (fn) {
-  forEachValue(this._children, fn);
-};
-
-Module.prototype.forEachGetter = function forEachGetter (fn) {
-  if (this._rawModule.getters) {
-    forEachValue(this._rawModule.getters, fn);
-  }
-};
-
-Module.prototype.forEachAction = function forEachAction (fn) {
-  if (this._rawModule.actions) {
-    forEachValue(this._rawModule.actions, fn);
-  }
-};
-
-Module.prototype.forEachMutation = function forEachMutation (fn) {
-  if (this._rawModule.mutations) {
-    forEachValue(this._rawModule.mutations, fn);
-  }
-};
-
-Object.defineProperties( Module.prototype, prototypeAccessors );
-
-var ModuleCollection = function ModuleCollection (rawRootModule) {
-  // register root module (Vuex.Store options)
-  this.register([], rawRootModule, false);
-};
-
-ModuleCollection.prototype.get = function get (path) {
-  return path.reduce(function (module, key) {
-    return module.getChild(key)
-  }, this.root)
-};
-
-ModuleCollection.prototype.getNamespace = function getNamespace (path) {
-  var module = this.root;
-  return path.reduce(function (namespace, key) {
-    module = module.getChild(key);
-    return namespace + (module.namespaced ? key + '/' : '')
-  }, '')
-};
-
-ModuleCollection.prototype.update = function update$1 (rawRootModule) {
-  update([], this.root, rawRootModule);
-};
-
-ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
-    var this$1 = this;
-    if ( runtime === void 0 ) runtime = true;
-
-  if ((true)) {
-    assertRawModule(path, rawModule);
-  }
-
-  var newModule = new Module(rawModule, runtime);
-  if (path.length === 0) {
-    this.root = newModule;
-  } else {
-    var parent = this.get(path.slice(0, -1));
-    parent.addChild(path[path.length - 1], newModule);
-  }
-
-  // register nested modules
-  if (rawModule.modules) {
-    forEachValue(rawModule.modules, function (rawChildModule, key) {
-      this$1.register(path.concat(key), rawChildModule, runtime);
-    });
-  }
-};
-
-ModuleCollection.prototype.unregister = function unregister (path) {
-  var parent = this.get(path.slice(0, -1));
-  var key = path[path.length - 1];
-  if (!parent.getChild(key).runtime) { return }
-
-  parent.removeChild(key);
-};
-
-ModuleCollection.prototype.isRegistered = function isRegistered (path) {
-  var parent = this.get(path.slice(0, -1));
-  var key = path[path.length - 1];
-
-  return parent.hasChild(key)
-};
-
-function update (path, targetModule, newModule) {
-  if ((true)) {
-    assertRawModule(path, newModule);
-  }
-
-  // update target module
-  targetModule.update(newModule);
-
-  // update nested modules
-  if (newModule.modules) {
-    for (var key in newModule.modules) {
-      if (!targetModule.getChild(key)) {
-        if ((true)) {
-          console.warn(
-            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
-            'manual reload is needed'
-          );
-        }
-        return
-      }
-      update(
-        path.concat(key),
-        targetModule.getChild(key),
-        newModule.modules[key]
-      );
-    }
-  }
-}
-
-var functionAssert = {
-  assert: function (value) { return typeof value === 'function'; },
-  expected: 'function'
-};
-
-var objectAssert = {
-  assert: function (value) { return typeof value === 'function' ||
-    (typeof value === 'object' && typeof value.handler === 'function'); },
-  expected: 'function or object with "handler" function'
-};
-
-var assertTypes = {
-  getters: functionAssert,
-  mutations: functionAssert,
-  actions: objectAssert
-};
-
-function assertRawModule (path, rawModule) {
-  Object.keys(assertTypes).forEach(function (key) {
-    if (!rawModule[key]) { return }
-
-    var assertOptions = assertTypes[key];
-
-    forEachValue(rawModule[key], function (value, type) {
-      assert(
-        assertOptions.assert(value),
-        makeAssertionMessage(path, key, type, value, assertOptions.expected)
-      );
-    });
-  });
-}
-
-function makeAssertionMessage (path, key, type, value, expected) {
-  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
-  if (path.length > 0) {
-    buf += " in module \"" + (path.join('.')) + "\"";
-  }
-  buf += " is " + (JSON.stringify(value)) + ".";
-  return buf
-}
-
-var Vue; // bind on install
-
-var Store = function Store (options) {
-  var this$1 = this;
-  if ( options === void 0 ) options = {};
-
-  // Auto install if it is not done yet and `window` has `Vue`.
-  // To allow users to avoid auto-installation in some cases,
-  // this code should be placed here. See #731
-  if (!Vue && typeof window !== 'undefined' && window.Vue) {
-    install(window.Vue);
-  }
-
-  if ((true)) {
-    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
-    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
-    assert(this instanceof Store, "store must be called with the new operator.");
-  }
-
-  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
-  var strict = options.strict; if ( strict === void 0 ) strict = false;
-
-  // store internal state
-  this._committing = false;
-  this._actions = Object.create(null);
-  this._actionSubscribers = [];
-  this._mutations = Object.create(null);
-  this._wrappedGetters = Object.create(null);
-  this._modules = new ModuleCollection(options);
-  this._modulesNamespaceMap = Object.create(null);
-  this._subscribers = [];
-  this._watcherVM = new Vue();
-  this._makeLocalGettersCache = Object.create(null);
-
-  // bind commit and dispatch to self
-  var store = this;
-  var ref = this;
-  var dispatch = ref.dispatch;
-  var commit = ref.commit;
-  this.dispatch = function boundDispatch (type, payload) {
-    return dispatch.call(store, type, payload)
-  };
-  this.commit = function boundCommit (type, payload, options) {
-    return commit.call(store, type, payload, options)
-  };
-
-  // strict mode
-  this.strict = strict;
-
-  var state = this._modules.root.state;
-
-  // init root module.
-  // this also recursively registers all sub-modules
-  // and collects all module getters inside this._wrappedGetters
-  installModule(this, state, [], this._modules.root);
-
-  // initialize the store vm, which is responsible for the reactivity
-  // (also registers _wrappedGetters as computed properties)
-  resetStoreVM(this, state);
-
-  // apply plugins
-  plugins.forEach(function (plugin) { return plugin(this$1); });
-
-  var useDevtools = options.devtools !== undefined ? options.devtools : Vue.config.devtools;
-  if (useDevtools) {
-    devtoolPlugin(this);
-  }
-};
-
-var prototypeAccessors$1 = { state: { configurable: true } };
-
-prototypeAccessors$1.state.get = function () {
-  return this._vm._data.$$state
-};
-
-prototypeAccessors$1.state.set = function (v) {
-  if ((true)) {
-    assert(false, "use store.replaceState() to explicit replace store state.");
-  }
-};
-
-Store.prototype.commit = function commit (_type, _payload, _options) {
-    var this$1 = this;
-
-  // check object-style commit
-  var ref = unifyObjectStyle(_type, _payload, _options);
-    var type = ref.type;
-    var payload = ref.payload;
-    var options = ref.options;
-
-  var mutation = { type: type, payload: payload };
-  var entry = this._mutations[type];
-  if (!entry) {
-    if ((true)) {
-      console.error(("[vuex] unknown mutation type: " + type));
-    }
-    return
-  }
-  this._withCommit(function () {
-    entry.forEach(function commitIterator (handler) {
-      handler(payload);
-    });
-  });
-
-  this._subscribers
-    .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
-    .forEach(function (sub) { return sub(mutation, this$1.state); });
-
-  if (
-    ( true) &&
-    options && options.silent
-  ) {
-    console.warn(
-      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
-      'Use the filter functionality in the vue-devtools'
-    );
-  }
-};
-
-Store.prototype.dispatch = function dispatch (_type, _payload) {
-    var this$1 = this;
-
-  // check object-style dispatch
-  var ref = unifyObjectStyle(_type, _payload);
-    var type = ref.type;
-    var payload = ref.payload;
-
-  var action = { type: type, payload: payload };
-  var entry = this._actions[type];
-  if (!entry) {
-    if ((true)) {
-      console.error(("[vuex] unknown action type: " + type));
-    }
-    return
-  }
-
-  try {
-    this._actionSubscribers
-      .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
-      .filter(function (sub) { return sub.before; })
-      .forEach(function (sub) { return sub.before(action, this$1.state); });
-  } catch (e) {
-    if ((true)) {
-      console.warn("[vuex] error in before action subscribers: ");
-      console.error(e);
-    }
-  }
-
-  var result = entry.length > 1
-    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
-    : entry[0](payload);
-
-  return new Promise(function (resolve, reject) {
-    result.then(function (res) {
-      try {
-        this$1._actionSubscribers
-          .filter(function (sub) { return sub.after; })
-          .forEach(function (sub) { return sub.after(action, this$1.state); });
-      } catch (e) {
-        if ((true)) {
-          console.warn("[vuex] error in after action subscribers: ");
-          console.error(e);
-        }
-      }
-      resolve(res);
-    }, function (error) {
-      try {
-        this$1._actionSubscribers
-          .filter(function (sub) { return sub.error; })
-          .forEach(function (sub) { return sub.error(action, this$1.state, error); });
-      } catch (e) {
-        if ((true)) {
-          console.warn("[vuex] error in error action subscribers: ");
-          console.error(e);
-        }
-      }
-      reject(error);
-    });
-  })
-};
-
-Store.prototype.subscribe = function subscribe (fn, options) {
-  return genericSubscribe(fn, this._subscribers, options)
-};
-
-Store.prototype.subscribeAction = function subscribeAction (fn, options) {
-  var subs = typeof fn === 'function' ? { before: fn } : fn;
-  return genericSubscribe(subs, this._actionSubscribers, options)
-};
-
-Store.prototype.watch = function watch (getter, cb, options) {
-    var this$1 = this;
-
-  if ((true)) {
-    assert(typeof getter === 'function', "store.watch only accepts a function.");
-  }
-  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
-};
-
-Store.prototype.replaceState = function replaceState (state) {
-    var this$1 = this;
-
-  this._withCommit(function () {
-    this$1._vm._data.$$state = state;
-  });
-};
-
-Store.prototype.registerModule = function registerModule (path, rawModule, options) {
-    if ( options === void 0 ) options = {};
-
-  if (typeof path === 'string') { path = [path]; }
-
-  if ((true)) {
-    assert(Array.isArray(path), "module path must be a string or an Array.");
-    assert(path.length > 0, 'cannot register the root module by using registerModule.');
-  }
-
-  this._modules.register(path, rawModule);
-  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
-  // reset store to update getters...
-  resetStoreVM(this, this.state);
-};
-
-Store.prototype.unregisterModule = function unregisterModule (path) {
-    var this$1 = this;
-
-  if (typeof path === 'string') { path = [path]; }
-
-  if ((true)) {
-    assert(Array.isArray(path), "module path must be a string or an Array.");
-  }
-
-  this._modules.unregister(path);
-  this._withCommit(function () {
-    var parentState = getNestedState(this$1.state, path.slice(0, -1));
-    Vue.delete(parentState, path[path.length - 1]);
-  });
-  resetStore(this);
-};
-
-Store.prototype.hasModule = function hasModule (path) {
-  if (typeof path === 'string') { path = [path]; }
-
-  if ((true)) {
-    assert(Array.isArray(path), "module path must be a string or an Array.");
-  }
-
-  return this._modules.isRegistered(path)
-};
-
-Store.prototype.hotUpdate = function hotUpdate (newOptions) {
-  this._modules.update(newOptions);
-  resetStore(this, true);
-};
-
-Store.prototype._withCommit = function _withCommit (fn) {
-  var committing = this._committing;
-  this._committing = true;
-  fn();
-  this._committing = committing;
-};
-
-Object.defineProperties( Store.prototype, prototypeAccessors$1 );
-
-function genericSubscribe (fn, subs, options) {
-  if (subs.indexOf(fn) < 0) {
-    options && options.prepend
-      ? subs.unshift(fn)
-      : subs.push(fn);
-  }
-  return function () {
-    var i = subs.indexOf(fn);
-    if (i > -1) {
-      subs.splice(i, 1);
-    }
-  }
-}
-
-function resetStore (store, hot) {
-  store._actions = Object.create(null);
-  store._mutations = Object.create(null);
-  store._wrappedGetters = Object.create(null);
-  store._modulesNamespaceMap = Object.create(null);
-  var state = store.state;
-  // init all modules
-  installModule(store, state, [], store._modules.root, true);
-  // reset vm
-  resetStoreVM(store, state, hot);
-}
-
-function resetStoreVM (store, state, hot) {
-  var oldVm = store._vm;
-
-  // bind store public getters
-  store.getters = {};
-  // reset local getters cache
-  store._makeLocalGettersCache = Object.create(null);
-  var wrappedGetters = store._wrappedGetters;
-  var computed = {};
-  forEachValue(wrappedGetters, function (fn, key) {
-    // use computed to leverage its lazy-caching mechanism
-    // direct inline function use will lead to closure preserving oldVm.
-    // using partial to return function with only arguments preserved in closure environment.
-    computed[key] = partial(fn, store);
-    Object.defineProperty(store.getters, key, {
-      get: function () { return store._vm[key]; },
-      enumerable: true // for local getters
-    });
-  });
-
-  // use a Vue instance to store the state tree
-  // suppress warnings just in case the user has added
-  // some funky global mixins
-  var silent = Vue.config.silent;
-  Vue.config.silent = true;
-  store._vm = new Vue({
-    data: {
-      $$state: state
-    },
-    computed: computed
-  });
-  Vue.config.silent = silent;
-
-  // enable strict mode for new vm
-  if (store.strict) {
-    enableStrictMode(store);
-  }
-
-  if (oldVm) {
-    if (hot) {
-      // dispatch changes in all subscribed watchers
-      // to force getter re-evaluation for hot reloading.
-      store._withCommit(function () {
-        oldVm._data.$$state = null;
-      });
-    }
-    Vue.nextTick(function () { return oldVm.$destroy(); });
-  }
-}
-
-function installModule (store, rootState, path, module, hot) {
-  var isRoot = !path.length;
-  var namespace = store._modules.getNamespace(path);
-
-  // register in namespace map
-  if (module.namespaced) {
-    if (store._modulesNamespaceMap[namespace] && ("development" !== 'production')) {
-      console.error(("[vuex] duplicate namespace " + namespace + " for the namespaced module " + (path.join('/'))));
-    }
-    store._modulesNamespaceMap[namespace] = module;
-  }
-
-  // set state
-  if (!isRoot && !hot) {
-    var parentState = getNestedState(rootState, path.slice(0, -1));
-    var moduleName = path[path.length - 1];
-    store._withCommit(function () {
-      if ((true)) {
-        if (moduleName in parentState) {
-          console.warn(
-            ("[vuex] state field \"" + moduleName + "\" was overridden by a module with the same name at \"" + (path.join('.')) + "\"")
-          );
-        }
-      }
-      Vue.set(parentState, moduleName, module.state);
-    });
-  }
-
-  var local = module.context = makeLocalContext(store, namespace, path);
-
-  module.forEachMutation(function (mutation, key) {
-    var namespacedType = namespace + key;
-    registerMutation(store, namespacedType, mutation, local);
-  });
-
-  module.forEachAction(function (action, key) {
-    var type = action.root ? key : namespace + key;
-    var handler = action.handler || action;
-    registerAction(store, type, handler, local);
-  });
-
-  module.forEachGetter(function (getter, key) {
-    var namespacedType = namespace + key;
-    registerGetter(store, namespacedType, getter, local);
-  });
-
-  module.forEachChild(function (child, key) {
-    installModule(store, rootState, path.concat(key), child, hot);
-  });
-}
-
-/**
- * make localized dispatch, commit, getters and state
- * if there is no namespace, just use root ones
- */
-function makeLocalContext (store, namespace, path) {
-  var noNamespace = namespace === '';
-
-  var local = {
-    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
-      var args = unifyObjectStyle(_type, _payload, _options);
-      var payload = args.payload;
-      var options = args.options;
-      var type = args.type;
-
-      if (!options || !options.root) {
-        type = namespace + type;
-        if (( true) && !store._actions[type]) {
-          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
-          return
-        }
-      }
-
-      return store.dispatch(type, payload)
-    },
-
-    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
-      var args = unifyObjectStyle(_type, _payload, _options);
-      var payload = args.payload;
-      var options = args.options;
-      var type = args.type;
-
-      if (!options || !options.root) {
-        type = namespace + type;
-        if (( true) && !store._mutations[type]) {
-          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
-          return
-        }
-      }
-
-      store.commit(type, payload, options);
-    }
-  };
-
-  // getters and state object must be gotten lazily
-  // because they will be changed by vm update
-  Object.defineProperties(local, {
-    getters: {
-      get: noNamespace
-        ? function () { return store.getters; }
-        : function () { return makeLocalGetters(store, namespace); }
-    },
-    state: {
-      get: function () { return getNestedState(store.state, path); }
-    }
-  });
-
-  return local
-}
-
-function makeLocalGetters (store, namespace) {
-  if (!store._makeLocalGettersCache[namespace]) {
-    var gettersProxy = {};
-    var splitPos = namespace.length;
-    Object.keys(store.getters).forEach(function (type) {
-      // skip if the target getter is not match this namespace
-      if (type.slice(0, splitPos) !== namespace) { return }
-
-      // extract local getter type
-      var localType = type.slice(splitPos);
-
-      // Add a port to the getters proxy.
-      // Define as getter property because
-      // we do not want to evaluate the getters in this time.
-      Object.defineProperty(gettersProxy, localType, {
-        get: function () { return store.getters[type]; },
-        enumerable: true
-      });
-    });
-    store._makeLocalGettersCache[namespace] = gettersProxy;
-  }
-
-  return store._makeLocalGettersCache[namespace]
-}
-
-function registerMutation (store, type, handler, local) {
-  var entry = store._mutations[type] || (store._mutations[type] = []);
-  entry.push(function wrappedMutationHandler (payload) {
-    handler.call(store, local.state, payload);
-  });
-}
-
-function registerAction (store, type, handler, local) {
-  var entry = store._actions[type] || (store._actions[type] = []);
-  entry.push(function wrappedActionHandler (payload) {
-    var res = handler.call(store, {
-      dispatch: local.dispatch,
-      commit: local.commit,
-      getters: local.getters,
-      state: local.state,
-      rootGetters: store.getters,
-      rootState: store.state
-    }, payload);
-    if (!isPromise(res)) {
-      res = Promise.resolve(res);
-    }
-    if (store._devtoolHook) {
-      return res.catch(function (err) {
-        store._devtoolHook.emit('vuex:error', err);
-        throw err
-      })
-    } else {
-      return res
-    }
-  });
-}
-
-function registerGetter (store, type, rawGetter, local) {
-  if (store._wrappedGetters[type]) {
-    if ((true)) {
-      console.error(("[vuex] duplicate getter key: " + type));
-    }
-    return
-  }
-  store._wrappedGetters[type] = function wrappedGetter (store) {
-    return rawGetter(
-      local.state, // local state
-      local.getters, // local getters
-      store.state, // root state
-      store.getters // root getters
-    )
-  };
-}
-
-function enableStrictMode (store) {
-  store._vm.$watch(function () { return this._data.$$state }, function () {
-    if ((true)) {
-      assert(store._committing, "do not mutate vuex store state outside mutation handlers.");
-    }
-  }, { deep: true, sync: true });
-}
-
-function getNestedState (state, path) {
-  return path.reduce(function (state, key) { return state[key]; }, state)
-}
-
-function unifyObjectStyle (type, payload, options) {
-  if (isObject(type) && type.type) {
-    options = payload;
-    payload = type;
-    type = type.type;
-  }
-
-  if ((true)) {
-    assert(typeof type === 'string', ("expects string as the type, but found " + (typeof type) + "."));
-  }
-
-  return { type: type, payload: payload, options: options }
-}
-
-function install (_Vue) {
-  if (Vue && _Vue === Vue) {
-    if ((true)) {
-      console.error(
-        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
-      );
-    }
-    return
-  }
-  Vue = _Vue;
-  applyMixin(Vue);
-}
-
-/**
- * Reduce the code which written in Vue.js for getting the state.
- * @param {String} [namespace] - Module's namespace
- * @param {Object|Array} states # Object's item can be a function which accept state and getters for param, you can do something for state and getters in it.
- * @param {Object}
- */
-var mapState = normalizeNamespace(function (namespace, states) {
-  var res = {};
-  if (( true) && !isValidMap(states)) {
-    console.error('[vuex] mapState: mapper parameter must be either an Array or an Object');
-  }
-  normalizeMap(states).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    res[key] = function mappedState () {
-      var state = this.$store.state;
-      var getters = this.$store.getters;
-      if (namespace) {
-        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
-        if (!module) {
-          return
-        }
-        state = module.context.state;
-        getters = module.context.getters;
-      }
-      return typeof val === 'function'
-        ? val.call(this, state, getters)
-        : state[val]
-    };
-    // mark vuex getter for devtools
-    res[key].vuex = true;
-  });
-  return res
-});
-
-/**
- * Reduce the code which written in Vue.js for committing the mutation
- * @param {String} [namespace] - Module's namespace
- * @param {Object|Array} mutations # Object's item can be a function which accept `commit` function as the first param, it can accept anthor params. You can commit mutation and do any other things in this function. specially, You need to pass anthor params from the mapped function.
- * @return {Object}
- */
-var mapMutations = normalizeNamespace(function (namespace, mutations) {
-  var res = {};
-  if (( true) && !isValidMap(mutations)) {
-    console.error('[vuex] mapMutations: mapper parameter must be either an Array or an Object');
-  }
-  normalizeMap(mutations).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    res[key] = function mappedMutation () {
-      var args = [], len = arguments.length;
-      while ( len-- ) args[ len ] = arguments[ len ];
-
-      // Get the commit method from store
-      var commit = this.$store.commit;
-      if (namespace) {
-        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
-        if (!module) {
-          return
-        }
-        commit = module.context.commit;
-      }
-      return typeof val === 'function'
-        ? val.apply(this, [commit].concat(args))
-        : commit.apply(this.$store, [val].concat(args))
-    };
-  });
-  return res
-});
-
-/**
- * Reduce the code which written in Vue.js for getting the getters
- * @param {String} [namespace] - Module's namespace
- * @param {Object|Array} getters
- * @return {Object}
- */
-var mapGetters = normalizeNamespace(function (namespace, getters) {
-  var res = {};
-  if (( true) && !isValidMap(getters)) {
-    console.error('[vuex] mapGetters: mapper parameter must be either an Array or an Object');
-  }
-  normalizeMap(getters).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    // The namespace has been mutated by normalizeNamespace
-    val = namespace + val;
-    res[key] = function mappedGetter () {
-      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
-        return
-      }
-      if (( true) && !(val in this.$store.getters)) {
-        console.error(("[vuex] unknown getter: " + val));
-        return
-      }
-      return this.$store.getters[val]
-    };
-    // mark vuex getter for devtools
-    res[key].vuex = true;
-  });
-  return res
-});
-
-/**
- * Reduce the code which written in Vue.js for dispatch the action
- * @param {String} [namespace] - Module's namespace
- * @param {Object|Array} actions # Object's item can be a function which accept `dispatch` function as the first param, it can accept anthor params. You can dispatch action and do any other things in this function. specially, You need to pass anthor params from the mapped function.
- * @return {Object}
- */
-var mapActions = normalizeNamespace(function (namespace, actions) {
-  var res = {};
-  if (( true) && !isValidMap(actions)) {
-    console.error('[vuex] mapActions: mapper parameter must be either an Array or an Object');
-  }
-  normalizeMap(actions).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    res[key] = function mappedAction () {
-      var args = [], len = arguments.length;
-      while ( len-- ) args[ len ] = arguments[ len ];
-
-      // get dispatch function from store
-      var dispatch = this.$store.dispatch;
-      if (namespace) {
-        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
-        if (!module) {
-          return
-        }
-        dispatch = module.context.dispatch;
-      }
-      return typeof val === 'function'
-        ? val.apply(this, [dispatch].concat(args))
-        : dispatch.apply(this.$store, [val].concat(args))
-    };
-  });
-  return res
-});
-
-/**
- * Rebinding namespace param for mapXXX function in special scoped, and return them by simple object
- * @param {String} namespace
- * @return {Object}
- */
-var createNamespacedHelpers = function (namespace) { return ({
-  mapState: mapState.bind(null, namespace),
-  mapGetters: mapGetters.bind(null, namespace),
-  mapMutations: mapMutations.bind(null, namespace),
-  mapActions: mapActions.bind(null, namespace)
-}); };
-
-/**
- * Normalize the map
- * normalizeMap([1, 2, 3]) => [ { key: 1, val: 1 }, { key: 2, val: 2 }, { key: 3, val: 3 } ]
- * normalizeMap({a: 1, b: 2, c: 3}) => [ { key: 'a', val: 1 }, { key: 'b', val: 2 }, { key: 'c', val: 3 } ]
- * @param {Array|Object} map
- * @return {Object}
- */
-function normalizeMap (map) {
-  if (!isValidMap(map)) {
-    return []
-  }
-  return Array.isArray(map)
-    ? map.map(function (key) { return ({ key: key, val: key }); })
-    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
-}
-
-/**
- * Validate whether given map is valid or not
- * @param {*} map
- * @return {Boolean}
- */
-function isValidMap (map) {
-  return Array.isArray(map) || isObject(map)
-}
-
-/**
- * Return a function expect two param contains namespace and map. it will normalize the namespace and then the param's function will handle the new namespace and the map.
- * @param {Function} fn
- * @return {Function}
- */
-function normalizeNamespace (fn) {
-  return function (namespace, map) {
-    if (typeof namespace !== 'string') {
-      map = namespace;
-      namespace = '';
-    } else if (namespace.charAt(namespace.length - 1) !== '/') {
-      namespace += '/';
-    }
-    return fn(namespace, map)
-  }
-}
-
-/**
- * Search a special module from store by namespace. if module not exist, print error message.
- * @param {Object} store
- * @param {String} helper
- * @param {String} namespace
- * @return {Object}
- */
-function getModuleByNamespace (store, helper, namespace) {
-  var module = store._modulesNamespaceMap[namespace];
-  if (( true) && !module) {
-    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
-  }
-  return module
-}
-
-var index = {
-  Store: Store,
-  install: install,
-  version: '3.4.0',
-  mapState: mapState,
-  mapMutations: mapMutations,
-  mapGetters: mapGetters,
-  mapActions: mapActions,
-  createNamespacedHelpers: createNamespacedHelpers
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (index);
-
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ 3)))
-
-/***/ }),
-
-/***/ 42:
-/*!*************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/common/locales/zh.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  // 可以以页面为单位来写，比如首页的内容，写在index字段，个人中心写在center，共同部分写在common部分
-  components: {
-    desc: '众多组件覆盖开发过程的各个需求，组件功能丰富，多端兼容。让你快速集成，开箱即用' },
-
-  js: {
-    desc: '众多的贴心小工具，是你开发过程中召之即来的利器，让你飞镖在手，百步穿杨' },
-
-  template: {
-    desc: '收集众多的常用页面和布局，减少开发者的重复工作，让你专注逻辑，事半功倍' },
-
-  nav: {
-    components: '组件',
-    js: '工具',
-    template: '模板' },
-
-  common: {
-    intro: '多平台快速开发的UI框架',
-    title: 'uView UI' } };exports.default = _default;
-
-/***/ }),
-
-/***/ 429:
-/*!**********************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/util/emitter.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
-                                                                                                      * 递归使用 call 方式this指向
-                                                                                                      * @param componentName // 需要找的组件的名称
-                                                                                                      * @param eventName // 事件名称
-                                                                                                      * @param params // 需要传递的参数
-                                                                                                      */
-function _broadcast(componentName, eventName, params) {
-  // 循环子节点找到名称一样的子节点 否则 递归 当前子节点
-  this.$children.map(function (child) {
-    if (componentName === child.$options.name) {
-      child.$emit.apply(child, [eventName].concat(params));
-    } else {
-      _broadcast.apply(child, [componentName, eventName].concat(params));
-    }
-  });
-}var _default =
-{
-  methods: {
-    /**
-              * 派发 (向上查找) (一个)
-              * @param componentName // 需要找的组件的名称
-              * @param eventName // 事件名称
-              * @param params // 需要传递的参数
-              */
-    dispatch: function dispatch(componentName, eventName, params) {
-      var parent = this.$parent || this.$root; //$parent 找到最近的父节点 $root 根节点
-      var name = parent.$options.name; // 获取当前组件实例的name
-      // 如果当前有节点 && 当前没名称 且 当前名称等于需要传进来的名称的时候就去查找当前的节点
-      // 循环出当前名称的一样的组件实例
-      while (parent && (!name || name !== componentName)) {
-        parent = parent.$parent;
-        if (parent) {
-          name = parent.$options.name;
-        }
-      }
-      // 有节点表示当前找到了name一样的实例
-      if (parent) {
-        parent.$emit.apply(parent, [eventName].concat(params));
-      }
-    },
-    /**
-        * 广播 (向下查找) (广播多个)
-        * @param componentName // 需要找的组件的名称
-        * @param eventName // 事件名称
-        * @param params // 需要传递的参数
-        */
-    broadcast: function broadcast(componentName, eventName, params) {
-      _broadcast.call(this, componentName, eventName, params);
-    } } };exports.default = _default;
-
-/***/ }),
-
-/***/ 43:
-/*!*************************************************************!*\
-  !*** D:/front/bxfront_devproject/fyzh/common/locales/en.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  // 可以以页面为单位来写，比如首页的内容，写在index字段，个人中心写在center，共同部分写在common部分
-  components: {
-    desc: 'Numerous components cover the various requirements of the development process, and the components are rich in functions and compatible with multiple terminals. Let you integrate quickly, out of the box' },
-
-  js: {
-    desc: 'Numerous intimate gadgets are a weapon that you can call upon during the development process, allowing you to dart in your hand and pierce the Yang with a hundred steps' },
-
-  template: {
-    desc: 'Collection of many commonly used pages and layouts, reducing the repetitive work of developers, allowing you to focus on logic and get twice the result with half the effort' },
-
-  nav: {
-    components: 'Components',
-    js: 'JS',
-    template: 'Template' },
-
-  common: {
-    intro: 'UI framework for rapid development of multiple platforms',
-    title: 'uView UI' } };exports.default = _default;
-
-/***/ }),
-
-/***/ 430:
+/***/ 240:
 /*!******************************************************************************!*\
   !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/util/async-validator.js ***!
   \******************************************************************************/
@@ -12982,7 +10181,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 var formatRegExp = /%[sdj%]/g;
 var warning = function warning() {}; // don't print warning message when in production env or node runtime
 
-if (typeof process !== 'undefined' && Object({"VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}) && "development" !== 'production' && typeof window !==
+if (typeof process !== 'undefined' && Object({"NODE_ENV":"development","VUE_APP_NAME":"枫叶正红","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}) && "development" !== 'production' && typeof window !==
 'undefined' && typeof document !== 'undefined') {
   warning = function warning(type, errors) {
     if (typeof console !== 'undefined' && console.warn) {
@@ -14315,11 +11514,11 @@ Schema.warning = warning;
 Schema.messages = messages;var _default =
 
 Schema;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../application/HBuilderX.2.7.14.20200618.full/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 431)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../application/HBuilderX.2.7.14.20200618.full/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 241)))
 
 /***/ }),
 
-/***/ 431:
+/***/ 241:
 /*!********************************************************!*\
   !*** ./node_modules/node-libs-browser/mock/process.js ***!
   \********************************************************/
@@ -14350,7 +11549,7 @@ exports.binding = function (name) {
     var path;
     exports.cwd = function () { return cwd };
     exports.chdir = function (dir) {
-        if (!path) path = __webpack_require__(/*! path */ 432);
+        if (!path) path = __webpack_require__(/*! path */ 242);
         cwd = path.resolve(dir, cwd);
     };
 })();
@@ -14364,7 +11563,7 @@ exports.features = {};
 
 /***/ }),
 
-/***/ 432:
+/***/ 242:
 /*!***********************************************!*\
   !*** ./node_modules/path-browserify/index.js ***!
   \***********************************************/
@@ -14674,7 +11873,2808 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 431)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 241)))
+
+/***/ }),
+
+/***/ 25:
+/*!***********************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/guid.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 本算法来源于简书开源代码，详见：https://www.jianshu.com/p/fdbf293d0a85
+                                                                                                      * 全局唯一标识符（uuid，Globally Unique Identifier）,也称作 uuid(Universally Unique IDentifier) 
+                                                                                                      * 一般用于多个组件之间,给它一个唯一的标识符,或者v-for循环的时候,如果使用数组的index可能会导致更新列表出现问题
+                                                                                                      * 最可能的情况是左滑删除item或者对某条信息流"不喜欢"并去掉它的时候,会导致组件内的数据可能出现错乱
+                                                                                                      * v-for的时候,推荐使用后端返回的id而不是循环的index
+                                                                                                      * @param {Number} len uuid的长度
+                                                                                                      * @param {Boolean} firstU 将返回的首字母置为"u"
+                                                                                                      * @param {Nubmer} radix 生成uuid的基数(意味着返回的字符串都是这个基数),2-二进制,8-八进制,10-十进制,16-十六进制
+                                                                                                      */
+function guid() {var len = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 32;var firstU = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;var radix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+  var uuid = [];
+  radix = radix || chars.length;
+
+  if (len) {
+    // 如果指定uuid长度,只是取随机的字符,0|x为位运算,能去掉x的小数位,返回整数位
+    for (var i = 0; i < len; i++) {uuid[i] = chars[0 | Math.random() * radix];}
+  } else {
+    var r;
+    // rfc4122标准要求返回的uuid中,某些位为固定的字符
+    uuid[8] = uuid[13] = uuid[18] = uuid[23] = '-';
+    uuid[14] = '4';
+
+    for (var _i = 0; _i < 36; _i++) {
+      if (!uuid[_i]) {
+        r = 0 | Math.random() * 16;
+        uuid[_i] = chars[_i == 19 ? r & 0x3 | 0x8 : r];
+      }
+    }
+  }
+  // 移除第一个字符,并用u替代,因为第一个字符为数值时,该guuid不能用作id或者class
+  if (firstU) {
+    uuid.shift();
+    return 'u' + uuid.join('');
+  } else {
+    return uuid.join('');
+  }
+}var _default =
+
+guid;exports.default = _default;
+
+/***/ }),
+
+/***/ 26:
+/*!************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/color.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 为了让用户能够自定义主题，会逐步弃用此文件，各颜色通过css提供
+// 为了给某些特殊场景使用和向后兼容，无需删除此文件(2020-06-20)
+var color = {
+  primary: "#2979ff",
+  primaryDark: "#2b85e4",
+  primaryDisabled: "#a0cfff",
+  primaryLight: "#ecf5ff",
+  bgColor: "#f3f4f6",
+
+  info: "#909399",
+  infoDark: "#82848a",
+  infoDisabled: "#c8c9cc",
+  infoLight: "#f4f4f5",
+
+  warning: "#ff9900",
+  warningDark: "#f29100",
+  warningDisabled: "#fcbd71",
+  warningLight: "#fdf6ec",
+
+  error: "#fa3534",
+  errorDark: "#dd6161",
+  errorDisabled: "#fab6b6",
+  errorLight: "#fef0f0",
+
+  success: "#19be6b",
+  successDark: "#18b566",
+  successDisabled: "#71d5a1",
+  successLight: "#dbf1e1",
+
+  mainColor: "#303133",
+  contentColor: "#606266",
+  tipsColor: "#909399",
+  lightColor: "#c0c4cc",
+  borderColor: "#e4e7ed" };var _default =
+
+
+color;exports.default = _default;
+
+/***/ }),
+
+/***/ 27:
+/*!****************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/type2icon.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 根据主题type值,获取对应的图标
+                                                                                                      * @param String type 主题名称,primary|info|error|warning|success
+                                                                                                      * @param String fill 是否使用fill填充实体的图标  
+                                                                                                      */
+function type2icon() {var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'success';var fill = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  // 如果非预置值,默认为success
+  if (['primary', 'info', 'error', 'warning', 'success'].indexOf(type) == -1) type = 'success';
+  var iconName = '';
+  // 目前(2019-12-12),info和primary使用同一个图标
+  switch (type) {
+    case 'primary':
+      iconName = 'info-circle';
+      break;
+    case 'info':
+      iconName = 'info-circle';
+      break;
+    case 'error':
+      iconName = 'close-circle';
+      break;
+    case 'warning':
+      iconName = 'error-circle';
+      break;
+    case 'success':
+      iconName = 'checkmark-circle';
+      break;
+    default:
+      iconName = 'checkmark-circle';}
+
+  // 是否是实体类型,加上-fill,在icon组件库中,实体的类名是后面加-fill的
+  if (fill) iconName += '-fill';
+  return iconName;
+}var _default =
+
+type2icon;exports.default = _default;
+
+/***/ }),
+
+/***/ 271:
+/*!************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/common/evaluator.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * @param {Object} rowData 当前行数据
+                                                                                                      * @param {String} formula 需要根据当前js转化为表达式的json字符串
+                                                                                                      */
+// 导入方式: import evaluatorTo from 'path/evaluator.js'
+//  调用方式: evaluatorTo(rowData,formula)
+function evaluatorTo(rowData, formula) {
+  var result = null;
+  var evaluator = function evaluator(formula, result) {
+    if (typeof formula === 'object') {
+      Object.keys(formula).forEach(function (operator, index) {
+        switch (operator) {
+          case 'if': //if(xx){}else{}
+            result = evaluator(formula[operator][0], result) ? formula[operator][1] : formula[
+            operator][2];
+            break;
+          case 'and': // &&
+            var a = true;
+            formula[operator].forEach(function (_formula) {
+              Object.keys(_formula).forEach(function (_operator) {
+                if (!evaluator(_formula, result)) {
+                  a = false; //有假则假
+                }
+              });
+            });
+            result = a;
+            break;
+          case 'or': // 或 ||
+            var o = false;
+            formula[operator].forEach(function (_formula) {
+              Object.keys(_formula).forEach(function (_operator) {
+                if (evaluator(_formula, result)) {
+                  o = true; //有真则真
+                }
+              });
+            });
+            result = o;
+            break;
+          case 'not': //取反 !
+            break;
+          case 'eq': //等于 === equal
+            if (!formula[operator].val) {
+              result = !rowData[evaluator(formula[operator]['col'], result)];
+            } else if (typeof formula[operator].val !== 'string') {
+              // val为对象
+              var valueObj = formula[operator].val;
+              var value = '';
+              if (valueObj.value_key && valueObj.value_type) {
+                switch (valueObj.value_type) {
+                  case 'rowData':
+                    result = rowData[evaluator(formula[operator]['col'], result)] ==
+                    rowData[valueObj.value_key];
+                    break;
+                  case 'login_user_info':
+                    var login_user_info = uni.getStorageSync('login_user_info');
+                    if (login_user_info && typeof login_user_info === 'object') {
+                      result = rowData[evaluator(formula[operator]['col'], result)] ==
+                      login_user_info[valueObj.value_key];
+                    } else {
+                      result = false;
+                    }
+                    break;
+                  default:
+                    result = rowData[evaluator(formula[operator]['col'], result)] ==
+                    rowData[valueObj.value_key];
+                    break;}
+
+              }
+            } else {
+              result = rowData[evaluator(formula[operator]['col'], result)] == formula[
+              operator].val;
+            }
+            break;
+          case 'neq': //不等于 !== not equal
+            if (!formula[operator].val) {
+              result = !!rowData[evaluator(formula[operator]['col'], result)];
+            } else if (typeof formula[operator].val !== 'string') {
+              // val为对象
+              var _valueObj = formula[operator].val;
+              var _value = '';
+              if (_valueObj.value_key && _valueObj.value_type) {
+                switch (_valueObj.value_type) {
+                  case 'rowData':
+                    result = rowData[evaluator(formula[operator]['col'], result)] !=
+                    rowData[_valueObj.value_key];
+                    break;
+                  case 'login_user_info':
+                  case 'top.user':
+                    var _login_user_info = uni.getStorageSync('login_user_info');
+                    if (_login_user_info && typeof _login_user_info === 'object') {
+                      result = rowData[evaluator(formula[operator]['col'], result)] !=
+                      _login_user_info[_valueObj.value_key];
+                    } else {
+                      result = false;
+                    }
+                    break;
+                  default:
+                    result = rowData[evaluator(formula[operator]['col'], result)] !=
+                    rowData[_valueObj.value_key];
+                    break;}
+
+              }
+            } else {
+              result = rowData[evaluator(formula[operator]['col'], result)] != formula[
+              operator].val;
+            }
+            break;
+          case 'gt': // greater than or equal >
+            result = rowData[evaluator(formula[operator]['col'], result)] > formula[operator].
+            val;
+            break;
+          case 'gte': // greater than >
+            result = rowData[evaluator(formula[operator]['col'], result)] >= formula[operator].
+            val;
+            break;
+          case 'lt': // less than
+            result = rowData[evaluator(formula[operator]['col'], result)] < formula[operator].
+            val;
+            break;
+          case 'le': // less than or equal
+            result = rowData[evaluator(formula[operator]['col'], result)] <= formula[operator].
+            val;
+            break;
+          case 'add': // + 加
+            break;
+          case 'sub': // - 减
+            break;
+          case 'mul': //multiply 乘 *
+            break;
+          case 'div': // divide 除 /
+            break;
+          default:
+            result = result;
+            break;}
+
+      });
+    } else {
+      result = formula;
+    }
+    return result;
+  };
+  return evaluator(formula, result);
+}var _default =
+
+evaluatorTo;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 28:
+/*!******************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/randomArray.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 打乱数组
+function randomArray() {var array = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  // 原理是sort排序,Math.random()产生0<= x < 1之间的数,会导致x-0.05大于或者小于0
+  return array.sort(function () {return Math.random() - 0.5;});
+}var _default =
+
+randomArray;exports.default = _default;
+
+/***/ }),
+
+/***/ 284:
+/*!*****************************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/MpHtmlParser.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(uni) {/**
+ * html 解析器
+ * @tutorial https://github.com/jin-yufeng/Parser
+ * @version 20201029
+ * @author JinYufeng
+ * @listens MIT
+ */
+var cfg = __webpack_require__(/*! ./config.js */ 285),
+blankChar = cfg.blankChar,
+CssHandler = __webpack_require__(/*! ./CssHandler.js */ 286),
+windowWidth = uni.getSystemInfoSync().windowWidth;
+var emoji;
+
+function MpHtmlParser(data) {var _this = this;var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  this.attrs = {};
+  this.CssHandler = new CssHandler(options.tagStyle, windowWidth);
+  this.data = data;
+  this.domain = options.domain;
+  this.DOM = [];
+  this.i = this.start = this.audioNum = this.imgNum = this.videoNum = 0;
+  options.prot = (this.domain || '').includes('://') ? this.domain.split('://')[0] : 'http';
+  this.options = options;
+  this.state = this.Text;
+  this.STACK = [];
+  // 工具函数
+  this.bubble = function () {
+    for (var i = _this.STACK.length, item; item = _this.STACK[--i];) {
+      if (cfg.richOnlyTags[item.name]) return false;
+      item.c = 1;
+    }
+    return true;
+  };
+  this.decode = function (val, amp) {
+    var i = -1,
+    j,en;
+    while (1) {
+      if ((i = val.indexOf('&', i + 1)) == -1) break;
+      if ((j = val.indexOf(';', i + 2)) == -1) break;
+      if (val[i + 1] == '#') {
+        en = parseInt((val[i + 2] == 'x' ? '0' : '') + val.substring(i + 2, j));
+        if (!isNaN(en)) val = val.substr(0, i) + String.fromCharCode(en) + val.substr(j + 1);
+      } else {
+        en = val.substring(i + 1, j);
+        if (cfg.entities[en] || en == amp)
+        val = val.substr(0, i) + (cfg.entities[en] || '&') + val.substr(j + 1);
+      }
+    }
+    return val;
+  };
+  this.getUrl = function (url) {
+    if (url[0] == '/') {
+      if (url[1] == '/') url = _this.options.prot + ':' + url;else
+      if (_this.domain) url = _this.domain + url;
+    } else if (_this.domain && url.indexOf('data:') != 0 && !url.includes('://'))
+    url = _this.domain + '/' + url;
+    return url;
+  };
+  this.isClose = function () {return _this.data[_this.i] == '>' || _this.data[_this.i] == '/' && _this.data[_this.i + 1] == '>';};
+  this.section = function () {return _this.data.substring(_this.start, _this.i);};
+  this.parent = function () {return _this.STACK[_this.STACK.length - 1];};
+  this.siblings = function () {return _this.STACK.length ? _this.parent().children : _this.DOM;};
+}
+MpHtmlParser.prototype.parse = function () {
+  if (emoji) this.data = emoji.parseEmoji(this.data);
+  for (var c; c = this.data[this.i]; this.i++) {
+    this.state(c);}
+  if (this.state == this.Text) this.setText();
+  while (this.STACK.length) {this.popNode(this.STACK.pop());}
+  return this.DOM;
+};
+// 设置属性
+MpHtmlParser.prototype.setAttr = function () {
+  var name = this.attrName.toLowerCase(),
+  val = this.attrVal;
+  if (cfg.boolAttrs[name]) this.attrs[name] = 'T';else
+  if (val) {
+    if (name == 'src' || name == 'data-src' && !this.attrs.src) this.attrs.src = this.getUrl(this.decode(val, 'amp'));else
+    if (name == 'href' || name == 'style') this.attrs[name] = this.decode(val, 'amp');else
+    if (name.substr(0, 5) != 'data-') this.attrs[name] = val;
+  }
+  this.attrVal = '';
+  while (blankChar[this.data[this.i]]) {this.i++;}
+  if (this.isClose()) this.setNode();else
+  {
+    this.start = this.i;
+    this.state = this.AttrName;
+  }
+};
+// 设置文本节点
+MpHtmlParser.prototype.setText = function () {
+  var back,text = this.section();
+  if (!text) return;
+  text = cfg.onText && cfg.onText(text, function () {return back = true;}) || text;
+  if (back) {
+    this.data = this.data.substr(0, this.start) + text + this.data.substr(this.i);
+    var j = this.start + text.length;
+    for (this.i = this.start; this.i < j; this.i++) {this.state(this.data[this.i]);}
+    return;
+  }
+  if (!this.pre) {
+    // 合并空白符
+    var flag,tmp = [];
+    for (var i = text.length, c; c = text[--i];) {
+      if (!blankChar[c]) {
+        tmp.unshift(c);
+        if (!flag) flag = 1;
+      } else {
+        if (tmp[0] != ' ') tmp.unshift(' ');
+        if (c == '\n' && flag == void 0) flag = 0;
+      }}
+    if (flag == 0) return;
+    text = tmp.join('');
+  }
+  this.siblings().push({
+    type: 'text',
+    text: this.decode(text) });
+
+};
+// 设置元素节点
+MpHtmlParser.prototype.setNode = function () {
+  var node = {
+    name: this.tagName.toLowerCase(),
+    attrs: this.attrs },
+
+  close = cfg.selfClosingTags[node.name];
+  if (this.options.nodes.length) node.type = 'node';
+  this.attrs = {};
+  if (!cfg.ignoreTags[node.name]) {
+    // 处理属性
+    var attrs = node.attrs,
+    style = this.CssHandler.match(node.name, attrs, node) + (attrs.style || ''),
+    styleObj = {};
+    if (attrs.id) {
+      if (this.options.compress & 1) attrs.id = void 0;else
+      if (this.options.useAnchor) this.bubble();
+    }
+    if (this.options.compress & 2 && attrs.class) attrs.class = void 0;
+    switch (node.name) {
+      case 'a':
+      case 'ad':
+
+
+        this.bubble();
+        break;
+      case 'font':
+        if (attrs.color) {
+          styleObj['color'] = attrs.color;
+          attrs.color = void 0;
+        }
+        if (attrs.face) {
+          styleObj['font-family'] = attrs.face;
+          attrs.face = void 0;
+        }
+        if (attrs.size) {
+          var size = parseInt(attrs.size);
+          if (size < 1) size = 1;else
+          if (size > 7) size = 7;
+          var map = ['xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'];
+          styleObj['font-size'] = map[size - 1];
+          attrs.size = void 0;
+        }
+        break;
+      case 'embed':
+
+        var src = node.attrs.src || '',
+        type = node.attrs.type || '';
+        if (type.includes('video') || src.includes('.mp4') || src.includes('.3gp') || src.includes('.m3u8'))
+        node.name = 'video';else
+        if (type.includes('audio') || src.includes('.m4a') || src.includes('.wav') || src.includes('.mp3') || src.includes(
+        '.aac'))
+        node.name = 'audio';else
+        break;
+        if (node.attrs.autostart)
+        node.attrs.autoplay = 'T';
+        node.attrs.controls = 'T';
+
+
+
+
+
+      case 'video':
+      case 'audio':
+        if (!attrs.id) attrs.id = node.name + ++this["".concat(node.name, "Num")];else
+        this["".concat(node.name, "Num")]++;
+        if (node.name == 'video') {
+          if (this.videoNum > 3)
+          node.lazyLoad = 1;
+          if (attrs.width) {
+            styleObj.width = parseFloat(attrs.width) + (attrs.width.includes('%') ? '%' : 'px');
+            attrs.width = void 0;
+          }
+          if (attrs.height) {
+            styleObj.height = parseFloat(attrs.height) + (attrs.height.includes('%') ? '%' : 'px');
+            attrs.height = void 0;
+          }
+        }
+        if (!attrs.controls && !attrs.autoplay) attrs.controls = 'T';
+        attrs.source = [];
+        if (attrs.src) {
+          attrs.source.push(attrs.src);
+          attrs.src = void 0;
+        }
+        this.bubble();
+        break;
+      case 'td':
+      case 'th':
+        if (attrs.colspan || attrs.rowspan)
+        for (var k = this.STACK.length, item; item = this.STACK[--k];) {
+          if (item.name == 'table') {
+            item.flag = 1;
+            break;
+          }}}
+
+    if (attrs.align) {
+      if (node.name == 'table') {
+        if (attrs.align == 'center') styleObj['margin-inline-start'] = styleObj['margin-inline-end'] = 'auto';else
+        styleObj['float'] = attrs.align;
+      } else styleObj['text-align'] = attrs.align;
+      attrs.align = void 0;
+    }
+    // 压缩 style
+    var styles = style.split(';');
+    style = '';
+    for (var i = 0, len = styles.length; i < len; i++) {
+      var info = styles[i].split(':');
+      if (info.length < 2) continue;
+      var _key = info[0].trim().toLowerCase(),
+      _value = info.slice(1).join(':').trim();
+      if (_value[0] == '-' || _value.includes('safe'))
+      style += ";".concat(_key, ":").concat(_value);else
+      if (!styleObj[_key] || _value.includes('import') || !styleObj[_key].includes('import'))
+      styleObj[_key] = _value;
+    }
+    if (node.name == 'img') {
+      if (attrs.src && !attrs.ignore) {
+        if (this.bubble())
+        attrs.i = (this.imgNum++).toString();else
+        attrs.ignore = 'T';
+      }
+      if (attrs.ignore) {
+        style += ';-webkit-touch-callout:none';
+        styleObj['max-width'] = '100%';
+      }
+      var width;
+      if (styleObj.width) width = styleObj.width;else
+      if (attrs.width) width = attrs.width.includes('%') ? attrs.width : parseFloat(attrs.width) + 'px';
+      if (width) {
+        styleObj.width = width;
+        attrs.width = '100%';
+        if (parseInt(width) > windowWidth) {
+          styleObj.height = '';
+          if (attrs.height) attrs.height = void 0;
+        }
+      }
+      if (styleObj.height) {
+        attrs.height = styleObj.height;
+        styleObj.height = '';
+      } else if (attrs.height && !attrs.height.includes('%'))
+      attrs.height = parseFloat(attrs.height) + 'px';
+    }
+    for (var key in styleObj) {
+      var value = styleObj[key];
+      if (!value) continue;
+      if (key.includes('flex') || key == 'order' || key == 'self-align') node.c = 1;
+      // 填充链接
+      if (value.includes('url')) {
+        var j = value.indexOf('(');
+        if (j++ != -1) {
+          while (value[j] == '"' || value[j] == "'" || blankChar[value[j]]) {j++;}
+          value = value.substr(0, j) + this.getUrl(value.substr(j));
+        }
+      }
+      // 转换 rpx
+      else if (value.includes('rpx'))
+        value = value.replace(/[0-9.]+\s*rpx/g, function ($) {return parseFloat($) * windowWidth / 750 + 'px';});else
+        if (key == 'white-space' && value.includes('pre') && !close)
+        this.pre = node.pre = true;
+      style += ";".concat(key, ":").concat(value);
+    }
+    style = style.substr(1);
+    if (style) attrs.style = style;
+    if (!close) {
+      node.children = [];
+      if (node.name == 'pre' && cfg.highlight) {
+        this.remove(node);
+        this.pre = node.pre = true;
+      }
+      this.siblings().push(node);
+      this.STACK.push(node);
+    } else if (!cfg.filter || cfg.filter(node, this) != false)
+    this.siblings().push(node);
+  } else {
+    if (!close) this.remove(node);else
+    if (node.name == 'source') {
+      var parent = this.parent();
+      if (parent && (parent.name == 'video' || parent.name == 'audio') && node.attrs.src)
+      parent.attrs.source.push(node.attrs.src);
+    } else if (node.name == 'base' && !this.domain) this.domain = node.attrs.href;
+  }
+  if (this.data[this.i] == '/') this.i++;
+  this.start = this.i + 1;
+  this.state = this.Text;
+};
+// 移除标签
+MpHtmlParser.prototype.remove = function (node) {var _this2 = this;
+  var name = node.name,
+  j = this.i;
+  // 处理 svg
+  var handleSvg = function handleSvg() {
+    var src = _this2.data.substring(j, _this2.i + 1);
+    node.attrs.xmlns = 'http://www.w3.org/2000/svg';
+    for (var key in node.attrs) {
+      if (key == 'viewbox') src = " viewBox=\"".concat(node.attrs.viewbox, "\"") + src;else
+      if (key != 'style') src = " ".concat(key, "=\"").concat(node.attrs[key], "\"") + src;
+    }
+    src = '<svg' + src;
+    var parent = _this2.parent();
+    if (node.attrs.width == '100%' && parent && (parent.attrs.style || '').includes('inline'))
+    parent.attrs.style = 'width:300px;max-width:100%;' + parent.attrs.style;
+    _this2.siblings().push({
+      name: 'img',
+      attrs: {
+        src: 'data:image/svg+xml;utf8,' + src.replace(/#/g, '%23'),
+        style: node.attrs.style,
+        ignore: 'T' } });
+
+
+  };
+  if (node.name == 'svg' && this.data[j] == '/') return handleSvg(this.i++);
+  while (1) {
+    if ((this.i = this.data.indexOf('</', this.i + 1)) == -1) {
+      if (name == 'pre' || name == 'svg') this.i = j;else
+      this.i = this.data.length;
+      return;
+    }
+    this.start = this.i += 2;
+    while (!blankChar[this.data[this.i]] && !this.isClose()) {this.i++;}
+    if (this.section().toLowerCase() == name) {
+      // 代码块高亮
+      if (name == 'pre') {
+        this.data = this.data.substr(0, j + 1) + cfg.highlight(this.data.substring(j + 1, this.i - 5), node.attrs) + this.data.
+        substr(this.i - 5);
+        return this.i = j;
+      } else if (name == 'style')
+      this.CssHandler.getStyle(this.data.substring(j + 1, this.i - 7));else
+      if (name == 'title')
+      this.DOM.title = this.data.substring(j + 1, this.i - 7);
+      if ((this.i = this.data.indexOf('>', this.i)) == -1) this.i = this.data.length;
+      if (name == 'svg') handleSvg();
+      return;
+    }
+  }
+};
+// 节点出栈处理
+MpHtmlParser.prototype.popNode = function (node) {
+  // 空白符处理
+  if (node.pre) {
+    node.pre = this.pre = void 0;
+    for (var i = this.STACK.length; i--;) {
+      if (this.STACK[i].pre)
+      this.pre = true;}
+  }
+  var siblings = this.siblings(),
+  len = siblings.length,
+  childs = node.children;
+  if (node.name == 'head' || cfg.filter && cfg.filter(node, this) == false)
+  return siblings.pop();
+  var attrs = node.attrs;
+  // 替换一些标签名
+  if (cfg.blockTags[node.name]) node.name = 'div';else
+  if (!cfg.trustTags[node.name]) node.name = 'span';
+  // 处理列表
+  if (node.c && (node.name == 'ul' || node.name == 'ol')) {
+    if ((node.attrs.style || '').includes('list-style:none')) {
+      for (var _i = 0, child; child = childs[_i++];) {
+        if (child.name == 'li')
+        child.name = 'div';}
+    } else if (node.name == 'ul') {
+      var floor = 1;
+      for (var _i2 = this.STACK.length; _i2--;) {
+        if (this.STACK[_i2].name == 'ul') floor++;}
+      if (floor != 1)
+      for (var _i3 = childs.length; _i3--;) {
+        childs[_i3].floor = floor;}
+    } else {
+      for (var _i4 = 0, num = 1, _child; _child = childs[_i4++];) {
+        if (_child.name == 'li') {
+          _child.type = 'ol';
+          _child.num = function (num, type) {
+            if (type == 'a') return String.fromCharCode(97 + (num - 1) % 26);
+            if (type == 'A') return String.fromCharCode(65 + (num - 1) % 26);
+            if (type == 'i' || type == 'I') {
+              num = (num - 1) % 99 + 1;
+              var one = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
+              ten = ['X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
+              res = (ten[Math.floor(num / 10) - 1] || '') + (one[num % 10 - 1] || '');
+              if (type == 'i') return res.toLowerCase();
+              return res;
+            }
+            return num;
+          }(num++, attrs.type) + '.';
+        }}
+    }
+  }
+  // 处理表格
+  if (node.name == 'table') {
+    var padding = parseFloat(attrs.cellpadding),
+    spacing = parseFloat(attrs.cellspacing),
+    border = parseFloat(attrs.border);
+    if (node.c) {
+      if (isNaN(padding)) padding = 2;
+      if (isNaN(spacing)) spacing = 2;
+    }
+    if (border) attrs.style = "border:".concat(border, "px solid gray;").concat(attrs.style || '');
+    if (node.flag && node.c) {
+      // 有 colspan 或 rowspan 且含有链接的表格转为 grid 布局实现
+      attrs.style = "".concat(attrs.style || '', ";").concat(spacing ? ";grid-gap:".concat(spacing, "px") : ';border-left:0;border-top:0');
+      var row = 1,
+      col = 1,
+      colNum,
+      trs = [],
+      children = [],
+      map = {};
+      (function f(ns) {
+        for (var i = 0; i < ns.length; i++) {
+          if (ns[i].name == 'tr') trs.push(ns[i]);else
+          f(ns[i].children || []);
+        }
+      })(node.children);
+      for (var _i5 = 0; _i5 < trs.length; _i5++) {
+        for (var j = 0, td; td = trs[_i5].children[j]; j++) {
+          if (td.name == 'td' || td.name == 'th') {
+            while (map[row + '.' + col]) {col++;}
+            var cell = {
+              name: 'div',
+              c: 1,
+              attrs: {
+                style: (td.attrs.style || '') + (border ? ";border:".concat(border, "px solid gray") + (spacing ? '' :
+                ';border-right:0;border-bottom:0') : '') + (padding ? ";padding:".concat(padding, "px") : '') },
+
+              children: td.children };
+
+            if (td.attrs.colspan) {
+              cell.attrs.style += ';grid-column-start:' + col + ';grid-column-end:' + (col + parseInt(td.attrs.colspan));
+              if (!td.attrs.rowspan) cell.attrs.style += ';grid-row-start:' + row + ';grid-row-end:' + (row + 1);
+              col += parseInt(td.attrs.colspan) - 1;
+            }
+            if (td.attrs.rowspan) {
+              cell.attrs.style += ';grid-row-start:' + row + ';grid-row-end:' + (row + parseInt(td.attrs.rowspan));
+              if (!td.attrs.colspan) cell.attrs.style += ';grid-column-start:' + col + ';grid-column-end:' + (col + 1);
+              for (var k = 1; k < td.attrs.rowspan; k++) {map[row + k + '.' + col] = 1;}
+            }
+            children.push(cell);
+            col++;
+          }
+        }
+        if (!colNum) {
+          colNum = col - 1;
+          attrs.style += ";grid-template-columns:repeat(".concat(colNum, ",auto)");
+        }
+        col = 1;
+        row++;
+      }
+      node.children = children;
+    } else {
+      attrs.style = "border-spacing:".concat(spacing, "px;").concat(attrs.style || '');
+      if (border || padding)
+      (function f(ns) {
+        for (var i = 0, n; n = ns[i]; i++) {
+          if (n.name == 'th' || n.name == 'td') {
+            if (border) n.attrs.style = "border:".concat(border, "px solid gray;").concat(n.attrs.style || '');
+            if (padding) n.attrs.style = "padding:".concat(padding, "px;").concat(n.attrs.style || '');
+          } else f(n.children || []);
+        }
+      })(childs);
+    }
+    if (this.options.autoscroll) {
+      var table = Object.assign({}, node);
+      node.name = 'div';
+      node.attrs = {
+        style: 'overflow:scroll' };
+
+      node.children = [table];
+    }
+  }
+  this.CssHandler.pop && this.CssHandler.pop(node);
+  // 自动压缩
+  if (node.name == 'div' && !Object.keys(attrs).length && childs.length == 1 && childs[0].name == 'div')
+  siblings[len - 1] = childs[0];
+};
+// 状态机
+MpHtmlParser.prototype.Text = function (c) {
+  if (c == '<') {
+    var next = this.data[this.i + 1],
+    isLetter = function isLetter(c) {return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';};
+    if (isLetter(next)) {
+      this.setText();
+      this.start = this.i + 1;
+      this.state = this.TagName;
+    } else if (next == '/') {
+      this.setText();
+      if (isLetter(this.data[++this.i + 1])) {
+        this.start = this.i + 1;
+        this.state = this.EndTag;
+      } else this.Comment();
+    } else if (next == '!' || next == '?') {
+      this.setText();
+      this.Comment();
+    }
+  }
+};
+MpHtmlParser.prototype.Comment = function () {
+  var key;
+  if (this.data.substring(this.i + 2, this.i + 4) == '--') key = '-->';else
+  if (this.data.substring(this.i + 2, this.i + 9) == '[CDATA[') key = ']]>';else
+  key = '>';
+  if ((this.i = this.data.indexOf(key, this.i + 2)) == -1) this.i = this.data.length;else
+  this.i += key.length - 1;
+  this.start = this.i + 1;
+  this.state = this.Text;
+};
+MpHtmlParser.prototype.TagName = function (c) {
+  if (blankChar[c]) {
+    this.tagName = this.section();
+    while (blankChar[this.data[this.i]]) {this.i++;}
+    if (this.isClose()) this.setNode();else
+    {
+      this.start = this.i;
+      this.state = this.AttrName;
+    }
+  } else if (this.isClose()) {
+    this.tagName = this.section();
+    this.setNode();
+  }
+};
+MpHtmlParser.prototype.AttrName = function (c) {
+  if (c == '=' || blankChar[c] || this.isClose()) {
+    this.attrName = this.section();
+    if (blankChar[c])
+    while (blankChar[this.data[++this.i]]) {;}
+    if (this.data[this.i] == '=') {
+      while (blankChar[this.data[++this.i]]) {;}
+      this.start = this.i--;
+      this.state = this.AttrValue;
+    } else this.setAttr();
+  }
+};
+MpHtmlParser.prototype.AttrValue = function (c) {
+  if (c == '"' || c == "'") {
+    this.start++;
+    if ((this.i = this.data.indexOf(c, this.i + 1)) == -1) return this.i = this.data.length;
+    this.attrVal = this.section();
+    this.i++;
+  } else {
+    for (; !blankChar[this.data[this.i]] && !this.isClose(); this.i++) {;}
+    this.attrVal = this.section();
+  }
+  this.setAttr();
+};
+MpHtmlParser.prototype.EndTag = function (c) {
+  if (blankChar[c] || c == '>' || c == '/') {
+    var name = this.section().toLowerCase();
+    for (var i = this.STACK.length; i--;) {
+      if (this.STACK[i].name == name) break;}
+    if (i != -1) {
+      var node;
+      while ((node = this.STACK.pop()).name != name) {this.popNode(node);}
+      this.popNode(node);
+    } else if (name == 'p' || name == 'br')
+    this.siblings().push({
+      name: name,
+      attrs: {} });
+
+    this.i = this.data.indexOf('>', this.i);
+    this.start = this.i + 1;
+    if (this.i == -1) this.i = this.data.length;else
+    this.state = this.Text;
+  }
+};
+module.exports = MpHtmlParser;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 285:
+/*!***********************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/config.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* 配置文件 */
+var cfg = {
+  // 出错占位图
+  errorImg: null,
+  // 过滤器函数
+  filter: null,
+  // 代码高亮函数
+  highlight: null,
+  // 文本处理函数
+  onText: null,
+  // 实体编码列表
+  entities: {
+    quot: '"',
+    apos: "'",
+    semi: ';',
+    nbsp: '\xA0',
+    ensp: "\u2002",
+    emsp: "\u2003",
+    ndash: '–',
+    mdash: '—',
+    middot: '·',
+    lsquo: '‘',
+    rsquo: '’',
+    ldquo: '“',
+    rdquo: '”',
+    bull: '•',
+    hellip: '…' },
+
+  blankChar: makeMap(' ,\xA0,\t,\r,\n,\f'),
+  boolAttrs: makeMap('allowfullscreen,autoplay,autostart,controls,ignore,loop,muted'),
+  // 块级标签，将被转为 div
+  blockTags: makeMap('address,article,aside,body,caption,center,cite,footer,header,html,nav,pre,section'),
+  // 将被移除的标签
+  ignoreTags: makeMap('area,base,canvas,frame,iframe,input,link,map,meta,param,script,source,style,svg,textarea,title,track,wbr'),
+  // 只能被 rich-text 显示的标签
+  richOnlyTags: makeMap('a,colgroup,fieldset,legend'),
+  // 自闭合的标签
+  selfClosingTags: makeMap('area,base,br,col,circle,ellipse,embed,frame,hr,img,input,line,link,meta,param,path,polygon,rect,source,track,use,wbr'),
+  // 信任的标签
+  trustTags: makeMap('a,abbr,ad,audio,b,blockquote,br,code,col,colgroup,dd,del,dl,dt,div,em,fieldset,h1,h2,h3,h4,h5,h6,hr,i,img,ins,label,legend,li,ol,p,q,source,span,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,title,ul,video'),
+  // 默认的标签样式
+  userAgentStyles: {
+    address: 'font-style:italic',
+    big: 'display:inline;font-size:1.2em',
+    blockquote: 'background-color:#f6f6f6;border-left:3px solid #dbdbdb;color:#6c6c6c;padding:5px 0 5px 10px',
+    caption: 'display:table-caption;text-align:center',
+    center: 'text-align:center',
+    cite: 'font-style:italic',
+    dd: 'margin-left:40px',
+    mark: 'background-color:yellow',
+    pre: 'font-family:monospace;white-space:pre;overflow:scroll',
+    s: 'text-decoration:line-through',
+    small: 'display:inline;font-size:0.8em',
+    u: 'text-decoration:underline' } };
+
+
+
+function makeMap(str) {
+  var map = Object.create(null),
+  list = str.split(',');
+  for (var i = list.length; i--;) {
+    map[list[i]] = true;}
+  return map;
+}
+
+
+if (wx.canIUse('editor')) {
+  cfg.blockTags.pre = void 0;
+  cfg.ignoreTags.rp = true;
+  Object.assign(cfg.richOnlyTags, makeMap('bdi,bdo,caption,rt,ruby'));
+  Object.assign(cfg.trustTags, makeMap('bdi,bdo,caption,pre,rt,ruby'));
+}
+
+
+
+
+
+
+
+module.exports = cfg;
+
+/***/ }),
+
+/***/ 286:
+/*!***************************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/components/u-parse/libs/CssHandler.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var cfg = __webpack_require__(/*! ./config.js */ 285),
+isLetter = function isLetter(c) {return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';};
+
+function CssHandler(tagStyle) {
+  var styles = Object.assign(Object.create(null), cfg.userAgentStyles);
+  for (var item in tagStyle) {
+    styles[item] = (styles[item] ? styles[item] + ';' : '') + tagStyle[item];}
+  this.styles = styles;
+}
+CssHandler.prototype.getStyle = function (data) {
+  this.styles = new parser(data, this.styles).parse();
+};
+CssHandler.prototype.match = function (name, attrs) {
+  var tmp,matched = (tmp = this.styles[name]) ? tmp + ';' : '';
+  if (attrs.class) {
+    var items = attrs.class.split(' ');
+    for (var i = 0, item; item = items[i]; i++) {
+      if (tmp = this.styles['.' + item])
+      matched += tmp + ';';}
+  }
+  if (tmp = this.styles['#' + attrs.id])
+  matched += tmp + ';';
+  return matched;
+};
+module.exports = CssHandler;
+
+function parser(data, init) {
+  this.data = data;
+  this.floor = 0;
+  this.i = 0;
+  this.list = [];
+  this.res = init;
+  this.state = this.Space;
+}
+parser.prototype.parse = function () {
+  for (var c; c = this.data[this.i]; this.i++) {
+    this.state(c);}
+  return this.res;
+};
+parser.prototype.section = function () {
+  return this.data.substring(this.start, this.i);
+};
+// 状态机
+parser.prototype.Space = function (c) {
+  if (c == '.' || c == '#' || isLetter(c)) {
+    this.start = this.i;
+    this.state = this.Name;
+  } else if (c == '/' && this.data[this.i + 1] == '*')
+  this.Comment();else
+  if (!cfg.blankChar[c] && c != ';')
+  this.state = this.Ignore;
+};
+parser.prototype.Comment = function () {
+  this.i = this.data.indexOf('*/', this.i) + 1;
+  if (!this.i) this.i = this.data.length;
+  this.state = this.Space;
+};
+parser.prototype.Ignore = function (c) {
+  if (c == '{') this.floor++;else
+  if (c == '}' && ! --this.floor) {
+    this.list = [];
+    this.state = this.Space;
+  }
+};
+parser.prototype.Name = function (c) {
+  if (cfg.blankChar[c]) {
+    this.list.push(this.section());
+    this.state = this.NameSpace;
+  } else if (c == '{') {
+    this.list.push(this.section());
+    this.Content();
+  } else if (c == ',') {
+    this.list.push(this.section());
+    this.Comma();
+  } else if (!isLetter(c) && (c < '0' || c > '9') && c != '-' && c != '_')
+  this.state = this.Ignore;
+};
+parser.prototype.NameSpace = function (c) {
+  if (c == '{') this.Content();else
+  if (c == ',') this.Comma();else
+  if (!cfg.blankChar[c]) this.state = this.Ignore;
+};
+parser.prototype.Comma = function () {
+  while (cfg.blankChar[this.data[++this.i]]) {;}
+  if (this.data[this.i] == '{') this.Content();else
+  {
+    this.start = this.i--;
+    this.state = this.Name;
+  }
+};
+parser.prototype.Content = function () {
+  this.start = ++this.i;
+  if ((this.i = this.data.indexOf('}', this.i)) == -1) this.i = this.data.length;
+  var content = this.section();
+  for (var i = 0, item; item = this.list[i++];) {
+    if (this.res[item]) this.res[item] += ';' + content;else
+    this.res[item] = content;}
+  this.list = [];
+  this.state = this.Space;
+};
+
+/***/ }),
+
+/***/ 29:
+/*!**************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/addUnit.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = addUnit;var _test = _interopRequireDefault(__webpack_require__(/*! ./test.js */ 16));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+
+// 添加单位，如果有rpx，%，px等单位结尾或者值为auto，直接返回，否则加上rpx单位结尾
+function addUnit() {var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'auto';var unit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'rpx';
+  value = String(value);
+  // 用uView内置验证规则中的number判断是否为数值
+  return _test.default.number(value) ? "".concat(value).concat(unit) : value;
+}
+
+/***/ }),
+
+/***/ 3:
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ 30:
+/*!*************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/random.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function random(min, max) {
+  if (min >= 0 && max > 0 && max >= min) {
+    var gab = max - min + 1;
+    return Math.floor(Math.random() * gab + min);
+  } else {
+    return 0;
+  }
+}var _default =
+
+random;exports.default = _default;
+
+/***/ }),
+
+/***/ 308:
+/*!*****************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/common/mixins/emitter.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; /**
+                                                                                                      * 递归使用 call 方式this指向
+                                                                                                      * @param componentName // 需要找的组件的名称
+                                                                                                      * @param eventName // 事件名称
+                                                                                                      * @param params // 需要传递的参数
+                                                                                                      */
+
+function _broadcast(componentName, eventName, params) {
+  this.$children.forEach(function (child) {
+    var name = child.$options.name;
+    if (name === componentName) {
+      child.$emit.apply(child, [eventName].concat(params));
+    } else {
+      // todo 如果 params 是空数组，接收到的会是 undefined
+      _broadcast.apply(child, [componentName, eventName].concat([params]));
+    }
+  });
+}var _default =
+{
+  methods: {
+    /**
+              * 派发 (向上查找) (一个)
+              * @param componentName // 需要找的组件的名称
+              * @param eventName // 事件名称
+              * @param params // 需要传递的参数
+              */
+    dispatch: function dispatch(componentName, eventName, params) {
+      var parent = this.$parent || this.$root; //$parent 找到最近的父节点 $root 根节点
+      var name = parent.$options.name; // 获取当前组件实例的name
+      // 如果当前有节点 && 当前没名称 且 当前名称等于需要传进来的名称的时候就去查找当前的节点
+      // 循环出当前名称的一样的组件实例
+      while (parent && (!name || name !== componentName)) {
+        parent = parent.$parent;
+        if (parent) {
+          name = parent.$options.name;
+        }
+      }
+      // 有节点表示当前找到了name一样的实例
+      if (parent) {
+        parent.$emit.apply(parent, [eventName].concat(params));
+      }
+    },
+    /**
+        * 广播 (向下查找) (广播多个)
+        * @param componentName // 需要找的组件的名称
+        * @param eventName // 事件名称
+        * @param params // 需要传递的参数
+        */
+    broadcast: function broadcast(componentName, eventName, params) {
+      _broadcast.call(this, componentName, eventName, params);
+    } } };exports.default = _default;
+
+/***/ }),
+
+/***/ 31:
+/*!***********************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/trim.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function trim(str) {var pos = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'both';
+  if (pos == 'both') {
+    return str.replace(/^\s+|\s+$/g, "");
+  } else if (pos == "left") {
+    return str.replace(/^\s*/, '');
+  } else if (pos == 'right') {
+    return str.replace(/(\s*$)/g, "");
+  } else if (pos == 'all') {
+    return str.replace(/\s+/g, "");
+  } else {
+    return str;
+  }
+}var _default =
+
+trim;exports.default = _default;
+
+/***/ }),
+
+/***/ 32:
+/*!************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/toast.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function toast(title) {var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1500;
+  uni.showToast({
+    title: title,
+    icon: 'none',
+    duration: duration });
+
+}var _default =
+
+toast;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 33:
+/*!****************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/getParent.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = getParent; // 获取父组件的参数，因为支付宝小程序不支持provide/inject的写法
+// this.$parent在非H5中，可以准确获取到父组件，但是在H5中，需要多次this.$parent.$parent.xxx
+function getParent(name, keys) {
+  var parent = this.$parent;
+  // 通过while历遍，这里主要是为了H5需要多层解析的问题
+  while (parent) {
+    // 父组件
+    if (parent.$options.name !== name) {
+      // 如果组件的name不相等，继续上一级寻找
+      parent = parent.$parent;
+    } else {var _ret = function () {
+        var data = {};
+        // 判断keys是否数组，如果传过来的是一个数组，那么直接使用数组元素值当做键值去父组件寻找
+        if (Array.isArray(keys)) {
+          keys.map(function (val) {
+            data[val] = parent[val] ? parent[val] : '';
+          });
+        } else {
+          // 历遍传过来的对象参数
+          for (var i in keys) {
+            // 如果子组件有此值则用，无此值则用父组件的值
+            // 判断是否空数组，如果是，则用父组件的值，否则用子组件的值
+            if (Array.isArray(keys[i])) {
+              if (keys[i].length) {
+                data[i] = keys[i];
+              } else {
+                data[i] = parent[i];
+              }
+            } else if (keys[i].constructor === Object) {
+              // 判断是否对象，如果是对象，且有属性，那么使用子组件的值，否则使用父组件的值
+              if (Object.keys(keys[i]).length) {
+                data[i] = keys[i];
+              } else {
+                data[i] = parent[i];
+              }
+            } else {
+              // 只要子组件有传值，即使是false值，也是“传值”了，也需要覆盖父组件的同名参数
+              data[i] = keys[i] || keys[i] === false ? keys[i] : parent[i];
+            }
+          }
+        }
+        return { v: data };}();if (typeof _ret === "object") return _ret.v;
+    }
+  }
+
+  return {};
+}
+
+/***/ }),
+
+/***/ 34:
+/*!**************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/$parent.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = $parent; // 获取父组件的参数，因为支付宝小程序不支持provide/inject的写法
+// this.$parent在非H5中，可以准确获取到父组件，但是在H5中，需要多次this.$parent.$parent.xxx
+// 这里默认值等于undefined有它的含义，因为最顶层元素(组件)的$parent就是undefined，意味着不传name
+// 值(默认为undefined)，就是查找最顶层的$parent
+function $parent() {var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : undefined;
+  var parent = this.$parent;
+  // 通过while历遍，这里主要是为了H5需要多层解析的问题
+  while (parent) {
+    // 父组件
+    if (parent.$options && parent.$options.name !== name) {
+      // 如果组件的name不相等，继续上一级寻找
+      parent = parent.$parent;
+    } else {
+      return parent;
+    }
+  }
+  return false;
+}
+
+/***/ }),
+
+/***/ 35:
+/*!**********************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/sys.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.os = os;exports.sys = sys;function os() {
+  return uni.getSystemInfoSync().platform;
+};
+
+function sys() {
+  return uni.getSystemInfoSync();
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 36:
+/*!***************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/debounce.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var timeout = null;
+
+/**
+                                                                                                                         * 防抖原理：一定时间内，只有最后一次操作，再过wait毫秒后才执行函数
+                                                                                                                         * 
+                                                                                                                         * @param {Function} func 要执行的回调函数 
+                                                                                                                         * @param {Number} wait 延时的时间
+                                                                                                                         * @param {Boolean} immediate 是否立即执行 
+                                                                                                                         * @return null
+                                                                                                                         */
+function debounce(func) {var wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  // 清除定时器
+  if (timeout !== null) clearTimeout(timeout);
+  // 立即执行，此类情况一般用不到
+  if (immediate) {
+    var callNow = !timeout;
+    timeout = setTimeout(function () {
+      timeout = null;
+    }, wait);
+    if (callNow) typeof func === 'function' && func();
+  } else {
+    // 设置定时器，当最后一次操作后，timeout不会再被清除，所以在延时wait毫秒后执行func回调方法
+    timeout = setTimeout(function () {
+      typeof func === 'function' && func();
+    }, wait);
+  }
+}var _default =
+
+debounce;exports.default = _default;
+
+/***/ }),
+
+/***/ 37:
+/*!***************************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/function/throttle.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var timer, flag;
+/**
+                                                                                                                      * 节流原理：在一定时间内，只能触发一次
+                                                                                                                      * 
+                                                                                                                      * @param {Function} func 要执行的回调函数 
+                                                                                                                      * @param {Number} wait 延时的时间
+                                                                                                                      * @param {Boolean} immediate 是否立即执行
+                                                                                                                      * @return null
+                                                                                                                      */
+function throttle(func) {var wait = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;var immediate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+  if (immediate) {
+    if (!flag) {
+      flag = true;
+      // 如果是立即执行，则在wait毫秒内开始时执行
+      typeof func === 'function' && func();
+      timer = setTimeout(function () {
+        flag = false;
+      }, wait);
+    }
+  } else {
+    if (!flag) {
+      flag = true;
+      // 如果是非立即执行，则在wait毫秒内的结束处执行
+      timer = setTimeout(function () {
+        flag = false;
+        typeof func === 'function' && func();
+      }, wait);
+    }
+
+  }
+};var _default =
+throttle;exports.default = _default;
+
+/***/ }),
+
+/***/ 38:
+/*!***********************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/config/config.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // 此版本发布于2020-03-17
+var version = '1.8.4';var _default =
+
+{
+  v: version,
+  version: version,
+  // 主题名称
+  type: [
+  'primary',
+  'success',
+  'info',
+  'error',
+  'warning'] };exports.default = _default;
+
+/***/ }),
+
+/***/ 39:
+/*!***********************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/uview-ui/libs/config/zIndex.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; // uniapp在H5中各API的z-index值如下：
+/**
+ * actionsheet: 999
+ * modal: 999
+ * navigate: 998
+ * tabbar: 998
+ * toast: 999
+ */var _default =
+
+{
+  toast: 10090,
+  noNetwork: 10080,
+  // popup包含popup，actionsheet，keyboard，picker的值
+  popup: 10075,
+  mask: 10070,
+  navbar: 980,
+  topTips: 975,
+  sticky: 970,
+  indexListSticky: 965 };exports.default = _default;
+
+/***/ }),
+
+/***/ 4:
+/*!***************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/pages.json ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ 40:
+/*!*******************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/store/index.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 41));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+_vue.default.use(_vuex.default);
+
+var lifeData = {};
+
+try {
+  // 尝试获取本地是否存在lifeData变量，第一次启动APP时是不存在的
+  lifeData = uni.getStorageSync('lifeData');
+} catch (e) {
+
+}
+
+// 需要永久存储，且下次APP启动需要取出的，在state中的变量名
+var saveStateKeys = ['vuex_token', 'vuex_loginUser', 'vuex_memberInfo'];
+
+// 保存变量到本地存储中
+var saveLifeData = function saveLifeData(key, value) {
+  // 判断变量名是否在需要存储的数组中
+  if (saveStateKeys.indexOf(key) != -1) {
+    // 获取本地存储的lifeData对象，将变量添加到对象中
+    var tmp = uni.getStorageSync('lifeData');
+    // 第一次打开APP，不存在lifeData变量，故放一个{}空对象
+    tmp = tmp ? tmp : {};
+    tmp[key] = value;
+    // 执行这一步后，所有需要存储的变量，都挂载在本地的lifeData对象中
+    uni.setStorageSync('lifeData', tmp);
+  }
+};
+var store = new _vuex.default.Store({
+  state: {
+    // 如果上面从本地获取的lifeData对象下有对应的属性，就赋值给state中对应的变量
+    // 加上vuex_前缀，是防止变量名冲突，也让人一目了然
+    isLogin: lifeData.isLogin || false,
+    vuex_memberInfo: lifeData.vuex_memberInfo || {},
+    needAuthProfile: false, //未授权用户信息
+    openCode: "",
+    vuex_loginUser: lifeData.vuex_loginUser || {},
+    vuex_wxUser: lifeData.vuex_wxUser || {},
+    vuex_token: lifeData.vuex_token || '',
+    // 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
+    vuex_cart: [], //购物车信息（商品列表）
+    vuex_prepayInfo: {} //预支付信息
+  },
+
+  mutations: {
+    $uStore: function $uStore(state, payload) {
+      // 判断是否多层级调用，state中为对象存在的情况，诸如user.info.score = 1
+      var nameArr = payload.name.split('.');
+      var saveKey = '';
+      var len = nameArr.length;
+      if (len >= 2) {
+        var obj = state[nameArr[0]];
+        for (var i = 1; i < len - 1; i++) {
+          obj = obj[nameArr[i]];
+        }
+        obj[nameArr[len - 1]] = payload.value;
+        saveKey = nameArr[0];
+      } else {
+        // 单层级变量，在state就是一个普通变量的情况
+        state[payload.name] = payload.value;
+        saveKey = payload.name;
+      }
+      // 保存变量到本地，见顶部函数定义
+      saveLifeData(saveKey, state[saveKey]);
+    } } });var _default =
+
+
+
+store;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 41:
+/*!********************************************!*\
+  !*** ./node_modules/vuex/dist/vuex.esm.js ***!
+  \********************************************/
+/*! exports provided: default, Store, createNamespacedHelpers, install, mapActions, mapGetters, mapMutations, mapState */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGetters", function() { return mapGetters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMutations", function() { return mapMutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapState", function() { return mapState; });
+/*!
+ * vuex v3.4.0
+ * (c) 2020 Evan You
+ * @license MIT
+ */
+function applyMixin (Vue) {
+  var version = Number(Vue.version.split('.')[0]);
+
+  if (version >= 2) {
+    Vue.mixin({ beforeCreate: vuexInit });
+  } else {
+    // override init and inject vuex init procedure
+    // for 1.x backwards compatibility.
+    var _init = Vue.prototype._init;
+    Vue.prototype._init = function (options) {
+      if ( options === void 0 ) options = {};
+
+      options.init = options.init
+        ? [vuexInit].concat(options.init)
+        : vuexInit;
+      _init.call(this, options);
+    };
+  }
+
+  /**
+   * Vuex init hook, injected into each instances init hooks list.
+   */
+
+  function vuexInit () {
+    var options = this.$options;
+    // store injection
+    if (options.store) {
+      this.$store = typeof options.store === 'function'
+        ? options.store()
+        : options.store;
+    } else if (options.parent && options.parent.$store) {
+      this.$store = options.parent.$store;
+    }
+  }
+}
+
+var target = typeof window !== 'undefined'
+  ? window
+  : typeof global !== 'undefined'
+    ? global
+    : {};
+var devtoolHook = target.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+
+function devtoolPlugin (store) {
+  if (!devtoolHook) { return }
+
+  store._devtoolHook = devtoolHook;
+
+  devtoolHook.emit('vuex:init', store);
+
+  devtoolHook.on('vuex:travel-to-state', function (targetState) {
+    store.replaceState(targetState);
+  });
+
+  store.subscribe(function (mutation, state) {
+    devtoolHook.emit('vuex:mutation', mutation, state);
+  }, { prepend: true });
+
+  store.subscribeAction(function (action, state) {
+    devtoolHook.emit('vuex:action', action, state);
+  }, { prepend: true });
+}
+
+/**
+ * Get the first item that pass the test
+ * by second argument function
+ *
+ * @param {Array} list
+ * @param {Function} f
+ * @return {*}
+ */
+
+/**
+ * forEach for object
+ */
+function forEachValue (obj, fn) {
+  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
+}
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+function isPromise (val) {
+  return val && typeof val.then === 'function'
+}
+
+function assert (condition, msg) {
+  if (!condition) { throw new Error(("[vuex] " + msg)) }
+}
+
+function partial (fn, arg) {
+  return function () {
+    return fn(arg)
+  }
+}
+
+// Base data struct for store's module, package with some attribute and method
+var Module = function Module (rawModule, runtime) {
+  this.runtime = runtime;
+  // Store some children item
+  this._children = Object.create(null);
+  // Store the origin module object which passed by programmer
+  this._rawModule = rawModule;
+  var rawState = rawModule.state;
+
+  // Store the origin module's state
+  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
+};
+
+var prototypeAccessors = { namespaced: { configurable: true } };
+
+prototypeAccessors.namespaced.get = function () {
+  return !!this._rawModule.namespaced
+};
+
+Module.prototype.addChild = function addChild (key, module) {
+  this._children[key] = module;
+};
+
+Module.prototype.removeChild = function removeChild (key) {
+  delete this._children[key];
+};
+
+Module.prototype.getChild = function getChild (key) {
+  return this._children[key]
+};
+
+Module.prototype.hasChild = function hasChild (key) {
+  return key in this._children
+};
+
+Module.prototype.update = function update (rawModule) {
+  this._rawModule.namespaced = rawModule.namespaced;
+  if (rawModule.actions) {
+    this._rawModule.actions = rawModule.actions;
+  }
+  if (rawModule.mutations) {
+    this._rawModule.mutations = rawModule.mutations;
+  }
+  if (rawModule.getters) {
+    this._rawModule.getters = rawModule.getters;
+  }
+};
+
+Module.prototype.forEachChild = function forEachChild (fn) {
+  forEachValue(this._children, fn);
+};
+
+Module.prototype.forEachGetter = function forEachGetter (fn) {
+  if (this._rawModule.getters) {
+    forEachValue(this._rawModule.getters, fn);
+  }
+};
+
+Module.prototype.forEachAction = function forEachAction (fn) {
+  if (this._rawModule.actions) {
+    forEachValue(this._rawModule.actions, fn);
+  }
+};
+
+Module.prototype.forEachMutation = function forEachMutation (fn) {
+  if (this._rawModule.mutations) {
+    forEachValue(this._rawModule.mutations, fn);
+  }
+};
+
+Object.defineProperties( Module.prototype, prototypeAccessors );
+
+var ModuleCollection = function ModuleCollection (rawRootModule) {
+  // register root module (Vuex.Store options)
+  this.register([], rawRootModule, false);
+};
+
+ModuleCollection.prototype.get = function get (path) {
+  return path.reduce(function (module, key) {
+    return module.getChild(key)
+  }, this.root)
+};
+
+ModuleCollection.prototype.getNamespace = function getNamespace (path) {
+  var module = this.root;
+  return path.reduce(function (namespace, key) {
+    module = module.getChild(key);
+    return namespace + (module.namespaced ? key + '/' : '')
+  }, '')
+};
+
+ModuleCollection.prototype.update = function update$1 (rawRootModule) {
+  update([], this.root, rawRootModule);
+};
+
+ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
+    var this$1 = this;
+    if ( runtime === void 0 ) runtime = true;
+
+  if ((true)) {
+    assertRawModule(path, rawModule);
+  }
+
+  var newModule = new Module(rawModule, runtime);
+  if (path.length === 0) {
+    this.root = newModule;
+  } else {
+    var parent = this.get(path.slice(0, -1));
+    parent.addChild(path[path.length - 1], newModule);
+  }
+
+  // register nested modules
+  if (rawModule.modules) {
+    forEachValue(rawModule.modules, function (rawChildModule, key) {
+      this$1.register(path.concat(key), rawChildModule, runtime);
+    });
+  }
+};
+
+ModuleCollection.prototype.unregister = function unregister (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+  if (!parent.getChild(key).runtime) { return }
+
+  parent.removeChild(key);
+};
+
+ModuleCollection.prototype.isRegistered = function isRegistered (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+
+  return parent.hasChild(key)
+};
+
+function update (path, targetModule, newModule) {
+  if ((true)) {
+    assertRawModule(path, newModule);
+  }
+
+  // update target module
+  targetModule.update(newModule);
+
+  // update nested modules
+  if (newModule.modules) {
+    for (var key in newModule.modules) {
+      if (!targetModule.getChild(key)) {
+        if ((true)) {
+          console.warn(
+            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+            'manual reload is needed'
+          );
+        }
+        return
+      }
+      update(
+        path.concat(key),
+        targetModule.getChild(key),
+        newModule.modules[key]
+      );
+    }
+  }
+}
+
+var functionAssert = {
+  assert: function (value) { return typeof value === 'function'; },
+  expected: 'function'
+};
+
+var objectAssert = {
+  assert: function (value) { return typeof value === 'function' ||
+    (typeof value === 'object' && typeof value.handler === 'function'); },
+  expected: 'function or object with "handler" function'
+};
+
+var assertTypes = {
+  getters: functionAssert,
+  mutations: functionAssert,
+  actions: objectAssert
+};
+
+function assertRawModule (path, rawModule) {
+  Object.keys(assertTypes).forEach(function (key) {
+    if (!rawModule[key]) { return }
+
+    var assertOptions = assertTypes[key];
+
+    forEachValue(rawModule[key], function (value, type) {
+      assert(
+        assertOptions.assert(value),
+        makeAssertionMessage(path, key, type, value, assertOptions.expected)
+      );
+    });
+  });
+}
+
+function makeAssertionMessage (path, key, type, value, expected) {
+  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
+  if (path.length > 0) {
+    buf += " in module \"" + (path.join('.')) + "\"";
+  }
+  buf += " is " + (JSON.stringify(value)) + ".";
+  return buf
+}
+
+var Vue; // bind on install
+
+var Store = function Store (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  // Auto install if it is not done yet and `window` has `Vue`.
+  // To allow users to avoid auto-installation in some cases,
+  // this code should be placed here. See #731
+  if (!Vue && typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
+
+  if ((true)) {
+    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
+    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
+    assert(this instanceof Store, "store must be called with the new operator.");
+  }
+
+  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
+  var strict = options.strict; if ( strict === void 0 ) strict = false;
+
+  // store internal state
+  this._committing = false;
+  this._actions = Object.create(null);
+  this._actionSubscribers = [];
+  this._mutations = Object.create(null);
+  this._wrappedGetters = Object.create(null);
+  this._modules = new ModuleCollection(options);
+  this._modulesNamespaceMap = Object.create(null);
+  this._subscribers = [];
+  this._watcherVM = new Vue();
+  this._makeLocalGettersCache = Object.create(null);
+
+  // bind commit and dispatch to self
+  var store = this;
+  var ref = this;
+  var dispatch = ref.dispatch;
+  var commit = ref.commit;
+  this.dispatch = function boundDispatch (type, payload) {
+    return dispatch.call(store, type, payload)
+  };
+  this.commit = function boundCommit (type, payload, options) {
+    return commit.call(store, type, payload, options)
+  };
+
+  // strict mode
+  this.strict = strict;
+
+  var state = this._modules.root.state;
+
+  // init root module.
+  // this also recursively registers all sub-modules
+  // and collects all module getters inside this._wrappedGetters
+  installModule(this, state, [], this._modules.root);
+
+  // initialize the store vm, which is responsible for the reactivity
+  // (also registers _wrappedGetters as computed properties)
+  resetStoreVM(this, state);
+
+  // apply plugins
+  plugins.forEach(function (plugin) { return plugin(this$1); });
+
+  var useDevtools = options.devtools !== undefined ? options.devtools : Vue.config.devtools;
+  if (useDevtools) {
+    devtoolPlugin(this);
+  }
+};
+
+var prototypeAccessors$1 = { state: { configurable: true } };
+
+prototypeAccessors$1.state.get = function () {
+  return this._vm._data.$$state
+};
+
+prototypeAccessors$1.state.set = function (v) {
+  if ((true)) {
+    assert(false, "use store.replaceState() to explicit replace store state.");
+  }
+};
+
+Store.prototype.commit = function commit (_type, _payload, _options) {
+    var this$1 = this;
+
+  // check object-style commit
+  var ref = unifyObjectStyle(_type, _payload, _options);
+    var type = ref.type;
+    var payload = ref.payload;
+    var options = ref.options;
+
+  var mutation = { type: type, payload: payload };
+  var entry = this._mutations[type];
+  if (!entry) {
+    if ((true)) {
+      console.error(("[vuex] unknown mutation type: " + type));
+    }
+    return
+  }
+  this._withCommit(function () {
+    entry.forEach(function commitIterator (handler) {
+      handler(payload);
+    });
+  });
+
+  this._subscribers
+    .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
+    .forEach(function (sub) { return sub(mutation, this$1.state); });
+
+  if (
+    ( true) &&
+    options && options.silent
+  ) {
+    console.warn(
+      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
+      'Use the filter functionality in the vue-devtools'
+    );
+  }
+};
+
+Store.prototype.dispatch = function dispatch (_type, _payload) {
+    var this$1 = this;
+
+  // check object-style dispatch
+  var ref = unifyObjectStyle(_type, _payload);
+    var type = ref.type;
+    var payload = ref.payload;
+
+  var action = { type: type, payload: payload };
+  var entry = this._actions[type];
+  if (!entry) {
+    if ((true)) {
+      console.error(("[vuex] unknown action type: " + type));
+    }
+    return
+  }
+
+  try {
+    this._actionSubscribers
+      .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
+      .filter(function (sub) { return sub.before; })
+      .forEach(function (sub) { return sub.before(action, this$1.state); });
+  } catch (e) {
+    if ((true)) {
+      console.warn("[vuex] error in before action subscribers: ");
+      console.error(e);
+    }
+  }
+
+  var result = entry.length > 1
+    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
+    : entry[0](payload);
+
+  return new Promise(function (resolve, reject) {
+    result.then(function (res) {
+      try {
+        this$1._actionSubscribers
+          .filter(function (sub) { return sub.after; })
+          .forEach(function (sub) { return sub.after(action, this$1.state); });
+      } catch (e) {
+        if ((true)) {
+          console.warn("[vuex] error in after action subscribers: ");
+          console.error(e);
+        }
+      }
+      resolve(res);
+    }, function (error) {
+      try {
+        this$1._actionSubscribers
+          .filter(function (sub) { return sub.error; })
+          .forEach(function (sub) { return sub.error(action, this$1.state, error); });
+      } catch (e) {
+        if ((true)) {
+          console.warn("[vuex] error in error action subscribers: ");
+          console.error(e);
+        }
+      }
+      reject(error);
+    });
+  })
+};
+
+Store.prototype.subscribe = function subscribe (fn, options) {
+  return genericSubscribe(fn, this._subscribers, options)
+};
+
+Store.prototype.subscribeAction = function subscribeAction (fn, options) {
+  var subs = typeof fn === 'function' ? { before: fn } : fn;
+  return genericSubscribe(subs, this._actionSubscribers, options)
+};
+
+Store.prototype.watch = function watch (getter, cb, options) {
+    var this$1 = this;
+
+  if ((true)) {
+    assert(typeof getter === 'function', "store.watch only accepts a function.");
+  }
+  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
+};
+
+Store.prototype.replaceState = function replaceState (state) {
+    var this$1 = this;
+
+  this._withCommit(function () {
+    this$1._vm._data.$$state = state;
+  });
+};
+
+Store.prototype.registerModule = function registerModule (path, rawModule, options) {
+    if ( options === void 0 ) options = {};
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if ((true)) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+    assert(path.length > 0, 'cannot register the root module by using registerModule.');
+  }
+
+  this._modules.register(path, rawModule);
+  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
+  // reset store to update getters...
+  resetStoreVM(this, this.state);
+};
+
+Store.prototype.unregisterModule = function unregisterModule (path) {
+    var this$1 = this;
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if ((true)) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+  }
+
+  this._modules.unregister(path);
+  this._withCommit(function () {
+    var parentState = getNestedState(this$1.state, path.slice(0, -1));
+    Vue.delete(parentState, path[path.length - 1]);
+  });
+  resetStore(this);
+};
+
+Store.prototype.hasModule = function hasModule (path) {
+  if (typeof path === 'string') { path = [path]; }
+
+  if ((true)) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+  }
+
+  return this._modules.isRegistered(path)
+};
+
+Store.prototype.hotUpdate = function hotUpdate (newOptions) {
+  this._modules.update(newOptions);
+  resetStore(this, true);
+};
+
+Store.prototype._withCommit = function _withCommit (fn) {
+  var committing = this._committing;
+  this._committing = true;
+  fn();
+  this._committing = committing;
+};
+
+Object.defineProperties( Store.prototype, prototypeAccessors$1 );
+
+function genericSubscribe (fn, subs, options) {
+  if (subs.indexOf(fn) < 0) {
+    options && options.prepend
+      ? subs.unshift(fn)
+      : subs.push(fn);
+  }
+  return function () {
+    var i = subs.indexOf(fn);
+    if (i > -1) {
+      subs.splice(i, 1);
+    }
+  }
+}
+
+function resetStore (store, hot) {
+  store._actions = Object.create(null);
+  store._mutations = Object.create(null);
+  store._wrappedGetters = Object.create(null);
+  store._modulesNamespaceMap = Object.create(null);
+  var state = store.state;
+  // init all modules
+  installModule(store, state, [], store._modules.root, true);
+  // reset vm
+  resetStoreVM(store, state, hot);
+}
+
+function resetStoreVM (store, state, hot) {
+  var oldVm = store._vm;
+
+  // bind store public getters
+  store.getters = {};
+  // reset local getters cache
+  store._makeLocalGettersCache = Object.create(null);
+  var wrappedGetters = store._wrappedGetters;
+  var computed = {};
+  forEachValue(wrappedGetters, function (fn, key) {
+    // use computed to leverage its lazy-caching mechanism
+    // direct inline function use will lead to closure preserving oldVm.
+    // using partial to return function with only arguments preserved in closure environment.
+    computed[key] = partial(fn, store);
+    Object.defineProperty(store.getters, key, {
+      get: function () { return store._vm[key]; },
+      enumerable: true // for local getters
+    });
+  });
+
+  // use a Vue instance to store the state tree
+  // suppress warnings just in case the user has added
+  // some funky global mixins
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed: computed
+  });
+  Vue.config.silent = silent;
+
+  // enable strict mode for new vm
+  if (store.strict) {
+    enableStrictMode(store);
+  }
+
+  if (oldVm) {
+    if (hot) {
+      // dispatch changes in all subscribed watchers
+      // to force getter re-evaluation for hot reloading.
+      store._withCommit(function () {
+        oldVm._data.$$state = null;
+      });
+    }
+    Vue.nextTick(function () { return oldVm.$destroy(); });
+  }
+}
+
+function installModule (store, rootState, path, module, hot) {
+  var isRoot = !path.length;
+  var namespace = store._modules.getNamespace(path);
+
+  // register in namespace map
+  if (module.namespaced) {
+    if (store._modulesNamespaceMap[namespace] && ("development" !== 'production')) {
+      console.error(("[vuex] duplicate namespace " + namespace + " for the namespaced module " + (path.join('/'))));
+    }
+    store._modulesNamespaceMap[namespace] = module;
+  }
+
+  // set state
+  if (!isRoot && !hot) {
+    var parentState = getNestedState(rootState, path.slice(0, -1));
+    var moduleName = path[path.length - 1];
+    store._withCommit(function () {
+      if ((true)) {
+        if (moduleName in parentState) {
+          console.warn(
+            ("[vuex] state field \"" + moduleName + "\" was overridden by a module with the same name at \"" + (path.join('.')) + "\"")
+          );
+        }
+      }
+      Vue.set(parentState, moduleName, module.state);
+    });
+  }
+
+  var local = module.context = makeLocalContext(store, namespace, path);
+
+  module.forEachMutation(function (mutation, key) {
+    var namespacedType = namespace + key;
+    registerMutation(store, namespacedType, mutation, local);
+  });
+
+  module.forEachAction(function (action, key) {
+    var type = action.root ? key : namespace + key;
+    var handler = action.handler || action;
+    registerAction(store, type, handler, local);
+  });
+
+  module.forEachGetter(function (getter, key) {
+    var namespacedType = namespace + key;
+    registerGetter(store, namespacedType, getter, local);
+  });
+
+  module.forEachChild(function (child, key) {
+    installModule(store, rootState, path.concat(key), child, hot);
+  });
+}
+
+/**
+ * make localized dispatch, commit, getters and state
+ * if there is no namespace, just use root ones
+ */
+function makeLocalContext (store, namespace, path) {
+  var noNamespace = namespace === '';
+
+  var local = {
+    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if (( true) && !store._actions[type]) {
+          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      return store.dispatch(type, payload)
+    },
+
+    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if (( true) && !store._mutations[type]) {
+          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      store.commit(type, payload, options);
+    }
+  };
+
+  // getters and state object must be gotten lazily
+  // because they will be changed by vm update
+  Object.defineProperties(local, {
+    getters: {
+      get: noNamespace
+        ? function () { return store.getters; }
+        : function () { return makeLocalGetters(store, namespace); }
+    },
+    state: {
+      get: function () { return getNestedState(store.state, path); }
+    }
+  });
+
+  return local
+}
+
+function makeLocalGetters (store, namespace) {
+  if (!store._makeLocalGettersCache[namespace]) {
+    var gettersProxy = {};
+    var splitPos = namespace.length;
+    Object.keys(store.getters).forEach(function (type) {
+      // skip if the target getter is not match this namespace
+      if (type.slice(0, splitPos) !== namespace) { return }
+
+      // extract local getter type
+      var localType = type.slice(splitPos);
+
+      // Add a port to the getters proxy.
+      // Define as getter property because
+      // we do not want to evaluate the getters in this time.
+      Object.defineProperty(gettersProxy, localType, {
+        get: function () { return store.getters[type]; },
+        enumerable: true
+      });
+    });
+    store._makeLocalGettersCache[namespace] = gettersProxy;
+  }
+
+  return store._makeLocalGettersCache[namespace]
+}
+
+function registerMutation (store, type, handler, local) {
+  var entry = store._mutations[type] || (store._mutations[type] = []);
+  entry.push(function wrappedMutationHandler (payload) {
+    handler.call(store, local.state, payload);
+  });
+}
+
+function registerAction (store, type, handler, local) {
+  var entry = store._actions[type] || (store._actions[type] = []);
+  entry.push(function wrappedActionHandler (payload) {
+    var res = handler.call(store, {
+      dispatch: local.dispatch,
+      commit: local.commit,
+      getters: local.getters,
+      state: local.state,
+      rootGetters: store.getters,
+      rootState: store.state
+    }, payload);
+    if (!isPromise(res)) {
+      res = Promise.resolve(res);
+    }
+    if (store._devtoolHook) {
+      return res.catch(function (err) {
+        store._devtoolHook.emit('vuex:error', err);
+        throw err
+      })
+    } else {
+      return res
+    }
+  });
+}
+
+function registerGetter (store, type, rawGetter, local) {
+  if (store._wrappedGetters[type]) {
+    if ((true)) {
+      console.error(("[vuex] duplicate getter key: " + type));
+    }
+    return
+  }
+  store._wrappedGetters[type] = function wrappedGetter (store) {
+    return rawGetter(
+      local.state, // local state
+      local.getters, // local getters
+      store.state, // root state
+      store.getters // root getters
+    )
+  };
+}
+
+function enableStrictMode (store) {
+  store._vm.$watch(function () { return this._data.$$state }, function () {
+    if ((true)) {
+      assert(store._committing, "do not mutate vuex store state outside mutation handlers.");
+    }
+  }, { deep: true, sync: true });
+}
+
+function getNestedState (state, path) {
+  return path.reduce(function (state, key) { return state[key]; }, state)
+}
+
+function unifyObjectStyle (type, payload, options) {
+  if (isObject(type) && type.type) {
+    options = payload;
+    payload = type;
+    type = type.type;
+  }
+
+  if ((true)) {
+    assert(typeof type === 'string', ("expects string as the type, but found " + (typeof type) + "."));
+  }
+
+  return { type: type, payload: payload, options: options }
+}
+
+function install (_Vue) {
+  if (Vue && _Vue === Vue) {
+    if ((true)) {
+      console.error(
+        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
+      );
+    }
+    return
+  }
+  Vue = _Vue;
+  applyMixin(Vue);
+}
+
+/**
+ * Reduce the code which written in Vue.js for getting the state.
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} states # Object's item can be a function which accept state and getters for param, you can do something for state and getters in it.
+ * @param {Object}
+ */
+var mapState = normalizeNamespace(function (namespace, states) {
+  var res = {};
+  if (( true) && !isValidMap(states)) {
+    console.error('[vuex] mapState: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(states).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedState () {
+      var state = this.$store.state;
+      var getters = this.$store.getters;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
+        if (!module) {
+          return
+        }
+        state = module.context.state;
+        getters = module.context.getters;
+      }
+      return typeof val === 'function'
+        ? val.call(this, state, getters)
+        : state[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for committing the mutation
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} mutations # Object's item can be a function which accept `commit` function as the first param, it can accept anthor params. You can commit mutation and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
+ */
+var mapMutations = normalizeNamespace(function (namespace, mutations) {
+  var res = {};
+  if (( true) && !isValidMap(mutations)) {
+    console.error('[vuex] mapMutations: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(mutations).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedMutation () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      // Get the commit method from store
+      var commit = this.$store.commit;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
+        if (!module) {
+          return
+        }
+        commit = module.context.commit;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [commit].concat(args))
+        : commit.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for getting the getters
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} getters
+ * @return {Object}
+ */
+var mapGetters = normalizeNamespace(function (namespace, getters) {
+  var res = {};
+  if (( true) && !isValidMap(getters)) {
+    console.error('[vuex] mapGetters: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(getters).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    // The namespace has been mutated by normalizeNamespace
+    val = namespace + val;
+    res[key] = function mappedGetter () {
+      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
+        return
+      }
+      if (( true) && !(val in this.$store.getters)) {
+        console.error(("[vuex] unknown getter: " + val));
+        return
+      }
+      return this.$store.getters[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+/**
+ * Reduce the code which written in Vue.js for dispatch the action
+ * @param {String} [namespace] - Module's namespace
+ * @param {Object|Array} actions # Object's item can be a function which accept `dispatch` function as the first param, it can accept anthor params. You can dispatch action and do any other things in this function. specially, You need to pass anthor params from the mapped function.
+ * @return {Object}
+ */
+var mapActions = normalizeNamespace(function (namespace, actions) {
+  var res = {};
+  if (( true) && !isValidMap(actions)) {
+    console.error('[vuex] mapActions: mapper parameter must be either an Array or an Object');
+  }
+  normalizeMap(actions).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedAction () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      // get dispatch function from store
+      var dispatch = this.$store.dispatch;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
+        if (!module) {
+          return
+        }
+        dispatch = module.context.dispatch;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [dispatch].concat(args))
+        : dispatch.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+/**
+ * Rebinding namespace param for mapXXX function in special scoped, and return them by simple object
+ * @param {String} namespace
+ * @return {Object}
+ */
+var createNamespacedHelpers = function (namespace) { return ({
+  mapState: mapState.bind(null, namespace),
+  mapGetters: mapGetters.bind(null, namespace),
+  mapMutations: mapMutations.bind(null, namespace),
+  mapActions: mapActions.bind(null, namespace)
+}); };
+
+/**
+ * Normalize the map
+ * normalizeMap([1, 2, 3]) => [ { key: 1, val: 1 }, { key: 2, val: 2 }, { key: 3, val: 3 } ]
+ * normalizeMap({a: 1, b: 2, c: 3}) => [ { key: 'a', val: 1 }, { key: 'b', val: 2 }, { key: 'c', val: 3 } ]
+ * @param {Array|Object} map
+ * @return {Object}
+ */
+function normalizeMap (map) {
+  if (!isValidMap(map)) {
+    return []
+  }
+  return Array.isArray(map)
+    ? map.map(function (key) { return ({ key: key, val: key }); })
+    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+}
+
+/**
+ * Validate whether given map is valid or not
+ * @param {*} map
+ * @return {Boolean}
+ */
+function isValidMap (map) {
+  return Array.isArray(map) || isObject(map)
+}
+
+/**
+ * Return a function expect two param contains namespace and map. it will normalize the namespace and then the param's function will handle the new namespace and the map.
+ * @param {Function} fn
+ * @return {Function}
+ */
+function normalizeNamespace (fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace;
+      namespace = '';
+    } else if (namespace.charAt(namespace.length - 1) !== '/') {
+      namespace += '/';
+    }
+    return fn(namespace, map)
+  }
+}
+
+/**
+ * Search a special module from store by namespace. if module not exist, print error message.
+ * @param {Object} store
+ * @param {String} helper
+ * @param {String} namespace
+ * @return {Object}
+ */
+function getModuleByNamespace (store, helper, namespace) {
+  var module = store._modulesNamespaceMap[namespace];
+  if (( true) && !module) {
+    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
+  }
+  return module
+}
+
+var index = {
+  Store: Store,
+  install: install,
+  version: '3.4.0',
+  mapState: mapState,
+  mapMutations: mapMutations,
+  mapGetters: mapGetters,
+  mapActions: mapActions,
+  createNamespacedHelpers: createNamespacedHelpers
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (index);
+
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ 3)))
+
+/***/ }),
+
+/***/ 42:
+/*!*************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/common/locales/zh.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  // 可以以页面为单位来写，比如首页的内容，写在index字段，个人中心写在center，共同部分写在common部分
+  components: {
+    desc: '众多组件覆盖开发过程的各个需求，组件功能丰富，多端兼容。让你快速集成，开箱即用' },
+
+  js: {
+    desc: '众多的贴心小工具，是你开发过程中召之即来的利器，让你飞镖在手，百步穿杨' },
+
+  template: {
+    desc: '收集众多的常用页面和布局，减少开发者的重复工作，让你专注逻辑，事半功倍' },
+
+  nav: {
+    components: '组件',
+    js: '工具',
+    template: '模板' },
+
+  common: {
+    intro: '多平台快速开发的UI框架',
+    title: 'uView UI' } };exports.default = _default;
+
+/***/ }),
+
+/***/ 43:
+/*!*************************************************************!*\
+  !*** D:/front/bxfront_devproject/fyzh/common/locales/en.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  // 可以以页面为单位来写，比如首页的内容，写在index字段，个人中心写在center，共同部分写在common部分
+  components: {
+    desc: 'Numerous components cover the various requirements of the development process, and the components are rich in functions and compatible with multiple terminals. Let you integrate quickly, out of the box' },
+
+  js: {
+    desc: 'Numerous intimate gadgets are a weapon that you can call upon during the development process, allowing you to dart in your hand and pierce the Yang with a hundred steps' },
+
+  template: {
+    desc: 'Collection of many commonly used pages and layouts, reducing the repetitive work of developers, allowing you to focus on logic and get twice the result with half the effort' },
+
+  nav: {
+    components: 'Components',
+    js: 'JS',
+    template: 'Template' },
+
+  common: {
+    intro: 'UI framework for rapid development of multiple platforms',
+    title: 'uView UI' } };exports.default = _default;
 
 /***/ }),
 

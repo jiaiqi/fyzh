@@ -1,11 +1,11 @@
 <template>
 	<view class="goods-list" :style="[calcStyle]" :class="[layout]">
-		<view class="utils-bar">
+<!-- 		<view class="utils-bar">
 			<view class="util-item" @click="changeLayout">
 				<text class="cuIcon-list" v-if="layout==='double'"></text>
 				<text class="cuIcon-cascades" v-else></text>
 			</view>
-		</view>
+		</view> -->
 		<view class="single" v-if="layout==='single'">
 			<view class="goods-item" v-for="(item,index) in goodsList" @click="toGoodsDetail(item)">
 				<u-lazy-load class="image"  height="200" :image="item.url" :index="index"
@@ -99,6 +99,11 @@
 			};
 		},
 		watch: {
+			defaultLayout:{
+				handler(newval){
+					this.layout = newval
+				}
+			},
 			list: {
 				handler(newValue, oldValue) {
 					if (Array.isArray(newValue)) {
@@ -199,7 +204,7 @@
 		props: {
 			defaultLayout: {
 				type: String,
-				default: "single"
+				default: "double"
 			},
 			storeNo: {
 				type: String

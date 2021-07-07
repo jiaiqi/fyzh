@@ -22,6 +22,7 @@
 		{
 			"path": "pages/index/store",
 			"style": {
+				"navigationStyle":"custom",
 				"navigationBarTitleText": "甄选",
 				"enablePullDownRefresh": true
 			}

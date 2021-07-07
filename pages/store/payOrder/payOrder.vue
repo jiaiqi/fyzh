@@ -321,7 +321,7 @@
 				// 2. 从购物车进入或商品页直接支付 初始化订单信息
 				if (option.goodsList) {
 					try {
-						option.goodsList = JSON.parse(option.goodsList)
+						option.goodsList = JSON.parse(decodeURIComponent(option.goodsList))
 					} catch (e) {
 						//TODO handle the exception
 					}

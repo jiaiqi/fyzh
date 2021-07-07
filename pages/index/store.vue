@@ -1,7 +1,22 @@
 <template>
-	<view>
-		<goods-list image="gd_img" name="gd_name" desc="gd_desc" ref="goodsList" :list="goodsList"></goods-list>
-		<u-loadmore :status="loadStatus" @loadmore="loadMore" :load-text="loadText" />
+	<view class="store-wrap">
+		<u-navbar :is-back="false" title-color="#000" :border-bottom="false" :background="background">
+			<view class="utils-bar">
+				<view class="util-item" @click="changeLayout">
+					<text class="cuIcon-list" v-if="layout==='double'"></text>
+					<text class="cuIcon-cascades" v-else></text>
+				</view>
+			</view>
+		</u-navbar>
+		<view class="u-p-20 bg-white">
+			<u-swiper :list="swiperList" border-radiu="20" :effect3d="false" :height="300"
+				@click="clickImage"></u-swiper>
+		</view>
+		<view class="goods-layout">
+			<goods-list image="gd_img" name="gd_name" desc="gd_desc" ref="goodsList" :list="goodsList"
+				:defaultLayout="layout"></goods-list>
+			<u-loadmore :status="loadStatus" @loadmore="loadMore" :load-text="loadText" />
+		</view>
 	</view>
 </template>
 
@@ -9,6 +24,24 @@
 	export default {
 		data() {
 			return {
+				background: {
+					backgroundColor: '#fff',
+					// backgroundImage: 'linear-gradient(45deg, rgb(28, 187, 180), rgb(141, 198, 63))',
+					// backgroundImage: 'linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%)'
+				},
+				swiperList: [{
+						image: 'https://cdn.uviewui.com/uview/swiper/1.jpg',
+						title: '昨夜星辰昨夜风，画楼西畔桂堂东'
+					},
+					{
+						image: 'https://cdn.uviewui.com/uview/swiper/2.jpg',
+						title: '身无彩凤双飞翼，心有灵犀一点通'
+					},
+					{
+						image: 'https://cdn.uviewui.com/uview/swiper/3.jpg',
+						title: '谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳'
+					}
+				],
 				goodsList: [],
 				loadText: {
 					loadmore: '点击或上拉加载更多',
@@ -19,6 +52,7 @@
 					rownumber: 10,
 					pageNo: 1
 				},
+				layout: 'double',
 				loadStatus: "loadmore", //loading / nomore
 			};
 		},
@@ -39,6 +73,12 @@
 			this.getList()
 		},
 		methods: {
+			changeLayout(){
+				this.layout === 'double' ? this.layout = 'single' : this.layout = 'double'
+			},
+			clickImage(e) {
+
+			},
 			loadMore() {
 				if (this.loadStatus === 'loadmore') {
 					this.page.pageNo++
@@ -107,5 +147,18 @@
 </script>
 
 <style lang="scss" scoped>
-
+	.utils-bar {
+		flex: 1;
+		padding:  0 20rpx;
+		text[class*=cuIcon-] {
+			font-size: 40rpx;
+		}
+	}
+	// .store-wrap{
+	// 	// overflow: hidden;
+	// 	height: calc(100vh - var(--window-bottom));
+	// 	.goods-layout{
+	// 		overflow-y: scroll;
+	// 	}
+	// }
 </style>

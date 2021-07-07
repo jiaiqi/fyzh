@@ -1,7 +1,10 @@
 {
+  "navigationStyle": "custom",
   "navigationBarTitleText": "甄选",
   "enablePullDownRefresh": true,
   "usingComponents": {
+    "u-navbar": "/uview-ui/components/u-navbar/u-navbar",
+    "u-swiper": "/uview-ui/components/u-swiper/u-swiper",
     "goods-list": "/components/goods-list/goods-list",
     "u-loadmore": "/uview-ui/components/u-loadmore/u-loadmore"
   }

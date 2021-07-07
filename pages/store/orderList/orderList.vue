@@ -378,7 +378,7 @@
 				swiperCurrent: null,
 				tabsHeight: 0,
 				dx: 0,
-				loadStatus: ['loadmore', 'loadmore', 'loadmore', 'loadmore']
+				loadStatus: ['loadmore', 'loadmore', 'loadmore', 'loadmore', 'loadmore']
 			};
 		},
 		onLoad(option) {
@@ -575,6 +575,14 @@
 				}
 				if (idx === 0) {
 					req.condition = [];
+				}
+				req.condition = [...req.condition, {
+					colName: 'hy_no',
+					ruleType: 'eq',
+					value: this.vuex_memberInfo.hy_no
+				}]
+				if (!this.vuex_memberInfo?.hy_no) {
+					return
 				}
 				let url = '/fyzhmd/select/srvstore_shop_order_select'
 				let orderList = await this.$u.post(url, req);

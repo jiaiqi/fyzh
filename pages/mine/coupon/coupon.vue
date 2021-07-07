@@ -50,9 +50,11 @@
 			</view>
 		</view>
 		<view class="history-box">
-			<u-subsection :list="subList" :current="curSub" active-color="#fff" bgColor="#fff" buttonColor="#ff9900"
-				@change="changeSub">
-			</u-subsection>
+			<view class="sub-box">
+				<u-subsection :list="subList" :current="curSub" active-color="#fff"  buttonColor="#ff9900"
+					@change="changeSub">
+				</u-subsection>
+			</view>
 			<view class="history-list">
 				<view class="list-item" v-for="item in currentList" :key="item.id">
 					<view class="left">
@@ -270,8 +272,13 @@
 
 	.history-box {
 		padding: 20rpx;
+		margin: 20rpx;
+		border-radius: 20rpx;
 		background-color: #fff;
-
+		.sub-box{
+			width: 80%;
+			margin: 0 auto;
+		}
 		.history-list {
 			margin-top: 20rpx;
 		}
