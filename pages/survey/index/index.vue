@@ -1,52 +1,63 @@
 <template>
 	<view class="quiz-wrap">
-		<view class="quiz-top bg-black">
+		<!-- 		<view class="quiz-title light bg-blue">
+			<text class="cuIcon-titles text-blue"></text>
+			{{ formData.title }}
+		</view> -->
+		<view class="quiz-top bg-black" v-if="formData.user_state!=='完成'">
 			<view class="center-countdown text-white" v-if="countdown">
 				<text class="cuIcon-time margin-right-xs"></text>
 				{{ countdown }}
 			</view>
 		</view>
+
 		<view class="quiz-center" v-if="contentType === 'start'">
-			<view class="quiz-title light bg-blue">
+			<!-- 	<view class="quiz-title light bg-blue">
 				<text class="cuIcon-titles text-blue"></text>
 				{{ formData.title }}
-			</view>
+			</view> -->
 			<view class="quiz-remark">
 				<view v-if="formData.remark"
 					v-html="JSON.parse(JSON.stringify(formData.remark).replace(/\<img/gi, '<img width=100%  '))"></view>
 				<view class="start-button">
 					<button class="cu-btn" @click="startAnswer"
-						v-if="formType!=='detail'&&formData.user_state!=='完成'">开始答题</button>
-					<button class="cu-btn" @click="startAnswer"
-						v-if="formType==='detail'||formData.user_state==='完成'">查看答题记录</button>
+						v-if="formType!=='detail'&&(formData.user_state!=='完成'||formData.answer_times==='多次')">开始答题</button>
+					<!-- <button class="cu-btn" @click="startAnswer"
+						v-if="formType==='detail'||formData.user_state==='完成'">查看答题记录</button> -->
+					<button class="cu-btn" @click="seeResult"
+						v-if="formType==='detail'||formData.user_state==='完成'">上次评估结果</button>
 				</view>
 			</view>
 		</view>
 		<view class="quiz-center" v-if="contentType === 'end'">
-			<view class="quiz-title light bg-blue">
+			<!-- 	<view class="quiz-title light bg-blue">
 				<text class="cuIcon-titles text-blue"></text>
 				{{ formData.title }}
-			</view>
+			</view> -->
 			<view class="quiz-remark">
 				<view v-html="JSON.parse(JSON.stringify(formData.end_remark).replace(/\<img/gi, '<img width=100%  '))">
 				</view>
-				<view class="start-button" v-if="formType!=='detail'&&formData.user_state!=='完成'"><button class="cu-btn"
-						@click="submitQuiz">提交</button></view>
+				<view class="start-button"
+					v-if="formType!=='detail'&&(formData.user_state!=='完成'||formData.answer_times==='多次')"><button
+						class="cu-btn" @click="submitQuiz">提交</button></view>
+				<view class="start-button" v-else><button class="cu-btn" @click="seeResult">查看评估结果</button></view>
+
 			</view>
 		</view>
 		<view class="quiz-center" v-if="contentType === 'question'">
-			<view class="quiz-title light bg-blue">
+			<!-- 		<view class="quiz-title light bg-blue">
 				<text class="cuIcon-titles text-blue"></text>
 				{{ formData.title }}
-			</view>
+			</view> -->
 			<view class="quiz-question">
 				<view class="quiz-question-contetn">
 					<bx-form labelPosition="top" optionMode="normal" ref="bxform" :fields="[currentCol]"
-						BxformType="form" pageType="add" @value-blur="saveValue"></bx-form>
+						:formType="formData.user_state!=='完成'?'form':'detail'" :pageType="formType"
+						@value-blur="saveValue"></bx-form>
 				</view>
 			</view>
 			<view class="quiz-respond">
-				
+
 			</view>
 		</view>
 		<view class="quiz-bottom bg-black" v-if="contentType === 'question'">
@@ -62,7 +73,12 @@
 </template>
 
 <script>
+	// import tizhiDict from './dict.js'
+	// import radarChart from '../comp/radar.vue'
 	export default {
+		components: {
+			// radarChart
+		},
 		data() {
 			return {
 				starTime: 0,
@@ -86,6 +102,169 @@
 			};
 		},
 		computed: {
+			// itemList() {
+			// 	const result = []
+			// 	if (this.calcResult?.type) {
+			// 		let type = this.calcResult.type
+			// 		if (tizhiDict && tizhiDict[type]) {
+			// 			const data = tizhiDict[type]
+			// 			Object.keys(data).forEach(key => {
+			// 				if (data[key]) {
+			// 					result.push({
+			// 						key,
+			// 						body: data[key]
+			// 					})
+			// 				}
+			// 			})
+			// 		}
+			// 	}
+			// 	return result
+			// },
+			userData() {
+				if (this.formData && Array.isArray(this.formData.user_data) && Array.isArray(this.configCols)) {
+					let userData = this.formData.user_data
+					let optionData = this.formData.option_data
+					let quizData = this.quizData
+					return this.configCols.map(col => {
+						userData.forEach(item => {
+							if (col.id === item.item_no) {
+								col.option_data = item.option_data
+							}
+						})
+						if (Array.isArray(col.optionList) && col.optionList.length > 0) {
+							col.optionList.forEach(item => {
+								if (col.value === item.option_value) {
+									col.score = item.option_seq
+								}
+							})
+						}
+						debugger
+						return col
+					})
+					return this.formData.user_data
+				}
+			},
+			calcResult() {
+				const calcScole = this.calcScole
+				if (Array.isArray(calcScole)) {
+					const result = calcScole.reduce((pre, cur) => {
+						if (!pre.score || pre.score < cur.score) {
+							pre = cur
+						}
+						return pre
+					}, {})
+					const likeArr = calcScole.filter(item => item.score >= 9 && item.type !== result.type && item.type !==
+						'平和质')
+					if (Array.isArray(likeArr) && likeArr.length > 0) {
+						result.likeTizhi = likeArr.map(item => item.type).toString().replace(/\,/ig, '  ')
+					}
+					return result
+				}
+			},
+			calcScole() {
+				if (Array.isArray(this.userData)) {
+					let qixuScore = 0
+					let yangxuScore = 0
+					let yinxuScore = 0
+					let tanshiScore = 0
+					let shireScore = 0
+					let xueyuScore = 0
+					let qiyuScore = 0
+					let tebignScore = 0
+					let pingheScore = 0
+					this.userData.forEach((item, index) => {
+						if ([1, 2, 3, 13].includes(index)) {
+							qixuScore += item.score || 0
+						}
+						if ([10, 11, 12, 28].includes(index)) {
+							yangxuScore += item.score || 0
+						}
+						if ([9, 20, 25, 30].includes(index)) {
+							yinxuScore += item.score || 0
+						}
+						if ([8, 15, 27, 31].includes(index)) {
+							tanshiScore += item.score || 0
+						}
+
+						if ([22, 24, 26, 29].includes(index)) {
+							shireScore += item.score || 0
+						}
+						if ([18, 21, 23, 32].includes(index)) {
+							xueyuScore += item.score || 0
+						}
+						if ([4, 5, 6, 7].includes(index)) {
+							qiyuScore += item.score || 0
+						}
+						if ([14, 16, 17, 19].includes(index)) {
+							tebignScore += item.score || 0
+						}
+						if ([0, 1, 3, 4, 12].includes(index)) {
+							if (index === 0) {
+								pingheScore += item.score || 0
+							} else {
+								let arr = [0, 5, 4, 3, 2, 1]
+								pingheScore += arr[item.score] || 0
+							}
+						}
+					})
+					let result = {}
+					let scoreArr = [{
+							type: '气虚质',
+							score: qixuScore
+						},
+						{
+							type: '阳虚质',
+							score: yangxuScore
+						},
+						{
+							type: '阴虚质',
+							score: yinxuScore
+						},
+						{
+							type: '痰湿质',
+							score: tanshiScore
+						},
+						{
+							type: '湿热质',
+							score: shireScore
+						},
+						{
+							type: '血瘀质',
+							score: xueyuScore
+						},
+						{
+							type: '气郁质',
+							score: qiyuScore
+						},
+						{
+							type: '特禀质',
+							score: tebignScore
+						}
+					]
+					scoreArr.forEach(item => {
+						if (item.score >= 11) {
+							item.result = "是"
+						} else if (item.score >= 10 || item.score <= 9) {
+							item.result = "倾向是"
+						} else {
+							item.result = "否"
+						}
+					})
+					let pingheObj = {
+						type: '平和质',
+						score: pingheScore
+					}
+					if (pingheScore >= 17 && scoreArr.every(item => item.score < 8)) {
+						pingheObj.result = '是'
+					} else if (pingheScore >= 17 && scoreArr.every(item => item.score < 10)) {
+						pingheObj.result = '基本是'
+					} else {
+						pingheObj.result = '否'
+					}
+					scoreArr.push(pingheObj)
+					return scoreArr
+				}
+			},
 			currentCol() {
 				return this.configCols[this.currentQuestion]
 			},
@@ -129,7 +308,6 @@
 					this.contentType = 'start';
 				} else if (type === 'end') {
 					//返回结束页
-					debugger
 					if (!itemData) {
 						return
 					}
@@ -137,8 +315,14 @@
 					this.contentType = 'end';
 				}
 			},
+			seeResult() {
+				// this.contentType = 'end'
+				uni.navigateTo({
+					url: `/pages/survey/result/result?calcScole=${JSON.stringify(this.calcScole)}&calcResult=${JSON.stringify(this.calcResult)}`
+				})
+			},
 			startAnswer() {
-				if (!this.timer) {
+				if (!this.timer && this.formData.user_state !== '完成') {
 					this.start();
 				}
 				this.contentType = 'question';
@@ -268,7 +452,7 @@
 												});
 												self.stop()
 												self.formType = 'detail';
-												self.getQuestionnaireData(self.formData);
+												// self.getQuestionnaireData(self.formData);
 											}
 										} else {
 											if (res.resultCode === 'FAILURE') {
@@ -391,13 +575,27 @@
 												} else {
 													console.log('item_type', item);
 													item.value = items.option_data[0];
+													// if (Array.isArray(item.optionList) && item
+													// 	.optionList.length > 0) {
+													// 	item.optionList.forEach(op => {
+													// 		if (op.option_value === item
+													// 			.value) {
+													// 			item.score = op.option_seq
+													// 		}
+													// 	})
+													// }
 												}
 											}
 										});
 									});
 								}
 								this.formData = data;
-								if (data.user_state === '完成') {
+								if (data.title) {
+									uni.setNavigationBarTitle({
+										title: data.title
+									})
+								}
+								if (data.user_state === '完成' && data.answer_times !== '多次') {
 									this.formType = 'detail';
 								}
 								this.configCols = configCols;
@@ -515,7 +713,8 @@
 					isShowExp: [],
 					options: [],
 					item_type_attr: e.item_type_attr,
-					display: true
+					display: true,
+					optionList: e.option_data
 				};
 				if (this.formType === 'detail') {
 					config.disabled = true;
@@ -563,7 +762,6 @@
 					}]
 				}];
 				this.$u.post(url, req).then(res => {
-					debugger
 					console.log(res);
 				});
 			},
@@ -601,7 +799,6 @@
 				this.start();
 			}
 		},
-		mounted() {},
 		onLoad(option) {
 			if (option.formType && option.formType === 'detail') {
 				this.formType = option.formType;
@@ -615,7 +812,7 @@
 			if (questionData) {
 				questionData = JSON.parse(decodeURIComponent(option.questionData));
 			}
-			if (questionData && questionData.fill_batch_no) {
+			if (questionData && questionData.fill_batch_no && questionData.answer_times !== '多次') {
 				this.formType = 'detail';
 				this.questionData = questionData;
 				this.getQuestionnaireData(this.questionData);
@@ -647,7 +844,6 @@
 				}
 			}
 		},
-		onShow() {},
 		beforeDestroy() {
 			clearInterval(this.timer);
 		}
@@ -659,8 +855,10 @@
 		display: flex;
 		flex-direction: column;
 		height: 100vh;
+		overflow: scroll;
 		max-width: 1000px;
 		margin: 0 auto;
+		background-color: #fff;
 
 		.quiz-top {
 			// background-color: #333;
@@ -668,6 +866,14 @@
 			justify-content: center;
 			height: 100upx;
 			align-items: center;
+		}
+
+		.quiz-title {
+			// background-color: #ffffff;
+			line-height: 80upx;
+			text-indent: 20upx;
+			font-weight: 600;
+			// letter-spacing: 1px;
 		}
 
 		.quiz-center {
@@ -710,26 +916,35 @@
 				justify-content: center;
 				align-items: center;
 				min-height: 300upx;
+				flex-direction: column;
 
 				.cu-btn {
 					width: 300upx;
 					background-color: #333;
 					color: #eee;
+					margin-top: 20rpx;
 				}
 			}
 		}
 
 		.quiz-bottom {
-			height: 80upx;
 			display: flex;
 			color: #eee;
 			align-items: center;
-			justify-content: space-around;
-			padding: 0 100upx;
-
+			justify-content: space-between;
+			padding: 0 40upx;
 			.left,
 			.right {
-				padding: 20rpx;
+				flex: 1;
+				padding:20rpx;
+				margin: 20rpx;
+				text-align: center;
+				border: 1px solid #f1f1f1;
+				border-radius: 10rpx;
+			}
+			.number{
+				flex: 0.5;
+				text-align: center;
 			}
 		}
 	}

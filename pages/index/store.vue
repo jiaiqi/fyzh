@@ -154,11 +154,7 @@
 			font-size: 40rpx;
 		}
 	}
-	// .store-wrap{
-	// 	// overflow: hidden;
-	// 	height: calc(100vh - var(--window-bottom));
-	// 	.goods-layout{
-	// 		overflow-y: scroll;
-	// 	}
-	// }
+	.store-wrap{
+		background-color: #fbf8f8;
+	}
 </style>

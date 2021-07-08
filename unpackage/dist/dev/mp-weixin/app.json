@@ -11,7 +11,8 @@
     {
       "root": "pages/survey",
       "pages": [
-        "index/index"
+        "index/index",
+        "result/result"
       ]
     },
     {
@@ -70,6 +71,5 @@
   "permission": {},
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }
