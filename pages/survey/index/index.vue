@@ -4,13 +4,14 @@
 			<text class="cuIcon-titles text-blue"></text>
 			{{ formData.title }}
 		</view> -->
-		<view class="quiz-top bg-black" v-if="formData.user_state!=='完成'">
-			<view class="center-countdown text-white" v-if="countdown">
-				<text class="cuIcon-time margin-right-xs"></text>
-				{{ countdown }}
-			</view>
-		</view>
 
+		<view class="progress-bar" v-if="percent&&contentType === 'question'">
+			<view class="progress">
+				<progress :percent="percent" :show-info="false" stroke-width="10" border-radius="5" active
+					active-mode="forwards" :duration="50" />
+			</view>
+			<text class="margin-left">第{{ currentQuestion + 1 }}/{{ formData.item_data.length }}题</text>
+		</view>
 		<view class="quiz-center" v-if="contentType === 'start'">
 			<!-- 	<view class="quiz-title light bg-blue">
 				<text class="cuIcon-titles text-blue"></text>
@@ -19,7 +20,7 @@
 			<view class="quiz-remark">
 				<view v-if="formData.remark"
 					v-html="JSON.parse(JSON.stringify(formData.remark).replace(/\<img/gi, '<img width=100%  '))"></view>
-				<view class="start-button">
+				<view class="start-button" v-if="formData&&formData.id">
 					<button class="cu-btn" @click="startAnswer"
 						v-if="formType!=='detail'&&(formData.user_state!=='完成'||formData.answer_times==='多次')">开始答题</button>
 					<!-- <button class="cu-btn" @click="startAnswer"
@@ -53,21 +54,30 @@
 				<view class="quiz-question-contetn">
 					<bx-form labelPosition="top" optionMode="normal" ref="bxform" :fields="[currentCol]"
 						:formType="formData.user_state!=='完成'?'form':'detail'" :pageType="formType"
-						@value-blur="saveValue"></bx-form>
+						@value-blur="saveValue" @onRadioChange="onRadioChange"></bx-form>
 				</view>
 			</view>
 			<view class="quiz-respond">
 
 			</view>
 		</view>
-		<view class="quiz-bottom bg-black" v-if="contentType === 'question'">
-			<view class="left" v-if="currentQuestion === 0" @click="changeQuestion('start')">返回</view>
-			<view class="left" v-if="currentQuestion > 0" @click="changeQuestion('pre')">上一题</view>
-			<view class="number">{{ currentQuestion + 1 }}/{{ formData.item_data.length }}</view>
-			<view class="right" @click="changeQuestion('next')" v-if="currentQuestion < formData.item_data.length - 1">
-				下一题</view>
-			<view class="right" v-if="currentQuestion === formData.item_data.length - 1" @click="changeQuestion('end')">
-				完成</view>
+		<view class="quiz-bottom" v-if="contentType === 'question'">
+			<button class="left bg-gray" v-if="currentQuestion === 0" @click="changeQuestion('start')">返回</button>
+			<button class="left line-green" v-if="currentQuestion > 0" @click="changeQuestion('pre')">上一题</button>
+			<!-- <view class="number">{{ currentQuestion + 1 }}/{{ formData.item_data.length }}</view> -->
+			<button class="right bg-green" @click="changeQuestion('next')"
+				v-if="currentQuestion < formData.item_data.length - 1">
+				下一题</button>
+			<button class="right bg-green" v-if="currentQuestion === formData.item_data.length - 1"
+				@click="changeQuestion('end')">
+				完成</button>
+		</view>
+		<view class="quiz-top bg-white"
+			v-if="formData&&formData.user_state&&formType!=='detail'&&contentType!=='start'">
+			<view class="center-countdown" v-if="countdown">
+				<text class="cuIcon-time margin-right-xs"></text>
+				{{ countdown }}
+			</view>
 		</view>
 	</view>
 </template>
@@ -102,6 +112,11 @@
 			};
 		},
 		computed: {
+			percent() {
+				if (this.formData?.item_data?.length) {
+					return parseInt((this.currentQuestion + 1) * 100 / this.formData.item_data.length)
+				}
+			},
 			// itemList() {
 			// 	const result = []
 			// 	if (this.calcResult?.type) {
@@ -138,7 +153,6 @@
 								}
 							})
 						}
-						debugger
 						return col
 					})
 					return this.formData.user_data
@@ -294,11 +308,11 @@
 				})
 			},
 			changeQuestion(type) {
-				let itemData = this.$refs.bxform.getFieldModel();
-
+				let itemData = this.quizData
 				if (type === 'pre' && this.currentQuestion > 0) {
 					this.currentQuestion--;
 				} else if (type === 'next' && this.currentQuestion < this.formData.item_data.length) {
+					let itemData = this.$refs.bxform.getFieldModel();
 					if (!itemData) {
 						return
 					}
@@ -317,14 +331,41 @@
 			},
 			seeResult() {
 				// this.contentType = 'end'
+				if (Array.isArray(this.formData.user_data) && this.formData.user_data.length > 0) {
+					this.configCols.forEach(item => {
+						this.formData.user_data.forEach(items => {
+							if (item.column === items.item_no) {
+								if (item.item_type_attr && item.item_type_attr
+									.radioType === 'multi') {
+									item.value = items.option_data;
+									console.log('items.option_data', items
+										.option_data);
+								} else {
+									console.log('item_type', item);
+									item.value = items.option_data[0];
+									if (Array.isArray(item.optionList) && item
+										.optionList.length > 0) {
+										item.optionList.forEach(op => {
+											if (op.option_value === item
+												.value) {
+												item.score = op.option_seq
+											}
+										})
+									}
+								}
+							}
+						});
+					})
+
+				}
 				uni.navigateTo({
 					url: `/pages/survey/result/result?calcScole=${JSON.stringify(this.calcScole)}&calcResult=${JSON.stringify(this.calcResult)}`
 				})
 			},
 			startAnswer() {
-				if (!this.timer && this.formData.user_state !== '完成') {
-					this.start();
-				}
+				// if (!this.timer && this.formData.user_state !== '完成') {
+				this.start();
+				// }
 				this.contentType = 'question';
 			},
 			submitQuiz() {
@@ -351,16 +392,30 @@
 					url: '/pages/specific/questionnaire/questionnaire?formType=form&activity_no=20200309125000000100&status=进行中'
 				});
 			},
+			onRadioChange(e) {
+				if (this.currentQuestion < this.configCols.length - 1) {
+					this.configCols = this.configCols.map(item => {
+						if (item.column === e.column) {
+							item.value = e.value
+						}
+						return item
+					})
+					setTimeout(() => {
+						this.changeQuestion('next')
+					}, 200)
+				}
+			},
 			saveValue(e) {
 				if (typeof e === 'object') {
-					Object.keys(e).forEach(key => {
-						this.configCols = this.configCols.map(item => {
-							if (item.column === key) {
-								item.value = e[key]
-							}
-							return item
-						})
-					})
+					this.quizData = e
+					// Object.keys(e).forEach(key => {
+					// 	this.configCols = this.configCols.map(item => {
+					// 		if (item.column === key) {
+					// 			item.value = e[key]
+					// 		}
+					// 		return item
+					// 	})
+					// })
 				}
 				if (e.value && this.status === '进行中') {
 					let itemData = [{
@@ -574,7 +629,7 @@
 														.option_data);
 												} else {
 													console.log('item_type', item);
-													item.value = items.option_data[0];
+													// item.value = items.option_data[0];
 													// if (Array.isArray(item.optionList) && item
 													// 	.optionList.length > 0) {
 													// 	item.optionList.forEach(op => {
@@ -859,13 +914,27 @@
 		max-width: 1000px;
 		margin: 0 auto;
 		background-color: #fff;
+		font-size: 36rpx;
+		line-height: 2;
+
+		.progress-bar {
+			padding: 0 40rpx;
+			display: flex;
+			align-items: center;
+			font-size: 24rpx;
+
+			.progress {
+				flex: 1;
+			}
+		}
 
 		.quiz-top {
 			// background-color: #333;
 			display: flex;
 			justify-content: center;
-			height: 100upx;
-			align-items: center;
+			align-items: flex-end;
+			flex: 1;
+
 		}
 
 		.quiz-title {
@@ -877,7 +946,7 @@
 		}
 
 		.quiz-center {
-			flex: 1;
+			// flex: 1;
 			display: flex;
 			flex-direction: column;
 
@@ -901,10 +970,10 @@
 			}
 
 			.quiz-remark {
-				width: 95%;
-				height: auto;
-				margin: 0 auto;
-				flex: 1;
+				width: 100%;
+				height: 100vh;
+				padding: 40rpx;
+				// flex: 1;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
@@ -919,10 +988,13 @@
 				flex-direction: column;
 
 				.cu-btn {
-					width: 300upx;
-					background-color: #333;
+					font-size: 36rpx;
+					width: 400rpx;
+					background-color: #55D0C7;
 					color: #eee;
 					margin-top: 20rpx;
+					padding: 20rpx 40rpx;
+					height: auto;
 				}
 			}
 		}
@@ -933,16 +1005,18 @@
 			align-items: center;
 			justify-content: space-between;
 			padding: 0 40upx;
+
 			.left,
 			.right {
 				flex: 1;
-				padding:20rpx;
+				// padding: 20rpx;
 				margin: 20rpx;
 				text-align: center;
 				border: 1px solid #f1f1f1;
 				border-radius: 10rpx;
 			}
-			.number{
+
+			.number {
 				flex: 0.5;
 				text-align: center;
 			}

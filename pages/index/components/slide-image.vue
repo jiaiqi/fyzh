@@ -1,6 +1,7 @@
 <template>
 	<view class="slide-image">
-		<u-swiper :list="swiperList" border-radiu="10" bg-color="#ffffff"  :effect3d="false" :height="300"  @click="clickImage"></u-swiper>
+		<u-swiper :list="swiperList" border-radiu="10" bg-color="#ffffff" :effect3d="false" :height="300"
+			@click="clickImage"></u-swiper>
 	</view>
 </template>
 
@@ -46,6 +47,19 @@
 					uni.navigateTo({
 						url: url
 					});
+				} else if (target.image) {
+					uni.previewImage({
+						urls: [target.image],
+						longPressActions: {
+							itemList: ['发送给朋友', '保存图片', '收藏'],
+							success: function(data) {
+								console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
+							},
+							fail: function(err) {
+								console.log(err.errMsg);
+							}
+						}
+					});
 				}
 			},
 			async getSwiperList() {
@@ -72,7 +86,7 @@
 	}
 </script>
 <style>
-	.slide-image{
+	.slide-image {
 		background-color: #fff;
 		padding: 20rpx;
 	}

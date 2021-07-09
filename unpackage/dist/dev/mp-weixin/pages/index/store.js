@@ -96,16 +96,16 @@ var components
 try {
   components = {
     uNavbar: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-navbar/u-navbar */ "uview-ui/components/u-navbar/u-navbar").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-navbar/u-navbar.vue */ 186))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-navbar/u-navbar */ "uview-ui/components/u-navbar/u-navbar").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-navbar/u-navbar.vue */ 195))
     },
     uSwiper: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-swiper/u-swiper */ "uview-ui/components/u-swiper/u-swiper").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-swiper/u-swiper.vue */ 193))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-swiper/u-swiper */ "uview-ui/components/u-swiper/u-swiper").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-swiper/u-swiper.vue */ 202))
     },
     goodsList: function() {
-      return Promise.all(/*! import() | components/goods-list/goods-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/goods-list/goods-list")]).then(__webpack_require__.bind(null, /*! @/components/goods-list/goods-list.vue */ 200))
+      return Promise.all(/*! import() | components/goods-list/goods-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/goods-list/goods-list")]).then(__webpack_require__.bind(null, /*! @/components/goods-list/goods-list.vue */ 209))
     },
     uLoadmore: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-loadmore/u-loadmore */ "uview-ui/components/u-loadmore/u-loadmore").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-loadmore/u-loadmore.vue */ 208))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-loadmore/u-loadmore */ "uview-ui/components/u-loadmore/u-loadmore").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-loadmore/u-loadmore.vue */ 217))
     }
   }
 } catch (e) {
@@ -271,7 +271,7 @@ var _default =
         }
         if (Array.isArray(res.data)) {
           var list = res.data.reduce(function (pre, cur) {
-            var url = _this.$u.getImagePath(cur['gd_img'], true);
+            var url = _this.$u.getImagePath(cur['gd_img']);
             cur.url = url;
             if (cur['gd_img']) {
               _this.$u.getImageInfo({

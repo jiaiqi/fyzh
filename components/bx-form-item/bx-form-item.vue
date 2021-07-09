@@ -627,6 +627,7 @@
 				}
 			},
 			radioChange(e) {
+				this.$emit('onRadioChange',this.fieldData)
 				this.onBlur()
 			},
 			pickerChange(e) {

@@ -281,8 +281,8 @@
 			}
 
 			.icon {
-				width: 30px;
-				height: 30px;
+				width: 100rpx;
+				height: 100rpx;
 				font-size: 30px;
 				text-align: center;
 				line-height: 100rpx;
@@ -294,7 +294,7 @@
 				// align-items: flex-end;
 				text-align: center;
 				// min-height: 70rpx;
-				margin-top: 10rpx;
+				margin-top: 20rpx;
 				font-size: 14px;
 			}
 		}

@@ -107,7 +107,7 @@
 					}
 					if (Array.isArray(res.data)) {
 						let list = res.data.reduce((pre, cur) => {
-							let url = this.$u.getImagePath(cur['gd_img'], true);
+							let url = this.$u.getImagePath(cur['gd_img']);
 							cur.url = url;
 							if (cur['gd_img']) {
 								this.$u.getImageInfo({

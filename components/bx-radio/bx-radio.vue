@@ -217,6 +217,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+:root{
+	--main-color:#0bc99d;
+}
 .bx-radio {
 	display: flex;
 	align-items: center;
@@ -234,18 +237,18 @@ export default {
 		font-size: 24rpx;
 		&.checked.has-char {
 			border: none;
-			background-color: #007aff;
+			background-color: var(--main-color);
 			color: #fff;
 		}
 		&.checked.no-char {
-			border-color: #007aff;
+			border-color: var(--main-color);
 			border-width: 4rpx;
 			.bx-radio-checked {
 				display: inline-block;
 				width: 12rpx;
 				height: 12rpx;
 				border-radius: 12rpx;
-				background-color: #007aff;
+				background-color: var(--main-color);
 			}
 		}
 	}

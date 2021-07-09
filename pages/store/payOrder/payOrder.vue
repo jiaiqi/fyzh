@@ -22,7 +22,8 @@
 				</view>
 				<view class="goods-list">
 					<view class="goods-item" v-for="goods in goodsList">
-						<image class="goods-image" :src="$u.getImagePath(goods.gd_img)" mode=""></image>
+						<image class="goods-image" :src="$u.getImagePath(goods.gd_img)" mode=" aspectFit" v-if="goods.gd_img"></image>
+						<text class="cuIcon-goods goods-image" v-else></text>
 						<view class="content">
 							<view class="goods-name">{{ goods.name||goods.goods_name}}
 							</view>
@@ -163,6 +164,10 @@
 							title: '等待买家付款'
 						});
 					}
+					this.addressInfo.fullAddress = this.orderInfo.rcv_addr
+					this.addressInfo.userName =  this.orderInfo.rcv_name
+					this.addressInfo.telNumber = this.orderInfo.rcv_phone
+					this.addressInfo.phone = this.orderInfo.rcv_phone
 					let goods = await this.getGoodsList();
 					return this.orderInfo;
 				}
@@ -188,7 +193,7 @@
 				let url = '/fyzhmd/select/srvstore_shop_order_goods_select'
 				if (this.orderNo) {
 					let goodsList = await this.$u.post(url, req);
-					if (goodsList.success) {
+					if (goodsList.state==='SUCCESS') {
 						this.goodsList = goodsList.data
 						this.$set(this.orderInfo, 'goodsList', goodsList.data);
 					}
@@ -196,6 +201,7 @@
 			},
 			submitOrder() {
 				const userInfo = this.vuex_loginUser
+				const vuex_memberInfo = this.vuex_memberInfo
 				let req = [{
 					serviceName: 'srvstore_shop_order_add',
 					condition: [],
@@ -205,7 +211,8 @@
 						rcv_addr: this.addressInfo.fullAddress,
 						rcv_name: this.addressInfo.userName,
 						rcv_phone: this.addressInfo.telNumber,
-						hy_name: userInfo.real_name,
+						hy_no:vuex_memberInfo.hy_no,
+						hy_name:vuex_memberInfo.hy_name,
 						// user_no: userInfo.user_no,
 						// profile_url: userInfo.headimgurl,
 						money_total: this.totalMoney,
@@ -234,7 +241,6 @@
 						}]
 					}]
 				}];
-				debugger
 				const url = '/fyzhmd/operate/srvstore_shop_order_add'
 				this.$u.post(url, req).then(res => {
 					let data = []
@@ -247,7 +253,6 @@
 					) {
 						data = res.response[0].response.effect_data
 					}
-					debugger
 					if (data && Array.isArray(data) && data.length > 0) {
 						console.log(data[0]);
 						this.orderNo = data[0].order_no;
@@ -263,7 +268,6 @@
 				let self = this;
 				let orderData = this.$u.deepClone(this.orderInfo);
 				let goodsData = this.$u.deepClone(this.goodsList);
-				debugger
 				if (typeof this.totalMoney !== 'number' || this.totalMoney.toString() === 'NaN') {
 					uni.showModal({
 						title: '提示',
@@ -277,16 +281,13 @@
 					result.prepay_id = orderData.prepay_id;
 				} else {
 					result = await this.$u.api.toPlaceOrder(
-						this.totalMoney ? this.totalMoney : 1,
-						this.loginUserInfo && this.loginUserInfo.login_user_type ? this.loginUserInfo
-						.login_user_type : '',
+						this.totalMoney*100 || 1, this.vuex_loginUser
+						?.login_user_type,
 						orderData
 					);
 				}
-				debugger
 				if (result && result.prepay_id) {
 					let res = await this.$u.api.getPayParams(result.prepay_id);
-					debugger
 					wx.requestPayment({
 						timeStamp: res.timeStamp.toString(),
 						nonceStr: res.nonceStr,
@@ -316,6 +317,7 @@
 			// 1. 从订单列表进入
 			if (option.order_no) {
 				// 查找订单信息
+				this.orderNo = option.order_no
 				this.getOrderInfo();
 			} else {
 				// 2. 从购物车进入或商品页直接支付 初始化订单信息
@@ -411,7 +413,10 @@
 
 				.goods-image {
 					width: 100rpx;
+					font-size: 60rpx;
 					height: 100rpx;
+					text-align: center;
+					line-height: 100rpx;
 					background-color: #f1f1f1;
 					border-radius: 5px;
 				}

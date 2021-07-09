@@ -2,7 +2,7 @@
 	<view>
 		<bx-form-item :procData="procData" :labelPosition="labelPosition" :optionMode="optionMode"
 			@on-value-change="onValChange" @on-value-blur="onValBlur" @chooseLocation="chooseLocation"
-			v-for="field in allField" :key="field.id" :field="field" :pageType="pageType" ref="fitem"></bx-form-item>
+			v-for="field in allField" :key="field.id" :field="field" :pageType="pageType" ref="fitem" @onRadioChange="onRadioChange"></bx-form-item>
 	</view>
 </template>
 
@@ -56,6 +56,9 @@
 			};
 		},
 		methods: {
+			onRadioChange(e) {
+				this.$emit('onRadioChange',e)
+			},
 			getFieldModel() {
 				let valid = 0;
 				let showsNum = 0;

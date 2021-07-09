@@ -41,7 +41,7 @@ const store = new Vuex.Store({
 		// 如果vuex_version无需保存到本地永久存储，无需lifeData.vuex_version方式
 		vuex_cart: [], //购物车信息（商品列表）
 		vuex_prepayInfo: {}, //预支付信息
-
+		vuex_payParams: {}, //支付相关参数
 	},
 	mutations: {
 		$uStore(state, payload) {

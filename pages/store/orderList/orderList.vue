@@ -35,7 +35,8 @@
 								<view class="item" v-for="(item, index) in res.goodsList" :key="index"
 									@click="toOrderDetail(res)">
 									<view class="left">
-										<image class="image" :src="item.goodsUrl" mode="aspectFill"></image>
+										<image class="image" :src="item.goodsUrl" mode="aspectFill" v-if="item.goodsUrl"></image>
+										<text class="cuIcon-goods image" v-else></text>
 									</view>
 									<view class="content">
 										<view class="title">{{ item.title }}</view>
@@ -507,12 +508,12 @@
 			},
 			toOrderDetail(e) {
 				uni.navigateTo({
-					url: '/personalPages/payOrder/payOrder?order_no=' + e.order_no
+					url: '../payOrder/payOrder?order_no=' + e.order_no
 				});
 			},
 			toPay(e) {
 				uni.navigateTo({
-					url: '/personalPages/payOrder/payOrder?order_no=' + e.order_no
+					url: '../payOrder/payOrder?order_no=' + e.order_no
 				});
 			},
 			reachBottom() {

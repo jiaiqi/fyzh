@@ -90,8 +90,8 @@
   box-shadow: none;
 }
 .menu-list .menu-item .icon.data-v-57d4377e {
-  width: 30px;
-  height: 30px;
+  width: 100rpx;
+  height: 100rpx;
   font-size: 30px;
   text-align: center;
   line-height: 100rpx;
@@ -99,7 +99,7 @@
 .menu-list .menu-item .title.data-v-57d4377e,
 .menu-list .menu-item .label.data-v-57d4377e {
   text-align: center;
-  margin-top: 10rpx;
+  margin-top: 20rpx;
   font-size: 14px;
 }
 

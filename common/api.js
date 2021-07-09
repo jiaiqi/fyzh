@@ -168,7 +168,7 @@ const wxOpenLogin = async (wxAuthUserInfo) => {
  * @param {String} prepay_id - 预支付id  
  * @param {String} wx_mch_id - 商户号  
  */
-const getPayParams = async (prepay_id, wx_mch_id = '1485038452') => {
+const getPayParams = async (prepay_id, wx_mch_id = '1611681078') => {
 	let url = '/wx/select/srvwx_app_pay_sign_select'
 	let req = {
 		"serviceName": "srvwx_app_pay_sign_select",
@@ -197,7 +197,8 @@ const getPayParams = async (prepay_id, wx_mch_id = '1485038452') => {
 		let res = await uni.$u.post(url, req)
 		if (res.state === 'SUCCESS') {
 			if (Array.isArray(res.data) && res.data.length > 0) {
-				store.commit('SET_PAY_PARAMS', res.data[0])
+				// store.commit('SET_PAY_PARAMS', res.data[0])
+				uni.$u.vuex('vuex_payParams',res.data[0])
 				return res.data[0]
 			} else {
 				uni.showModal({
@@ -222,7 +223,7 @@ const getPayParams = async (prepay_id, wx_mch_id = '1485038452') => {
  * @param {Object} orderData -订单信息
  * @param {String} wx_mch_id -商户号
  */
-const toPlaceOrder = async (total_fee, login_user_type, orderData, wx_mch_id = '1485038452') => {
+const toPlaceOrder = async (total_fee, login_user_type, orderData, wx_mch_id = '1611681078') => {
 	// 统一下单
 	let url = '/wx/operate/srvwx_order'
 	let req = [{
@@ -243,7 +244,6 @@ const toPlaceOrder = async (total_fee, login_user_type, orderData, wx_mch_id = '
 	if (res.state === 'SUCCESS') {
 		if (Array.isArray(res.response) && res.response.length > 0) {
 			let info = res.response[0]
-			debugger
 			if (info.response) {
 				info = info.response
 				uni.$u.vuex('vuex_prepayInfo', info)
