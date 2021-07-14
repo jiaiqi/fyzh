@@ -70,7 +70,7 @@ var _httpInterceptor = _interopRequireDefault(__webpack_require__(/*! @/common/h
 
 
 
-var _httpApi = _interopRequireDefault(__webpack_require__(/*! @/common/http.api.js */ 47));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var cuCustom = function cuCustom() {__webpack_require__.e(/*! require.ensure | colorui/components/cu-custom */ "colorui/components/cu-custom").then((function () {return resolve(__webpack_require__(/*! ./colorui/components/cu-custom.vue */ 185));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};_vue.default.component('cu-custom', cuCustom);_vue.default.config.productionTip = false;_App.default.mpType = 'app'; // 此处为演示Vue.prototype使用，非uView的功能部分
+var _httpApi = _interopRequireDefault(__webpack_require__(/*! @/common/http.api.js */ 47));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var cuCustom = function cuCustom() {__webpack_require__.e(/*! require.ensure | colorui/components/cu-custom */ "colorui/components/cu-custom").then((function () {return resolve(__webpack_require__(/*! ./colorui/components/cu-custom.vue */ 225));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};_vue.default.component('cu-custom', cuCustom);_vue.default.config.productionTip = false;_App.default.mpType = 'app'; // 此处为演示Vue.prototype使用，非uView的功能部分
 _vue.default.prototype.vuePrototype = '枣红'; // 引入全局uView
 _vue.default.use(_uviewUi.default); // 此处为演示vuex使用，非uView的功能部分
 // 引入uView提供的对vuex的简写法文件
@@ -156,15 +156,10 @@ __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
-  // 此处globalData为了演示其作用，不是uView框架的一部分
-  globalData: {
-    username: '白居易' },
-
-  onLaunch: function onLaunch() {
-    // 1.1.0版本之前关于http拦截器代码，已平滑移动到/common/http.interceptor.js中
-    // 注意，需要在/main.js中实例化Vue之后引入如下(详见文档说明)：
-    // import httpInterceptor from '@/common/http.interceptor.js'
-    // Vue.use(httpInterceptor, app)
+  onLaunch: function onLaunch(option) {
+    if (typeof option.query === 'object' && Object.keys(option.query).length > 0) {
+      this.$u.vuex('appLaunchQuery', option.query);
+    }
     // process.env.VUE_APP_PLATFORM 为通过js判断平台名称的方法，结果分别如下：
     /**
      * h5，app-plus(nvue下也为app-plus)，mp-weixin，mp-alipay......

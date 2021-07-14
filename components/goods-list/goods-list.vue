@@ -1,17 +1,17 @@
 <template>
 	<view class="goods-list" :style="[calcStyle]" :class="[layout]">
-<!-- 		<view class="utils-bar">
+		<!-- 		<view class="utils-bar">
 			<view class="util-item" @click="changeLayout">
 				<text class="cuIcon-list" v-if="layout==='double'"></text>
 				<text class="cuIcon-cascades" v-else></text>
 			</view>
 		</view> -->
-		<view class="single" v-if="layout==='single'">
-			<view class="goods-item" v-for="(item,index) in goodsList" @click="toGoodsDetail(item)">
-				<u-lazy-load class="image"  height="200" :image="item.url" :index="index"
+		<view class="single cu-card" v-if="layout==='single'">
+			<view class="goods-item  " v-for="(item,index) in goodsList" @click="toGoodsDetail(item)">
+				<u-lazy-load class="image" height="200" :image="item.url" :index="index"
 					error-img="@/static/icon/goods.png" v-if="item.url">
 				</u-lazy-load>
-				<u-lazy-load class="image"  height="200" image="/static/icon/goods.png" v-else />
+				<u-lazy-load class="image" height="200" image="/static/icon/goods.png" v-else />
 				<view class="goods-info">
 					<view class="goods-name">{{ item[name]||'' }}</view>
 					<view class="desc" v-html="item[desc]" v-if="item[desc]"></view>
@@ -23,9 +23,9 @@
 			</view>
 		</view>
 		<view class="double-column" v-if="layout==='double'">
-			<view class="left-list">
-				<view class="goods-item" v-for="(item,index) in leftList" @click="toGoodsDetail(item)">
-					<u-lazy-load  height="200" :image="item.url" v-if="item.url" :index="index"
+			<view class="left-list cu-card">
+				<view class="goods-item  " v-for="(item,index) in leftList" @click="toGoodsDetail(item)">
+					<u-lazy-load height="200" :image="item.url" v-if="item.url" :index="index"
 						error-img="@/static/icon/goods.png">
 					</u-lazy-load>
 					<u-lazy-load class="image" threshold="-450" height="200" image="/static/icon/goods.png" v-else />
@@ -39,8 +39,8 @@
 					</view>
 				</view>
 			</view>
-			<view class="right-list">
-				<view class="goods-item" v-for="item in rightList" @click="toGoodsDetail(item)">
+			<view class="right-list cu-card">
+				<view class="goods-item  " v-for="item in rightList" @click="toGoodsDetail(item)">
 					<u-lazy-load threshold="-450" :image="item.url" v-if="item.url" :index="index"
 						error-img="@/static/icon/goods.png">
 					</u-lazy-load>
@@ -99,8 +99,8 @@
 			};
 		},
 		watch: {
-			defaultLayout:{
-				handler(newval){
+			defaultLayout: {
+				handler(newval) {
 					this.layout = newval
 				}
 			},
@@ -124,8 +124,6 @@
 			}
 		},
 		created() {
-			
-			// this.getGoodsListData()
 			if (this.defaultLayout) {
 				this.layout = this.defaultLayout
 			}

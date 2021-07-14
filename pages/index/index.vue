@@ -1,8 +1,6 @@
 <template>
-	<view>
-		<view class="page-item-list">
+	<view class="page-item-list">
 			<PageItem v-for="item in pageItemList" :key="item.id" :pageItem="item"></PageItem>
-		</view>
 	</view>
 </template>
 

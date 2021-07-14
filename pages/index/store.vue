@@ -87,7 +87,7 @@
 			},
 			getList(type) {
 				let req = {
-					"serviceName": "srvstore_goods_mgmt_select",
+					"serviceName": "srvstore_goods_customer_select",
 					"colNames": ["*"],
 					"condition": [],
 					"page": {
@@ -96,7 +96,7 @@
 					},
 					"order": [],
 				}
-				let url = '/fyzhmd/select/srvstore_goods_mgmt_select'
+				let url = '/fyzhmd/select/srvstore_goods_customer_select'
 				this.loadStatus = 'loading'
 				this.$u.post(url, req).then(res => {
 					this.page = res.page

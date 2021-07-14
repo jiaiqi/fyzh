@@ -182,6 +182,9 @@
 						if (!this.form.hy_user_no && this.vuex_loginUser.user_no) {
 							req[0].data[0].hy_user_no = this.vuex_loginUser.user_no
 						}
+						if (this.appLaunchQuery?.add_hy_no) {
+							req[0].data[0].add_hy_no = this.appLaunchQuery.add_hy_no
+						}
 						req[0].data[0].hy_profile_url = this.vuex_loginUser.headimgurl
 						let url = '/fyzhmd/operate/srvstore_member_mgmt_add'
 						this.$u.post(url, req).then(res => {

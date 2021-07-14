@@ -96,25 +96,25 @@ var components
 try {
   components = {
     uAvatar: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-avatar/u-avatar */ "uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-avatar/u-avatar.vue */ 224))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-avatar/u-avatar */ "uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-avatar/u-avatar.vue */ 264))
     },
     uCellGroup: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 231))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-group/u-cell-group */ "uview-ui/components/u-cell-group/u-cell-group").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-group/u-cell-group.vue */ 271))
     },
     uCellItem: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 238))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-cell-item/u-cell-item */ "uview-ui/components/u-cell-item/u-cell-item").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-cell-item/u-cell-item.vue */ 278))
     },
     uPopup: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-popup/u-popup */ "uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-popup/u-popup.vue */ 245))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-popup/u-popup */ "uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-popup/u-popup.vue */ 285))
     },
     uForm: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-form/u-form */ "uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-form/u-form.vue */ 252))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-form/u-form */ "uview-ui/components/u-form/u-form").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-form/u-form.vue */ 292))
     },
     uFormItem: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-form-item/u-form-item.vue */ 259))
+      return Promise.all(/*! import() | uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-form-item/u-form-item.vue */ 299))
     },
     uInput: function() {
-      return Promise.all(/*! import() | uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-input/u-input.vue */ 270))
+      return Promise.all(/*! import() | uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-input/u-input.vue */ 310))
     }
   }
 } catch (e) {
@@ -274,6 +274,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _api = __webpack_require__(/*! @/common/api.js */ 48);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 
 
@@ -301,6 +319,14 @@ menuButtonInfo = uni.getMenuButtonBoundingClientRect();var _default =
 
   data: function data() {
     return {
+      showShareAction: false,
+      actionList: [{
+        text: "分享给好友" },
+
+      {
+        text: '生成分享海报' }],
+
+
       menuButtonInfo: menuButtonInfo,
       statusBarHeight: systemInfo.statusBarHeight,
       form: {
@@ -371,26 +397,27 @@ menuButtonInfo = uni.getMenuButtonBoundingClientRect();var _default =
     changeDate: function changeDate(e) {
       this.form.birth_day = e.target.value;
     },
-    toCoupon: function toCoupon() {var _this = this;
-      // 跳转到卡券页面
-      if (!this.vuex_memberInfo || !this.vuex_memberInfo.id) {
-        uni.showModal({
-          title: '提示',
-          content: '加入会员后才可进行此操作，是否申请加入会员？',
-          success: function success(res) {
-            if (res.confirm) {
-              _this.applyMember();
-            }
-          } });
-
-        return;
-      }
-      uni.navigateTo({
-        url: '/pages/mine/coupon/coupon' });
-
+    openShare: function openShare() {
+      this.showShareAction = true;
     },
-    toCart: function toCart() {var _this2 = this;
-      // 跳转到购物车页面
+    getPosterImage: function getPosterImage() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var imgFileNo, qrcontent, xp, yp, qrwidth, logoFileNo, url, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                uni.showToast({
+                  title: '功能正在开发中...',
+                  icon: 'none' });return _context.abrupt("return");case 11:
+
+
+
+
+
+
+
+
+
+
+                res = _context.sent;
+                debugger;case 13:case "end":return _context.stop();}}}, _callee);}))();
+    },
+    toPage: function toPage(type, query) {var _this2 = this;
       if (!this.vuex_memberInfo || !this.vuex_memberInfo.id) {
         uni.showModal({
           title: '提示',
@@ -403,8 +430,23 @@ menuButtonInfo = uni.getMenuButtonBoundingClientRect();var _default =
 
         return;
       }
+      var url = '';
+      switch (type) {
+        case 'coupon': //优惠券
+          url = '/pages/mine/coupon/coupon';
+          break;
+        case 'wallet': //钱包
+          url = '/pages/mine/wallet/wallet';
+          break;
+        case 'cart': //购物车
+          url = '/pages/store/cart/cart';
+          break;
+        case 'contact': //分享人
+          url = '/pages/mine/contact/contact';
+          break;}
+
       uni.navigateTo({
-        url: '/pages/store/cart/cart' });
+        url: url });
 
     },
     applyMember: function applyMember() {
@@ -412,7 +454,6 @@ menuButtonInfo = uni.getMenuButtonBoundingClientRect();var _default =
       uni.navigateTo({
         url: '/pages/mine/memberReg/memberReg' });
 
-      // this.showJoinMember = true
     },
     toOrderList: function toOrderList(e) {var _this3 = this;
       if (!this.vuex_memberInfo || !this.vuex_memberInfo.id) {
@@ -431,12 +472,12 @@ menuButtonInfo = uni.getMenuButtonBoundingClientRect();var _default =
         url: '/pages/store/orderList/orderList?type=' + e });
 
     },
-    getUserProfile: function getUserProfile(e) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+    getUserProfile: function getUserProfile(e) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
 
 
                   wx.getUserProfile({
                     desc: '用于完善会员资料' // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-                  }));case 2:return _context.abrupt("return", _context.sent);case 3:case "end":return _context.stop();}}}, _callee);}))();
+                  }));case 2:return _context2.abrupt("return", _context2.sent);case 3:case "end":return _context2.stop();}}}, _callee2);}))();
     },
     wxLogin: function wxLogin() {
       this.getUserProfile().then(function (res) {
@@ -444,7 +485,23 @@ menuButtonInfo = uni.getMenuButtonBoundingClientRect();var _default =
           (0, _api.wxOpenLogin)(res);
         }
       });
-    } } };exports.default = _default;
+    } },
+
+  onShareAppMessage: function onShareAppMessage() {var _this$vuex_memberInfo, _this$vuex_memberInfo2;
+    var path = "pages/index/mine/mine?from=share";
+    var title = '';
+    if ((_this$vuex_memberInfo = this.vuex_memberInfo) === null || _this$vuex_memberInfo === void 0 ? void 0 : _this$vuex_memberInfo.hy_no) {
+      path += "&add_hy_no=".concat(this.vuex_memberInfo.hy_no);
+    }
+    if ((_this$vuex_memberInfo2 = this.vuex_memberInfo) === null || _this$vuex_memberInfo2 === void 0 ? void 0 : _this$vuex_memberInfo2.hy_name) {
+      // path += `&invite_hy_name=${this.vuex_memberInfo.hy_name}`
+      title = "".concat(this.vuex_memberInfo.hy_name, "\u9080\u8BF7\u60A8\u4F7F\u7528\u67AB\u53F6\u5065\u884C\u5C0F\u7A0B\u5E8F");
+    }
+    return {
+      title: title,
+      path: path };
+
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

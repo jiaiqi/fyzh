@@ -1,1 +1,1 @@
-<view><view class="page-item-list"><block wx:for="{{pageItemList}}" wx:for-item="item" wx:for-index="__i0__" wx:key="id"><page-item vue-id="{{'8dd740cc-1-'+__i0__}}" pageItem="{{item}}" bind:__l="__l"></page-item></block></view></view>
+<view class="page-item-list"><block wx:for="{{pageItemList}}" wx:for-item="item" wx:for-index="__i0__" wx:key="id"><page-item vue-id="{{'8dd740cc-1-'+__i0__}}" pageItem="{{item}}" bind:__l="__l"></page-item></block></view>

@@ -5,14 +5,18 @@
     "pages/index/mine",
     "pages/mine/score/score",
     "pages/mine/coupon/coupon",
-    "pages/mine/memberReg/memberReg"
+    "pages/mine/memberReg/memberReg",
+    "pages/mine/wallet/wallet",
+    "pages/mine/contact/contact"
   ],
   "subPackages": [
     {
       "root": "pages/survey",
       "pages": [
         "index/index",
-        "result/result"
+        "result/result",
+        "adjust/adjust",
+        "adjustDetail/adjustDetail"
       ]
     },
     {
@@ -31,7 +35,8 @@
         "payOrder/payOrder",
         "successPay/successPay",
         "orderList/orderList",
-        "cart/cart"
+        "cart/cart",
+        "storeList/storeList"
       ]
     }
   ],

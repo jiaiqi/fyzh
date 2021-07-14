@@ -74,33 +74,25 @@
 					symbolSize: 5,
 					symbol: "circle",
 					areaStyle: {
-						color: "#39B2FF",
+						color: "#3D8BF0",
 						opacity: 0.3
 					},
+					label: {
+						show: true,
+						position: 'top',
+						fontSize: 14,
+						color: '#3D8BF0',
+						fontWeight: 'bold'
+					},
 					lineStyle: {
-						// color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-						// 	offset: 0,
-							color: '#8fcbff',
-						// }, {
-						// 	offset: 1,
-						// 	color: '#0060FF'
-						// }], false),
+						color: '#8fcbff',
 						width: 2
 					},
 					itemStyle: {
 						color: "#fff ",
-						// borderColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-						// 	offset: 0,
-						// 	color: '#00DEFF'
-						// }, {
-						// 	offset: 1,
-							color: '#1598FF',
-						// }], false),
+						color: '#1598FF',
 						borderWidth: 5,
 						opacity: 1
-					},
-					label: {
-						show: false,
 					},
 					data: [{
 						value: data,
@@ -133,14 +125,6 @@
 			this.ec = {
 				option
 			}
-			// this.$refs.chart.init(config => {
-			// 	const {
-			// 		canvas
-			// 	} = config;
-			// 	const chart = echarts.init(canvas, null, config);
-			// 	chart.setOption(option)
-			// 	return chart;
-			// });
 		},
 	}
 </script>

@@ -1,7 +1,5 @@
 <template>
 	<view>
-		<!-- 		<u-navbar :is-back="false" title="我的" title-color="#000" :border-bottom="false" :background="background">
-		</u-navbar> -->
 		<view class="u-flex user-box u-p-l-30 u-p-r-20 u-p-b-30"
 			:style="{ width: '100%', 'padding-top': Number(navbarHeight) + statusBarHeight + 'px' }">
 			<view class="user-box-main">
@@ -10,8 +8,6 @@
 					<view class="empty-profile" v-else-if="isLogin&&vuex_loginUser&&vuex_loginUser.id">
 						<open-data type="userAvatarUrl"></open-data>
 					</view>
-					<!-- 	<u-avatar bg-color="#DB0011" :src="vuex_loginUser.headimgurl" size="120"
-						v-else-if="isLogin&&vuex_loginUser&&vuex_loginUser.headimgurl"></u-avatar> -->
 				</view>
 				<view class="u-flex-1">
 					<view class="u-font-18 u-p-b-20 text-black" v-if="isLogin&&vuex_loginUser&&vuex_loginUser.id">
@@ -44,16 +40,18 @@
 
 			<view class="u-m-t-20 menu-list">
 				<u-cell-group>
-					<u-cell-item icon="shopping-cart" title="购物车" @click="toCart"></u-cell-item>
-					<u-cell-item icon="coupon" title="钱包" @click="toCoupon"></u-cell-item>
+					<u-cell-item icon="red-packet" title="钱包" @click="toPage('wallet')"></u-cell-item>
+					<u-cell-item icon="coupon" title="优惠券" @click="toPage('coupon')"></u-cell-item>
+					<u-cell-item icon="shopping-cart" title="购物车" @click="toPage('cart')"></u-cell-item>
 					<u-cell-item icon="map" title="我的地址" @click="toAddress"></u-cell-item>
-					<u-cell-item icon="heart" title="我的收藏"></u-cell-item>
+					<u-cell-item icon="account" title="我的战友" @click="toPage('contact')"></u-cell-item>
 				</u-cell-group>
 			</view>
 
 			<view class="u-m-t-20  menu-list">
 				<u-cell-group>
-					<u-cell-item icon="setting" title="设置"></u-cell-item>
+					<!-- <u-cell-item icon="setting" title="设置"></u-cell-item> -->
+					<u-cell-item icon="share" title="分享" @click="openShare"></u-cell-item>
 				</u-cell-group>
 			</view>
 		</view>
@@ -88,6 +86,26 @@
 				</view>
 			</view>
 		</u-popup>
+		<u-popup v-model="showShareAction" mode="bottom" closeable>
+			<view class="share-action">
+				<button class="action-item" open-type="share">
+					<view class="image">
+						<image class="image" src="../../static/icon/timeline.png" mode=""></image>
+					</view>
+					<view class="label">
+						分享给好友
+					</view>
+				</button>
+				<button class="action-item" @click="getPosterImage">
+					<view class="image">
+						<image class="image" src="../../static/icon/poster.png" mode=""></image>
+					</view>
+					<view class="label">
+						生成分享海报
+					</view>
+				</button>
+			</view>
+		</u-popup>
 	</view>
 </template>
 
@@ -119,6 +137,14 @@
 		},
 		data() {
 			return {
+				showShareAction: false,
+				actionList: [{
+						text: "分享给好友"
+					},
+					{
+						text: '生成分享海报'
+					}
+				],
 				menuButtonInfo: menuButtonInfo,
 				statusBarHeight: systemInfo.statusBarHeight,
 				form: {
@@ -172,43 +198,44 @@
 			}
 		},
 		methods: {
-			toAddress(){
+			toAddress() {
 				uni.chooseAddress({
-				  success(res) {
-				    console.log(res.userName)
-				    console.log(res.postalCode)
-				    console.log(res.provinceName)
-				    console.log(res.cityName)
-				    console.log(res.countyName)
-				    console.log(res.detailInfo)
-				    console.log(res.nationalCode)
-				    console.log(res.telNumber)
-				  }
+					success(res) {
+						console.log(res.userName)
+						console.log(res.postalCode)
+						console.log(res.provinceName)
+						console.log(res.cityName)
+						console.log(res.countyName)
+						console.log(res.detailInfo)
+						console.log(res.nationalCode)
+						console.log(res.telNumber)
+					}
 				})
 			},
 			changeDate(e) {
 				this.form.birth_day = e.target.value
 			},
-			toCoupon() {
-				// 跳转到卡券页面
-				if (!this.vuex_memberInfo || !this.vuex_memberInfo.id) {
-					uni.showModal({
-						title: '提示',
-						content: '加入会员后才可进行此操作，是否申请加入会员？',
-						success: (res) => {
-							if (res.confirm) {
-								this.applyMember()
-							}
-						}
-					})
-					return
-				}
-				uni.navigateTo({
-					url: '/pages/mine/coupon/coupon'
-				})
+			openShare() {
+				this.showShareAction = true
 			},
-			toCart() {
-				// 跳转到购物车页面
+			async getPosterImage() {
+				uni.showToast({
+					title: '功能正在开发中...',
+					icon: 'none'
+				})
+				return
+				const imgFileNo = '' //背景图file_no
+				const qrcontent = '' //二维码内容
+				const xp = '' //二维码x\y坐标 左上为原点 百分比
+				const yp = ''
+				const qrwidth = '' //二维码宽度
+				const logoFileNo = '' //二维码logo的file_no
+				const url =
+					`/file/adv/download?imgFileNo=${imgFileNo}&qrcontent=${qrcontent}&xp=${xp}&yp=${yp}&qrwidth=${qrwidth}&logoFileNo=${logoFileNo}&bx_auth_ticket=${this.vuex_token}`
+				let res = await this.$u.get(url)
+				debugger
+			},
+			toPage(type, query) {
 				if (!this.vuex_memberInfo || !this.vuex_memberInfo.id) {
 					uni.showModal({
 						title: '提示',
@@ -221,8 +248,23 @@
 					})
 					return
 				}
+				let url = ''
+				switch (type) {
+					case 'coupon': //优惠券
+						url = '/pages/mine/coupon/coupon'
+						break;
+					case 'wallet': //钱包
+						url = '/pages/mine/wallet/wallet'
+						break;
+					case 'cart': //购物车
+						url = '/pages/store/cart/cart'
+						break;
+					case 'contact': //分享人
+						url = '/pages/mine/contact/contact'
+						break;
+				}
 				uni.navigateTo({
-					url: '/pages/store/cart/cart'
+					url
 				})
 			},
 			applyMember() {
@@ -230,7 +272,6 @@
 				uni.navigateTo({
 					url: '/pages/mine/memberReg/memberReg'
 				})
-				// this.showJoinMember = true
 			},
 			toOrderList(e) {
 				if (!this.vuex_memberInfo || !this.vuex_memberInfo.id) {
@@ -263,7 +304,22 @@
 					}
 				})
 			},
-		}
+		},
+		onShareAppMessage() {
+			let path = `pages/index/mine/mine?from=share`;
+			let title = ''
+			if (this.vuex_memberInfo?.hy_no) {
+				path += `&add_hy_no=${this.vuex_memberInfo.hy_no}`
+			}
+			if (this.vuex_memberInfo?.hy_name) {
+				// path += `&invite_hy_name=${this.vuex_memberInfo.hy_name}`
+				title = `${this.vuex_memberInfo.hy_name}邀请您使用枫叶健行小程序`
+			}
+			return {
+				title,
+				path
+			};
+		},
 	}
 </script>
 
@@ -320,6 +376,7 @@
 		border-radius: 20rpx;
 		min-height: 100rpx;
 		background-image: linear-gradient(to top, #fdcb8d 0%, #eacda3 100%);
+
 		// background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
 		.not-vip {
 			display: flex;
@@ -392,6 +449,34 @@
 
 			.place-holder {
 				color: #dcdfe6;
+			}
+		}
+	}
+
+	.share-action {
+		display: flex;
+		padding: 100rpx 20rpx;
+
+		.action-item {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			background-color: #fff;
+			border: none;
+
+			&::after {
+				border: none;
+			}
+
+			.image {
+				width: 100rpx;
+				height: 100rpx;
+			}
+
+			.label {
+				margin-top: 10rpx;
 			}
 		}
 	}

@@ -1,6 +1,6 @@
 <template>
 	<view class="slide-image">
-		<u-swiper :list="swiperList" border-radiu="10" bg-color="#ffffff" :effect3d="false" :height="300"
+		<u-swiper :list="swiperList" border-radiu="10" bg-color="#ffffff" :effect3d="false" :height="400"
 			@click="clickImage"></u-swiper>
 	</view>
 </template>

@@ -27,7 +27,8 @@
   height: 15rpx;
 }
 .menu-list .swiper.grid-style .menu-item.data-v-57d4377e {
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 .menu-list .swiper-item.data-v-57d4377e {
   width: 100%;
@@ -87,7 +88,8 @@
 .menu-list .menu-item.grid-style.data-v-57d4377e {
   background-color: #fff;
   padding: 0;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 .menu-list .menu-item .icon.data-v-57d4377e {
   width: 100rpx;

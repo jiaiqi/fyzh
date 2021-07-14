@@ -22,7 +22,7 @@
 		{
 			"path": "pages/index/store",
 			"style": {
-				"navigationStyle":"custom",
+				"navigationStyle": "custom",
 				"navigationBarTitleText": "甄选",
 				"enablePullDownRefresh": true
 			}
@@ -30,7 +30,6 @@
 			"path": "pages/index/mine",
 			"style": {
 				"navigationStyle": "custom",
-				// "navigationBarTextStyle": "white",
 				"navigationBarTextStyle": "black",
 				"navigationBarTitleText": "我的",
 				"enablePullDownRefresh": false
@@ -45,9 +44,8 @@
 		}, {
 			"path": "pages/mine/coupon/coupon",
 			"style": {
-				"navigationStyle":"custom",
 				"navigationBarTitleText": "卡券",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": true
 			}
 
 		}, {
@@ -57,6 +55,20 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/mine/wallet/wallet",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "钱包",
+				"enablePullDownRefresh": true
+			}
+
+		}, {
+			"path": "pages/mine/contact/contact",
+			"style": {
+				"navigationBarTitleText": "我的战友",
+				"enablePullDownRefresh": false
+			}
 		}
 	],
 	"subPackages": [{
@@ -67,16 +79,27 @@
 					"navigationBarTitleText": "问卷",
 					"enablePullDownRefresh": false
 				}
-			}    ,{
-                    "path" : "result/result",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-                
-                }
-            ]
+			}, {
+				"path": "result/result",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "adjust/adjust",
+				"style": {
+					"navigationBarTitleText": "体质调理",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "adjustDetail/adjustDetail",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+			}]
 		},
 		{
 			"root": "pages/public",
@@ -93,7 +116,6 @@
 					"navigationBarTitleText": "",
 					"enablePullDownRefresh": false
 				}
-
 			}, {
 				"path": "bmi/bmi",
 				"style": {
@@ -143,6 +165,13 @@
 				"path": "cart/cart",
 				"style": {
 					"navigationBarTitleText": "购物车",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "storeList/storeList",
+				"style": {
+					"navigationBarTitleText": "门店",
 					"enablePullDownRefresh": false
 				}
 

@@ -17,6 +17,7 @@ page.data-v-3f47feae {
 .user-box.data-v-3f47feae {
   min-height: 350rpx;
   background-color: #e6b980;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#FEE4C3), color-stop(50%, #FEE4C3), color-stop(80%, #FEE4C3), color-stop(90%, #FFEFDC), to(#f1f1f1));
   background-image: -webkit-linear-gradient(top, #FEE4C3 0%, #FEE4C3 50%, #FEE4C3 80%, #FFEFDC 90%, #f1f1f1 100%);
   background-image: linear-gradient(to bottom, #FEE4C3 0%, #FEE4C3 50%, #FEE4C3 80%, #FFEFDC 90%, #f1f1f1 100%);
   color: #fff;
@@ -53,6 +54,7 @@ page.data-v-3f47feae {
   padding: 30rpx;
   border-radius: 20rpx;
   min-height: 100rpx;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#fdcb8d), to(#eacda3));
   background-image: -webkit-linear-gradient(bottom, #fdcb8d 0%, #eacda3 100%);
   background-image: linear-gradient(to top, #fdcb8d 0%, #eacda3 100%);
 }
@@ -137,5 +139,41 @@ page.data-v-3f47feae {
 }
 .join-member .date-picker .place-holder.data-v-3f47feae {
   color: #dcdfe6;
+}
+.share-action.data-v-3f47feae {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 100rpx 20rpx;
+}
+.share-action .action-item.data-v-3f47feae {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  background-color: #fff;
+  border: none;
+}
+.share-action .action-item.data-v-3f47feae::after {
+  border: none;
+}
+.share-action .action-item .image.data-v-3f47feae {
+  width: 100rpx;
+  height: 100rpx;
+}
+.share-action .action-item .label.data-v-3f47feae {
+  margin-top: 10rpx;
 }
 
