@@ -58,7 +58,7 @@
 		}, {
 			"path": "pages/mine/wallet/wallet",
 			"style": {
-				"navigationStyle": "custom",
+				// "navigationStyle": "custom",
 				"navigationBarTitleText": "钱包",
 				"enablePullDownRefresh": true
 			}
@@ -175,7 +175,25 @@
 					"enablePullDownRefresh": false
 				}
 
-			}]
+			}    ,{
+                    "path" : "kickback/kickback",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "home/home",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
 		}
 	],
 	"preloadRule": {

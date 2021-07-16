@@ -62,7 +62,7 @@
 									<button class="cu-btn line-red round sm"
 										@click.stop="deleteOrder(res)">删除订单</button>
 									<button class="cu-btn line-orange round sm"
-										v-if="res.order_state === '待支付' && res.pay_state === '待支付'"
+										v-if="res.order_state === '未支付' && res.pay_state === '未支付'"
 										@click.stop="toPay(res)">去支付</button>
 								</view>
 							</view>
@@ -358,7 +358,7 @@
 						count: 0
 					},
 					{
-						name: '待支付',
+						name: '未支付',
 						count: 0
 					},
 					{
@@ -384,7 +384,7 @@
 		},
 		onLoad(option) {
 			switch (option.type) {
-				case '待支付':
+				case '未支付':
 					this.swiperCurrent = 1
 					break;
 				case '待发货':
@@ -451,7 +451,7 @@
 					cancelText: '暂不取消',
 					success(res) {
 						if (res.confirm) {
-							self.updateOrderState('取消订单', '待支付', e);
+							self.updateOrderState('取消订单', '未支付', e);
 						}
 					}
 				});

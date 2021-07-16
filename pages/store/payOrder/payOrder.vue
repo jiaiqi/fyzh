@@ -159,7 +159,7 @@
 				let orderInfo = await this.$u.post(url, req);
 				if (orderInfo && orderInfo.data && orderInfo.data.length > 0) {
 					this.orderInfo = orderInfo.data[0];
-					if (this.orderInfo.order_status === '未支付' && this.orderInfo.pay_status === '取消支付') {
+					if (this.orderInfo.order_status === '待支付' && this.orderInfo.pay_status === '取消支付') {
 						uni.setNavigationBarTitle({
 							title: '等待买家付款'
 						});
@@ -307,7 +307,7 @@
 						fail(res) {
 							// 支付失败/取消支付
 							self.orderInfo.pay_status = '取消支付';
-							self.updateOrderState('待支付', '取消支付', result.prepay_id);
+							self.updateOrderState('未支付', '取消支付', result.prepay_id);
 						}
 					});
 				}

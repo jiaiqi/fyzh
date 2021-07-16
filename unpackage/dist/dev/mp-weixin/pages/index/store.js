@@ -96,16 +96,16 @@ var components
 try {
   components = {
     uNavbar: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-navbar/u-navbar */ "uview-ui/components/u-navbar/u-navbar").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-navbar/u-navbar.vue */ 235))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-navbar/u-navbar */ "uview-ui/components/u-navbar/u-navbar").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-navbar/u-navbar.vue */ 249))
     },
     uSwiper: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-swiper/u-swiper */ "uview-ui/components/u-swiper/u-swiper").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-swiper/u-swiper.vue */ 242))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-swiper/u-swiper */ "uview-ui/components/u-swiper/u-swiper").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-swiper/u-swiper.vue */ 256))
     },
     goodsList: function() {
-      return Promise.all(/*! import() | components/goods-list/goods-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/goods-list/goods-list")]).then(__webpack_require__.bind(null, /*! @/components/goods-list/goods-list.vue */ 249))
+      return Promise.all(/*! import() | components/goods-list/goods-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/goods-list/goods-list")]).then(__webpack_require__.bind(null, /*! @/components/goods-list/goods-list.vue */ 263))
     },
     uLoadmore: function() {
-      return __webpack_require__.e(/*! import() | uview-ui/components/u-loadmore/u-loadmore */ "uview-ui/components/u-loadmore/u-loadmore").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-loadmore/u-loadmore.vue */ 257))
+      return __webpack_require__.e(/*! import() | uview-ui/components/u-loadmore/u-loadmore */ "uview-ui/components/u-loadmore/u-loadmore").then(__webpack_require__.bind(null, /*! @/uview-ui/components/u-loadmore/u-loadmore.vue */ 271))
     }
   }
 } catch (e) {
@@ -189,7 +189,7 @@ var _default =
   data: function data() {
     return {
       background: {
-        backgroundColor: '#fff'
+        backgroundColor: '#FBF8F8'
         // backgroundImage: 'linear-gradient(45deg, rgb(28, 187, 180), rgb(141, 198, 63))',
         // backgroundImage: 'linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%)'
       },
@@ -210,7 +210,7 @@ var _default =
       loadText: {
         loadmore: '点击或上拉加载更多',
         loading: '努力加载中',
-        nomore: '实在没有了' },
+        nomore: '没有更多了' },
 
       page: {
         rownumber: 10,

@@ -51,6 +51,7 @@
 			<view class="u-m-t-20  menu-list">
 				<u-cell-group>
 					<!-- <u-cell-item icon="setting" title="设置"></u-cell-item> -->
+					<u-cell-item icon="gift" title="我的佣金" @click="toPage('kickback')"></u-cell-item>
 					<u-cell-item icon="share" title="分享" @click="openShare"></u-cell-item>
 				</u-cell-group>
 			</view>
@@ -165,7 +166,7 @@
 				},
 				showJoinMember: false,
 				menuList: [{
-						label: '待支付',
+						label: '未支付',
 						icon: 'cuIcon-pay'
 					},
 					{
@@ -261,6 +262,9 @@
 						break;
 					case 'contact': //分享人
 						url = '/pages/mine/contact/contact'
+						break;
+					case 'kickback': //佣金记录
+						url = '/pages/store/kickback/kickback'
 						break;
 				}
 				uni.navigateTo({

@@ -1,10 +1,10 @@
 <template>
 	<view>
 		<view class="store-list">
-			<view class="store-item" v-for="item in list" :key="item.id">
+			<view class="store-item" v-for="item in list" :key="item.id" @click="toDetail(item.id)">
 				<view class="left-image">
-					<image :src="$u.api.getImagePath(item.icom)" mode="aspectFit" v-if="item.icom"></image>
-					<text class="cuIcon-shop" v-else></text>
+					<image class="icon" :src="$u.api.getImagePath(item.icon)" mode="aspectFit" v-if="item.icon"></image>
+					<text class="icon cuIcon-shop" v-else></text>
 				</view>
 				<view class="right-content">
 					<view class="store-name">
@@ -28,6 +28,13 @@
 			}
 		},
 		methods: {
+			toDetail(id) {
+				if (id) {
+					uni.navigateTo({
+						url: `/pages/store/home/home?id=${id}`
+					})
+				}
+			},
 			loadList() {
 				const url = '/fyzhmd/select/srvstore_shop_mgmt_select'
 				const req = {
@@ -36,7 +43,7 @@
 					"condition": [],
 					"page": {
 						"pageNo": 1,
-						"rownumber": 10
+						"rownumber": 50
 					},
 					"order": []
 				}
@@ -54,13 +61,14 @@
 </script>
 
 <style scoped lang="scss">
-	.store-item{
+	.store-item {
 		background-color: #fff;
 		margin-top: 4rpx;
 		padding: 20rpx 40rpx;
 		display: flex;
 		align-items: center;
 	}
+
 	.left-image {
 		width: 100rpx;
 		height: 100rpx;
@@ -71,11 +79,17 @@
 		border-radius: 20rpx;
 		margin-right: 20rpx;
 		font-size: 40rpx;
+		.icon{
+			width: 100rpx;
+			height: 100rpx;
+		}
 	}
-	.right-content{
-		.address{
+
+	.right-content {
+		.address {
 			margin-top: 10rpx;
-			.cuIcon-location{
+
+			.cuIcon-location {
 				margin-left: 10rpx;
 			}
 		}

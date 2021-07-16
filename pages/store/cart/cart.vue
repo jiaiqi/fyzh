@@ -163,7 +163,7 @@
 						nick_name: this.userInfo.nick_name ? this.userInfo.nick_name.replace(
 							/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "") : '',
 						sex: this.userInfo.sex,
-						pay_state: '待支付',
+						pay_state: '未支付',
 						child_data_list: [{
 							serviceName: 'srvhealth_store_order_goods_detail_add',
 							condition: [],

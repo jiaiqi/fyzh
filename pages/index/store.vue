@@ -8,7 +8,7 @@
 				</view>
 			</view>
 		</u-navbar>
-		<view class="u-p-20 bg-white">
+		<view class="u-p-20">
 			<u-swiper :list="swiperList" border-radiu="20" :effect3d="false" :height="300"
 				@click="clickImage"></u-swiper>
 		</view>
@@ -25,7 +25,7 @@
 		data() {
 			return {
 				background: {
-					backgroundColor: '#fff',
+					backgroundColor: '#FBF8F8',
 					// backgroundImage: 'linear-gradient(45deg, rgb(28, 187, 180), rgb(141, 198, 63))',
 					// backgroundImage: 'linear-gradient( 135deg, #81FBB8 10%, #28C76F 100%)'
 				},
@@ -46,7 +46,7 @@
 				loadText: {
 					loadmore: '点击或上拉加载更多',
 					loading: '努力加载中',
-					nomore: '实在没有了'
+					nomore: '没有更多了'
 				},
 				page: {
 					rownumber: 10,
@@ -155,6 +155,7 @@
 		}
 	}
 	.store-wrap{
+		min-height: calc(100vh - var(--window-top) - var(--window-bottom));
 		background-color: #fbf8f8;
 	}
 </style>

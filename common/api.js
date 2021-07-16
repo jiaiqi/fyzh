@@ -128,7 +128,7 @@ const wxOpenLogin = async (wxAuthUserInfo) => {
 			"iv": wxAuthUserInfo.iv,
 			"signature": wxAuthUserInfo.signature
 		}
-		debugger
+		
 		Object.keys(data).forEach(key => {
 			if (!data[key]) {
 				delete data[key]

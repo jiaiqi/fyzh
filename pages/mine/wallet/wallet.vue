@@ -1,9 +1,9 @@
 <template>
 	<view>
-		<cu-custom :isBack="true">
+<!-- 		<cu-custom :isBack="true">
 			<view class="" slot="content">
 			</view>
-		</cu-custom>
+		</cu-custom> -->
 		<view class="top-card">
 			<view class="user-box">
 				<view class="u-m-r-20">
@@ -30,7 +30,7 @@
 			<view class="credits-overview"  v-if="vuex_memberInfo">
 				<view class="credits-item">
 					<view class="value">
-						{{vuex_memberInfo.totalMemberAmount||0}}
+						{{vuex_memberInfo.recharge_balance||0}}
 					</view>
 					<view class="label">
 						金币
@@ -64,7 +64,7 @@
 					</view>
 					<view class="right">
 						{{getSymbol(item)||''}}
-						{{item.coin_count||item.score}}
+						{{item.coin_count||item.score||0}}
 					</view>
 				</view>
 			</view>

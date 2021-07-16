@@ -36,7 +36,9 @@
         "successPay/successPay",
         "orderList/orderList",
         "cart/cart",
-        "storeList/storeList"
+        "storeList/storeList",
+        "kickback/kickback",
+        "home/home"
       ]
     }
   ],
