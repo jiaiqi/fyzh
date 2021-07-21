@@ -1,11 +1,5 @@
 <template>
 	<view class="goods-list" :style="[calcStyle]" :class="[layout]">
-		<!-- 		<view class="utils-bar">
-			<view class="util-item" @click="changeLayout">
-				<text class="cuIcon-list" v-if="layout==='double'"></text>
-				<text class="cuIcon-cascades" v-else></text>
-			</view>
-		</view> -->
 		<view class="single cu-card" v-if="layout==='single'">
 			<view class="goods-item  " v-for="(item,index) in goodsList" @click="toGoodsDetail(item)">
 				<u-lazy-load class="image" height="200" :image="item.url" :index="index"
@@ -105,6 +99,7 @@
 				}
 			},
 			list: {
+				immediate:true,
 				handler(newValue, oldValue) {
 					if (Array.isArray(newValue)) {
 						this.goodsList = newValue
@@ -149,6 +144,7 @@
 						this.page = res.page
 						let list = res.data.reduce((pre, cur) => {
 							let url = this.$u.getImagePath(cur[this.image], true);
+							debugger
 							cur.url = url;
 							if (cur[this.image]) {
 								this.$u.getImageInfo({

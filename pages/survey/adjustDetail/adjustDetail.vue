@@ -49,8 +49,8 @@
 					<text class="bg-green" style="width:2rem"></text>
 				</view>
 			</view>
-			<view class="goods-list">
-				<goods-list image="gd_img" price="gd_price" name="gd_name" desc="gd_desc" ref="goodsList"
+			<view class="goods-list" v-if="goodsList&&goodsList.length>0">
+				<goods-list image="gd_icon" price="gd_price" name="gd_name" desc="gd_desc" ref="goodsList"
 					:list="goodsList" :defaultLayout="layout"></goods-list>
 				<u-loadmore :status="loadStatus" :load-text="loadText" />
 			</view>

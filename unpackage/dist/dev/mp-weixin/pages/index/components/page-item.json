@@ -1,8 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "slide-image": "/pages/index/components/slide-image",
-    "slide-button": "/pages/index/components/slide-button",
-    "news-list": "/pages/index/components/news-list"
-  }
-}

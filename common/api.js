@@ -60,8 +60,8 @@ const getCart = async (user_no) => {
 			"rownumber": 50
 		},
 		"order": [{
-			colName:'create_time',
-			orderType:'desc'
+			colName: 'create_time',
+			orderType: 'desc'
 		}]
 	}
 	if (user_no) {
@@ -96,9 +96,9 @@ const getMemberInfo = async (hy_user_no) => {
 	const res = await uni.$u.post(url, req)
 	if (res.state === 'SUCCESS') {
 		let memberInfo = res.data
-		if(memberInfo.length>0){
+		if (memberInfo.length > 0) {
 			uni.$u.vuex('vuex_memberInfo', res.data[0])
-		}else{
+		} else {
 			uni.$u.vuex('vuex_memberInfo', false)
 		}
 	}
@@ -128,7 +128,7 @@ const wxOpenLogin = async (wxAuthUserInfo) => {
 			"iv": wxAuthUserInfo.iv,
 			"signature": wxAuthUserInfo.signature
 		}
-		
+
 		Object.keys(data).forEach(key => {
 			if (!data[key]) {
 				delete data[key]
@@ -198,7 +198,7 @@ const getPayParams = async (prepay_id, wx_mch_id = '1611681078') => {
 		if (res.state === 'SUCCESS') {
 			if (Array.isArray(res.data) && res.data.length > 0) {
 				// store.commit('SET_PAY_PARAMS', res.data[0])
-				uni.$u.vuex('vuex_payParams',res.data[0])
+				uni.$u.vuex('vuex_payParams', res.data[0])
 				return res.data[0]
 			} else {
 				uni.showModal({
@@ -255,7 +255,7 @@ const toPlaceOrder = async (total_fee, login_user_type, orderData, wx_mch_id = '
 
 
 // index
-const getPageItem = async () => {
+const getPageItem = async (page_no = "BX202106291053190001") => {
 	const url = '/daq/select/srvdaq_website_page_item_select'
 	const req = {
 		"serviceName": "srvdaq_website_page_item_select",
@@ -263,7 +263,7 @@ const getPageItem = async () => {
 		"condition": [{
 			"colName": "page_no",
 			"ruleType": "eq",
-			"value": config?.page_no || "BX202106291053190001"
+			"value": page_no || config?.page_no
 		}],
 	}
 	return await uni.$u.post(url, req)

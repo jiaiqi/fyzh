@@ -9,11 +9,11 @@
 			</view>
 		</u-navbar>
 		<view class="u-p-20">
-			<u-swiper :list="swiperList" border-radiu="20" :effect3d="false" :height="300"
-				@click="clickImage"></u-swiper>
+			<u-swiper :list="swiperList" border-radiu="20" :effect3d="false" :height="350" @click="clickImage">
+			</u-swiper>
 		</view>
 		<view class="goods-layout">
-			<goods-list image="gd_img" name="gd_name" desc="gd_desc" ref="goodsList" :list="goodsList"
+			<goods-list image="gd_icon" name="gd_name" desc="gd_desc" ref="goodsList" :list="goodsList"
 				:defaultLayout="layout"></goods-list>
 			<u-loadmore :status="loadStatus" @loadmore="loadMore" :load-text="loadText" />
 		</view>
@@ -71,9 +71,18 @@
 		},
 		created() {
 			this.getList()
+			this.getSwiperList()
 		},
 		methods: {
-			changeLayout(){
+			async getSwiperList(){
+				let obj = {
+					div_type:"carousel",
+					item_no:"PIT2021072114230005"
+				}
+				let res = await this.$u.api.getItemDetail(obj)
+				this.swiperList = res
+			},
+			changeLayout() {
 				this.layout === 'double' ? this.layout = 'single' : this.layout = 'double'
 			},
 			clickImage(e) {
@@ -107,9 +116,9 @@
 					}
 					if (Array.isArray(res.data)) {
 						let list = res.data.reduce((pre, cur) => {
-							let url = this.$u.getImagePath(cur['gd_img']);
+							let url = this.$u.getImagePath(cur['gd_icon'],true);
 							cur.url = url;
-							if (cur['gd_img']) {
+							if (cur['gd_icon']) {
 								this.$u.getImageInfo({
 									url: url
 								}).then(picInfo => {
@@ -149,12 +158,14 @@
 <style lang="scss" scoped>
 	.utils-bar {
 		flex: 1;
-		padding:  0 20rpx;
+		padding: 0 20rpx;
+
 		text[class*=cuIcon-] {
 			font-size: 40rpx;
 		}
 	}
-	.store-wrap{
+
+	.store-wrap {
 		min-height: calc(100vh - var(--window-top) - var(--window-bottom));
 		background-color: #fbf8f8;
 	}

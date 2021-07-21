@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "首页",
-  "enablePullDownRefresh": false,
-  "usingComponents": {
-    "page-item": "/pages/index/components/page-item"
-  }
-}

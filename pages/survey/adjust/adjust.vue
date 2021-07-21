@@ -56,20 +56,20 @@
 		display: flex;
 		justify-content: flex-start;
 		align-items: flex-start;
-		width: calc(10/3);
 		background-color: #fff;
 		min-height: calc(100vh - var(--window-top));
-		padding: 20rpx;
-
+		padding:10rpx 20rpx;
+		flex-wrap: wrap;
 		.tizhi-item {
+			flex: 1;
+			min-width: calc(33% - 40rpx);
 			border-right: 1px solid #f1f1f1;
 			border-bottom: 1rpx solid #f1f1f1;
 			text-align: center;
 			padding: 20rpx;
 
-			&:first-child {
+			&:nth-child(3n+1) {
 				border-left: 1rpx solid #f1f1f1;
-				;
 			}
 
 			&:nth-child(1),

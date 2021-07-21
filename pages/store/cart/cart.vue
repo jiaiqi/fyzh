@@ -5,7 +5,7 @@
 				<view @click="choseItem(item)" class="item-left-wrap">
 					<view class="item-left">
 						<label class="radio">
-							<radio :checked="item.checked=='true'" value="1" />
+							<radio :checked="item.checked=='true'||item.checked=='是'" value="1" />
 						</label>
 					</view>
 					<view class="item-right">
@@ -85,7 +85,7 @@
 			cartData: {
 				handler(newValue, oldValue) {
 					if(Array.isArray(newValue)){
-						this.chooseCarData = newValue.filter(item=>item.checked=='true')
+						this.chooseCarData = newValue.filter(item=>item.checked=='true'||item.checked=='是')
 					}
 				},
 				deep: true
@@ -216,28 +216,28 @@
 				});
 			},
 			subtract(item) {
-				if (item.checked==='true') {
+				if (item.checked==='true'||item.checked==='是') {
 					this.total = this.total - Number(item.price);
 				}
 				uni.setStorageSync('shop_car', this.shopCarData);
 			},
 			adds(item) {
-				if (item.checked==='true') {
+				if (item.checked==='true'||item.checked==='是') {
 					this.total = this.total + Number(item.price);
 				}
 				uni.setStorageSync('shop_car', this.shopCarData);
 			},
 			choseItem(item) {
-				if (item.checked==='true') {
-					item.checked = 'false';
+				if (item.checked==='true'||item.checked==='是') {
+					item.checked = '否';
 				}else{
-					item.checked = 'true';
+					item.checked = '是';
 				}
 				// item.checked = !item.checked;
 				let carData = this.cartData;
 				let isChoose = false;
 				carData.forEach(item => {
-					if (item.checked=='false') {
+					if (item.checked=='否') {
 						isChoose = true;
 					}
 				});
@@ -246,7 +246,7 @@
 				} else {
 					this.checkAll = false;
 				}
-				if (item.checked==='true') {
+				if (item.checked==='true'||item.checked==='是') {
 					this.total = this.total + Number(item.price) * item.car_num;
 					// this.chooseCarData.push(item);
 				} else {
@@ -268,11 +268,11 @@
 					}
 					shopData.forEach(item => {
 						if (this.checkAll) {
-							item.checked = 'true';
+							item.checked = '是';
 							this.total = this.total + Number(item.price) * item.car_num;
 							data.push(item);
 						} else {
-							item.checked = 'false';
+							item.checked = '否';
 							this.total = 0;
 						}
 					});
