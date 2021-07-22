@@ -35,34 +35,36 @@
 								<view class="item" v-for="(item, index) in res.goodsList" :key="index"
 									@click="toOrderDetail(res)">
 									<view class="left">
-										<image class="image" :src="item.goodsUrl" mode="aspectFill" v-if="item.goodsUrl"></image>
+										<image class="image" :src="item.goodsUrl" mode="aspectFill"
+											v-if="item.goodsUrl"></image>
 										<text class="cuIcon-goods image" v-else></text>
 									</view>
 									<view class="content">
 										<view class="title">{{ item.title }}</view>
 										<view class="type">{{ item.type || '' }}</view>
-										<view class="right">
-											<view class="price">
-												￥{{ priceInt(item.price) }}
-												<text class="decimal">.{{ priceDecimal(item.price) }}</text>
-											</view>
-											<view class="number">x{{ item.number }}</view>
-										</view>
-										<view class="total">
-											共{{ totalNum(res.goodsList) }}件商品 合计:
-											<text class="total-price">
-												￥{{ priceInt(totalPrice(res.goodsList)) }}.
-												<text
-													class="decimal">{{ priceDecimal(totalPrice(res.goodsList)) }}</text>
-											</text>
-										</view>
 									</view>
+									<view class="right">
+										<view class="price">
+											￥{{ priceInt(item.price) }}
+											<text class="decimal">.{{ priceDecimal(item.price) }}</text>
+										</view>
+										<view class="number">x{{ item.number }}</view>
+									</view>
+								</view>
+								<view class="total-money">
+									共{{ totalNum(res.goodsList) }}件商品 合计:
+									<text class="total-price">
+										￥{{ priceInt(totalPrice(res.goodsList)) }}.
+										<text
+											class="decimal">{{ priceDecimal(totalPrice(res.goodsList)) }}</text>
+									</text>
+									<text v-if="res.money_topay" class="total-price margin-left-xs sm text-orange">优惠价￥{{res.money_topay}}</text>
 								</view>
 								<view class="bottom">
 									<button class="cu-btn line-red round sm"
 										@click.stop="deleteOrder(res)">删除订单</button>
 									<button class="cu-btn line-orange round sm"
-										v-if="res.order_state === '未支付' && res.pay_state === '未支付'"
+										v-if="res.order_state === '待支付' && res.pay_state === '未支付'"
 										@click.stop="toPay(res)">去支付</button>
 								</view>
 							</view>
@@ -106,22 +108,23 @@
 										<view class="title u-line-2">{{ item.title }}</view>
 										<view class="type">{{ item.type }}</view>
 										<!-- <view class="delivery-time">发货时间 {{ item.deliveryTime }}</view> -->
-										<view class="right">
-											<view class="price">
-												￥{{ priceInt(item.price) }}
-												<text class="decimal">.{{ priceDecimal(item.price) }}</text>
-											</view>
-											<view class="number">x{{ item.number }}</view>
-										</view>
-										<view class="total">
-											共{{ totalNum(res.goodsList) }}件商品 合计:
-											<text class="total-price">
-												￥{{ priceInt(totalPrice(res.goodsList)) }}.
-												<text
-													class="decimal">{{ priceDecimal(totalPrice(res.goodsList)) }}</text>
-											</text>
-										</view>
 									</view>
+									<view class="right">
+										<view class="price">
+											￥{{ priceInt(item.price) }}
+											<text class="decimal">.{{ priceDecimal(item.price) }}</text>
+										</view>
+										<view class="number">x{{ item.number }}</view>
+									</view>
+								</view>
+								<view class="total-money">
+									共{{ totalNum(res.goodsList) }}件商品 合计:
+									<text class="total-price">
+										￥{{ priceInt(totalPrice(res.goodsList)) }}.
+										<text
+											class="decimal">{{ priceDecimal(totalPrice(res.goodsList)) }}</text>
+									</text>
+									<text v-if="res.money_topay" class="margin-left-xs total-price sm text-orange">优惠价￥{{res.money_topay}}</text>
 								</view>
 								<view class="bottom">
 									<button class="cu-btn line-red round sm"
@@ -168,22 +171,25 @@
 									<view class="content">
 										<view class="title u-line-2">{{ item.title }}</view>
 										<view class="type">{{ item.type }}</view>
-										<view class="right">
-											<view class="price">
-												￥{{ priceInt(item.price) }}
-												<text class="decimal">.{{ priceDecimal(item.price) }}</text>
-											</view>
-											<view class="number">x{{ item.number }}</view>
-										</view>
-										<view class="total">
-											共{{ totalNum(res.goodsList) }}件商品 合计:
-											<text class="total-price">
-												￥{{ priceInt(totalPrice(res.goodsList)) }}.
-												<text
-													class="decimal">{{ priceDecimal(totalPrice(res.goodsList)) }}</text>
-											</text>
-										</view>
+							
 									</view>
+									<view class="right">
+										<view class="price">
+											￥{{ priceInt(item.price) }}
+											<text class="decimal">.{{ priceDecimal(item.price) }}</text>
+										</view>
+										<view class="number">x{{ item.number }}</view>
+									</view>
+								</view>
+								
+								<view class="total-money">
+									共{{ totalNum(res.goodsList) }}件商品 合计:
+									<text class="total-price">
+										￥{{ priceInt(totalPrice(res.goodsList)) }}.
+										<text
+											class="decimal">{{ priceDecimal(totalPrice(res.goodsList)) }}</text>
+									</text>
+									<text v-if="res.money_topay" class="total-price margin-left-xs sm text-orange">优惠价￥{{res.money_topay}}</text>
 								</view>
 								<view class="bottom">
 									<view class="more">
@@ -231,22 +237,25 @@
 									<view class="content">
 										<view class="title u-line-2">{{ item.title }}</view>
 										<view class="type">{{ item.type }}</view>
-										<view class="right">
-											<view class="price">
-												￥{{ priceInt(item.price) }}
-												<text class="decimal">.{{ priceDecimal(item.price) }}</text>
-											</view>
-											<view class="number">x{{ item.number }}</view>
-										</view>
-										<view class="total">
-											共{{ totalNum(res.goodsList) }}件商品 合计:
-											<text class="total-price">
-												￥{{ priceInt(totalPrice(res.goodsList)) }}.
-												<text
-													class="decimal">{{ priceDecimal(totalPrice(res.goodsList)) }}</text>
-											</text>
-										</view>
+						
+								
 									</view>
+									<view class="right">
+										<view class="price">
+											￥{{ priceInt(item.price) }}
+											<text class="decimal">.{{ priceDecimal(item.price) }}</text>
+										</view>
+										<view class="number">x{{ item.number }}</view>
+									</view>
+								</view>
+								<view class="total-money">
+									共{{ totalNum(res.goodsList) }}件商品 合计:
+									<text class="total-price">
+										￥{{ priceInt(totalPrice(res.goodsList)) }}.
+										<text
+											class="decimal">{{ priceDecimal(totalPrice(res.goodsList)) }}</text>
+									</text>
+									<text v-if="res.money_topay" class="total-price margin-left-xs sm text-orange">优惠价￥{{res.money_topay}}</text>
 								</view>
 								<view class="bottom">
 									<view class="more">
@@ -292,22 +301,25 @@
 									<view class="content">
 										<view class="title u-line-2">{{ item.title }}</view>
 										<view class="type">{{ item.type }}</view>
-										<view class="right">
-											<view class="price">
-												￥{{ priceInt(item.price) }}
-												<text class="decimal">.{{ priceDecimal(item.price) }}</text>
-											</view>
-											<view class="number">x{{ item.number }}</view>
-										</view>
-										<view class="total">
-											共{{ totalNum(res.goodsList) }}件商品 合计:
-											<text class="total-price">
-												￥{{ priceInt(totalPrice(res.goodsList)) }}.
-												<text
-													class="decimal">{{ priceDecimal(totalPrice(res.goodsList)) }}</text>
-											</text>
-										</view>
+							
+							
 									</view>
+									<view class="right">
+										<view class="price">
+											￥{{ priceInt(item.price) }}
+											<text class="decimal">.{{ priceDecimal(item.price) }}</text>
+										</view>
+										<view class="number">x{{ item.number }}</view>
+									</view>
+								</view>
+								<view class="total-money">
+									共{{ totalNum(res.goodsList) }}件商品 合计:
+									<text class="total-price">
+										￥{{ priceInt(totalPrice(res.goodsList)) }}.
+										<text
+											class="decimal">{{ priceDecimal(totalPrice(res.goodsList)) }}</text>
+									</text>
+									<text v-if="res.money_topay" class="total-price margin-left-xs sm text-orange">优惠价￥{{res.money_topay}}</text>
 								</view>
 								<view class="bottom">
 									<view class="more">
@@ -358,7 +370,7 @@
 						count: 0
 					},
 					{
-						name: '未支付',
+						name: '待支付',
 						count: 0
 					},
 					{
@@ -451,7 +463,7 @@
 					cancelText: '暂不取消',
 					success(res) {
 						if (res.confirm) {
-							self.updateOrderState('取消订单', '未支付', e);
+							self.updateOrderState('取消订单', '待支付', e);
 						}
 					}
 				});
@@ -727,7 +739,7 @@
 		.item {
 			display: flex;
 			margin: 20rpx 0 0;
-
+			
 			.left {
 				margin-right: 20rpx;
 
@@ -747,7 +759,7 @@
 				display: flex;
 				flex-wrap: wrap;
 				justify-content: space-between;
-
+				flex: 1;
 				.title {
 					font-size: 32rpx;
 					line-height: 40rpx;
@@ -792,7 +804,18 @@
 				font-size: 32rpx;
 			}
 		}
-
+		.total-money{
+			width: 100%;
+			text-align: right;
+			font-size: 24rpx;
+			
+			.total-price {
+				font-size: 32rpx;
+				&.sm{
+					font-size: 26rpx;
+				}
+			}
+		}
 		.bottom {
 			display: flex;
 			margin-top: 40rpx;

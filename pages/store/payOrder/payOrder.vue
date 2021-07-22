@@ -22,7 +22,8 @@
 				</view>
 				<view class="goods-list">
 					<view class="goods-item" v-for="goods in goodsList">
-						<image class="goods-image" :src="$u.getImagePath(goods.gd_img)" mode=" aspectFit" v-if="goods.gd_img"></image>
+						<image class="goods-image" :src="$u.getImagePath(goods.gd_img)" mode=" aspectFit"
+							v-if="goods.gd_img"></image>
 						<text class="cuIcon-goods goods-image" v-else></text>
 						<view class="content">
 							<view class="goods-name">{{ goods.name||goods.goods_name}}
@@ -39,13 +40,50 @@
 					</view>
 				</view>
 			</view>
+			<view class="order-info">
+				<view class="order-item">
+					<view class="label">
+						商品总价
+					</view>
+					<view class="value">
+						<text> ￥{{totalMoney||''}}</text>
+						<text class="cuIcon-right text-white"></text>
+					</view>
+				</view>
+				<view class="order-item" @click="openCouponPopup" v-if="couponList&&couponList.length>0">
+					<view class="label">
+						优惠券
+					</view>
+					<view class="value text-red" v-if="couponChecked.length>0">
+						<text>-￥{{deduction||'0'}}</text>
+						<text class="cuIcon-right"></text>
+					</view>
+					<view class="value " v-else>
+						<text>{{couponList.length}}张可用</text>
+						<text class="cuIcon-right text-gray"></text>
+					</view>
+				</view>
+				<view class="order-item"
+					v-else-if="orderInfo&&orderInfo.money_topay&&orderInfo.money_total!==orderInfo.money_topay">
+					<view class="label">
+						优惠价:
+					</view>
+					<view class="value text-red">
+						<text>-￥{{orderInfo.money_topay||'0'}}</text>
+						<text class="cuIcon-right text-white"></text>
+					</view>
+				</view>
+			</view>
 		</view>
 		<view class="handler-bar">
-			<text class="amount">共{{ totalAmount }}件</text>
+			<view class="amount">共{{ totalAmount }}件</view>
+			<view class="amount" v-if="orderInfo&&orderInfo.money_youhuiquan">总价<text
+					class="text-orange">￥{{ totalMoney }}</text>, 优惠<text
+					class="text-orange">-￥{{orderInfo.money_youhuiquan}}</text></view>
 			<text class="text">合计:</text>
 			<text class="money-amount">
 				<text class="money-operate">￥</text>
-				<text>{{ totalMoney }}</text>
+				<text>{{ finallMoney }}</text>
 			</text>
 			<button class="cu-btn bg-gradual-orange round" @click="submitOrder" v-if="orderInfo.order_status === '待提交'"
 				:disabled="!canSubmit">提交订单</button>
@@ -54,6 +92,41 @@
 				付款
 			</button>
 		</view>
+		<u-popup v-model="showCouponPopup" mode="bottom" closeable border-radius="20">
+			<view class="coupon-popup">
+				<view class="coupon-title">
+					<text>优惠券</text>
+					<!-- <text class="explain">使用说明</text> -->
+				</view>
+				<!-- 			<view class="coupon-title-tip">
+					请选择优惠券
+				</view> -->
+				<scroll-view scroll-y="true">
+					<view class="coupon-list">
+						<view class="coupon-item" v-for="item in couponList" :key="item.id"
+							@click="radioGroupChange(item)">
+							<view class="left">
+								<view class="sum">
+									￥
+									<text class="num">{{item.value}}</text>
+								</view>
+							</view>
+							<view class="center">
+								<text class="margin-right">{{item.cp_name}}</text>
+
+							</view>
+							<view class="right">
+								<u-checkbox v-model="item.checked" shape="circle">
+								</u-checkbox>
+							</view>
+						</view>
+					</view>
+				</scroll-view>
+				<view class="button-box">
+					<button class="cu-btn bg-gradual-orange shadow-blur " @click="openCouponPopup">确定</button>
+				</view>
+			</view>
+		</u-popup>
 	</view>
 </template>
 
@@ -66,14 +139,49 @@
 				goodsList: [],
 				addressInfo: {
 					fullAddress: ''
-				}
+				},
+				showCouponPopup: false,
+				couponList: [], //可用优惠券
+				couponCheckedNo: '',
 			};
 		},
 		computed: {
+			couponChecked() {
+				if (this.couponCheckedNo) {
+					return this.couponList.find(item => item.cpd_no === this.couponCheckedNo)
+				} else {
+					return this.couponList.filter(item => item.checked)
+				}
+			},
 			canSubmit() {
 				// 是否可以提交订单
 				return this.addressInfo && this.addressInfo.fullAddress && this.addressInfo.phone && this.addressInfo
 					.userName && this.totalMoney
+			},
+			deduction() {
+				if (Array.isArray(this.couponChecked) && this.couponChecked.length > 0) {
+					let deduction = this.couponChecked.reduce((res, cur) => {
+						if (cur.value && typeof cur.value === 'number' && !isNaN(cur.value)) {
+							res += cur.value
+						}
+						return res
+					}, 0)
+					return deduction
+				} else if (this.orderInfo && this.orderInfo.money_youhuiquan) {
+					return this.orderInfo.money_youhuiquan
+				}
+				return 0
+			},
+			finallMoney() {
+				// 最终支付金额
+				let result = this.totalMoney
+				if (this.deduction) {
+					let res = this.totalMoney - this.deduction
+					if (res && typeof res === 'number' && !isNaN(result)) {
+						result = res
+					}
+				}
+				return result
 			},
 			totalAmount() {
 				if (Array.isArray(this.goodsList)) {
@@ -104,6 +212,64 @@
 			}
 		},
 		methods: {
+			radioGroupChange(e) {
+				if (e && e.id) {
+					this.couponList = this.couponList.map(item => {
+						if (item.id === e.id) {
+							item.checked = !item.checked
+						} else {
+							item.checked = false
+						}
+						return item
+					})
+				}
+			},
+			async getCouponList() {
+				// 查找可用优惠券列表
+				const req = {
+					"serviceName": "srvstore_sales_coupon_detail_select",
+					"colNames": ["*"],
+					"condition": [{
+							colName: 'hy_no',
+							ruleType: 'eq',
+							value: this.vuex_memberInfo.hy_no
+						},
+						{
+							colName: 'state',
+							ruleType: 'eq',
+							value: '待使用'
+						},
+						{
+							colName: 'use_order_no',
+							ruleType: 'isnull'
+						}
+					],
+					"page": {
+						"pageNo": 1,
+						"rownumber": 10
+					},
+				}
+				const url = '/fyzhmd/select/srvstore_sales_coupon_detail_select'
+				const res = await this.$u.post(url, req)
+				if (res.state === 'SUCCESS') {
+					this.couponList = res.data.map(item => {
+						item.checked = false
+						if (Array.isArray(this.couponChecked) && this.couponChecked.length > 0 && this
+							.couponChecked.find(c => c.id === item.id)) {
+							item.checked = true
+						}
+						return item
+					})
+				}
+				return res
+			},
+			async openCouponPopup() {
+				if (!this.showCouponPopup) {
+					await this.getCouponList()
+
+				}
+				this.showCouponPopup = !this.showCouponPopup
+			},
 			updateOrderState(order_status, pay_status, prepay_id) {
 				let req = [{
 					serviceName: 'srvstore_shop_order_update',
@@ -165,7 +331,7 @@
 						});
 					}
 					this.addressInfo.fullAddress = this.orderInfo.rcv_addr
-					this.addressInfo.userName =  this.orderInfo.rcv_name
+					this.addressInfo.userName = this.orderInfo.rcv_name
 					this.addressInfo.telNumber = this.orderInfo.rcv_phone
 					this.addressInfo.phone = this.orderInfo.rcv_phone
 					let goods = await this.getGoodsList();
@@ -193,13 +359,13 @@
 				let url = '/fyzhmd/select/srvstore_shop_order_goods_select'
 				if (this.orderNo) {
 					let goodsList = await this.$u.post(url, req);
-					if (goodsList.state==='SUCCESS') {
+					if (goodsList.state === 'SUCCESS') {
 						this.goodsList = goodsList.data
 						this.$set(this.orderInfo, 'goodsList', goodsList.data);
 					}
 				}
 			},
-			submitOrder() {
+			async submitOrder() {
 				const userInfo = this.vuex_loginUser
 				const vuex_memberInfo = this.vuex_memberInfo
 				let req = [{
@@ -211,8 +377,8 @@
 						rcv_addr: this.addressInfo.fullAddress,
 						rcv_name: this.addressInfo.userName,
 						rcv_phone: this.addressInfo.telNumber,
-						hy_no:vuex_memberInfo.hy_no,
-						hy_name:vuex_memberInfo.hy_name,
+						hy_no: vuex_memberInfo.hy_no,
+						hy_name: vuex_memberInfo.hy_name,
 						// user_no: userInfo.user_no,
 						// profile_url: userInfo.headimgurl,
 						money_total: this.totalMoney,
@@ -242,33 +408,75 @@
 					}]
 				}];
 				const url = '/fyzhmd/operate/srvstore_shop_order_add'
-				this.$u.post(url, req).then(res => {
-					let data = []
-					if (
-						Array.isArray(res.response) &&
-						res.response.length > 0 &&
-						res.response[0].response &&
-						Array.isArray(res.response[0].response.effect_data) &&
-						res.response[0].response.effect_data.length > 0
-					) {
-						data = res.response[0].response.effect_data
+				const res = await this.$u.post(url, req)
+				// .then(res => {
+				let data = []
+				if (
+					Array.isArray(res.response) &&
+					res.response.length > 0 &&
+					res.response[0].response &&
+					Array.isArray(res.response[0].response.effect_data) &&
+					res.response[0].response.effect_data.length > 0
+				) {
+					data = res.response[0].response.effect_data
+				}
+				if (data && Array.isArray(data) && data.length > 0) {
+					this.orderNo = data[0].order_no;
+					if (Array.isArray(this.couponChecked) && this.couponChecked.length > 0 && this.orderNo) {
+						const useCouponResult = await this.useCoupon()
 					}
-					if (data && Array.isArray(data) && data.length > 0) {
-						console.log(data[0]);
-						this.orderNo = data[0].order_no;
-						this.getOrderInfo().then(data => {
-							this.toPay();
-						});
-					}
-				});
+					this.getOrderInfo().then(data => {
+						this.toPay();
+					});
+				}
+				// });
+			},
+			async useCoupon() {
+				// 使用优惠券
+				const req = [{
+					"serviceName": "srvstore_sales_coupon_detail_update",
+					"condition": [{
+						"colName": "id",
+						"ruleType": "in",
+						"value": this.couponChecked.map(item => item.id).toString()
+					}],
+					"data": [{
+						"state": "已使用",
+						"use_order_no": this.orderNo
+					}]
+				}]
+				let url = '/fyzhmd/operate/srvstore_sales_coupon_detail_update'
+				const res = await this.$u.post(url, req)
+				if (res.state == 'SUCCESS') {
+					return res.data
+				}
 			},
 
+			async updatePrepayId(prepay_id) {
+				// 生成微信订单后 更新订单的预支付id
+				const url = '/fyzhmd/operate/srvstore_shop_order_update'
+				const req = [{
+					"serviceName": "srvstore_shop_order_update",
+					"condition": [{
+						"colName": "order_no",
+						"ruleType": "eq",
+						"value": this.orderNo
+					}],
+					"data": [{
+						"prepay_id": prepay_id
+					}]
+				}]
+				let res = await this.$u.post(url, req)
+				return res
+			},
 			// 发起支付
 			async toPay() {
 				let self = this;
+				let money = this.finallMoney || this.orderInfo?.money_topay || this.orderInfo.money_total || this
+					.totalMoney
 				let orderData = this.$u.deepClone(this.orderInfo);
 				let goodsData = this.$u.deepClone(this.goodsList);
-				if (typeof this.totalMoney !== 'number' || this.totalMoney.toString() === 'NaN') {
+				if (typeof money !== 'number' || isNaN(money)) {
 					uni.showModal({
 						title: '提示',
 						content: '订单状态有误',
@@ -277,16 +485,20 @@
 					return;
 				}
 				let result = {};
+				debugger
 				if (orderData.prepay_id) {
 					result.prepay_id = orderData.prepay_id;
 				} else {
 					result = await this.$u.api.toPlaceOrder(
-						this.totalMoney*100 || 1, this.vuex_loginUser
+						money * 100 || 1, this.vuex_loginUser
 						?.login_user_type,
 						orderData
 					);
+
 				}
+
 				if (result && result.prepay_id) {
+					await this.updatePrepayId(result.prepay_id)
 					let res = await this.$u.api.getPayParams(result.prepay_id);
 					wx.requestPayment({
 						timeStamp: res.timeStamp.toString(),
@@ -301,7 +513,7 @@
 							self.orderInfo.pay_status = '已支付';
 							uni.redirectTo({
 								url: '/pages/store/successPay/successPay?order_no=' + orderData
-									.order_no + '&totalMoney=' + self.totalMoney
+									.order_no + '&totalMoney=' + money
 							});
 						},
 						fail(res) {
@@ -332,6 +544,7 @@
 					this.$set(this.orderInfo, 'order_status', '待提交')
 					this.$set(this.orderInfo, 'pay_status', '未支付')
 				}
+				this.getCouponList()
 			}
 		}
 	};
@@ -389,6 +602,24 @@
 			background-color: #fff;
 			padding: 20rpx 20rpx 40rpx;
 			border-radius: 10px;
+
+			.order-item {
+				display: flex;
+				justify-content: space-between;
+				padding: 10rpx 20rpx 0 0;
+
+				.label {
+					color: #666;
+				}
+
+				.value {
+					.cuIcon-right {
+						font-weight: normal;
+					}
+
+					font-weight: bold;
+				}
+			}
 
 			.title-bar {
 				padding: 20rpx 0 30rpx;
@@ -477,6 +708,95 @@
 				.money-operate {
 					font-size: 12px;
 				}
+			}
+		}
+	}
+
+	.coupon-popup {
+		background-color: #F5F5F5;
+
+		.coupon-title {
+			font-weight: bold;
+			background-color: #fff;
+			padding: 20rpx;
+			font-size: 36rpx;
+		}
+
+		.coupon-title-tip {
+			padding: 0 20rpx;
+			background-color: #fff;
+			color: #666;
+		}
+
+		.button-box {
+			padding: 20rpx 0 40rpx;
+			text-align: center;
+			background-color: #fff;
+
+			.cu-btn {
+				width: 80%;
+			}
+		}
+
+		.coupon-list {
+			padding: 20rpx;
+			max-height: 65vh;
+		}
+
+		.coupon-item {
+			margin-top: 20rpx;
+			width: 700rpx;
+			background-color: #ffffff;
+			display: flex;
+			border-radius: 20rpx;
+			-webkit-mask: radial-gradient(circle at 0, transparent 20rpx, red 0), radial-gradient(circle at right, transparent 30rpx, blue 0);
+			-webkit-mask-size: 50%;
+			-webkit-mask-position: 0, 100%;
+			-webkit-mask-repeat: no-repeat;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+
+			// background: linear-gradient(45deg, orange, red);
+			.left {
+				padding: 0 30rpx;
+				background-color: rgb(95, 148, 224); //rgb(94, 152, 225);
+				text-align: center;
+				font-size: 28rpx;
+				color: #ffffff;
+				flex: 0.4;
+
+				.sum {
+					margin-top: 50rpx;
+					margin-bottom: 50rpx;
+					font-weight: bold;
+					font-size: 32rpx;
+
+					.num {
+						font-size: 80rpx;
+					}
+				}
+
+				.type {
+					margin-bottom: 50rpx;
+					font-size: 24rpx;
+				}
+			}
+
+			.center {
+				font-size: 28rpx;
+				flex: 1;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 40rpx;
+				font-weight: bold;
+				letter-spacing: 5rpx;
+			}
+
+			.right {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 20rpx;
 			}
 		}
 	}

@@ -35,6 +35,11 @@
 						colName: 'hy_no',
 						ruleType: 'eq',
 						value: this.vuex_memberInfo.hy_no
+					},
+					{
+						colName: 'state',
+						ruleType: 'eq',
+						value: '待使用'
 					}],
 					"page": {
 						"pageNo": 1,
