@@ -1,10 +1,5 @@
 <template>
 	<view class="quiz-wrap">
-		<!-- 		<view class="quiz-title light bg-blue">
-			<text class="cuIcon-titles text-blue"></text>
-			{{ formData.title }}
-		</view> -->
-
 		<view class="progress-bar" v-if="percent&&contentType === 'question'">
 			<view class="progress">
 				<progress :percent="percent" :show-info="false" stroke-width="10" border-radius="5" active
@@ -13,28 +8,18 @@
 			<text class="margin-left">第{{ currentQuestion + 1 }}/{{ formData.item_data.length }}题</text>
 		</view>
 		<view class="quiz-center" v-if="contentType === 'start'">
-			<!-- 	<view class="quiz-title light bg-blue">
-				<text class="cuIcon-titles text-blue"></text>
-				{{ formData.title }}
-			</view> -->
 			<view class="quiz-remark">
 				<view v-if="formData.remark"
 					v-html="JSON.parse(JSON.stringify(formData.remark).replace(/\<img/gi, '<img width=100%  '))"></view>
 				<view class="start-button" v-if="formData&&formData.id">
 					<button class="cu-btn" @click="startAnswer"
 						v-if="formType!=='detail'&&(formData.user_state!=='完成'||formData.answer_times==='多次')">开始答题</button>
-					<!-- <button class="cu-btn" @click="startAnswer"
-						v-if="formType==='detail'||formData.user_state==='完成'">查看答题记录</button> -->
 					<button class="cu-btn" @click="seeResult"
 						v-if="formType==='detail'||formData.user_state==='完成'">上次评估结果</button>
 				</view>
 			</view>
 		</view>
 		<view class="quiz-center" v-if="contentType === 'end'">
-			<!-- 	<view class="quiz-title light bg-blue">
-				<text class="cuIcon-titles text-blue"></text>
-				{{ formData.title }}
-			</view> -->
 			<view class="quiz-remark">
 				<view v-html="JSON.parse(JSON.stringify(formData.end_remark).replace(/\<img/gi, '<img width=100%  '))">
 				</view>
@@ -46,10 +31,6 @@
 			</view>
 		</view>
 		<view class="quiz-center" v-if="contentType === 'question'">
-			<!-- 		<view class="quiz-title light bg-blue">
-				<text class="cuIcon-titles text-blue"></text>
-				{{ formData.title }}
-			</view> -->
 			<view class="quiz-question">
 				<view class="quiz-question-contetn">
 					<bx-form labelPosition="top" optionMode="normal" ref="bxform" :fields="[currentCol]"
@@ -91,6 +72,7 @@
 		},
 		data() {
 			return {
+				onSwitch: false, // 正在切题
 				starTime: 0,
 				timer: null,
 				nowTime: 0,
@@ -308,12 +290,21 @@
 				})
 			},
 			changeQuestion(type) {
+				if (this.onSwitch) {
+					return
+				}
+				uni.showLoading({
+					mask: true
+				})
 				let itemData = this.quizData
+				this.onSwitch = true
 				if (type === 'pre' && this.currentQuestion > 0) {
 					this.currentQuestion--;
 				} else if (type === 'next' && this.currentQuestion < this.formData.item_data.length) {
 					let itemData = this.$refs.bxform.getFieldModel();
 					if (!itemData) {
+						uni.hideLoading()
+						this.onSwitch = false
 						return
 					}
 					this.currentQuestion++;
@@ -323,11 +314,15 @@
 				} else if (type === 'end') {
 					//返回结束页
 					if (!itemData) {
+						uni.hideLoading()
+						this.onSwitch = false
 						return
 					}
 					this.quizData = itemData;
 					this.contentType = 'end';
 				}
+				uni.hideLoading()
+				this.onSwitch = false
 			},
 			seeResult() {
 				// this.contentType = 'end'
