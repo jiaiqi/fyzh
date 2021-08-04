@@ -23,7 +23,7 @@
 					<u-input v-model="form.phone" :border="true" placeholder="请输入电话号码" />
 					<!-- <button type="primary" class="cu-btn sm bg-blue" slot="right" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">授权</button> -->
 				</u-form-item>
-				<u-form-item label="生日" :border-bottom="false" prop="birth_day" required right-icon="calendar">
+				<u-form-item label="生日" :border-bottom="false" prop="birth_day" right-icon="calendar">
 					<view class="date-picker">
 						<picker mode="date" class="picker" :value="form.birth_day" @change="changeDate">
 							<view class="uni-input" v-if="form.birth_day">{{form.birth_day||'点击选择日期'}}</view>
@@ -32,7 +32,7 @@
 						<!-- <u-icon name="calendar"></u-icon> -->
 					</view>
 				</u-form-item>
-				<u-form-item label="住址" :border-bottom="false" prop="addr" required>
+				<u-form-item label="住址" :border-bottom="false" prop="addr">
 					<view class="date-picker no-border" @click="chooseLocation">
 						<u-input v-model="form.addr" class="u-input" :border="true" placeholder="请输入地址" />
 						<u-icon name="map" class="u-m-l-10 text-gray" @click="chooseLocation"></u-icon>
@@ -139,13 +139,13 @@
 						}
 					],
 					birth_day: [{
-						required: true,
+						required: false,
 						message: '请选择出生日期',
 						// 可以单个或者同时写两个触发验证方式 
 						trigger: ['change', 'blur'],
 					}],
 					addr: [{
-						required: true,
+						required: false,
 						message: '请输入居住地址',
 						// 可以单个或者同时写两个触发验证方式 
 						trigger: ['blur'],

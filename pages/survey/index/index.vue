@@ -281,14 +281,14 @@
 			}
 		},
 		methods: {
-			onRadioChange(e) {
-				this.configCols = this.configCols.map(item => {
-					if (item.column === e.column) {
-						item.value = e.value
-					}
-					return item
-				})
-			},
+			// onRadioChange(e) {
+			// 	this.configCols = this.configCols.map(item => {
+			// 		if (item.column === e.column) {
+			// 			item.value = e.value
+			// 		}
+			// 		return item
+			// 	})
+			// },
 			changeQuestion(type) {
 				if (this.onSwitch) {
 					return
@@ -399,9 +399,7 @@
 						}
 						return item
 					})
-					setTimeout(() => {
-						this.changeQuestion('next')
-					}, 200)
+					this.changeQuestion('next')
 				}
 			},
 			saveValue(e) {
