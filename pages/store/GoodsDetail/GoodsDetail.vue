@@ -326,7 +326,8 @@
 
 		.image-box {
 			width: 100%;
-
+			display: flex;
+			flex-direction: column;
 			image {
 				width: 100%;
 			}

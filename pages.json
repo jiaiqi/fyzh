@@ -99,7 +99,25 @@
 					"navigationBarTitleText": "",
 					"enablePullDownRefresh": false
 				}
-			}]
+			}    ,{
+                    "path" : "quest/quest",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "scheme/scheme",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "个性方案",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
 		},
 		{
 			"root": "pages/public",
@@ -130,7 +148,16 @@
 					"enablePullDownRefresh": false
 				}
 
-			}]
+			}    ,{
+                    "path" : "list/list",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
 		},
 		{
 			"root": "pages/store",

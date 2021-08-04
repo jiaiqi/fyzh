@@ -14,7 +14,7 @@
 				<view class="start-button" v-if="formData&&formData.id">
 					<button class="cu-btn" @click="startAnswer"
 						v-if="formType!=='detail'&&(formData.user_state!=='完成'||formData.answer_times==='多次')">开始答题</button>
-					<button class="cu-btn" @click="seeResult"
+					<button class="cu-btn" @click="seeResult('last')"
 						v-if="formType==='detail'||formData.user_state==='完成'">上次评估结果</button>
 				</view>
 			</view>
@@ -324,9 +324,9 @@
 				uni.hideLoading()
 				this.onSwitch = false
 			},
-			seeResult() {
+			seeResult(type) {
 				// this.contentType = 'end'
-				if (Array.isArray(this.formData.user_data) && this.formData.user_data.length > 0) {
+				if (type === 'last' && Array.isArray(this.formData.user_data) && this.formData.user_data.length > 0) {
 					this.configCols.forEach(item => {
 						this.formData.user_data.forEach(items => {
 							if (item.column === items.item_no) {
@@ -353,6 +353,10 @@
 					})
 
 				}
+				console.log(this.calcScole)
+				console.log(this.calcResult)
+				debugger
+
 				uni.navigateTo({
 					url: `/pages/survey/result/result?calcScole=${JSON.stringify(this.calcScole)}&calcResult=${JSON.stringify(this.calcResult)}`
 				})
@@ -850,6 +854,20 @@
 			}
 		},
 		onLoad(option) {
+			if (!this.vuex_memberInfo?.hy_no) {
+				uni.showModal({
+					title: '提示',
+					content: '请先注册为会员，是否跳转到会员注册页面？',
+					success: (res) => {
+						if (res.confirm) {
+							uni.redirectTo({
+								url: '/pages/mine/memberReg/memberReg'
+							})
+						}
+					}
+				})
+				return
+			}
 			if (option.formType && option.formType === 'detail') {
 				this.formType = option.formType;
 			} else {
@@ -966,7 +984,7 @@
 
 			.quiz-remark {
 				width: 100%;
-				height: 100vh;
+				height: calc(100vh - 100rpx);
 				padding: 40rpx;
 				// flex: 1;
 				display: flex;

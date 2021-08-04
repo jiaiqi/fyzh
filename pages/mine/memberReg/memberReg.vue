@@ -8,6 +8,17 @@
 				<u-form-item label="姓名" :border-bottom="false" prop="hy_name" required right-icon="account">
 					<u-input v-model="form.hy_name" :border="true" placeholder="请输入姓名" />
 				</u-form-item>
+				<u-form-item label="性别" :border-bottom="false" prop="sex" required>
+					<!-- <u-input v-model="form.sex" :border="true" placeholder="请选择性别" /> -->
+					<u-radio-group v-model="form.sex">
+						<u-radio name="男">
+							男
+						</u-radio>
+						<u-radio name="女">
+							女
+						</u-radio>
+					</u-radio-group>
+				</u-form-item>
 				<u-form-item label="电话" :border-bottom="false" prop="phone" required right-icon="phone">
 					<u-input v-model="form.phone" :border="true" placeholder="请输入电话号码" />
 					<!-- <button type="primary" class="cu-btn sm bg-blue" slot="right" open-type="getPhoneNumber" @getphonenumber="getPhoneNumber">授权</button> -->
@@ -84,6 +95,7 @@
 					// 基本信息
 					hy_profile_url: "", //头像
 					hy_name: "", //会员姓名
+					sex: "",
 					hy_role: "用户", //会员角色
 					phone: "", //电话
 					birth_day: "", //生日,
@@ -105,6 +117,12 @@
 					hy_name: [{
 						required: true,
 						message: '请输入姓名',
+						// 可以单个或者同时写两个触发验证方式 
+						trigger: ['change', 'blur'],
+					}],
+					sex: [{
+						required: true,
+						message: '请选择性别',
 						// 可以单个或者同时写两个触发验证方式 
 						trigger: ['change', 'blur'],
 					}],
