@@ -2,8 +2,8 @@
     "name" : "枫叶正红",
     "appid" : "__UNI__C60D87E",
     "description" : "健康商城",
-    "versionName" : "0.1.1",
-    "versionCode" : 1,
+    "versionName" : "1",
+    "versionCode" : 100,
     "transformPx" : false,
     "app-plus" : {
         // APP-VUE分包，可提APP升启动速度，2.7.12开始支持，兼容微信小程序分包方案，默认关闭

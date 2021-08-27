@@ -5,6 +5,7 @@ import api from '@/common/config.js'
 const install = (Vue, vm) => {
 	Vue.prototype.$u.http.setConfig({
 		baseUrl: api.srvHost || 'https://srvms.100xsys.cn',
+		showLoading:false,
 		// 如果将此值设置为true，拦截回调中将会返回服务端返回的所有数据response，而不是response.data
 		// 设置为true后，就需要在this.$u.http.interceptor.response进行多一次的判断，请打印查看具体值
 		// originalData: true, 
@@ -37,7 +38,6 @@ const install = (Vue, vm) => {
 		// 方式四，如果token放在了Storage本地存储中，拦截是每次请求都执行的，所以哪怕您重新登录修改了Storage，下一次的请求将会是最新值
 		// const token = uni.getStorageSync('token');
 		// config.header.token = token;
-
 		return config;
 	}
 	// 响应拦截，判断状态码是否通过

@@ -22,7 +22,9 @@
 			// #ifdef MP-WEIXIN
 			await wxLogin()
 			// #endif
+			debugger
 			this.$u.api.getPageItem().then(res => {
+				debugger
 				if (res.state === 'SUCCESS') {
 					this.pageItemList = res.data
 				}
